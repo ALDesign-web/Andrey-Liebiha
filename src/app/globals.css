@@ -1,0 +1,258 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans), Inter, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), JetBrains Mono, monospace;
+}
+
+:root {
+  --background: #08080b;
+  --foreground: #f4f4f6;
+  --surface: #0f1015;
+  --surface-hover: #161720;
+  --border: rgba(255, 255, 255, 0.08);
+  --border-active: rgba(249, 115, 22, 0.4);
+  --creatio-orange: #f97316;
+  --creatio-amber: #fbbf24;
+  --electric-cyan: #06b6d4;
+  --neon-indigo: #6366f1;
+}
+
+html {
+  scroll-behavior: smooth;
+  color-scheme: dark;
+  background-color: var(--background);
+  color: var(--foreground);
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--background);
+  color: var(--foreground);
+  overflow-x: hidden;
+  selection-background-color: #f97316;
+  selection-color: #ffffff;
+}
+
+::selection {
+  background: rgba(249, 115, 22, 0.3);
+  color: #ffffff;
+}
+
+/* Lenis Recommended Smooth Scroll CSS */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}
+
+/* Miraclesux / High-End Glassmorphism Utilities */
+.glass-panel {
+  background: rgba(15, 16, 21, 0.7);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.glass-panel-hover {
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glass-panel-hover:hover {
+  border-color: rgba(249, 115, 22, 0.35);
+  transform: translateY(-4px);
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6), 0 0 30px rgba(249, 115, 22, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+.glass-pill {
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Ambient Glow Gradients */
+.glow-spot-orange {
+  background: radial-gradient(circle, rgba(249, 115, 22, 0.15) 0%, rgba(249, 115, 22, 0) 70%);
+}
+
+.glow-spot-cyan {
+  background: radial-gradient(circle, rgba(6, 182, 212, 0.12) 0%, rgba(6, 182, 212, 0) 70%);
+}
+
+.glow-spot-indigo {
+  background: radial-gradient(circle, rgba(99, 102, 241, 0.12) 0%, rgba(99, 102, 241, 0) 70%);
+}
+
+/* Background Subtle Grid */
+.bg-tech-grid {
+  background-size: 48px 48px;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+}
+
+.bg-tech-dots {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+/* Animated Liquid Silk Gradient Text Presets */
+@keyframes gradient-flow {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.text-gradient-white {
+  background: linear-gradient(90deg, #ffffff 0%, #d4d4d8 25%, #a1a1aa 50%, #d4d4d8 75%, #ffffff 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradient-flow 10s ease-in-out infinite;
+}
+
+.text-gradient-orange {
+  background: linear-gradient(90deg, #fed7aa 0%, #fb923c 20%, #f97316 45%, #ea580c 65%, #f59e0b 85%, #fed7aa 100%);
+  background-size: 250% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradient-flow 8s ease-in-out infinite;
+  will-change: background-position;
+}
+
+.text-gradient-cyan {
+  background: linear-gradient(90deg, #cffafe 0%, #38bdf8 25%, #06b6d4 50%, #0284c7 75%, #cffafe 100%);
+  background-size: 250% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradient-flow 9s ease-in-out infinite;
+  will-change: background-position;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .text-gradient-orange,
+  .text-gradient-cyan,
+  .text-gradient-white {
+    animation: none;
+    background-size: 100% auto;
+  }
+}
+
+/* Custom Minimal Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #08080b;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(249, 115, 22, 0.4);
+}
+
+/* Hide scrollbar for clean modals */
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Custom Tactile Range Sliders */
+.custom-range-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 8px;
+  border-radius: 9999px;
+  outline: none;
+  cursor: pointer;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.custom-range-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: 3.5px solid #f97316;
+  box-shadow: 0 0 16px rgba(249, 115, 22, 0.8), 0 2px 8px rgba(0, 0, 0, 0.7);
+  cursor: grab;
+  transition: transform 0.15s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.15s ease;
+}
+
+.custom-range-slider::-webkit-slider-thumb:hover {
+  transform: scale(1.2);
+  box-shadow: 0 0 24px rgba(249, 115, 22, 1), 0 2px 10px rgba(0, 0, 0, 0.8);
+}
+
+.custom-range-slider::-webkit-slider-thumb:active {
+  transform: scale(1.3);
+  cursor: grabbing;
+  box-shadow: 0 0 30px rgba(249, 115, 22, 1), 0 4px 12px rgba(0, 0, 0, 0.9);
+}
+
+.custom-range-slider::-moz-range-thumb {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: 3.5px solid #f97316;
+  box-shadow: 0 0 16px rgba(249, 115, 22, 0.8);
+  cursor: grab;
+}
+
+/* Emerald Variant for CVR Lift Slider */
+.custom-range-slider-emerald::-webkit-slider-thumb {
+  border-color: #10b981;
+  box-shadow: 0 0 16px rgba(16, 185, 129, 0.8), 0 2px 8px rgba(0, 0, 0, 0.7);
+}
+
+.custom-range-slider-emerald::-webkit-slider-thumb:hover {
+  box-shadow: 0 0 24px rgba(16, 185, 129, 1), 0 2px 10px rgba(0, 0, 0, 0.8);
+}
+
+.custom-range-slider-emerald::-webkit-slider-thumb:active {
+  box-shadow: 0 0 30px rgba(16, 185, 129, 1), 0 4px 12px rgba(0, 0, 0, 0.9);
+}
+
+.custom-range-slider-emerald::-moz-range-thumb {
+  border-color: #10b981;
+  box-shadow: 0 0 16px rgba(16, 185, 129, 0.8);
+}
