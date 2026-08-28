@@ -29,15 +29,15 @@ export function Navbar() {
     <>
       <header
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-          isScrolled ? "py-4" : "py-6"
+          isScrolled ? "py-2.5 sm:py-4" : "py-3.5 sm:py-6"
         }`}
       >
-        <div className="max-w-7xl mx-auto px-6 sm:px-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-8">
           <nav
-            className={`w-full flex items-center justify-between px-5 py-3 rounded-full transition-all duration-300 ${
+            className={`w-full flex items-center justify-between px-3.5 sm:px-5 py-2 sm:py-3 rounded-full transition-all duration-300 ${
               isScrolled
-                ? "bg-[#0f1015]/80 backdrop-blur-xl border border-white/10 shadow-[0_10px_30px_rgba(0,0,0,0.5)]"
-                : "bg-white/[0.03] backdrop-blur-md border border-white/[0.06]"
+                ? "bg-[#0f1015]/85 backdrop-blur-xl border border-white/10 shadow-[0_10px_30px_rgba(0,0,0,0.5)]"
+                : "bg-white/[0.04] backdrop-blur-md border border-white/[0.08]"
             }`}
           >
             {/* Left: Brand / Title */}

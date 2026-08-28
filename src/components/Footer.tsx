@@ -41,17 +41,17 @@ export function Footer() {
           </p>
 
           {/* Email Copy Box */}
-          <div className="flex flex-wrap items-center justify-center gap-3 pt-2">
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3 pt-2 w-full max-w-md sm:max-w-none mx-auto">
             <button
               onClick={handleCopyEmail}
-              className="px-6 py-3.5 rounded-full bg-white/[0.05] border border-white/15 hover:border-orange-500/40 text-white font-mono text-xs sm:text-sm flex items-center gap-2.5 transition-all cursor-pointer group"
+              className="px-5 py-3.5 rounded-full bg-white/[0.05] border border-white/15 hover:border-orange-500/40 text-white font-mono text-xs sm:text-sm flex items-center justify-center gap-2.5 transition-all cursor-pointer group"
             >
-              <Mail className="w-4 h-4 text-orange-400" />
-              <span>{emailAddress}</span>
+              <Mail className="w-4 h-4 text-orange-400 shrink-0" />
+              <span className="truncate">{emailAddress}</span>
               {copied ? (
-                <Check className="w-4 h-4 text-emerald-400" />
+                <Check className="w-4 h-4 text-emerald-400 shrink-0" />
               ) : (
-                <Copy className="w-4 h-4 text-zinc-500 group-hover:text-white transition-colors" />
+                <Copy className="w-4 h-4 text-zinc-500 group-hover:text-white transition-colors shrink-0" />
               )}
             </button>
 
@@ -59,10 +59,10 @@ export function Footer() {
               href="https://t.me/ALMotion3D"
               target="_blank"
               rel="noopener noreferrer"
-              className="px-7 py-3.5 rounded-full bg-gradient-to-r from-orange-500 to-amber-500 text-black font-semibold text-xs sm:text-sm shadow-xl shadow-orange-500/25 hover:shadow-orange-500/40 hover:scale-105 transition-all flex items-center gap-2"
+              className="px-7 py-3.5 rounded-full bg-gradient-to-r from-orange-500 to-amber-500 text-black font-semibold text-xs sm:text-sm shadow-xl shadow-orange-500/25 hover:shadow-orange-500/40 hover:scale-105 transition-all flex items-center justify-center gap-2"
             >
               <span>Book a Call on Telegram</span>
-              <ArrowUpRight className="w-4 h-4" />
+              <ArrowUpRight className="w-4 h-4 shrink-0" />
             </a>
           </div>
         </div>

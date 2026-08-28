@@ -60,11 +60,11 @@ export function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-          className="flex flex-wrap items-center gap-4 mb-16"
+          className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4 mb-12 sm:mb-16 w-full sm:w-auto"
         >
           <a
             href="#projects"
-            className="group px-7 py-3.5 rounded-full bg-gradient-to-r from-orange-500 to-amber-500 text-black font-semibold text-sm shadow-xl shadow-orange-500/25 hover:shadow-orange-500/40 hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center gap-2"
+            className="group px-7 py-3.5 rounded-full bg-gradient-to-r from-orange-500 to-amber-500 text-black font-semibold text-sm shadow-xl shadow-orange-500/25 hover:shadow-orange-500/40 hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-2"
           >
             <span>Explore Case Studies</span>
             <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
@@ -72,7 +72,7 @@ export function Hero() {
 
           <a
             href="#lab"
-            className="px-6 py-3.5 rounded-full bg-white/[0.05] border border-white/10 hover:border-white/20 text-white font-medium text-sm hover:bg-white/[0.08] transition-all flex items-center gap-2 backdrop-blur-md"
+            className="px-6 py-3.5 rounded-full bg-white/[0.05] border border-white/10 hover:border-white/20 text-white font-medium text-sm hover:bg-white/[0.08] transition-all flex items-center justify-center gap-2 backdrop-blur-md"
           >
             <Sparkles className="w-4 h-4 text-amber-400" />
             <span>Interactive UI Lab</span>
@@ -82,7 +82,7 @@ export function Hero() {
             href="https://www.behance.net/ALMotion3D"
             target="_blank"
             rel="noopener noreferrer"
-            className="px-5 py-3.5 rounded-full text-zinc-400 hover:text-white text-xs font-mono tracking-wider uppercase transition-colors flex items-center gap-1.5"
+            className="px-5 py-3 rounded-full text-zinc-400 hover:text-white text-xs font-mono tracking-wider uppercase transition-colors flex items-center justify-center gap-1.5"
           >
             <span>Behance Profile</span>
             <ArrowUpRight className="w-3.5 h-3.5" />
@@ -94,20 +94,20 @@ export function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
-          className="grid grid-cols-2 md:grid-cols-4 gap-4 pt-8"
+          className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 pt-6 sm:pt-8"
         >
           {PORTFOLIO_HERO.stats.map((stat, idx) => (
             <div
               key={idx}
-              className="p-5 rounded-2xl bg-white/[0.02] border border-white/[0.06] hover:border-orange-500/30 transition-all group"
+              className="p-4 sm:p-5 rounded-2xl bg-white/[0.02] border border-white/[0.06] hover:border-orange-500/30 transition-all group"
             >
-              <div className="text-3xl sm:text-4xl font-black text-white group-hover:text-orange-400 transition-colors tracking-tight font-sans">
+              <div className="text-2xl sm:text-4xl font-black text-white group-hover:text-orange-400 transition-colors tracking-tight font-sans">
                 {stat.value}
               </div>
-              <div className="text-xs font-medium text-zinc-300 mt-1">
+              <div className="text-xs font-medium text-zinc-300 mt-1 line-clamp-1">
                 {stat.label}
               </div>
-              <div className="text-[10px] font-mono text-zinc-500 mt-0.5">
+              <div className="text-[10px] font-mono text-zinc-500 mt-0.5 line-clamp-1">
                 {stat.sub}
               </div>
             </div>

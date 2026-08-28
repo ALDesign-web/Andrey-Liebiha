@@ -80,40 +80,40 @@ export function ExperienceTimeline() {
             const toolset = toolsetCards[idx];
 
             return (
-              <div key={idx} className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+              <div key={idx} className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-stretch">
                 {/* Left Card: Experience Milestone (7 cols) */}
                 <motion.div
                   initial={{ opacity: 0, y: 15 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.4, delay: idx * 0.1 }}
-                  className="lg:col-span-7 h-full p-6 sm:p-7 rounded-3xl bg-[#0f1015] border border-white/10 hover:border-orange-500/30 transition-all duration-300 hover:shadow-xl hover:shadow-orange-500/5 flex flex-col justify-between"
+                  className="lg:col-span-7 h-full p-5 sm:p-7 rounded-3xl bg-[#0f1015] border border-white/10 hover:border-orange-500/30 transition-all duration-300 hover:shadow-xl hover:shadow-orange-500/5 flex flex-col justify-between"
                 >
                   <div className="space-y-3">
                     <div className="flex flex-wrap items-center justify-between gap-2">
                       <div className="flex items-center gap-2.5">
-                        <span className="w-2.5 h-2.5 rounded-full bg-orange-500 shadow-sm shadow-orange-500/50" />
-                        <h4 className="text-lg sm:text-xl font-bold text-white tracking-tight">
+                        <span className="w-2.5 h-2.5 rounded-full bg-orange-500 shadow-sm shadow-orange-500/50 shrink-0" />
+                        <h4 className="text-base sm:text-xl font-bold text-white tracking-tight">
                           {experience.role}
                         </h4>
                       </div>
-                      <span className="text-xs font-mono text-orange-400 bg-orange-500/10 px-3 py-1 rounded-full border border-orange-500/20">
+                      <span className="text-[11px] sm:text-xs font-mono text-orange-400 bg-orange-500/10 px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-full border border-orange-500/20">
                         {experience.period}
                       </span>
                     </div>
 
-                    <div className="text-xs font-mono text-zinc-400 pl-5">
+                    <div className="text-xs font-mono text-zinc-400 pl-0 sm:pl-5">
                       {experience.company} <span className="text-zinc-600">•</span> {experience.location}
                     </div>
 
-                    <p className="text-xs sm:text-sm text-zinc-300 leading-relaxed pl-5">
+                    <p className="text-xs sm:text-sm text-zinc-300 leading-relaxed pl-0 sm:pl-5">
                       {experience.description}
                     </p>
                   </div>
 
-                  <div className="pt-4 mt-4 border-t border-white/[0.06] pl-5 space-y-1.5">
+                  <div className="pt-4 mt-4 border-t border-white/[0.06] pl-0 sm:pl-5 space-y-2">
                     {experience.highlights.map((highlight, hIdx) => (
-                      <div key={hIdx} className="flex items-start gap-2.5 text-xs text-zinc-400">
+                      <div key={hIdx} className="flex items-start gap-2.5 text-xs sm:text-[13px] text-zinc-300 leading-relaxed">
                         <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0 mt-0.5" />
                         <span>{highlight}</span>
                       </div>
@@ -127,37 +127,39 @@ export function ExperienceTimeline() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.4, delay: idx * 0.1 + 0.05 }}
-                  className="lg:col-span-5 h-full p-6 sm:p-7 rounded-3xl bg-[#0f1015] border border-white/10 hover:border-white/20 transition-all duration-300 flex flex-col justify-between"
+                  className="lg:col-span-5 h-full p-5 sm:p-7 rounded-3xl bg-[#0f1015] border border-white/10 hover:border-white/20 transition-all duration-300 flex flex-col justify-between"
                 >
-                  <div className="flex items-center justify-between pb-3 border-b border-white/[0.06]">
-                    <div className="flex items-center gap-2">
-                      <span className={`w-2 h-2 rounded-full ${toolset.dotColor}`} />
-                      <span className="text-xs font-mono text-white font-bold uppercase tracking-wider">
+                  <div className="flex items-center justify-between pb-3 border-b border-white/[0.06] gap-2">
+                    <div className="flex items-center gap-2 min-w-0">
+                      <span className={`w-2 h-2 rounded-full shrink-0 ${toolset.dotColor}`} />
+                      <span className="text-xs font-mono text-white font-bold uppercase tracking-wider truncate">
                         {toolset.category}
                       </span>
                     </div>
-                    <span className={`text-[10px] font-mono px-2 py-0.5 rounded border ${toolset.badgeColor}`}>
+                    <span className={`text-[10px] font-mono px-2 py-0.5 rounded border whitespace-nowrap shrink-0 ${toolset.badgeColor}`}>
                       {toolset.badge}
                     </span>
                   </div>
 
-                  <div className="space-y-3 py-3 flex-1 flex flex-col justify-center">
+                  <div className="space-y-2.5 py-3 flex-1 flex flex-col justify-center">
                     {toolset.tools.map((tool, tIdx) => (
                       <div
                         key={tIdx}
-                        className="flex items-center justify-between text-xs pb-2 border-b border-white/[0.03] last:border-0 last:pb-0"
+                        className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 sm:gap-2 pb-2 border-b border-white/[0.04] last:border-0 last:pb-0"
                       >
-                        <span className="text-zinc-200 font-medium">{tool.name}</span>
-                        <span className="font-mono text-[11px] text-emerald-400 font-semibold">
+                        <span className="text-zinc-200 font-medium text-xs sm:text-sm leading-snug">
+                          {tool.name}
+                        </span>
+                        <span className="font-mono text-[10px] sm:text-[11px] text-emerald-400 font-semibold self-start sm:self-auto bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20 whitespace-nowrap">
                           {tool.level}
                         </span>
                       </div>
                     ))}
                   </div>
 
-                  <div className="pt-2 text-[10px] font-mono text-zinc-500 flex items-center justify-between">
+                  <div className="pt-3 text-[10px] font-mono text-zinc-500 flex flex-wrap items-center justify-between gap-1 border-t border-white/[0.04]">
                     <span>PROFICIENCY BENCHMARK</span>
-                    <span className="text-zinc-400">100% PRODUCTION READY</span>
+                    <span className="text-emerald-400/90 font-semibold">100% PRODUCTION READY</span>
                   </div>
                 </motion.div>
               </div>
