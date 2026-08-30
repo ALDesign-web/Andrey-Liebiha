@@ -5,7 +5,7 @@ import { ArrowUpRight, Copy, Check, Mail, Sparkles, ArrowUp } from "lucide-react
 
 export function Footer() {
   const [copied, setCopied] = useState(false);
-  const emailAddress = "andrii.liebiha.design@gmail.com"; // Placeholder email
+  const emailAddress = "liebihadesign@gmail.com";
 
   const handleCopyEmail = () => {
     navigator.clipboard.writeText(emailAddress);
