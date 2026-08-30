@@ -36,11 +36,11 @@ export function DesignPillars() {
           {SKILL_PILLARS.map((pillar, idx) => (
             <motion.div
               key={idx}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 12 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: idx * 0.1 }}
-              className="p-6 rounded-3xl bg-[#0f1015] border border-white/10 hover:border-orange-500/30 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-orange-500/10 flex flex-col justify-between"
+              viewport={{ once: true, margin: "-60px" }}
+              transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+              className="p-6 rounded-3xl bg-[#0f1015] border border-white/10 hover:border-orange-500/30 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-orange-500/10 flex flex-col justify-between transform-gpu"
             >
               <div>
                 {/* Icon Container */}

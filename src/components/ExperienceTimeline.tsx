@@ -80,15 +80,16 @@ export function ExperienceTimeline() {
             const toolset = toolsetCards[idx];
 
             return (
-              <div key={idx} className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-stretch">
+              <motion.div
+                key={idx}
+                initial={{ opacity: 0, y: 12 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-60px" }}
+                transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+                className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-stretch transform-gpu"
+              >
                 {/* Left Card: Experience Milestone (7 cols) */}
-                <motion.div
-                  initial={{ opacity: 0, y: 15 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.4, delay: idx * 0.1 }}
-                  className="lg:col-span-7 h-full p-5 sm:p-7 rounded-3xl bg-[#0f1015] border border-white/10 hover:border-orange-500/30 transition-all duration-300 hover:shadow-xl hover:shadow-orange-500/5 flex flex-col justify-between"
-                >
+                <div className="lg:col-span-7 h-full p-5 sm:p-7 rounded-3xl bg-[#0f1015] border border-white/10 hover:border-orange-500/30 transition-all duration-300 hover:shadow-xl hover:shadow-orange-500/5 flex flex-col justify-between">
                   <div className="space-y-3">
                     <div className="flex flex-wrap items-center justify-between gap-2">
                       <div className="flex items-center gap-2.5">
@@ -119,16 +120,10 @@ export function ExperienceTimeline() {
                       </div>
                     ))}
                   </div>
-                </motion.div>
+                </div>
 
                 {/* Right Card: Toolset Category (5 cols) */}
-                <motion.div
-                  initial={{ opacity: 0, y: 15 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.4, delay: idx * 0.1 + 0.05 }}
-                  className="lg:col-span-5 h-full p-5 sm:p-7 rounded-3xl bg-[#0f1015] border border-white/10 hover:border-white/20 transition-all duration-300 flex flex-col justify-between"
-                >
+                <div className="lg:col-span-5 h-full p-5 sm:p-7 rounded-3xl bg-[#0f1015] border border-white/10 hover:border-white/20 transition-all duration-300 flex flex-col justify-between">
                   <div className="flex items-center justify-between pb-3 border-b border-white/[0.06] gap-2">
                     <div className="flex items-center gap-2 min-w-0">
                       <span className={`w-2 h-2 rounded-full shrink-0 ${toolset.dotColor}`} />
@@ -161,8 +156,8 @@ export function ExperienceTimeline() {
                     <span>PROFICIENCY BENCHMARK</span>
                     <span className="text-emerald-400/90 font-semibold">100% PRODUCTION READY</span>
                   </div>
-                </motion.div>
-              </div>
+                </div>
+              </motion.div>
             );
           })}
         </div>
