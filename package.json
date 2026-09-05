@@ -6,10 +6,15 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "remotion:preview": "remotion preview src/remotion/index.ts",
+    "remotion:render": "remotion render src/remotion/index.ts BookifyCaseStudy out/bookify-reel.mp4",
+    "remotion:still": "remotion still src/remotion/index.ts BookifyCaseStudy out/still.png"
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",
+    "@remotion/player": "^4.0.518",
+    "@remotion/shapes": "^4.0.518",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "framer-motion": "^12.34.0",
@@ -21,9 +26,12 @@
     "radix-ui": "^1.4.3",
     "react": "19.2.3",
     "react-dom": "19.2.3",
+    "remotion": "^4.0.518",
     "tailwind-merge": "^3.4.0"
   },
   "devDependencies": {
+    "@remotion/cli": "^4.0.518",
+    "@remotion/tailwind": "^4.0.518",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",
