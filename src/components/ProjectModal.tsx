@@ -326,77 +326,67 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
           </div>
         </motion.div>
 
-        {/* Dedicated Full-Screen Lightbox Mode */}
+        {/* Dedicated Edge-to-Edge Fullscreen Experience */}
         <AnimatePresence>
           {isFullScreen && (
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              transition={{ duration: 0.2 }}
-              className="fixed inset-0 z-[100] bg-black/98 backdrop-blur-2xl flex flex-col justify-between p-4 sm:p-6 select-none"
+              transition={{ duration: 0.25, ease: "easeOut" }}
+              className="fixed inset-0 z-[100] bg-[#07080C] select-none overflow-hidden flex items-center justify-center cursor-default"
               onClick={() => setIsFullScreen(false)}
             >
-              {/* Fullscreen Top Controls Bar */}
+              {/* Edge-to-Edge Fullscreen Canvas */}
               <div 
-                className="flex items-center justify-between gap-4 z-10 max-w-7xl mx-auto w-full"
-                onClick={(e) => e.stopPropagation()}
-              >
-                <div className="flex items-center gap-3">
-                  <span className="text-xs font-mono text-orange-400 font-bold px-3 py-1 rounded-full bg-orange-500/10 border border-orange-500/20">
-                    SLIDE {activeSlideIndex + 1} / {slides.length}
-                  </span>
-                  <span className="text-xs font-mono text-zinc-400 hidden sm:inline">
-                    {project.title}
-                  </span>
-                </div>
-
-                <div className="flex items-center gap-4">
-                  <div className="hidden sm:flex items-center gap-2 text-xs font-mono text-zinc-500">
-                    <kbd className="px-2 py-0.5 rounded bg-white/10 text-zinc-300 text-[11px]">ESC</kbd> 
-                    <span>exit fullscreen</span>
-                    <span className="mx-1">•</span>
-                    <kbd className="px-2 py-0.5 rounded bg-white/10 text-zinc-300 text-[11px]">←</kbd>
-                    <kbd className="px-2 py-0.5 rounded bg-white/10 text-zinc-300 text-[11px]">→</kbd> 
-                    <span>flip slides</span>
-                  </div>
-
-                  <button
-                    onClick={() => setIsFullScreen(false)}
-                    className="p-2.5 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors cursor-pointer"
-                    aria-label="Exit fullscreen"
-                  >
-                    <X className="w-5 h-5" />
-                  </button>
-                </div>
-              </div>
-
-              {/* Fullscreen Interactive Canvas */}
-              <div 
-                className="relative flex-1 w-full max-w-7xl mx-auto flex items-center justify-center my-2"
+                className="relative w-screen h-screen flex items-center justify-center"
                 onClick={(e) => e.stopPropagation()}
               >
                 <AnimatePresence mode="wait">
                   <motion.div
                     key={activeSlideIndex}
-                    initial={{ opacity: 0, scale: 0.985 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 0.985 }}
-                    transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
-                    className="relative w-full h-full max-h-[82vh]"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.18, ease: "easeOut" }}
+                    className="relative w-full h-full flex items-center justify-center"
                   >
                     <Image
                       src={currentSlide}
                       alt={`${project.title} - Slide ${activeSlideIndex + 1}`}
                       fill
-                      className="object-contain drop-shadow-2xl"
-                      sizes="100vw"
+                      unoptimized
                       priority
+                      quality={100}
+                      className="object-contain"
+                      sizes="100vw"
                     />
                   </motion.div>
                 </AnimatePresence>
 
-                {/* Navigation Arrows */}
+                {/* Floating Top-Left Slide Counter */}
+                <div className="absolute top-5 left-5 sm:top-6 sm:left-7 z-30 flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-black/60 backdrop-blur-xl border border-white/10 text-xs font-mono text-zinc-400 shadow-[0_8px_30px_rgba(0,0,0,0.6)] pointer-events-none">
+                  <span className="text-orange-400 font-bold">{activeSlideIndex + 1}</span>
+                  <span className="text-zinc-600">/</span>
+                  <span className="text-zinc-300">{slides.length}</span>
+                  <span className="text-zinc-600 hidden sm:inline">•</span>
+                  <span className="text-zinc-400 hidden sm:inline">{project.title}</span>
+                </div>
+
+                {/* Floating Top-Right Exit Button */}
+                <button
+                  onClick={() => setIsFullScreen(false)}
+                  className="absolute top-5 right-5 sm:top-6 sm:right-7 z-30 flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-black/60 hover:bg-black/85 backdrop-blur-xl border border-white/15 hover:border-white/30 text-zinc-300 hover:text-white transition-all cursor-pointer shadow-[0_8px_30px_rgba(0,0,0,0.6)] group"
+                  aria-label="Exit fullscreen"
+                >
+                  <kbd className="px-1.5 py-0.5 rounded bg-white/10 text-zinc-300 text-[10px] font-mono group-hover:bg-white/20">
+                    ESC
+                  </kbd>
+                  <span className="text-xs font-mono">exit</span>
+                  <X className="w-4 h-4 ml-0.5 text-zinc-400 group-hover:text-white" />
+                </button>
+
+                {/* Floating Navigation Arrows */}
                 {slides.length > 1 && (
                   <>
                     <button
@@ -404,10 +394,10 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
                         e.stopPropagation();
                         setActiveSlideIndex((prev) => (prev - 1 + slides.length) % slides.length);
                       }}
-                      className="absolute left-1 sm:left-4 top-1/2 -translate-y-1/2 p-3 sm:p-4 rounded-full bg-black/70 hover:bg-black text-white border border-white/20 hover:border-orange-500/50 transition-all hover:scale-110 cursor-pointer shadow-2xl z-20"
+                      className="absolute left-4 sm:left-7 top-1/2 -translate-y-1/2 p-3 sm:p-4 rounded-full bg-black/50 hover:bg-black/85 backdrop-blur-xl text-zinc-300 hover:text-white border border-white/15 hover:border-orange-500/50 transition-all hover:scale-110 cursor-pointer shadow-[0_10px_35px_rgba(0,0,0,0.7)] z-30 group"
                       aria-label="Previous slide"
                     >
-                      <ChevronLeft className="w-6 h-6" />
+                      <ChevronLeft className="w-6 h-6 transition-transform group-hover:-translate-x-0.5" />
                     </button>
 
                     <button
@@ -415,42 +405,14 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
                         e.stopPropagation();
                         setActiveSlideIndex((prev) => (prev + 1) % slides.length);
                       }}
-                      className="absolute right-1 sm:right-4 top-1/2 -translate-y-1/2 p-3 sm:p-4 rounded-full bg-black/70 hover:bg-black text-white border border-white/20 hover:border-orange-500/50 transition-all hover:scale-110 cursor-pointer shadow-2xl z-20"
+                      className="absolute right-4 sm:right-7 top-1/2 -translate-y-1/2 p-3 sm:p-4 rounded-full bg-black/50 hover:bg-black/85 backdrop-blur-xl text-zinc-300 hover:text-white border border-white/15 hover:border-orange-500/50 transition-all hover:scale-110 cursor-pointer shadow-[0_10px_35px_rgba(0,0,0,0.7)] z-30 group"
                       aria-label="Next slide"
                     >
-                      <ChevronRight className="w-6 h-6" />
+                      <ChevronRight className="w-6 h-6 transition-transform group-hover:translate-x-0.5" />
                     </button>
                   </>
                 )}
               </div>
-
-              {/* Bottom Thumbnail Strip in Fullscreen */}
-              {slides.length > 1 && (
-                <div 
-                  className="flex items-center justify-center gap-2 overflow-x-auto no-scrollbar py-2 max-w-7xl mx-auto w-full z-10"
-                  onClick={(e) => e.stopPropagation()}
-                >
-                  {slides.map((slide, idx) => (
-                    <button
-                      key={idx}
-                      onClick={() => setActiveSlideIndex(idx)}
-                      className={`relative flex-shrink-0 w-16 sm:w-20 aspect-[16/9] rounded-lg overflow-hidden border transition-all cursor-pointer ${
-                        activeSlideIndex === idx
-                          ? "border-orange-500 ring-2 ring-orange-500/40 scale-105"
-                          : "border-white/10 opacity-40 hover:opacity-100"
-                      }`}
-                    >
-                      <Image
-                        src={slide}
-                        alt={`Thumbnail ${idx + 1}`}
-                        fill
-                        className="object-cover"
-                        sizes="80px"
-                      />
-                    </button>
-                  ))}
-                </div>
-              )}
             </motion.div>
           )}
         </AnimatePresence>
