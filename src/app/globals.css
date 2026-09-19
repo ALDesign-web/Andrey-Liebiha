@@ -272,3 +272,95 @@ html.lenis body {
   border-color: #10b981;
   box-shadow: 0 0 16px rgba(16, 185, 129, 0.8);
 }
+
+/* ==========================================================================
+   Apple-Tier Hardware-Accelerated Entrance Sequence (Zero-FOUC, 120Hz GPU)
+   ========================================================================== */
+@keyframes heroFadeDown {
+  from {
+    opacity: 0;
+    transform: translate3d(0, -14px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes heroFadeUp {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 22px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.animate-nav-enter {
+  animation: heroFadeDown 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.05s both;
+  will-change: transform, opacity;
+}
+
+.animate-hero-eyebrow {
+  animation: heroFadeUp 0.75s cubic-bezier(0.16, 1, 0.3, 1) 0.12s both;
+  will-change: transform, opacity;
+}
+
+.animate-hero-title {
+  animation: heroFadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.22s both;
+  will-change: transform, opacity;
+}
+
+.animate-hero-desc {
+  animation: heroFadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.34s both;
+  will-change: transform, opacity;
+}
+
+.animate-hero-cta {
+  animation: heroFadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.46s both;
+  will-change: transform, opacity;
+}
+
+.animate-hero-stats {
+  animation: heroFadeUp 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.58s both;
+  will-change: transform, opacity;
+}
+
+.animate-hero-stat-1 {
+  animation: heroFadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.60s both;
+  will-change: transform, opacity;
+}
+
+.animate-hero-stat-2 {
+  animation: heroFadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.66s both;
+  will-change: transform, opacity;
+}
+
+.animate-hero-stat-3 {
+  animation: heroFadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.72s both;
+  will-change: transform, opacity;
+}
+
+.animate-hero-stat-4 {
+  animation: heroFadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.78s both;
+  will-change: transform, opacity;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-nav-enter,
+  .animate-hero-eyebrow,
+  .animate-hero-title,
+  .animate-hero-desc,
+  .animate-hero-cta,
+  .animate-hero-stats,
+  .animate-hero-stat-1,
+  .animate-hero-stat-2,
+  .animate-hero-stat-3,
+  .animate-hero-stat-4 {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}

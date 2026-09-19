@@ -28,7 +28,7 @@ export function Navbar() {
   return (
     <>
       <header
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 animate-nav-enter ${
           isScrolled ? "py-2.5 sm:py-4" : "py-3.5 sm:py-6"
         }`}
       >

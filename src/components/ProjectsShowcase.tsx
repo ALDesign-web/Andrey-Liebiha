@@ -43,11 +43,10 @@ export function ProjectsShowcase() {
             {PROJECTS_DATA.map((project) => (
               <motion.article
                 key={project.id}
-                layout
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, scale: 0.95 }}
-                transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "0px 0px -80px 0px" }}
+                transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
                 onClick={() => setActiveModalProject(project)}
                 className="group relative rounded-3xl bg-[#0f1015] border border-white/10 hover:border-orange-500/40 p-5 sm:p-6 transition-all duration-500 hover:-translate-y-1.5 hover:shadow-[0_20px_50px_rgba(249,115,22,0.12)] cursor-pointer flex flex-col justify-between overflow-hidden"
               >
