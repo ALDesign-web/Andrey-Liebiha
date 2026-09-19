@@ -2,8 +2,8 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
-import { motion, AnimatePresence } from "framer-motion";
-import { ArrowUpRight, Lock, ShieldCheck, Eye } from "lucide-react";
+import { motion } from "framer-motion";
+import { ArrowUpRight, Eye, Lock, ShieldCheck } from "lucide-react";
 import { PROJECTS_DATA } from "@/data/portfolioData";
 import { ProjectItem } from "@/types/portfolio";
 import { ProjectModal } from "./ProjectModal";
@@ -39,17 +39,17 @@ export function ProjectsShowcase() {
 
         {/* Project Cards Bento Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10">
-          <AnimatePresence>
-            {PROJECTS_DATA.map((project, pIdx) => (
-              <motion.article
-                key={project.id}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "200px 0px 200px 0px" }}
-                transition={{ duration: 0.5, delay: (pIdx % 2) * 0.1, ease: [0.16, 1, 0.3, 1] }}
-                onClick={() => setActiveModalProject(project)}
-                className="group relative rounded-3xl bg-[#0f1015] border border-white/10 hover:border-orange-500/40 p-5 sm:p-6 transition-all duration-500 hover:-translate-y-1.5 hover:shadow-[0_20px_50px_rgba(249,115,22,0.12)] cursor-pointer flex flex-col justify-between overflow-hidden"
-              >
+          {PROJECTS_DATA.map((project, pIdx) => (
+            <motion.article
+              key={project.id}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.15 }}
+              transition={{ duration: 0.5, delay: (pIdx % 2) * 0.1, ease: [0.16, 1, 0.3, 1] }}
+              whileHover={{ y: -6, transition: { duration: 0.25, ease: "easeOut" } }}
+              onClick={() => setActiveModalProject(project)}
+              className="group relative rounded-3xl bg-[#0f1015] border border-white/10 hover:border-orange-500/40 p-5 sm:p-6 transition-colors transition-shadow duration-300 hover:shadow-[0_20px_50px_rgba(249,115,22,0.12)] cursor-pointer flex flex-col justify-between overflow-hidden"
+            >
                 {/* Ambient Top Spotlight Sheen */}
                 <div className="absolute -inset-px rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-b from-orange-500/15 via-transparent to-transparent pointer-events-none" />
 
@@ -130,11 +130,12 @@ export function ProjectsShowcase() {
 
             {/* NDA / Confidential Archive Card */}
             <motion.article
-              layout
               initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              className="relative rounded-3xl bg-gradient-to-br from-[#12131a] to-[#090a0f] border border-dashed border-white/20 p-6 sm:p-8 flex flex-col justify-between overflow-hidden group hover:border-orange-500/40 transition-all duration-300"
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.15 }}
+              transition={{ duration: 0.5, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+              whileHover={{ y: -6, transition: { duration: 0.25, ease: "easeOut" } }}
+              className="relative rounded-3xl bg-gradient-to-br from-[#12131a] to-[#090a0f] border border-dashed border-white/20 p-6 sm:p-8 flex flex-col justify-between overflow-hidden group hover:border-orange-500/40 transition-colors duration-300"
             >
                 {/* Ambient glow in corner */}
                 <div className="absolute top-0 right-0 w-48 h-48 bg-orange-500/10 rounded-full blur-3xl pointer-events-none" />
@@ -191,8 +192,7 @@ export function ProjectsShowcase() {
                   </a>
                 </div>
               </motion.article>
-          </AnimatePresence>
-        </div>
+          </div>
       </div>
 
       {/* Deep-Dive Modal */}
