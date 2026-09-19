@@ -17,7 +17,7 @@ interface TextBlockAnimationProps {
   /**
    * The tag to use for the text wrapper (default: div).
    */
-  tag?: any;
+  tag?: "div" | "h1" | "h2" | "h3" | "h4" | "p" | "span" | "header" | "section";
   blockColor?: string;
   duration?: number;
   delay?: number;
@@ -37,7 +37,7 @@ export default function TextBlockAnimation({
   className = "",
   animateOnScroll = true,
 }: TextBlockAnimationProps) {
-  const containerRef = useRef<any>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
 
   useGSAP(
     () => {

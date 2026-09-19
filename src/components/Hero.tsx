@@ -2,7 +2,7 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { ArrowDown, Sparkles, ArrowUpRight, Zap, CheckCircle2, Layers, Cpu } from "lucide-react";
+import { Sparkles, ArrowUpRight } from "lucide-react";
 import { PORTFOLIO_HERO } from "@/data/portfolioData";
 
 export function Hero() {
@@ -28,7 +28,7 @@ export function Hero() {
             </span>
           </div>
           <span className="text-xs font-mono text-zinc-500 hidden sm:inline">
-            // E-COMMERCE CRO • 3D SPATIAL UI • AI SAAS WORKSPACES
+            {"// E-COMMERCE CRO • 3D SPATIAL UI • AI SAAS WORKSPACES"}
           </span>
         </motion.div>
 
@@ -72,7 +72,7 @@ export function Hero() {
 
           <a
             href="#lab"
-            className="px-6 py-3.5 rounded-full bg-white/[0.05] border border-white/10 hover:border-white/20 text-white font-medium text-sm hover:bg-white/[0.08] transition-all flex items-center justify-center gap-2 backdrop-blur-md"
+            className="px-6 py-3.5 rounded-full bg-white/[0.05] border border-white/10 hover:border-white/20 text-white font-medium text-sm hover:bg-white/[0.08] active:scale-[0.98] transition-all flex items-center justify-center gap-2 backdrop-blur-md"
           >
             <Sparkles className="w-4 h-4 text-amber-400" />
             <span>Interactive UI Lab</span>
@@ -82,7 +82,7 @@ export function Hero() {
             href="https://www.behance.net/ALMotion3D"
             target="_blank"
             rel="noopener noreferrer"
-            className="px-5 py-3 rounded-full text-zinc-400 hover:text-white text-xs font-mono tracking-wider uppercase transition-colors flex items-center justify-center gap-1.5"
+            className="px-5 py-3 rounded-full text-zinc-300 hover:text-white active:scale-[0.98] text-xs font-mono tracking-wider uppercase transition-all flex items-center justify-center gap-1.5"
           >
             <span>Behance Profile</span>
             <ArrowUpRight className="w-3.5 h-3.5" />
@@ -101,13 +101,13 @@ export function Hero() {
               key={idx}
               className="p-4 sm:p-5 rounded-2xl bg-white/[0.02] border border-white/[0.06] hover:border-orange-500/30 transition-all group"
             >
-              <div className="text-2xl sm:text-4xl font-black text-white group-hover:text-orange-400 transition-colors tracking-tight font-sans">
+              <div className="text-2xl sm:text-4xl font-black text-white group-hover:text-orange-400 transition-colors tracking-tight font-sans tabular-nums">
                 {stat.value}
               </div>
               <div className="text-xs font-medium text-zinc-300 mt-1 line-clamp-1">
                 {stat.label}
               </div>
-              <div className="text-[10px] font-mono text-zinc-500 mt-0.5 line-clamp-1">
+              <div className="text-[10px] font-mono text-zinc-400 mt-0.5 line-clamp-1">
                 {stat.sub}
               </div>
             </div>

@@ -27,6 +27,9 @@ html {
   color-scheme: dark;
   background-color: var(--background);
   color: var(--foreground);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 body {
@@ -36,11 +39,25 @@ body {
   overflow-x: hidden;
   selection-background-color: #f97316;
   selection-color: #ffffff;
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11", "ss01";
 }
 
 ::selection {
   background: rgba(249, 115, 22, 0.3);
   color: #ffffff;
+}
+
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+.measure-prose {
+  max-width: 68ch;
+}
+
+:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px #08080b, 0 0 0 4px rgba(249, 115, 22, 0.6);
 }
 
 /* Lenis Recommended Smooth Scroll CSS */

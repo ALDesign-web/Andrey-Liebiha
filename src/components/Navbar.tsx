@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, ArrowUpRight, Sparkles, FileText } from "lucide-react";
+import { Menu, X, ArrowUpRight } from "lucide-react";
 
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -94,8 +94,9 @@ export function Navbar() {
             {/* Mobile Menu Button */}
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="lg:hidden p-2 text-zinc-300 hover:text-white hover:bg-white/5 rounded-full transition-colors"
-              aria-label="Toggle Navigation Menu"
+              className="lg:hidden w-11 h-11 flex items-center justify-center text-zinc-300 hover:text-white hover:bg-white/5 active:scale-95 rounded-full transition-all cursor-pointer"
+              aria-label="Toggle navigation menu"
+              aria-expanded={isMobileMenuOpen}
             >
               {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
             </button>

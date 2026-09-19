@@ -26,7 +26,7 @@ export function DesignPillars() {
             Product Craft <br />
             <span className="text-gradient-orange">&amp; Strategic Foundation</span>
           </h2>
-          <p className="text-sm sm:text-base text-zinc-400 leading-relaxed">
+          <p className="text-sm sm:text-base text-zinc-300 leading-relaxed max-w-prose">
             Engineered to set and elevate product design standards across modern enterprise platforms.
           </p>
         </div>
@@ -42,7 +42,7 @@ export function DesignPillars() {
           {SKILL_PILLARS.map((pillar, idx) => (
             <div
               key={idx}
-              className="p-6 rounded-3xl bg-[#0f1015] border border-white/10 hover:border-orange-500/30 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-orange-500/10 flex flex-col justify-between"
+              className="p-6 rounded-3xl bg-[#0f1015] border border-white/10 hover:border-orange-500/30 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-orange-500/10 shadow-[inset_0_1px_0_rgba(255,255,255,0.08)] flex flex-col justify-between"
             >
               <div>
                 {/* Icon Container */}
@@ -54,7 +54,7 @@ export function DesignPillars() {
                 <h3 className="text-xl font-bold text-white mb-2 tracking-tight">
                   {pillar.title}
                 </h3>
-                <p className="text-xs text-zinc-400 leading-relaxed mb-6">
+                <p className="text-xs text-zinc-300 leading-relaxed mb-6">
                   {pillar.description}
                 </p>
               </div>

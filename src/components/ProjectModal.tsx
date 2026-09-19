@@ -25,11 +25,13 @@ interface ProjectModalProps {
 export function ProjectModal({ project, onClose }: ProjectModalProps) {
   const [activeSlideIndex, setActiveSlideIndex] = useState(0);
   const [isFullScreen, setIsFullScreen] = useState(false);
+  const [prevProjectId, setPrevProjectId] = useState<string | null>(project?.id ?? null);
 
-  useEffect(() => {
+  if (project && project.id !== prevProjectId) {
+    setPrevProjectId(project.id);
     setActiveSlideIndex(0);
     setIsFullScreen(false);
-  }, [project]);
+  }
 
   const slides = project?.slides && project.slides.length > 0 ? project.slides : project ? [project.imageSrc] : [];
   const currentSlide = slides[activeSlideIndex] || project?.imageSrc || "";
@@ -56,16 +58,16 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
     if (project) {
       window.addEventListener("keydown", handleKeyDown);
       document.body.style.overflow = "hidden";
-      if (typeof window !== "undefined" && (window as any).lenis) {
-        (window as any).lenis.stop();
+      if (typeof window !== "undefined" && window.lenis) {
+        window.lenis.stop();
       }
     }
 
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
       document.body.style.overflow = "";
-      if (typeof window !== "undefined" && (window as any).lenis) {
-        (window as any).lenis.start();
+      if (typeof window !== "undefined" && window.lenis) {
+        window.lenis.start();
       }
     };
   }, [project, onClose, isFullScreen, slides.length]);
@@ -113,7 +115,7 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
 
             <div className="flex items-center gap-2.5 text-xs font-mono text-zinc-400">
               <span className="font-mono text-xs text-orange-400 font-semibold px-2.5 py-1 rounded bg-orange-500/10 border border-orange-500/20">
-                {project.number} // {project.categoryLabel}
+                {`${project.number} // ${project.categoryLabel}`}
               </span>
               <span className="hidden md:inline text-zinc-500">•</span>
               <span className="hidden md:inline font-mono text-zinc-400 text-xs">
@@ -171,7 +173,7 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
                       e.stopPropagation();
                       setActiveSlideIndex((prev) => (prev - 1 + slides.length) % slides.length);
                     }}
-                    className="absolute left-3 top-1/2 -translate-y-1/2 p-2.5 rounded-full bg-black/70 hover:bg-black text-white border border-white/20 transition-all hover:scale-110 cursor-pointer shadow-lg z-10"
+                    className="absolute left-3 top-1/2 -translate-y-1/2 w-11 h-11 flex items-center justify-center rounded-full bg-black/70 hover:bg-black text-white border border-white/20 transition-all hover:scale-110 active:scale-95 cursor-pointer shadow-lg z-10"
                     aria-label="Previous slide"
                   >
                     <ChevronLeft className="w-5 h-5" />
@@ -182,7 +184,7 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
                       e.stopPropagation();
                       setActiveSlideIndex((prev) => (prev + 1) % slides.length);
                     }}
-                    className="absolute right-3 top-1/2 -translate-y-1/2 p-2.5 rounded-full bg-black/70 hover:bg-black text-white border border-white/20 transition-all hover:scale-110 cursor-pointer shadow-lg z-10"
+                    className="absolute right-3 top-1/2 -translate-y-1/2 w-11 h-11 flex items-center justify-center rounded-full bg-black/70 hover:bg-black text-white border border-white/20 transition-all hover:scale-110 active:scale-95 cursor-pointer shadow-lg z-10"
                     aria-label="Next slide"
                   >
                     <ChevronRight className="w-5 h-5" />
@@ -205,6 +207,7 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
                   <button
                     key={idx}
                     onClick={() => setActiveSlideIndex(idx)}
+                    aria-label={`View slide ${idx + 1}`}
                     className={`relative flex-shrink-0 w-16 sm:w-20 aspect-[16/9] rounded-lg overflow-hidden border transition-all cursor-pointer ${
                       activeSlideIndex === idx
                         ? "border-orange-500 ring-2 ring-orange-500/40 scale-105"

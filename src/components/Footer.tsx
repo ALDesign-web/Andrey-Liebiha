@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { ArrowUpRight, Copy, Check, Mail, Sparkles, ArrowUp } from "lucide-react";
+import { ArrowUpRight, Copy, Check, Mail, ArrowUp } from "lucide-react";
 
 export function Footer() {
   const [copied, setCopied] = useState(false);
@@ -44,6 +44,8 @@ export function Footer() {
           <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3 pt-2 w-full max-w-md sm:max-w-none mx-auto">
             <button
               onClick={handleCopyEmail}
+              aria-label="Copy official email address"
+              title="Copy official email address"
               className="px-5 py-3.5 rounded-full bg-white/[0.05] border border-white/15 hover:border-orange-500/40 text-white font-mono text-xs sm:text-sm flex items-center justify-center gap-2.5 transition-all cursor-pointer group"
             >
               <Mail className="w-4 h-4 text-orange-400 shrink-0" />
@@ -59,7 +61,7 @@ export function Footer() {
               href="https://t.me/ALMotion3D"
               target="_blank"
               rel="noopener noreferrer"
-              className="px-7 py-3.5 rounded-full bg-gradient-to-r from-orange-500 to-amber-500 text-black font-semibold text-xs sm:text-sm shadow-xl shadow-orange-500/25 hover:shadow-orange-500/40 hover:scale-105 transition-all flex items-center justify-center gap-2"
+              className="px-7 py-3.5 rounded-full bg-gradient-to-r from-orange-500 to-amber-500 text-black font-semibold text-xs sm:text-sm shadow-xl shadow-orange-500/25 hover:shadow-orange-500/40 hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-2"
             >
               <span>Book a Call on Telegram</span>
               <ArrowUpRight className="w-4 h-4 shrink-0" />
@@ -68,11 +70,11 @@ export function Footer() {
         </div>
 
         {/* Footer Bottom Bar */}
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-6 pt-4 text-xs font-mono text-zinc-500">
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-6 pt-4 text-xs font-mono text-zinc-400">
           <div className="flex items-center gap-2">
             <span>© {new Date().getFullYear()} ANDRII LIEBIHA</span>
             <span>•</span>
-            <span className="text-zinc-400">PRODUCT DESIGN ARCHITECT</span>
+            <span className="text-zinc-300">PRODUCT DESIGN ARCHITECT</span>
           </div>
 
           {/* Social Links */}
@@ -106,7 +108,7 @@ export function Footer() {
             </a>
             <button
               onClick={scrollToTop}
-              className="p-2 rounded-full bg-white/5 border border-white/10 text-zinc-400 hover:text-white hover:bg-white/10 transition-colors cursor-pointer"
+              className="w-11 h-11 flex items-center justify-center rounded-full bg-white/5 border border-white/10 text-zinc-400 hover:text-white hover:bg-white/10 active:scale-90 transition-all cursor-pointer"
               aria-label="Back to top"
             >
               <ArrowUp className="w-3.5 h-3.5" />

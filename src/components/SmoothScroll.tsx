@@ -3,6 +3,12 @@
 import { useEffect } from "react";
 import Lenis from "lenis";
 
+declare global {
+    interface Window {
+        lenis?: Lenis;
+    }
+}
+
 export default function SmoothScroll() {
     useEffect(() => {
         if (typeof window === "undefined") return;
@@ -37,7 +43,7 @@ export default function SmoothScroll() {
             syncTouch: false,
         });
 
-        (window as any).lenis = lenis;
+        window.lenis = lenis;
 
         let rafId: number;
         function raf(time: number) {
@@ -50,7 +56,7 @@ export default function SmoothScroll() {
         return () => {
             cancelAnimationFrame(rafId);
             lenis.destroy();
-            delete (window as any).lenis;
+            delete window.lenis;
             document.documentElement.classList.remove("lenis", "lenis-smooth");
         };
     }, []);

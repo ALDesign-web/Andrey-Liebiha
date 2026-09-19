@@ -4,19 +4,12 @@ import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { 
   Bot, 
-  Cpu, 
-  Layers, 
   Sparkles, 
   Play, 
   RotateCcw, 
-  Check, 
   Sliders, 
   TrendingUp, 
-  Code, 
-  CheckCircle2,
-  Zap,
-  ArrowRight,
-  ShieldCheck
+  Zap
 } from "lucide-react";
 
 export function InteractiveSystemLab() {
@@ -73,7 +66,7 @@ export function InteractiveSystemLab() {
           <h2 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-white tracking-tight uppercase">
             Live Craft <span className="text-gradient-orange">&amp; Technical Prototyping</span>
           </h2>
-          <p className="text-sm sm:text-base text-zinc-400 leading-relaxed max-w-2xl mx-auto">
+          <p className="text-sm sm:text-base text-zinc-300 leading-relaxed max-w-2xl mx-auto measure-prose">
             Demonstrating production-grade interaction design, design system token architecture, 
             and AI agent canvas prototypes directly in code.
           </p>
@@ -83,7 +76,7 @@ export function InteractiveSystemLab() {
         <div className="flex flex-wrap items-center justify-center gap-2 mb-10">
           <button
             onClick={() => setActiveTab("ai-workflow")}
-            className={`px-5 py-3 rounded-full text-xs sm:text-sm font-medium transition-all flex items-center gap-2 cursor-pointer ${
+            className={`px-5 py-3 rounded-full text-xs sm:text-sm font-medium transition-all flex items-center gap-2 cursor-pointer active:scale-[0.98] ${
               activeTab === "ai-workflow"
                 ? "bg-gradient-to-r from-orange-500 to-amber-500 text-black font-semibold shadow-lg shadow-orange-500/25"
                 : "bg-white/[0.04] text-zinc-300 hover:text-white border border-white/10"
@@ -95,7 +88,7 @@ export function InteractiveSystemLab() {
 
           <button
             onClick={() => setActiveTab("design-system")}
-            className={`px-5 py-3 rounded-full text-xs sm:text-sm font-medium transition-all flex items-center gap-2 cursor-pointer ${
+            className={`px-5 py-3 rounded-full text-xs sm:text-sm font-medium transition-all flex items-center gap-2 cursor-pointer active:scale-[0.98] ${
               activeTab === "design-system"
                 ? "bg-gradient-to-r from-orange-500 to-amber-500 text-black font-semibold shadow-lg shadow-orange-500/25"
                 : "bg-white/[0.04] text-zinc-300 hover:text-white border border-white/10"
@@ -268,7 +261,7 @@ export function InteractiveSystemLab() {
                     ].map((v) => (
                       <button
                         key={v.id}
-                        onClick={() => setButtonVariant(v.id as any)}
+                        onClick={() => setButtonVariant(v.id as typeof buttonVariant)}
                         className={`px-3 py-1.5 rounded-lg text-xs font-medium border transition-all cursor-pointer ${
                           buttonVariant === v.id
                             ? "bg-white text-black border-white font-bold"
@@ -418,7 +411,7 @@ export function InteractiveSystemLab() {
                       }}
                       className="custom-range-slider"
                     />
-                    <div className="flex justify-between text-[10px] font-mono text-zinc-500">
+                    <div className="flex justify-between text-[10px] font-mono text-zinc-400 tabular-nums">
                       <span>5,000</span>
                       <span>50,000</span>
                       <span>100,000</span>
@@ -427,12 +420,12 @@ export function InteractiveSystemLab() {
 
                   {/* Slider 2: CVR Boost */}
                   <div className="p-4 rounded-2xl bg-white/[0.02] border border-white/[0.06] space-y-3">
-                    <div className="flex items-center justify-between text-xs font-mono text-zinc-400">
+                    <div className="flex items-center justify-between text-xs font-mono text-zinc-300">
                       <span className="flex items-center gap-1.5">
                         <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
                         BOOKIFY CVR LIFT FACTOR
                       </span>
-                      <span className="text-emerald-400 font-bold bg-emerald-500/10 px-2.5 py-0.5 rounded-md border border-emerald-500/20">
+                      <span className="text-emerald-400 font-bold bg-emerald-500/10 px-2.5 py-0.5 rounded-md border border-emerald-500/20 tabular-nums">
                         +{cvrBoost}% Lift
                       </span>
                     </div>
@@ -448,14 +441,14 @@ export function InteractiveSystemLab() {
                       }}
                       className="custom-range-slider custom-range-slider-emerald"
                     />
-                    <div className="flex justify-between text-[10px] font-mono text-zinc-500">
+                    <div className="flex justify-between text-[10px] font-mono text-zinc-400 tabular-nums">
                       <span>+10% Base</span>
                       <span>+80% High</span>
                       <span>+150% Max</span>
                     </div>
                   </div>
 
-                  <div className="p-4 rounded-xl bg-white/[0.02] border border-white/[0.06] text-xs text-zinc-400 leading-relaxed">
+                  <div className="p-4 rounded-xl bg-white/[0.02] border border-white/[0.06] text-xs text-zinc-300 leading-relaxed">
                     <strong className="text-zinc-200 block mb-1">Validated CRO Methodology (Bookify Case):</strong>
                     Replacing multi-page redirects with in-context modal purchasing and 1-tap Apple/Google Pay 
                     lifted baseline e-commerce conversion from 2.4% to 5.8% (+141.6% relative lift).
@@ -465,27 +458,27 @@ export function InteractiveSystemLab() {
                 {/* Live ROI Cards */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div className="p-6 rounded-2xl bg-white/[0.02] border border-white/10 flex flex-col justify-between">
-                    <span className="text-xs font-mono text-zinc-400">BASELINE REVENUE</span>
+                    <span className="text-xs font-mono text-zinc-300">BASELINE REVENUE</span>
                     <div className="my-3">
-                      <div className="text-2xl sm:text-3xl font-black text-zinc-300">
+                      <div className="text-2xl sm:text-3xl font-black text-zinc-200 tabular-nums">
                         ${(baselineRevenue / 1000).toFixed(0)}k
                       </div>
-                      <span className="text-[11px] text-zinc-500">at {baselineCVR}% Legacy Baseline</span>
+                      <span className="text-[11px] text-zinc-400 tabular-nums">at {baselineCVR}% Legacy Baseline</span>
                     </div>
-                    <span className="text-[10px] font-mono text-zinc-500">E-Commerce Benchmark</span>
+                    <span className="text-[10px] font-mono text-zinc-400">E-Commerce Benchmark</span>
                   </div>
 
                   <div className="p-6 rounded-2xl bg-gradient-to-br from-orange-500/20 via-[#0f1015] to-amber-500/10 border border-orange-500/40 shadow-xl shadow-orange-500/10 flex flex-col justify-between">
                     <span className="text-xs font-mono text-orange-400 font-semibold">OPTIMIZED FUNNEL REVENUE</span>
                     <div className="my-3">
-                      <div className="text-3xl sm:text-4xl font-black text-white">
+                      <div className="text-3xl sm:text-4xl font-black text-white tabular-nums">
                         ${(optimizedRevenue / 1000).toFixed(0)}k
                       </div>
-                      <span className="text-xs font-mono text-emerald-400 font-bold">
+                      <span className="text-xs font-mono text-emerald-400 font-bold tabular-nums">
                         at {optimizedCVR.toFixed(2)}% Redesigned CVR
                       </span>
                     </div>
-                    <div className="text-xs font-mono text-emerald-300 bg-emerald-500/10 px-2 py-1 rounded border border-emerald-500/20">
+                    <div className="text-xs font-mono text-emerald-300 bg-emerald-500/10 px-2 py-1 rounded border border-emerald-500/20 tabular-nums">
                       +${(revenueGain / 1000).toFixed(0)}k Validated Lift
                     </div>
                   </div>

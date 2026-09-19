@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowUpRight, Lock, ShieldCheck, FileText, Sparkles, Layers, Eye } from "lucide-react";
+import { ArrowUpRight, Lock, ShieldCheck, Eye } from "lucide-react";
 import { PROJECTS_DATA } from "@/data/portfolioData";
 import { ProjectItem } from "@/types/portfolio";
 import { ProjectModal } from "./ProjectModal";
@@ -58,7 +58,7 @@ export function ProjectsShowcase() {
                   {/* Card Meta Header */}
                   <div className="flex items-center justify-between gap-2 mb-3.5">
                     <span className="font-mono text-xs font-bold text-orange-400 bg-orange-500/10 px-2.5 py-1 rounded-md border border-orange-500/20">
-                      {project.number} // 2026
+                      {`${project.number} // 2026`}
                     </span>
                     <span className="font-mono text-xs text-zinc-300 bg-white/[0.04] px-2.5 py-1 rounded-md border border-white/[0.08]">
                       {project.categoryLabel}
@@ -95,7 +95,7 @@ export function ProjectsShowcase() {
                       </h3>
                       <ArrowUpRight className="w-5 h-5 text-zinc-500 group-hover:text-orange-400 transition-all shrink-0 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                     </div>
-                    <p className="text-zinc-400 text-sm leading-relaxed line-clamp-2">
+                    <p className="text-zinc-300 text-sm leading-relaxed line-clamp-2">
                       {project.subtitle}
                     </p>
                   </div>
@@ -105,10 +105,10 @@ export function ProjectsShowcase() {
                 <div className="pt-4 border-t border-white/[0.08] flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                   {/* Primary Metric Pill */}
                   <div className="flex items-center gap-2">
-                    <span className="text-sm font-bold text-emerald-400 font-mono">
+                    <span className="text-sm font-bold text-emerald-400 font-mono tabular-nums">
                       {project.metrics[0]?.value}
                     </span>
-                    <span className="text-xs text-zinc-400">
+                    <span className="text-xs text-zinc-300">
                       {project.metrics[0]?.label}
                     </span>
                   </div>
@@ -197,6 +197,7 @@ export function ProjectsShowcase() {
 
       {/* Deep-Dive Modal */}
       <ProjectModal
+        key={activeModalProject?.id || "empty-modal"}
         project={activeModalProject}
         onClose={() => setActiveModalProject(null)}
       />

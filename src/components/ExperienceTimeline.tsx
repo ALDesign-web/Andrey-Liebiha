@@ -2,7 +2,7 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { Briefcase, Wrench, CheckCircle2, Sparkles, Code2, Video, Layers } from "lucide-react";
+import { Briefcase, Wrench, CheckCircle2, Code2, Video, Layers } from "lucide-react";
 import { EXPERIENCE_TIMELINE, TOOLS_MATRIX } from "@/data/portfolioData";
 
 export function ExperienceTimeline() {
@@ -50,7 +50,7 @@ export function ExperienceTimeline() {
             Proven Track Record <br />
             <span className="text-gradient-orange">&amp; Technical Mastery</span>
           </h2>
-          <p className="text-sm sm:text-base text-zinc-400 leading-relaxed">
+          <p className="text-sm sm:text-base text-zinc-300 leading-relaxed max-w-prose">
             Leading product design and digital platforms from early conceptual vision to high-impact production releases.
           </p>
         </div>
@@ -62,7 +62,7 @@ export function ExperienceTimeline() {
               <Briefcase className="w-4 h-4 text-orange-400" />
               Strategic Roles &amp; Experience
             </h3>
-            <span className="text-[11px] font-mono text-zinc-500">2018 - PRESENT</span>
+            <span className="text-[11px] font-mono text-zinc-400 tabular-nums">2018 - PRESENT</span>
           </div>
 
           <div className="lg:col-span-5 flex items-center justify-between">
@@ -70,7 +70,7 @@ export function ExperienceTimeline() {
               <Wrench className="w-4 h-4 text-cyan-400" />
               Core Toolset &amp; Requirements
             </h3>
-            <span className="text-[11px] font-mono text-zinc-500">GLOBAL TECH BENCHMARK</span>
+            <span className="text-[11px] font-mono text-zinc-400">GLOBAL TECH BENCHMARK</span>
           </div>
         </div>
 
@@ -89,12 +89,12 @@ export function ExperienceTimeline() {
                 className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-stretch"
               >
                 {/* Left Card: Experience Milestone (7 cols) */}
-                <div className="lg:col-span-7 h-full p-5 sm:p-7 rounded-3xl bg-[#0f1015] border border-white/10 hover:border-orange-500/30 transition-all duration-300 hover:shadow-xl hover:shadow-orange-500/5 flex flex-col justify-between">
+                <div className="lg:col-span-7 h-full p-5 sm:p-7 rounded-3xl bg-[#0f1015] border border-white/10 hover:border-orange-500/30 transition-all duration-300 hover:shadow-xl hover:shadow-orange-500/5 shadow-[inset_0_1px_0_rgba(255,255,255,0.08)] flex flex-col justify-between">
                   <div className="space-y-3">
                     <div className="flex flex-wrap items-center justify-between gap-2">
                       <div className="flex items-center gap-2.5">
-                        <span className="w-2.5 h-2.5 rounded-full bg-orange-500 shadow-sm shadow-orange-500/50 shrink-0" />
-                        <h4 className="text-base sm:text-xl font-bold text-white tracking-tight">
+                        <span className="w-2.5 h-2.5 rounded-full bg-orange-400 shrink-0" />
+                        <h4 className="text-base sm:text-lg font-bold text-white tracking-tight">
                           {experience.role}
                         </h4>
                       </div>
@@ -123,7 +123,7 @@ export function ExperienceTimeline() {
                 </div>
 
                 {/* Right Card: Toolset Category (5 cols) */}
-                <div className="lg:col-span-5 h-full p-5 sm:p-7 rounded-3xl bg-[#0f1015] border border-white/10 hover:border-white/20 transition-all duration-300 flex flex-col justify-between">
+                <div className="lg:col-span-5 h-full p-5 sm:p-7 rounded-3xl bg-[#0f1015] border border-white/10 hover:border-white/20 transition-all duration-300 shadow-[inset_0_1px_0_rgba(255,255,255,0.08)] flex flex-col justify-between">
                   <div className="flex items-center justify-between pb-3 border-b border-white/[0.06] gap-2">
                     <div className="flex items-center gap-2 min-w-0">
                       <span className={`w-2 h-2 rounded-full shrink-0 ${toolset.dotColor}`} />
@@ -152,7 +152,7 @@ export function ExperienceTimeline() {
                     ))}
                   </div>
 
-                  <div className="pt-3 text-[10px] font-mono text-zinc-500 flex flex-wrap items-center justify-between gap-1 border-t border-white/[0.04]">
+                  <div className="pt-3 text-[10px] font-mono text-zinc-400 flex flex-wrap items-center justify-between gap-1 border-t border-white/[0.04]">
                     <span>PROFICIENCY BENCHMARK</span>
                     <span className="text-emerald-400/90 font-semibold">100% PRODUCTION READY</span>
                   </div>
