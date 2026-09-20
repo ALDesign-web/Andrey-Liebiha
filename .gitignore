@@ -40,3 +40,9 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# rive CLI build artifacts
+src/rive-projects/**/build/
+
+# temporary scratch
+scratch/

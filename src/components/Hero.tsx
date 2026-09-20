@@ -3,6 +3,7 @@
 import React from "react";
 import { Sparkles, ArrowUpRight } from "lucide-react";
 import { PORTFOLIO_HERO } from "@/data/portfolioData";
+import { RiveOrbBeacon } from "@/components/RiveOrbBeacon";
 
 export function Hero() {
   const statAnimClasses = [
@@ -22,8 +23,8 @@ export function Hero() {
       <div className="relative max-w-7xl mx-auto px-6 sm:px-8 w-full flex-1 flex flex-col justify-center">
         {/* Top Monospace Eyebrow Badge */}
         <div className="animate-hero-eyebrow flex items-center gap-3 mb-6">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.04] border border-white/[0.08] backdrop-blur-md">
-            <span className="w-2 h-2 rounded-full bg-orange-500 animate-pulse" />
+          <div className="inline-flex items-center gap-2.5 px-3 py-1 rounded-full bg-white/[0.04] border border-white/[0.08] backdrop-blur-md">
+            <RiveOrbBeacon size={20} className="-my-1" />
             <span className="text-[11px] font-mono tracking-wider uppercase text-zinc-300">
               LEAD PRODUCT DESIGN &amp; SYSTEMS
             </span>

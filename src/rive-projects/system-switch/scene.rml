@@ -1,0 +1,172 @@
+<Rive version="1" kind="fragment">
+    <Artboard defaultStateMachineId="0:7" styleId="0:5" width="300" height="160" name="SystemSwitch" id="0:2">
+        <LayoutComponentStyle name="Artboard Style" id="0:5"/>
+
+        <!-- Inactive Background Track -->
+        <Shape x="150" y="80" name="Track" id="0:20">
+            <Rectangle width="220" height="96" linkCornerRadius="true" cornerRadiusTL="48" originX="0.5" originY="0.5" name="TrackRect" id="0:21"/>
+            <Fill name="TrackFill">
+                <SolidColor colorValue="FF18181B" name="TrackColor"/>
+            </Fill>
+            <Stroke thickness="2" name="TrackStroke">
+                <SolidColor colorValue="33FFFFFF" name="TrackBorder"/>
+            </Stroke>
+        </Shape>
+
+        <!-- Active Glowing Track Overlay -->
+        <Shape x="150" y="80" opacity="0" name="ActiveGlow" id="0:25">
+            <Rectangle width="220" height="96" linkCornerRadius="true" cornerRadiusTL="48" originX="0.5" originY="0.5" name="ActiveGlowRect" id="0:26"/>
+            <Fill name="ActiveFill">
+                <LinearGradient startX="-110" startY="0" endX="110" endY="0" name="ActiveGrad">
+                    <GradientStop colorValue="FFFF5722" position="0"/>
+                    <GradientStop colorValue="FFFF9100" position="1"/>
+                </LinearGradient>
+            </Fill>
+            <Stroke thickness="2" name="ActiveStroke">
+                <SolidColor colorValue="AAFFA726" name="ActiveStrokeColor"/>
+            </Stroke>
+        </Shape>
+
+        <!-- Switch Knob -->
+        <Shape x="90" y="80" name="Knob" id="0:10">
+            <Ellipse width="74" height="74" originX="0.5" originY="0.5" name="KnobCircle" id="0:11"/>
+            <Fill name="KnobFill">
+                <LinearGradient startX="0" startY="-37" endX="0" endY="37" name="KnobGrad">
+                    <GradientStop colorValue="FFFFFFFF" position="0"/>
+                    <GradientStop colorValue="FFE5E7EB" position="1"/>
+                </LinearGradient>
+            </Fill>
+            <Stroke thickness="2" name="KnobStroke">
+                <SolidColor colorValue="80FFFFFF" name="KnobBorder"/>
+            </Stroke>
+        </Shape>
+
+        <!-- Knob Core Accent Dot -->
+        <Shape x="90" y="80" name="KnobDot" id="0:15">
+            <Ellipse width="22" height="22" originX="0.5" originY="0.5" name="DotCircle" id="0:16"/>
+            <Fill name="DotFill">
+                <SolidColor colorValue="FF71717A" name="DotColor"/>
+            </Fill>
+        </Shape>
+
+        <!-- Timelines -->
+        <LinearAnimation duration="30" loopValue="loop" name="IdleOff" id="0:50">
+            <KeyedObject objectId="0:10">
+                <KeyedProperty propertyKey="13">
+                    <KeyFrameDouble value="90" frame="0" interpolationType="linear"/>
+                </KeyedProperty>
+            </KeyedObject>
+            <KeyedObject objectId="0:15">
+                <KeyedProperty propertyKey="13">
+                    <KeyFrameDouble value="90" frame="0" interpolationType="linear"/>
+                </KeyedProperty>
+            </KeyedObject>
+            <KeyedObject objectId="0:25">
+                <KeyedProperty propertyKey="18">
+                    <KeyFrameDouble value="0" frame="0" interpolationType="linear"/>
+                </KeyedProperty>
+            </KeyedObject>
+        </LinearAnimation>
+
+        <LinearAnimation duration="30" loopValue="loop" name="IdleOn" id="0:51">
+            <KeyedObject objectId="0:10">
+                <KeyedProperty propertyKey="13">
+                    <KeyFrameDouble value="210" frame="0" interpolationType="linear"/>
+                </KeyedProperty>
+            </KeyedObject>
+            <KeyedObject objectId="0:15">
+                <KeyedProperty propertyKey="13">
+                    <KeyFrameDouble value="210" frame="0" interpolationType="linear"/>
+                </KeyedProperty>
+            </KeyedObject>
+            <KeyedObject objectId="0:25">
+                <KeyedProperty propertyKey="18">
+                    <KeyFrameDouble value="1" frame="0" interpolationType="linear"/>
+                </KeyedProperty>
+            </KeyedObject>
+        </LinearAnimation>
+
+        <LinearAnimation duration="30" loopValue="oneShot" name="TurnOn" id="0:52">
+            <KeyedObject objectId="0:10">
+                <KeyedProperty propertyKey="13">
+                    <KeyFrameDouble value="90" frame="0" interpolationType="linear"/>
+                    <KeyFrameDouble value="218" frame="20" interpolationType="linear"/>
+                    <KeyFrameDouble value="210" frame="30" interpolationType="linear"/>
+                </KeyedProperty>
+            </KeyedObject>
+            <KeyedObject objectId="0:15">
+                <KeyedProperty propertyKey="13">
+                    <KeyFrameDouble value="90" frame="0" interpolationType="linear"/>
+                    <KeyFrameDouble value="218" frame="20" interpolationType="linear"/>
+                    <KeyFrameDouble value="210" frame="30" interpolationType="linear"/>
+                </KeyedProperty>
+            </KeyedObject>
+            <KeyedObject objectId="0:25">
+                <KeyedProperty propertyKey="18">
+                    <KeyFrameDouble value="0" frame="0" interpolationType="linear"/>
+                    <KeyFrameDouble value="1" frame="30" interpolationType="linear"/>
+                </KeyedProperty>
+            </KeyedObject>
+        </LinearAnimation>
+
+        <LinearAnimation duration="30" loopValue="oneShot" name="TurnOff" id="0:53">
+            <KeyedObject objectId="0:10">
+                <KeyedProperty propertyKey="13">
+                    <KeyFrameDouble value="210" frame="0" interpolationType="linear"/>
+                    <KeyFrameDouble value="82" frame="20" interpolationType="linear"/>
+                    <KeyFrameDouble value="90" frame="30" interpolationType="linear"/>
+                </KeyedProperty>
+            </KeyedObject>
+            <KeyedObject objectId="0:15">
+                <KeyedProperty propertyKey="13">
+                    <KeyFrameDouble value="210" frame="0" interpolationType="linear"/>
+                    <KeyFrameDouble value="82" frame="20" interpolationType="linear"/>
+                    <KeyFrameDouble value="90" frame="30" interpolationType="linear"/>
+                </KeyedProperty>
+            </KeyedObject>
+            <KeyedObject objectId="0:25">
+                <KeyedProperty propertyKey="18">
+                    <KeyFrameDouble value="1" frame="0" interpolationType="linear"/>
+                    <KeyFrameDouble value="0" frame="30" interpolationType="linear"/>
+                </KeyedProperty>
+            </KeyedObject>
+        </LinearAnimation>
+
+        <!-- State Machine -->
+        <StateMachine name="State Machine 1" id="0:7">
+            <StateMachineBool name="isOn" id="0:40"/>
+
+            <StateMachineLayer name="SwitchLayer" id="0:8">
+                <AnyState x="200" y="-120"/>
+                <ExitState x="400" y="-120"/>
+                <EntryState>
+                    <StateTransition stateToId="0:60"/>
+                </EntryState>
+
+                <!-- State Off -->
+                <AnimationState x="100" y="0" animationId="0:50" id="0:60">
+                    <StateTransition stateToId="0:62" duration="50">
+                        <TransitionBoolCondition inputId="0:40" opValue="equal"/>
+                    </StateTransition>
+                </AnimationState>
+
+                <!-- State Turning On -->
+                <AnimationState x="260" y="-60" animationId="0:52" id="0:62">
+                    <StateTransition stateToId="0:61" enableExitTime="true" exitTimeIsPercetange="true" exitTime="100" duration="50"/>
+                </AnimationState>
+
+                <!-- State On -->
+                <AnimationState x="420" y="0" animationId="0:51" id="0:61">
+                    <StateTransition stateToId="0:63" duration="50">
+                        <TransitionBoolCondition inputId="0:40" opValue="notEqual"/>
+                    </StateTransition>
+                </AnimationState>
+
+                <!-- State Turning Off -->
+                <AnimationState x="260" y="60" animationId="0:53" id="0:63">
+                    <StateTransition stateToId="0:60" enableExitTime="true" exitTimeIsPercetange="true" exitTime="100" duration="50"/>
+                </AnimationState>
+            </StateMachineLayer>
+        </StateMachine>
+    </Artboard>
+</Rive>

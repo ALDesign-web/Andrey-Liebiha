@@ -1,0 +1,105 @@
+<Rive version="1" kind="fragment">
+    <Artboard defaultStateMachineId="0:7" styleId="0:5" width="200" height="200" name="OrbBeacon" id="0:2">
+        <LayoutComponentStyle name="Artboard Style" id="0:5"/>
+
+        <!-- Outer expanding pulse wave -->
+        <Shape x="100" y="100" name="Wave" id="0:30">
+            <Ellipse width="90" height="90" originX="0.5" originY="0.5" name="WaveCircle" id="0:31"/>
+            <Stroke thickness="1.5" name="WaveStroke">
+                <SolidColor colorValue="66FF6A00" name="WaveColor"/>
+            </Stroke>
+        </Shape>
+
+        <!-- Middle halo ring -->
+        <Shape x="100" y="100" name="Halo" id="0:20">
+            <Ellipse width="64" height="64" originX="0.5" originY="0.5" name="HaloCircle" id="0:21"/>
+            <Stroke thickness="2" name="HaloStroke">
+                <SolidColor colorValue="AAFF8C00" name="HaloColor"/>
+            </Stroke>
+        </Shape>
+
+        <!-- Vibrant glowing center core -->
+        <Shape x="100" y="100" name="Core" id="0:10">
+            <Ellipse width="34" height="34" originX="0.5" originY="0.5" name="CoreCircle" id="0:11"/>
+            <Fill name="CoreFill">
+                <LinearGradient startX="0" startY="-17" endX="0" endY="17" name="CoreGradient">
+                    <GradientStop colorValue="FFFFB74D" position="0"/>
+                    <GradientStop colorValue="FFFF5722" position="1"/>
+                </LinearGradient>
+            </Fill>
+            <Stroke thickness="1.5" name="CoreStroke">
+                <SolidColor colorValue="FFFFCC80" name="CoreStrokeColor"/>
+            </Stroke>
+        </Shape>
+
+        <!-- Animations -->
+        <LinearAnimation duration="90" loopValue="loop" name="IdlePulse" id="0:50">
+            <!-- Core breathing scale -->
+            <KeyedObject objectId="0:10">
+                <KeyedProperty propertyKey="16">
+                    <KeyFrameDouble value="1" frame="0" interpolationType="linear"/>
+                    <KeyFrameDouble value="1.18" frame="45" interpolationType="linear"/>
+                    <KeyFrameDouble value="1" frame="90" interpolationType="linear"/>
+                </KeyedProperty>
+                <KeyedProperty propertyKey="17">
+                    <KeyFrameDouble value="1" frame="0" interpolationType="linear"/>
+                    <KeyFrameDouble value="1.18" frame="45" interpolationType="linear"/>
+                    <KeyFrameDouble value="1" frame="90" interpolationType="linear"/>
+                </KeyedProperty>
+            </KeyedObject>
+
+            <!-- Halo expanding and pulsing opacity -->
+            <KeyedObject objectId="0:20">
+                <KeyedProperty propertyKey="16">
+                    <KeyFrameDouble value="0.9" frame="0" interpolationType="linear"/>
+                    <KeyFrameDouble value="1.2" frame="45" interpolationType="linear"/>
+                    <KeyFrameDouble value="0.9" frame="90" interpolationType="linear"/>
+                </KeyedProperty>
+                <KeyedProperty propertyKey="17">
+                    <KeyFrameDouble value="0.9" frame="0" interpolationType="linear"/>
+                    <KeyFrameDouble value="1.2" frame="45" interpolationType="linear"/>
+                    <KeyFrameDouble value="0.9" frame="90" interpolationType="linear"/>
+                </KeyedProperty>
+                <KeyedProperty propertyKey="18">
+                    <KeyFrameDouble value="0.8" frame="0" interpolationType="linear"/>
+                    <KeyFrameDouble value="0.3" frame="45" interpolationType="linear"/>
+                    <KeyFrameDouble value="0.8" frame="90" interpolationType="linear"/>
+                </KeyedProperty>
+            </KeyedObject>
+
+            <!-- Outer wave dissipation -->
+            <KeyedObject objectId="0:30">
+                <KeyedProperty propertyKey="16">
+                    <KeyFrameDouble value="0.8" frame="0" interpolationType="linear"/>
+                    <KeyFrameDouble value="1.45" frame="60" interpolationType="linear"/>
+                    <KeyFrameDouble value="0.8" frame="90" interpolationType="linear"/>
+                </KeyedProperty>
+                <KeyedProperty propertyKey="17">
+                    <KeyFrameDouble value="0.8" frame="0" interpolationType="linear"/>
+                    <KeyFrameDouble value="1.45" frame="60" interpolationType="linear"/>
+                    <KeyFrameDouble value="0.8" frame="90" interpolationType="linear"/>
+                </KeyedProperty>
+                <KeyedProperty propertyKey="18">
+                    <KeyFrameDouble value="0.5" frame="0" interpolationType="linear"/>
+                    <KeyFrameDouble value="0.05" frame="60" interpolationType="linear"/>
+                    <KeyFrameDouble value="0.5" frame="90" interpolationType="linear"/>
+                </KeyedProperty>
+            </KeyedObject>
+        </LinearAnimation>
+
+        <!-- State Machine -->
+        <StateMachine name="State Machine 1" id="0:7">
+            <StateMachineBool name="isHovered" id="0:40"/>
+            <StateMachineTrigger name="triggerTap" id="0:41"/>
+
+            <StateMachineLayer name="PulseLayer" id="0:8">
+                <AnyState x="200" y="-120"/>
+                <ExitState x="400" y="-120"/>
+                <EntryState>
+                    <StateTransition stateToId="0:12"/>
+                </EntryState>
+                <AnimationState x="200" y="0" animationId="0:50" id="0:12"/>
+            </StateMachineLayer>
+        </StateMachine>
+    </Artboard>
+</Rive>

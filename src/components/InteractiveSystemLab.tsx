@@ -9,11 +9,17 @@ import {
   RotateCcw, 
   Sliders, 
   TrendingUp, 
-  Zap
+  Zap,
+  Code2,
+  Cpu,
+  Layers,
+  CheckCircle2
 } from "lucide-react";
+import { RiveSystemSwitch } from "@/components/RiveSystemSwitch";
+import { RiveOrbBeacon } from "@/components/RiveOrbBeacon";
 
 export function InteractiveSystemLab() {
-  const [activeTab, setActiveTab] = useState<"ai-workflow" | "design-system" | "cro-simulator">("ai-workflow");
+  const [activeTab, setActiveTab] = useState<"ai-workflow" | "design-system" | "cro-simulator" | "rive-runtime">("ai-workflow");
 
   // Tab 1: AI Workflow State
   const [simulating, setSimulating] = useState(false);
@@ -27,6 +33,10 @@ export function InteractiveSystemLab() {
   // Tab 3: CRO Simulator State
   const [trafficVolume, setTrafficVolume] = useState(25000);
   const [cvrBoost, setCvrBoost] = useState(48); // % uplift
+
+  // Tab 4: Rive Runtime State
+  const [riveSwitchOn, setRiveSwitchOn] = useState(true);
+  const [riveBeaconClicks, setRiveBeaconClicks] = useState(0);
 
   const runSimulation = () => {
     setSimulating(true);
@@ -108,6 +118,18 @@ export function InteractiveSystemLab() {
           >
             <TrendingUp className="w-4 h-4" />
             <span>CRO &amp; Revenue Uplift Engine</span>
+          </button>
+
+          <button
+            onClick={() => setActiveTab("rive-runtime")}
+            className={`px-5 py-3 rounded-full text-xs sm:text-sm font-medium transition-all flex items-center gap-2 cursor-pointer ${
+              activeTab === "rive-runtime"
+                ? "bg-gradient-to-r from-orange-500 to-amber-500 text-black font-semibold shadow-lg shadow-orange-500/25"
+                : "bg-white/[0.04] text-zinc-300 hover:text-white border border-white/10"
+            }`}
+          >
+            <Sparkles className="w-4 h-4 text-amber-400" />
+            <span>Rive Vector Runtime (CLI &amp; RML)</span>
           </button>
         </div>
 
@@ -482,6 +504,184 @@ export function InteractiveSystemLab() {
                       +${(revenueGain / 1000).toFixed(0)}k Validated Lift
                     </div>
                   </div>
+                </div>
+              </div>
+            </motion.div>
+          )}
+
+          {/* Tab 4: Rive Vector Runtime & CLI State Machine Engine */}
+          {activeTab === "rive-runtime" && (
+            <motion.div
+              key="rive-runtime"
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -15 }}
+              transition={{ duration: 0.3 }}
+              className="p-6 sm:p-10 rounded-3xl bg-[#0f1015] border border-white/10 shadow-2xl shadow-black/80"
+            >
+              {/* Header */}
+              <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 pb-8 border-b border-white/10">
+                <div>
+                  <div className="flex items-center gap-2 font-mono text-xs text-orange-400 uppercase tracking-wider mb-1">
+                    <Zap className="w-3.5 h-3.5" />
+                    RIVE CLI &amp; RML TEXT-BASED VECTOR RUNTIME
+                  </div>
+                  <h3 className="text-xl sm:text-2xl font-bold text-white">
+                    Hardware-Accelerated State Machines (Zero DOM Bloat)
+                  </h3>
+                  <p className="text-xs sm:text-sm text-zinc-400 mt-1 max-w-3xl">
+                    Authored as human- and agent-readable RML markup code, compiled via the new Rive CLI in 2ms, 
+                    and rendered at 60–120fps through WebGL/WebGPU with direct React 19 state binding.
+                  </p>
+                </div>
+
+                <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-orange-500/10 border border-orange-500/20 text-orange-400 text-xs font-mono">
+                  <Cpu className="w-3.5 h-3.5" />
+                  <span>Sub-2ms Compile • &lt;1.2 KB Assets</span>
+                </div>
+              </div>
+
+              {/* Live Interactive Widgets Grid */}
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 my-8">
+                {/* Widget 1: Tactile State Machine Switch */}
+                <div className="p-6 rounded-2xl bg-white/[0.02] border border-white/10 flex flex-col justify-between space-y-6">
+                  <div>
+                    <div className="flex items-center justify-between mb-4">
+                      <span className="text-xs font-mono text-zinc-400 uppercase tracking-wider flex items-center gap-2">
+                        <Layers className="w-3.5 h-3.5 text-orange-400" />
+                        Live Rive State Machine Switch
+                      </span>
+                      <span className="text-[11px] font-mono text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20">
+                        1,162 bytes (.riv)
+                      </span>
+                    </div>
+                    <p className="text-xs text-zinc-300 mb-6">
+                      Click the toggle below. The transition interpolates keyframes natively inside Rive&apos;s C++ runtime canvas without any React re-render overhead or CSS layout reflows.
+                    </p>
+                  </div>
+
+                  <div className="flex flex-col sm:flex-row items-center justify-between p-6 rounded-xl bg-black/40 border border-white/5 gap-6">
+                    <div className="flex flex-col items-center sm:items-start gap-1">
+                      <span className="text-xs font-mono text-zinc-400">STATE MACHINE INPUT</span>
+                      <span className="text-lg font-bold text-white font-mono">
+                        isOn = <span className={riveSwitchOn ? "text-orange-400" : "text-zinc-500"}>{String(riveSwitchOn)}</span>
+                      </span>
+                      <span className="text-[11px] text-zinc-400">
+                        Current Timeline: <strong className="text-zinc-200">{riveSwitchOn ? "IdleOn" : "IdleOff"}</strong>
+                      </span>
+                    </div>
+
+                    <div className="flex items-center gap-4">
+                      <RiveSystemSwitch
+                        checked={riveSwitchOn}
+                        onChange={setRiveSwitchOn}
+                        width={130}
+                        height={70}
+                      />
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-3 gap-2 text-center text-[10px] font-mono text-zinc-400 pt-2 border-t border-white/5">
+                    <div className="p-2 rounded bg-white/[0.02]">
+                      <span className="block text-zinc-500">FORMAT</span>
+                      <strong className="text-zinc-300">RML (XML text)</strong>
+                    </div>
+                    <div className="p-2 rounded bg-white/[0.02]">
+                      <span className="block text-zinc-500">RENDER</span>
+                      <strong className="text-zinc-300">Canvas2D / WebGL</strong>
+                    </div>
+                    <div className="p-2 rounded bg-white/[0.02]">
+                      <span className="block text-zinc-500">FPS</span>
+                      <strong className="text-emerald-400">60-120 FPS</strong>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Widget 2: Ambient Multi-Layer Beacon */}
+                <div className="p-6 rounded-2xl bg-white/[0.02] border border-white/10 flex flex-col justify-between space-y-6">
+                  <div>
+                    <div className="flex items-center justify-between mb-4">
+                      <span className="text-xs font-mono text-zinc-400 uppercase tracking-wider flex items-center gap-2">
+                        <Sparkles className="w-3.5 h-3.5 text-amber-400" />
+                        Ambient System Core (Multi-Layer)
+                      </span>
+                      <span className="text-[11px] font-mono text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20">
+                        855 bytes (.riv)
+                      </span>
+                    </div>
+                    <p className="text-xs text-zinc-300 mb-6">
+                      An interactive radial beacon running independent animation layers (breathing core, halo expansion, radar wave) with zero CPU overhead.
+                    </p>
+                  </div>
+
+                  <div className="flex flex-col sm:flex-row items-center justify-between p-6 rounded-xl bg-black/40 border border-white/5 gap-6">
+                    <div className="flex flex-col items-center sm:items-start gap-1">
+                      <span className="text-xs font-mono text-zinc-400">CONCURRENT LAYERS</span>
+                      <span className="text-sm font-semibold text-white">
+                        Pulse + Wave + Core Shaders
+                      </span>
+                      <span className="text-[11px] text-zinc-400">
+                        {riveBeaconClicks > 0
+                          ? `Interactive trigger pulses fired: ${riveBeaconClicks}`
+                          : "Tap or hover the beacon for micro-feedback"}
+                      </span>
+                    </div>
+
+                    <div 
+                      onClick={() => setRiveBeaconClicks((prev) => prev + 1)}
+                      className="flex items-center justify-center p-2 rounded-2xl bg-white/[0.03] border border-white/10"
+                    >
+                      <RiveOrbBeacon size={64} />
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-3 gap-2 text-center text-[10px] font-mono text-zinc-400 pt-2 border-t border-white/5">
+                    <div className="p-2 rounded bg-white/[0.02]">
+                      <span className="block text-zinc-500">DOM NODES</span>
+                      <strong className="text-emerald-400">1 &lt;canvas&gt;</strong>
+                    </div>
+                    <div className="p-2 rounded bg-white/[0.02]">
+                      <span className="block text-zinc-500">AUTO-PAUSE</span>
+                      <strong className="text-zinc-300">IntersectionObs</strong>
+                    </div>
+                    <div className="p-2 rounded bg-white/[0.02]">
+                      <span className="block text-zinc-500">GIT DIFF</span>
+                      <strong className="text-zinc-300">Line-by-line</strong>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Architecture & Engineering Deep-Dive */}
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-6 border-t border-white/10">
+                <div className="p-4 rounded-xl bg-white/[0.02] border border-white/[0.06] space-y-2">
+                  <div className="flex items-center gap-2 text-xs font-mono text-orange-400">
+                    <Code2 className="w-3.5 h-3.5" />
+                    <span>CODE-FIRST RML WORKFLOW</span>
+                  </div>
+                  <p className="text-xs text-zinc-300 leading-relaxed">
+                    Animations are defined as declarative RML XML files in Git. AI coding agents and developers can scaffold and refactor state machines as code, while designers can polish curves in the Rive GUI.
+                  </p>
+                </div>
+
+                <div className="p-4 rounded-xl bg-white/[0.02] border border-white/[0.06] space-y-2">
+                  <div className="flex items-center gap-2 text-xs font-mono text-emerald-400">
+                    <Cpu className="w-3.5 h-3.5" />
+                    <span>LIGHTNING-FAST COMPILE</span>
+                  </div>
+                  <p className="text-xs text-zinc-300 leading-relaxed">
+                    The Rive CLI compiles RML projects to binary <code className="text-orange-300">.riv</code> runtime files in ~2ms. Integrated seamlessly into <code className="text-zinc-200">npm run rive:build</code> and Next.js prebuild pipelines.
+                  </p>
+                </div>
+
+                <div className="p-4 rounded-xl bg-white/[0.02] border border-white/[0.06] space-y-2">
+                  <div className="flex items-center gap-2 text-xs font-mono text-cyan-400">
+                    <CheckCircle2 className="w-3.5 h-3.5" />
+                    <span>LOTTIE VS RIVE REVOLUTION</span>
+                  </div>
+                  <p className="text-xs text-zinc-300 leading-relaxed">
+                    Replaces massive 150KB JSON Lottie files (and thousands of CPU-draining SVG DOM nodes) with tiny &lt;1.2KB binaries running on hardware-accelerated Canvas with true state machines.
+                  </p>
                 </div>
               </div>
             </motion.div>
