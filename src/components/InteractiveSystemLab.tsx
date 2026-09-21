@@ -17,6 +17,8 @@ import {
 } from "lucide-react";
 import { RiveSystemSwitch } from "@/components/RiveSystemSwitch";
 import { RiveOrbBeacon } from "@/components/RiveOrbBeacon";
+import { LiquidPlasmaSwitch } from "@/components/ui/LiquidPlasmaSwitch";
+import { CelestialNovaCore } from "@/components/ui/CelestialNovaCore";
 
 export function InteractiveSystemLab() {
   const [activeTab, setActiveTab] = useState<"ai-workflow" | "design-system" | "cro-simulator" | "rive-runtime">("ai-workflow");
@@ -526,127 +528,92 @@ export function InteractiveSystemLab() {
                     <Zap className="w-3.5 h-3.5" />
                     RIVE CLI &amp; RML TEXT-BASED VECTOR RUNTIME
                   </div>
-                  <h3 className="text-xl sm:text-2xl font-bold text-white">
-                    Hardware-Accelerated State Machines (Zero DOM Bloat)
+                  <h3 className="text-xl sm:text-3xl font-black text-white uppercase tracking-tight">
+                    Kinetic Vector State Machines &amp; Organic Motion
                   </h3>
-                  <p className="text-xs sm:text-sm text-[#adb3b7] mt-1 max-w-3xl">
-                    Authored as human- and agent-readable RML markup code, compiled via the new Rive CLI in 2ms, 
-                    and rendered at 60–120fps through WebGL/WebGPU with direct React 19 state binding.
+                  <p className="text-xs sm:text-sm text-[#adb3b7] mt-1 max-w-2xl leading-relaxed">
+                    Interactive vector architectures engineered with pure kinetic physics, squash-and-stretch fluid mechanics, and multi-layered reactive particle dynamics.
                   </p>
                 </div>
 
-                <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#ff7235]/10 border border-[#ff7235]/25 text-[#ff7235] text-xs font-mono">
-                  <Cpu className="w-3.5 h-3.5" />
-                  <span>Sub-2ms Compile • &lt;1.2 KB Assets</span>
+                <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#ff7235]/10 border border-[#ff7235]/25 text-[#ff7235] text-xs font-mono">
+                  <Sparkles className="w-3.5 h-3.5" />
+                  <span>KINETIC VECTOR PLAYGROUND</span>
                 </div>
               </div>
 
-              {/* Live Interactive Widgets Grid */}
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 my-8">
-                {/* Widget 1: Tactile State Machine Switch */}
-                <div className="p-6 rounded-2xl bg-white/[0.025] border border-[#adb3b7]/12 backdrop-blur-sm flex flex-col justify-between space-y-6">
+              {/* Live Interactive Motion Showcase Grid */}
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 my-8">
+                {/* Widget 1: Liquid Plasma Switch */}
+                <div className="p-6 sm:p-8 rounded-3xl bg-white/[0.025] border border-[#adb3b7]/12 backdrop-blur-sm flex flex-col justify-between space-y-6 hover:border-[#ff7235]/30 transition-all duration-300">
                   <div>
-                    <div className="flex items-center justify-between mb-4">
-                      <span className="text-xs font-mono text-[#adb3b7] uppercase tracking-wider flex items-center gap-2">
+                    <div className="flex items-center justify-between mb-3">
+                      <span className="text-xs font-mono text-white uppercase tracking-wider flex items-center gap-2 font-bold">
                         <Layers className="w-3.5 h-3.5 text-[#ff7235]" />
-                        Live Rive State Machine Switch
+                        Liquid Plasma Kinetic Switch
                       </span>
-                      <span className="text-[11px] font-mono text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20">
-                        1,162 bytes (.riv)
+                      <span className="text-[10px] font-mono text-[#ff7235] bg-[#ff7235]/10 px-2 py-0.5 rounded border border-[#ff7235]/20">
+                        FLUID HYDRODYNAMICS
                       </span>
                     </div>
-                    <p className="text-xs text-[#adb3b7] mb-6">
-                      Click the toggle below. The transition interpolates keyframes natively inside Rive&apos;s C++ runtime canvas without any React re-render overhead or CSS layout reflows.
+                    <p className="text-xs text-[#adb3b7] leading-relaxed">
+                      Tap the capsule to trigger fluid squash-and-stretch deformation, magnetic droplet separation, and expanding chromatic light waves.
                     </p>
                   </div>
 
-                  <div className="flex flex-col sm:flex-row items-center justify-between p-6 rounded-xl bg-white/[0.02] border border-[#adb3b7]/10 gap-6">
-                    <div className="flex flex-col items-center sm:items-start gap-1">
-                      <span className="text-xs font-mono text-[#adb3b7]">STATE MACHINE INPUT</span>
-                      <span className="text-lg font-bold text-white font-mono">
-                        isOn = <span className={riveSwitchOn ? "text-[#ff7235]" : "text-[#adb3b7]/60"}>{String(riveSwitchOn)}</span>
-                      </span>
-                      <span className="text-[11px] text-[#adb3b7]">
-                        Current Timeline: <strong className="text-white">{riveSwitchOn ? "IdleOn" : "IdleOff"}</strong>
-                      </span>
-                    </div>
-
-                    <div className="flex items-center gap-4">
-                      <RiveSystemSwitch
-                        checked={riveSwitchOn}
-                        onChange={setRiveSwitchOn}
-                        width={130}
-                        height={70}
-                      />
-                    </div>
+                  <div className="py-8 flex items-center justify-center rounded-2xl bg-black/40 border border-white/5 shadow-inner">
+                    <LiquidPlasmaSwitch />
                   </div>
 
-                  <div className="grid grid-cols-3 gap-2 text-center text-[10px] font-mono text-[#adb3b7] pt-2 border-t border-[#adb3b7]/10">
+                  <div className="grid grid-cols-3 gap-2 text-center text-[10px] font-mono text-[#adb3b7] pt-3 border-t border-[#adb3b7]/10">
                     <div className="p-2 rounded bg-white/[0.02]">
-                      <span className="block text-[#adb3b7]/60">FORMAT</span>
-                      <strong className="text-white">RML (XML text)</strong>
+                      <span className="block text-zinc-500">PHYSICS</span>
+                      <strong className="text-white">Squash &amp; Stretch</strong>
                     </div>
                     <div className="p-2 rounded bg-white/[0.02]">
-                      <span className="block text-[#adb3b7]/60">RENDER</span>
-                      <strong className="text-white">Canvas2D / WebGL</strong>
+                      <span className="block text-zinc-500">TENSION</span>
+                      <strong className="text-white">Metaball Droplet</strong>
                     </div>
                     <div className="p-2 rounded bg-white/[0.02]">
-                      <span className="block text-[#adb3b7]/60">FPS</span>
-                      <strong className="text-emerald-400">60-120 FPS</strong>
+                      <span className="block text-zinc-500">OPTICS</span>
+                      <strong className="text-[#ff7235]">Radial Ripple</strong>
                     </div>
                   </div>
                 </div>
 
-                {/* Widget 2: Ambient Multi-Layer Beacon */}
-                <div className="p-6 rounded-2xl bg-white/[0.025] border border-[#adb3b7]/12 backdrop-blur-sm flex flex-col justify-between space-y-6">
+                {/* Widget 2: Celestial Nova Core */}
+                <div className="p-6 sm:p-8 rounded-3xl bg-white/[0.025] border border-[#adb3b7]/12 backdrop-blur-sm flex flex-col justify-between space-y-6 hover:border-cyan-400/30 transition-all duration-300">
                   <div>
-                    <div className="flex items-center justify-between mb-4">
-                      <span className="text-xs font-mono text-[#adb3b7] uppercase tracking-wider flex items-center gap-2">
-                        <Sparkles className="w-3.5 h-3.5 text-[#ffa043]" />
-                        Ambient System Core (Multi-Layer)
+                    <div className="flex items-center justify-between mb-3">
+                      <span className="text-xs font-mono text-white uppercase tracking-wider flex items-center gap-2 font-bold">
+                        <Sparkles className="w-3.5 h-3.5 text-cyan-400" />
+                        Celestial Nova Core
                       </span>
-                      <span className="text-[11px] font-mono text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20">
-                        855 bytes (.riv)
+                      <span className="text-[10px] font-mono text-cyan-400 bg-cyan-500/10 px-2 py-0.5 rounded border border-cyan-500/20">
+                        3D GYRO &amp; PARTICLES
                       </span>
                     </div>
-                    <p className="text-xs text-[#adb3b7] mb-6">
-                      An interactive radial beacon running independent animation layers (breathing core, halo expansion, radar wave) with zero CPU overhead.
+                    <p className="text-xs text-[#adb3b7] leading-relaxed">
+                      Hover and drag for 3D gyro tilt. Tap the core directly to trigger an implosion, nova shockwaves, and shifting chromatic energy spectra.
                     </p>
                   </div>
 
-                  <div className="flex flex-col sm:flex-row items-center justify-between p-6 rounded-xl bg-white/[0.02] border border-[#adb3b7]/10 gap-6">
-                    <div className="flex flex-col items-center sm:items-start gap-1">
-                      <span className="text-xs font-mono text-[#adb3b7]">CONCURRENT LAYERS</span>
-                      <span className="text-sm font-semibold text-white">
-                        Pulse + Wave + Core Shaders
-                      </span>
-                      <span className="text-[11px] text-[#adb3b7]">
-                        {riveBeaconClicks > 0
-                          ? `Interactive trigger pulses fired: ${riveBeaconClicks}`
-                          : "Tap or hover the beacon for micro-feedback"}
-                      </span>
-                    </div>
-
-                    <div 
-                      onClick={() => setRiveBeaconClicks((prev) => prev + 1)}
-                      className="flex items-center justify-center p-2 rounded-2xl bg-white/[0.03] border border-[#adb3b7]/20"
-                    >
-                      <RiveOrbBeacon size={64} />
-                    </div>
+                  <div className="rounded-2xl border border-white/5 overflow-hidden">
+                    <CelestialNovaCore />
                   </div>
 
-                  <div className="grid grid-cols-3 gap-2 text-center text-[10px] font-mono text-[#adb3b7] pt-2 border-t border-[#adb3b7]/10">
+                  <div className="grid grid-cols-3 gap-2 text-center text-[10px] font-mono text-[#adb3b7] pt-3 border-t border-[#adb3b7]/10">
                     <div className="p-2 rounded bg-white/[0.02]">
-                      <span className="block text-[#adb3b7]/60">DOM NODES</span>
-                      <strong className="text-emerald-400">1 &lt;canvas&gt;</strong>
+                      <span className="block text-zinc-500">INTERACTION</span>
+                      <strong className="text-white">3D Gyro Parallax</strong>
                     </div>
                     <div className="p-2 rounded bg-white/[0.02]">
-                      <span className="block text-[#adb3b7]/60">AUTO-PAUSE</span>
-                      <strong className="text-white">IntersectionObs</strong>
+                      <span className="block text-zinc-500">DETONATION</span>
+                      <strong className="text-white">Nova Photon Burst</strong>
                     </div>
                     <div className="p-2 rounded bg-white/[0.02]">
-                      <span className="block text-[#adb3b7]/60">GIT DIFF</span>
-                      <strong className="text-white">Line-by-line</strong>
+                      <span className="block text-zinc-500">HARMONICS</span>
+                      <strong className="text-cyan-400">Tri-Spectrum</strong>
                     </div>
                   </div>
                 </div>
@@ -654,33 +621,33 @@ export function InteractiveSystemLab() {
 
               {/* Architecture & Engineering Deep-Dive */}
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-6 border-t border-[#adb3b7]/15">
-                <div className="p-4 rounded-xl bg-[#242424]/60 border border-[#adb3b7]/15 space-y-2">
-                  <div className="flex items-center gap-2 text-xs font-mono text-[#ff7235]">
-                    <Code2 className="w-3.5 h-3.5" />
+                <div className="p-5 rounded-2xl bg-[#242424]/40 border border-[#adb3b7]/12 space-y-2">
+                  <div className="flex items-center gap-2 text-xs font-mono text-[#ff7235] font-bold uppercase">
+                    <Code2 className="w-4 h-4" />
                     <span>CODE-FIRST RML WORKFLOW</span>
                   </div>
                   <p className="text-xs text-[#adb3b7] leading-relaxed">
-                    Animations are defined as declarative RML XML files in Git. AI coding agents and developers can scaffold and refactor state machines as code, while designers can polish curves in the Rive GUI.
+                    Animations are authored as declarative RML XML files directly in Git. AI coding agents and developers can scaffold state machines as code, while designers refine curves in visual tools.
                   </p>
                 </div>
 
-                <div className="p-4 rounded-xl bg-[#242424]/60 border border-[#adb3b7]/15 space-y-2">
-                  <div className="flex items-center gap-2 text-xs font-mono text-emerald-400">
-                    <Cpu className="w-3.5 h-3.5" />
-                    <span>LIGHTNING-FAST COMPILE</span>
+                <div className="p-5 rounded-2xl bg-[#242424]/40 border border-[#adb3b7]/12 space-y-2">
+                  <div className="flex items-center gap-2 text-xs font-mono text-emerald-400 font-bold uppercase">
+                    <Zap className="w-4 h-4" />
+                    <span>TACTILE ORGANIC RESPONSE</span>
                   </div>
                   <p className="text-xs text-[#adb3b7] leading-relaxed">
-                    The Rive CLI compiles RML projects to binary <code className="text-[#ff7235]">.riv</code> runtime files in ~2ms. Integrated seamlessly into <code className="text-white">npm run rive:build</code> and Next.js prebuild pipelines.
+                    Every tap and pointer gesture produces tangible kinetic consequence — fluid stretching, particle detonations, and light blooms that make interfaces feel alive under the thumb.
                   </p>
                 </div>
 
-                <div className="p-4 rounded-xl bg-[#242424]/60 border border-[#adb3b7]/15 space-y-2">
-                  <div className="flex items-center gap-2 text-xs font-mono text-cyan-400">
-                    <CheckCircle2 className="w-3.5 h-3.5" />
-                    <span>LOTTIE VS RIVE REVOLUTION</span>
+                <div className="p-5 rounded-2xl bg-[#242424]/40 border border-[#adb3b7]/12 space-y-2">
+                  <div className="flex items-center gap-2 text-xs font-mono text-cyan-400 font-bold uppercase">
+                    <CheckCircle2 className="w-4 h-4" />
+                    <span>HARDWARE ACCELERATION</span>
                   </div>
                   <p className="text-xs text-[#adb3b7] leading-relaxed">
-                    Replaces massive 150KB JSON Lottie files (and thousands of CPU-draining SVG DOM nodes) with tiny &lt;1.2KB binaries running on hardware-accelerated Canvas with true state machines.
+                    Replaces heavy SVG DOM trees with hardware-accelerated rendering contexts, eliminating layout reflows and delivering frictionless 60fps kinetic motion.
                   </p>
                 </div>
               </div>

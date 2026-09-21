@@ -40,8 +40,30 @@ export interface ExperienceItem {
   company: string;
   location: string;
   description: string;
+  executiveSummary?: string;
   highlights: string[];
   tools: string[];
+  mobileHighlights?: string[];
+}
+
+export interface EducationItem {
+  degree: string;
+  field: string;
+  type: string;
+  details?: string;
+}
+
+export interface LanguageItem {
+  language: string;
+  level: string;
+  details: string;
+}
+
+export interface CVMetadata {
+  availability: string;
+  location: string;
+  education: EducationItem;
+  languages: LanguageItem[];
 }
 
 export interface SkillCategory {
@@ -50,3 +72,4 @@ export interface SkillCategory {
   iconName: string;
   skills: string[];
 }
+

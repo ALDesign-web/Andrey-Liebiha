@@ -1,16 +1,39 @@
-import { ProjectItem, ExperienceItem, SkillCategory } from "@/types/portfolio";
+import { ProjectItem, ExperienceItem, SkillCategory, CVMetadata } from "@/types/portfolio";
 
 export const PORTFOLIO_HERO = {
-  availability: "Available for Senior Product Design Roles",
+  availability: "Available for Senior / Lead Product Design & Mobile Roles",
   name: "ANDRII LIEBIHA",
-  role: "Senior Product Designer & Systems Architect",
-  tagline: "Designing High-Conversion E-Commerce, Tactile 3D Experiences & AI-Native SaaS Platforms.",
-  bio: "Senior / Lead Product Designer & Systems Architect with formal academic training (Degree in Product Design, 2014) and 7+ years of commercial craft. Leading mobile games, native apps, and web platforms at Vortex Lab, with past contracts at Aircall (AI Call Center SaaS), Fintech, and E-Commerce. Active Creative Developer engineering personal Fintech software with Python and React to quantitatively validate product hypotheses with data.",
+  role: "Senior Product Designer & Mobile Systems Architect",
+  tagline: "Designing High-Impact Mobile Apps, Tactile 3D Experiences & Scalable Systems.",
+  bio: "Senior / Lead Product Designer & Systems Architect with formal academic qualification (Higher Degree in Product Design) and 7+ years of commercial craft. Leading 0-to-1 mobile applications (iOS & Android), spatial 3D experiences, and web platforms at Vortex Lab, with past contracts at Aircall (AI Call Center SaaS), Fintech, and E-Commerce. Active Creative Developer engineering personal Fintech software with Python and React to quantitatively validate product hypotheses with data.",
   stats: [
     { value: "+141%", label: "Max Funnel CVR Uplift", sub: "Bookify Rebranding (ex-Небо)" },
     { value: "$1.42M+", label: "ARR Run-Rate Generated", sub: "Expedition Mahjong Economy" },
     { value: "73.4%", label: "30-Day Cohort Retention", sub: "Luro AI Social Operations" },
     { value: "7+ Yrs", label: "Product & Systems Craft", sub: "Global High-Growth Tech" }
+  ]
+};
+
+export const CV_METADATA: CVMetadata = {
+  availability: "Available for Senior / Lead Product Design & Mobile Roles",
+  location: "Remote / Hybrid (Worldwide)",
+  education: {
+    degree: "Higher Degree in Product Design",
+    field: "Product & Industrial Design",
+    type: "Formal Academic Qualification",
+    details: "Foundational academic training in ergonomics, physical & digital product design, spatial balance, and user perception."
+  },
+  languages: [
+    {
+      language: "English",
+      level: "Full Professional Proficiency",
+      details: "C1 / C2 • Advanced Working & Executive Communication"
+    },
+    {
+      language: "Ukrainian",
+      level: "Native",
+      details: "Native / Bilingual Proficiency"
+    }
   ]
 };
 
@@ -177,56 +200,75 @@ export const SKILL_PILLARS: SkillCategory[] = [
 export const EXPERIENCE_TIMELINE: ExperienceItem[] = [
   {
     period: "2023 - Present",
-    role: "Senior / Lead Product Designer & Creative Dev",
-    company: "Vortex Lab (Mobile Games, Native Apps & Web)",
+    role: "Senior / Lead Product Designer & Mobile Systems Architect",
+    company: "Vortex Lab (Mobile Apps, Spatial 3D & Web)",
     location: "Studio & Venture Lab",
-    description: "Leading end-to-end product design, 0-to-1 UX architecture, and scalable design systems for mobile games, iOS/Android apps, and high-performance web platforms. Active Creative Developer building personal Fintech software with Python and React.",
+    description: "Leading 0-to-1 mobile application architecture (iOS & Android), spatial 3D systems, and cross-platform web platforms. Active Creative Developer building personal Fintech software with Python and React.",
+    executiveSummary: "Leading 0-to-1 mobile application architecture (iOS & Android) and design systems. Delivered 43+ production mobile screens and 350+ tactile assets with thumb-zone ergonomics, sustaining $1.42M+ ARR run-rate and 64.8% D1 retention.",
     highlights: [
-      "Architecting immersive mobile game UX, spatial 3D interfaces, and cross-platform web platforms from early concept to production releases.",
-      "Building unified design token pipelines and component systems ensuring 100% design-to-code synchronicity across mobile and web squads.",
-      "Developing personal Fintech software with Python and React, writing automated data-validation tests and analytics scripts to backtest and validate UX/UI product hypotheses."
+      "Architecting 0-to-1 mobile applications (iOS & Android), spatial 3D interfaces, and thumb-zone ergonomic systems compliant with iOS 18+ HIG and Material 3.",
+      "Engineered tactile mobile gaming & utility interfaces featuring physical PBR shaders, dynamic elevation lighting, and sensory audio-haptic feedback.",
+      "Built unified Figma token pipelines syncing mobile squads (SwiftUI & Jetpack Compose design tokens) and web squads with 100% token consistency.",
+      "Developing personal Fintech software with Python and React, writing automated data-validation tests to backtest and quantitatively validate UX/UI product hypotheses."
     ],
-    tools: ["Figma (Variables & Tokens)", "Python (Data & UX Testing)", "Mobile Games UX", "React / Next.js", "3D Spatial UI", "Tailwind CSS"]
+    mobileHighlights: [
+      "43+ production Retina screens designed with strict thumb-zone ergonomics",
+      "Native iOS 18+ HIG & Material 3 architecture with sensory haptic feedback",
+      "Unified mobile token pipeline bridging Figma Variables directly to native code"
+    ],
+    tools: ["iOS HIG & Material 3", "Mobile Apps UX/UI", "Figma (Variables & Tokens)", "Python (Data & Testing)", "React / Next.js", "3D Spatial UI"]
   },
   {
     period: "2021 - 2023",
-    role: "Product & UX/UI Designer",
-    company: "Aircall (AI Call Center SaaS) • Fintech & E-Commerce",
+    role: "Senior Product & UX/UI Designer",
+    company: "Aircall (AI Call Center SaaS) • Fintech & Mobile E-Commerce",
     location: "Global Contracts",
-    description: "Designed customer communication workflows, AI voice analytics interfaces, and B2B SaaS dashboards for Aircall (AI-powered business telephony platform), alongside high-impact contracts in Fintech and E-Commerce.",
+    description: "Designed customer communication workflows, mobile-responsive interaction tooling, and B2B SaaS dashboards for Aircall, alongside high-impact contracts in Fintech and E-Commerce.",
+    executiveSummary: "Designed high-velocity B2B communication tooling, mobile companion experiences, and frictionless checkout funnels yielding +141.6% conversion uplift and 45s checkout velocity.",
     highlights: [
-      "Designed intuitive call-handling workflows, AI voice transcription dashboards, and customer interaction tooling for B2B teams.",
-      "Engineered high-converting purchase funnels for e-commerce brands and data-dense dashboards for fintech platforms.",
-      "Partnered with front-end squads to achieve 100% implementation fidelity between Figma tokens and production components."
+      "Designed call-handling workflows, AI voice transcription dashboards, and companion mobile interaction patterns for enterprise teams.",
+      "Engineered high-converting mobile-first purchase funnels for e-commerce brands, cutting checkout velocity to 45s (-58.3% time-to-buy) and lifting CVR by +141.6%.",
+      "Architected data-dense dashboards for fintech platforms with keyboard-first navigation and dark-mode ergonomics.",
+      "Partnered directly with mobile and frontend engineering squads to maintain 100% fidelity between design tokens and production code."
     ],
-    tools: ["Figma", "B2B SaaS Architecture", "AI Voice UX", "Fintech Workspaces", "E-Commerce CRO"]
+    mobileHighlights: [
+      "Mobile-first responsive checkout with native Apple Pay and Google Pay integration",
+      "High-density mobile SaaS workflows for field agents and on-the-go communications"
+    ],
+    tools: ["Mobile E-Commerce CRO", "Figma", "B2B SaaS Architecture", "AI Voice UX", "Apple / Google Pay UX", "Design Systems"]
   },
   {
     period: "2018 - 2021",
-    role: "Graphic & Digital Designer",
-    company: "Freelance / Global Clients (Degree in Product Design, 2014)",
+    role: "Product & Digital Designer",
+    company: "Commercial Products & Venture Studios",
     location: "Remote",
-    description: "Delivered brand identity systems, typography guidelines, and digital marketing collateral for commercial products, building foundational visual craft.",
+    description: "Delivered mobile application concepts, brand identity systems, and conversion-focused web layouts for international commercial clients.",
+    executiveSummary: "Delivered foundational mobile prototypes, design systems, and digital brand identities for global commercial clients, grounded in formal academic design education.",
     highlights: [
-      "Crafted comprehensive brand packages, vector asset systems, and marketing interfaces for international commercial clients.",
-      "Applied formal academic product design training (Degree in Product Design, 2014) to establish spatial balance and visual hierarchy in digital products."
+      "Crafted comprehensive brand packages, vector asset systems, and responsive digital interfaces for international commercial clients.",
+      "Engineered early interactive mobile app prototypes and design guidelines for consumer products.",
+      "Applied formal academic training (Higher Degree in Product Design) to establish spatial balance, ergonomic grids, and typography hierarchy."
     ],
-    tools: ["Adobe CC Suite", "Brand Systems", "Typography & Grid", "Visual Hierarchy", "Vector & 3D Assets"]
+    mobileHighlights: [
+      "Interactive mobile prototyping and user journey mapping",
+      "Ergonomic grid system construction for cross-device responsive viewports"
+    ],
+    tools: ["Adobe CC Suite", "Mobile Prototyping", "Brand Systems", "Typography & Grid", "Visual Hierarchy"]
   }
 ];
 
 export const TOOLS_MATRIX = {
   design: [
+    { name: "Mobile App UX (iOS HIG & Material 3)", level: "Mastery (100%)" },
     { name: "Figma (Variables, Tokens, AutoLayout)", level: "Mastery (100%)" },
     { name: "Design System Token Pipelines", level: "Expert (100%)" },
-    { name: "UI Typography & Micro-Interactions", level: "Mastery (100%)" },
-    { name: "WCAG AAA Accessibility & Contrast", level: "Advanced (96%)" }
+    { name: "Thumb-Zone Ergonomics & WCAG AAA", level: "Advanced (98%)" }
   ],
   motionAndMedia: [
     { name: "3D PBR Materials & Spatial UI", level: "Advanced (92%)" },
+    { name: "Mobile Haptics & Micro-Interactions", level: "Mastery (95%)" },
     { name: "Adobe After Effects (Kinetic Motion)", level: "Advanced (90%)" },
-    { name: "Adobe Photoshop & Illustrator", level: "Proficient (94%)" },
-    { name: "Thumb-Zone Ergonomics & Haptics", level: "Mastery (95%)" }
+    { name: "Adobe CC (Photoshop & Illustrator)", level: "Proficient (94%)" }
   ],
   engineeringAndAI: [
     { name: "Python (Data Analysis & UX Testing)", level: "Production Fluent (92%)" },
@@ -235,3 +277,4 @@ export const TOOLS_MATRIX = {
     { name: "Tailwind CSS & Radix UI Primitives", level: "Mastery (95%)" }
   ]
 };
+
