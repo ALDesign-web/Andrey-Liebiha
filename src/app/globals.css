@@ -11,14 +11,16 @@
 }
 
 :root {
-  --background: #08080b;
-  --foreground: #f4f4f6;
-  --surface: #0f1015;
-  --surface-hover: #161720;
-  --border: rgba(255, 255, 255, 0.08);
-  --border-active: rgba(249, 115, 22, 0.4);
-  --creatio-orange: #f97316;
-  --creatio-amber: #fbbf24;
+  --background: #18181b;
+  --foreground: #f2f5f1;
+  --surface: #1f2024;
+  --surface-hover: #292a30;
+  --steel: #adb3b7;
+  --chalk: #e7ece5;
+  --border: rgba(173, 179, 183, 0.18);
+  --border-active: rgba(255, 114, 53, 0.45);
+  --creatio-orange: #ff7235;
+  --creatio-amber: #ffa043;
   --electric-cyan: #06b6d4;
   --neon-indigo: #6366f1;
 }
@@ -37,13 +39,13 @@ body {
   background-color: var(--background);
   color: var(--foreground);
   overflow-x: hidden;
-  selection-background-color: #f97316;
+  selection-background-color: #ff7235;
   selection-color: #ffffff;
   font-feature-settings: "cv02", "cv03", "cv04", "cv11", "ss01";
 }
 
 ::selection {
-  background: rgba(249, 115, 22, 0.3);
+  background: rgba(255, 114, 53, 0.3);
   color: #ffffff;
 }
 
@@ -57,7 +59,7 @@ body {
 
 :focus-visible {
   outline: none;
-  box-shadow: 0 0 0 2px #08080b, 0 0 0 4px rgba(249, 115, 22, 0.6);
+  box-shadow: 0 0 0 2px #18181b, 0 0 0 4px rgba(255, 114, 53, 0.6);
 }
 
 /* Lenis Recommended Smooth Scroll CSS */
@@ -84,11 +86,11 @@ html.lenis body {
 
 /* Miraclesux / High-End Glassmorphism Utilities */
 .glass-panel {
-  background: rgba(15, 16, 21, 0.7);
+  background: rgba(31, 32, 36, 0.75);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(173, 179, 183, 0.18);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(173, 179, 183, 0.15);
 }
 
 .glass-panel-hover {
@@ -96,40 +98,41 @@ html.lenis body {
 }
 
 .glass-panel-hover:hover {
-  border-color: rgba(249, 115, 22, 0.35);
+  border-color: rgba(255, 114, 53, 0.45);
   transform: translateY(-4px);
-  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6), 0 0 30px rgba(249, 115, 22, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6), 0 0 30px rgba(255, 114, 53, 0.14), inset 0 1px 0 rgba(173, 179, 183, 0.22);
 }
 
 .glass-pill {
   background: rgba(255, 255, 255, 0.04);
   backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(173, 179, 183, 0.2);
+  box-shadow: inset 0 1px 0 rgba(173, 179, 183, 0.12);
 }
 
 /* Ambient Glow Gradients */
 .glow-spot-orange {
-  background: radial-gradient(circle, rgba(249, 115, 22, 0.15) 0%, rgba(249, 115, 22, 0) 70%);
+  background: radial-gradient(circle, rgba(255, 114, 53, 0.18) 0%, rgba(255, 114, 53, 0) 70%);
 }
 
 .glow-spot-cyan {
-  background: radial-gradient(circle, rgba(6, 182, 212, 0.12) 0%, rgba(6, 182, 212, 0) 70%);
+  background: radial-gradient(circle, rgba(6, 182, 212, 0.10) 0%, rgba(6, 182, 212, 0) 70%);
 }
 
 .glow-spot-indigo {
-  background: radial-gradient(circle, rgba(99, 102, 241, 0.12) 0%, rgba(99, 102, 241, 0) 70%);
+  background: radial-gradient(circle, rgba(255, 160, 67, 0.12) 0%, rgba(255, 160, 67, 0) 70%);
 }
 
 /* Background Subtle Grid */
 .bg-tech-grid {
   background-size: 48px 48px;
   background-image: 
-    linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+    linear-gradient(to right, rgba(173, 179, 183, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(173, 179, 183, 0.04) 1px, transparent 1px);
 }
 
 .bg-tech-dots {
-  background-image: radial-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+  background-image: radial-gradient(rgba(173, 179, 183, 0.10) 1px, transparent 1px);
   background-size: 24px 24px;
 }
 
@@ -155,7 +158,7 @@ html.lenis body {
 }
 
 .text-gradient-orange {
-  background: linear-gradient(90deg, #fed7aa 0%, #fb923c 20%, #f97316 45%, #ea580c 65%, #f59e0b 85%, #fed7aa 100%);
+  background: linear-gradient(90deg, #ffe0d1 0%, #ff8d4d 20%, #ff7235 45%, #ea4f18 65%, #ffa043 85%, #ffe0d1 100%);
   background-size: 250% auto;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -187,16 +190,16 @@ html.lenis body {
 }
 
 ::-webkit-scrollbar-track {
-  background: #08080b;
+  background: #18181b;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.15);
+  background: rgba(173, 179, 183, 0.25);
   border-radius: 9999px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(249, 115, 22, 0.4);
+  background: rgba(255, 114, 53, 0.5);
 }
 
 /* Hide scrollbar for clean modals */
@@ -217,7 +220,7 @@ html.lenis body {
   border-radius: 9999px;
   outline: none;
   cursor: pointer;
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(173, 179, 183, 0.18);
 }
 
 .custom-range-slider::-webkit-slider-thumb {
@@ -227,21 +230,21 @@ html.lenis body {
   height: 22px;
   border-radius: 50%;
   background: #ffffff;
-  border: 3.5px solid #f97316;
-  box-shadow: 0 0 16px rgba(249, 115, 22, 0.8), 0 2px 8px rgba(0, 0, 0, 0.7);
+  border: 3.5px solid #ff7235;
+  box-shadow: 0 0 16px rgba(255, 114, 53, 0.8), 0 2px 8px rgba(0, 0, 0, 0.7);
   cursor: grab;
   transition: transform 0.15s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.15s ease;
 }
 
 .custom-range-slider::-webkit-slider-thumb:hover {
   transform: scale(1.2);
-  box-shadow: 0 0 24px rgba(249, 115, 22, 1), 0 2px 10px rgba(0, 0, 0, 0.8);
+  box-shadow: 0 0 24px rgba(255, 114, 53, 1), 0 2px 10px rgba(0, 0, 0, 0.8);
 }
 
 .custom-range-slider::-webkit-slider-thumb:active {
   transform: scale(1.3);
   cursor: grabbing;
-  box-shadow: 0 0 30px rgba(249, 115, 22, 1), 0 4px 12px rgba(0, 0, 0, 0.9);
+  box-shadow: 0 0 30px rgba(255, 114, 53, 1), 0 4px 12px rgba(0, 0, 0, 0.9);
 }
 
 .custom-range-slider::-moz-range-thumb {
@@ -249,8 +252,8 @@ html.lenis body {
   height: 22px;
   border-radius: 50%;
   background: #ffffff;
-  border: 3.5px solid #f97316;
-  box-shadow: 0 0 16px rgba(249, 115, 22, 0.8);
+  border: 3.5px solid #ff7235;
+  box-shadow: 0 0 16px rgba(255, 114, 53, 0.8);
   cursor: grab;
 }
 

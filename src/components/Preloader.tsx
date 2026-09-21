@@ -82,30 +82,30 @@ export function Preloader() {
             opacity: 0.95,
             transition: { duration: 0.65, ease: [0.16, 1, 0.3, 1] } 
           }}
-          className="fixed inset-0 z-[100] bg-[#07080C] flex flex-col justify-between p-6 sm:p-10 select-none overflow-hidden"
+          className="fixed inset-0 z-[100] bg-[#18181b] flex flex-col justify-between p-6 sm:p-10 select-none overflow-hidden"
         >
           {/* Subtle Ambient Glows */}
-          <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[550px] h-[350px] bg-gradient-to-tr from-orange-500/10 via-amber-500/5 to-transparent rounded-full blur-3xl pointer-events-none" />
-          <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[300px] bg-gradient-to-br from-cyan-500/10 to-transparent rounded-full blur-3xl pointer-events-none" />
+          <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[550px] h-[350px] bg-gradient-to-tr from-[#ff7235]/15 via-[#ffa043]/10 to-transparent rounded-full blur-3xl pointer-events-none" />
+          <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[300px] bg-gradient-to-br from-[#adb3b7]/10 to-transparent rounded-full blur-3xl pointer-events-none" />
 
           {/* Top Brand Status Header */}
           <div className="flex items-center justify-between z-10">
             <div className="flex items-center gap-3">
-              <div className="w-7 h-7 rounded-full bg-gradient-to-tr from-orange-500 to-amber-300 flex items-center justify-center text-black font-bold text-xs shadow-md shadow-orange-500/20">
+              <div className="w-7 h-7 rounded-full bg-gradient-to-tr from-[#ff7235] to-[#ffa043] flex items-center justify-center text-black font-bold text-xs shadow-md shadow-[#ff7235]/25">
                 AL
               </div>
               <div className="flex flex-col">
                 <span className="text-xs font-semibold text-white tracking-tight">
                   Andrii Liebiha
                 </span>
-                <span className="text-[10px] font-mono text-zinc-400">
+                <span className="text-[10px] font-mono text-[#adb3b7]">
                   Senior Product Designer &amp; Systems Architect
                 </span>
               </div>
             </div>
 
-            <div className="hidden sm:flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.04] border border-white/[0.08] text-[11px] font-mono text-zinc-300">
-              <Sparkles className="w-3 h-3 text-amber-400" />
+            <div className="hidden sm:flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.04] border border-[#adb3b7]/20 text-[11px] font-mono text-[#adb3b7]">
+              <Sparkles className="w-3 h-3 text-[#ffa043]" />
               <span>INITIALIZING SYSTEM</span>
             </div>
           </div>
@@ -115,16 +115,16 @@ export function Preloader() {
             {/* Huge Tabular Percent Display */}
             <div className="text-6xl sm:text-7xl font-black text-white tracking-tight font-sans tabular-nums mb-6 flex items-baseline gap-1">
               <span>{progress.toString().padStart(2, "0")}</span>
-              <span className="text-2xl sm:text-3xl text-orange-400 font-bold">%</span>
+              <span className="text-2xl sm:text-3xl text-[#ff7235] font-bold">%</span>
             </div>
 
             {/* Glowing Neon Progress Slider Bar */}
             <div className="w-full relative">
               {/* Outer Slider Track */}
-              <div className="w-full h-1.5 sm:h-2 bg-white/[0.08] rounded-full overflow-hidden border border-white/10 shadow-inner">
+              <div className="w-full h-1.5 sm:h-2 bg-white/[0.08] rounded-full overflow-hidden border border-[#adb3b7]/20 shadow-inner">
                 {/* Active Progress Fill */}
                 <motion.div
-                  className="h-full bg-gradient-to-r from-orange-500 via-amber-400 to-orange-400 rounded-full shadow-[0_0_18px_rgba(249,115,22,0.8)]"
+                  className="h-full bg-gradient-to-r from-[#ff7235] via-[#ffa043] to-[#ff7235] rounded-full shadow-[0_0_18px_rgba(255,114,53,0.8)]"
                   style={{ width: `${progress}%` }}
                   transition={{ ease: "easeOut", duration: 0.1 }}
                 />
@@ -132,7 +132,7 @@ export function Preloader() {
 
               {/* Slider Thumb / Glowing Cursor */}
               <div 
-                className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-white border-2 border-orange-500 shadow-[0_0_14px_rgba(249,115,22,1)] pointer-events-none transition-all duration-75"
+                className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-white border-2 border-[#ff7235] shadow-[0_0_14px_rgba(255,114,53,1)] pointer-events-none transition-all duration-75"
                 style={{ left: `${progress}%` }}
               />
             </div>

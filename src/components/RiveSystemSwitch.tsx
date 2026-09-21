@@ -84,7 +84,7 @@ export function RiveSystemSwitch({
           handleToggle();
         }
       }}
-      className={`relative inline-flex items-center justify-center cursor-pointer select-none transition-transform active:scale-95 focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 rounded-full ${className}`}
+      className={`relative inline-flex items-center justify-center cursor-pointer select-none transition-transform active:scale-95 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#ff7235] rounded-full ${className}`}
       style={{ width, height }}
       title="Rive 60fps Vector State Machine Switch"
     >
@@ -96,7 +96,7 @@ export function RiveSystemSwitch({
         fallback={
           <div
             className={`w-full h-full rounded-full transition-colors ${
-              isChecked ? "bg-orange-500" : "bg-zinc-800"
+              isChecked ? "bg-[#ff7235]" : "bg-[#242424]"
             }`}
           />
         }

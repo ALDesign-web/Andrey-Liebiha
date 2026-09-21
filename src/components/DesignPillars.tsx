@@ -7,9 +7,9 @@ import { SKILL_PILLARS } from "@/data/portfolioData";
 
 export function DesignPillars() {
   const iconMap: Record<string, React.ReactNode> = {
-    Sparkles: <Sparkles className="w-5 h-5 text-amber-400" />,
+    Sparkles: <Sparkles className="w-5 h-5 text-[#ffa043]" />,
     Layers: <Layers className="w-5 h-5 text-cyan-400" />,
-    Component: <Component className="w-5 h-5 text-orange-400" />,
+    Component: <Component className="w-5 h-5 text-[#ff7235]" />,
     TrendingUp: <TrendingUp className="w-5 h-5 text-emerald-400" />
   };
 
@@ -18,15 +18,15 @@ export function DesignPillars() {
       <div className="max-w-7xl mx-auto px-6 sm:px-8 relative">
         {/* Section Header */}
         <div className="max-w-3xl mb-16 space-y-3">
-          <div className="flex items-center gap-2 text-xs font-mono text-orange-400 uppercase tracking-widest">
-            <span className="w-1.5 h-1.5 rounded-full bg-orange-400" />
+          <div className="flex items-center gap-2 text-xs font-mono text-[#ff7235] uppercase tracking-widest">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#ff7235]" />
             CORE PRODUCT DESIGN PILLARS
           </div>
           <h2 className="text-3xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight uppercase">
             Product Craft <br />
             <span className="text-gradient-orange">&amp; Strategic Foundation</span>
           </h2>
-          <p className="text-sm sm:text-base text-zinc-300 leading-relaxed max-w-prose">
+          <p className="text-sm sm:text-base text-[#adb3b7] leading-relaxed max-w-prose">
             Engineered to set and elevate product design standards across modern enterprise platforms.
           </p>
         </div>
@@ -42,28 +42,28 @@ export function DesignPillars() {
           {SKILL_PILLARS.map((pillar, idx) => (
             <div
               key={idx}
-              className="p-6 rounded-3xl bg-[#0f1015] border border-white/10 hover:border-orange-500/30 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-orange-500/10 shadow-[inset_0_1px_0_rgba(255,255,255,0.08)] flex flex-col justify-between"
+              className="p-6 rounded-3xl bg-white/[0.02] backdrop-blur-md border border-[#adb3b7]/12 hover:border-[#ff7235]/40 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-[#ff7235]/10 shadow-[inset_0_1px_0_rgba(173,179,183,0.08)] flex flex-col justify-between"
             >
               <div>
                 {/* Icon Container */}
-                <div className="w-12 h-12 rounded-2xl bg-white/[0.04] border border-white/10 flex items-center justify-center mb-6">
-                  {iconMap[pillar.iconName] || <Sparkles className="w-5 h-5 text-orange-400" />}
+                <div className="w-12 h-12 rounded-2xl bg-white/[0.04] border border-[#adb3b7]/20 flex items-center justify-center mb-6">
+                  {iconMap[pillar.iconName] || <Sparkles className="w-5 h-5 text-[#ff7235]" />}
                 </div>
 
                 {/* Title & Description */}
                 <h3 className="text-xl font-bold text-white mb-2 tracking-tight">
                   {pillar.title}
                 </h3>
-                <p className="text-xs text-zinc-300 leading-relaxed mb-6">
+                <p className="text-xs text-[#adb3b7] leading-relaxed mb-6">
                   {pillar.description}
                 </p>
               </div>
 
               {/* Skills checklist */}
-              <div className="pt-4 border-t border-white/[0.06] space-y-2">
+              <div className="pt-4 border-t border-[#adb3b7]/15 space-y-2">
                 {pillar.skills.map((skill, sIdx) => (
-                  <div key={sIdx} className="flex items-center gap-2 text-[11px] text-zinc-300 font-medium">
-                    <CheckCircle2 className="w-3.5 h-3.5 text-orange-400 shrink-0" />
+                  <div key={sIdx} className="flex items-center gap-2 text-[11px] text-[#e7ece5] font-medium">
+                    <CheckCircle2 className="w-3.5 h-3.5 text-[#ff7235] shrink-0" />
                     <span>{skill}</span>
                   </div>
                 ))}

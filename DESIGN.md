@@ -10,16 +10,17 @@ All colors are systematically defined via CSS variables and Tailwind utility map
 
 | Token | CSS Variable / Value | Role & Usage | Contrast Ratio (WCAG) |
 | :--- | :--- | :--- | :--- |
-| **Canvas Background** | `--background: #08080b` | Deep Obsidian base for the entire viewport canvas. | Baseline (Dark) |
-| **Surface Base** | `--surface: #0f1015` | Default container background for cards, modules, and sections. | Surface Layer 1 |
-| **Surface Raised / Hover** | `--surface-hover: #161720` | Elevated hover state for interactive surfaces and dropdowns. | Surface Layer 2 |
-| **Border Subtle** | `--border: rgba(255, 255, 255, 0.08)` | Default hairline boundary for cards, dividers, and navbars. | 1.3:1 (Hairline) |
-| **Border Active** | `--border-active: rgba(249, 115, 22, 0.4)` | Focus and active states on interactive controls. | High Tension |
-| **Text Primary** | `--foreground: #f4f4f6` | High-contrast body, titles, and critical UI numbers. | **17.8:1 (AAA)** |
-| **Text Secondary** | `text-zinc-300 / rgba(244, 244, 246, 0.75)` | Subheaders, descriptions, metadata tags, and captions. | **8.2:1 (AA+)** |
-| **Text Muted / Mono** | `text-zinc-400 / rgba(244, 244, 246, 0.50)` | Footnotes, helper text, inactive navigation links, timestamps. | **4.9:1 (AA)** |
-| **Primary Accent (Creatio Orange)** | `--creatio-orange: #f97316` | Key CTA buttons, active state indicators, high-priority badges. | High Energy |
-| **Secondary Accent (Amber)** | `--creatio-amber: #fbbf24` | Metric highlights, warm secondary glows, ratings. | Warm Dynamic |
+| **Canvas Background** | `--background: #18181b` | Industrial deep carbon base for the entire viewport canvas. | Baseline (Dark) |
+| **Surface Base (Graphite)**| `--surface: #242424` / `#1f2024` | Industrial matte graphite container for cards, modules, and sections. | Surface Layer 1 |
+| **Surface Raised / Hover** | `--surface-hover: #292a30` | Elevated hover state for interactive surfaces and dropdowns. | Surface Layer 2 |
+| **Technical Steel (Hairline)**| `--steel: #adb3b7` | Brushed aluminum / steel accent and technical wireframe lines. | Technical Steel |
+| **Border Hairline** | `--border: rgba(173, 179, 183, 0.18)` | Subtle titanium hairline boundary for cards, dividers, and navbars. | 1.8:1 (Hairline) |
+| **Border Active** | `--border-active: rgba(255, 114, 53, 0.45)` | Focus and active states on interactive controls (Safety Vermilion). | High Tension |
+| **Text Primary (Bone Chalk)**| `--foreground: #f2f5f1` | Warm industrial off-white body, titles, and critical UI numbers. | **16.5:1 (AAA)** |
+| **Text Secondary (Steel)** | `text-steel / #adb3b7` | Subheaders, descriptions, metadata tags, and technical captions. | **7.8:1 (AA+)** |
+| **Text Muted / Mono** | `rgba(173, 179, 183, 0.60)` | Footnotes, helper text, inactive navigation links, timestamps. | **4.8:1 (AA)** |
+| **Primary Accent (Safety Vermilion)**| `--creatio-orange: #ff7235` | Brass Hands signature safety vermilion for CTA buttons and active indicators. | High Energy |
+| **Secondary Accent (Warm Tungsten)**| `--creatio-amber: #ffa043` | Warm tungsten highlights, secondary glows, and metrics. | Warm Dynamic |
 | **Precision Accent (Electric Cyan)**| `--electric-cyan: #06b6d4` | 3D / Spatial tech tags, data visualization, secondary gradients. | Technical Precision |
 | **Intelligence Accent (Indigo)** | `--neon-indigo: #6366f1` | AI / SaaS features, system orchestration badges. | Cognitive Depth |
 | **Success / Lift (Emerald)** | `#10b981` | Conversion rate lifts (+141%), positive delta metrics, active pulse. | **5.4:1 (AA)** |
@@ -57,26 +58,26 @@ A layered depth model creating a studio-grade tactile environment:
 
 ### Glassmorphism Primitives
 - **`.glass-panel`**:
-  - Background: `rgba(15, 16, 21, 0.70)`
+  - Background: `rgba(31, 32, 36, 0.75)` / `rgba(36, 36, 36, 0.70)`
   - Backdrop Blur: `blur(16px)` (`-webkit-backdrop-filter: blur(16px)`)
-  - Border: `1px solid rgba(255, 255, 255, 0.08)`
-  - Facet Sheen: `box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.08)`
+  - Border: `1px solid rgba(173, 179, 183, 0.18)`
+  - Facet Sheen: `box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(173, 179, 183, 0.15)`
 - **`.glass-pill`**:
   - Background: `rgba(255, 255, 255, 0.04)`
   - Backdrop Blur: `blur(12px)`
-  - Border: `1px solid rgba(255, 255, 255, 0.10)`
-  - Inset Sheen: `box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08)`
+  - Border: `1px solid rgba(173, 179, 183, 0.20)`
+  - Inset Sheen: `box-shadow: inset 0 1px 0 rgba(173, 179, 183, 0.12)`
 - **`.glass-panel-hover`**:
   - Timing: `transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1)`
-  - Hover: translateY(-4px), border color `rgba(249, 115, 22, 0.35)`, outer glow `0 0 30px rgba(249, 115, 22, 0.10)`.
+  - Hover: translateY(-4px), border color `rgba(255, 114, 53, 0.45)`, outer glow `0 0 30px rgba(255, 114, 53, 0.14)`.
 
 ### Atmosphere & Ambient Lighting
-- **`.bg-tech-grid`**: 48px × 48px dual-axis grid lines in `rgba(255, 255, 255, 0.02)`.
-- **`.bg-tech-dots`**: 24px × 24px radial dot matrix in `rgba(255, 255, 255, 0.08)`.
+- **`.bg-tech-grid`**: 48px × 48px dual-axis grid lines in `rgba(173, 179, 183, 0.04)`.
+- **`.bg-tech-dots`**: 24px × 24px radial dot matrix in `rgba(173, 179, 183, 0.10)`.
 - **Ambient Radial Glows**:
-  - Orange Glow: `radial-gradient(circle, rgba(249, 115, 22, 0.15) 0%, transparent 70%)`
-  - Cyan Glow: `radial-gradient(circle, rgba(6, 182, 212, 0.12) 0%, transparent 70%)`
-  - Indigo Glow: `radial-gradient(circle, rgba(99, 102, 241, 0.12) 0%, transparent 70%)`
+  - Safety Vermilion Glow: `radial-gradient(circle, rgba(255, 114, 53, 0.18) 0%, transparent 70%)`
+  - Warm Tungsten Glow: `radial-gradient(circle, rgba(255, 160, 67, 0.12) 0%, transparent 70%)`
+  - Steel Cyan Luminescence: `radial-gradient(circle, rgba(6, 182, 212, 0.10) 0%, transparent 70%)`
 
 ---
 
@@ -87,7 +88,7 @@ All interactive elements support studio-grade, accessible `:focus-visible` state
 ```css
 :focus-visible {
   outline: none;
-  box-shadow: 0 0 0 2px #08080b, 0 0 0 4px rgba(249, 115, 22, 0.6);
+  box-shadow: 0 0 0 2px #18181b, 0 0 0 4px rgba(255, 114, 53, 0.6);
 }
 ```
 
@@ -96,12 +97,12 @@ All mobile interactive targets (hamburger menu, slide arrows, scroll-to-top, ema
 
 ### C. Buttons
 1. **Primary Action**:
-   - Solid / Gradient Creatio Orange (`from-orange-500 to-amber-500`) with text black/white.
-   - Glow on hover: `box-shadow: 0 0 20px rgba(249, 115, 22, 0.40)`.
+   - Solid / Gradient Safety Vermilion (`from-[#ff7235] to-[#ffa043]`) with high-contrast black or white text.
+   - Glow on hover: `box-shadow: 0 0 24px rgba(255, 114, 53, 0.40)`.
    - Scale feedback on tap: `active:scale-[0.98]`.
 2. **Secondary / Glass Action**:
-   - Uses `.glass-pill` or `.glass-panel` background with subtle border.
-   - Hover: Border switches to `rgba(255, 255, 255, 0.25)` or `rgba(249, 115, 22, 0.35)`.
+   - Uses `.glass-pill` or `.glass-panel` background with steel hairline border.
+   - Hover: Border switches to `rgba(173, 179, 183, 0.35)` or `rgba(255, 114, 53, 0.45)`.
    - Scale feedback on tap: `active:scale-[0.98]`.
 3. **Ghost / Text**:
    - Monospace uppercase label with animated arrow or icon indicator.

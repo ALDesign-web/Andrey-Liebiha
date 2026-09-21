@@ -12,7 +12,7 @@ import { Footer } from "@/components/Footer";
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-[#08080b] bg-tech-grid text-[#f4f4f6] flex flex-col selection:bg-orange-500/30 selection:text-white relative">
+    <div className="min-h-screen bg-[#18181b] bg-tech-grid text-[#f2f5f1] flex flex-col selection:bg-[#ff7235]/30 selection:text-white relative">
       {/* 0. Studio-Grade Asset Preloader & Loading Slider */}
       <Preloader />
 

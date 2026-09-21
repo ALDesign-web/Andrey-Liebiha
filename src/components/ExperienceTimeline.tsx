@@ -10,9 +10,9 @@ export function ExperienceTimeline() {
     {
       category: "UI & Design Systems",
       badge: "MUST HAVE",
-      badgeColor: "text-orange-400 bg-orange-500/10 border-orange-500/20",
-      dotColor: "bg-orange-400",
-      icon: <Layers className="w-4 h-4 text-orange-400" />,
+      badgeColor: "text-[#ff7235] bg-[#ff7235]/10 border-[#ff7235]/25",
+      dotColor: "bg-[#ff7235]",
+      icon: <Layers className="w-4 h-4 text-[#ff7235]" />,
       tools: TOOLS_MATRIX.design
     },
     {
@@ -42,15 +42,15 @@ export function ExperienceTimeline() {
       <div className="max-w-7xl mx-auto px-6 sm:px-8 relative">
         {/* Section Header */}
         <div className="max-w-3xl mb-16 space-y-3">
-          <div className="flex items-center gap-2 text-xs font-mono text-orange-400 uppercase tracking-widest">
-            <span className="w-1.5 h-1.5 rounded-full bg-orange-400" />
+          <div className="flex items-center gap-2 text-xs font-mono text-[#ff7235] uppercase tracking-widest">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#ff7235]" />
             PRODUCT STRATEGY &amp; TOOLSET PROFICIENCY
           </div>
           <h2 className="text-3xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight uppercase">
             Proven Track Record <br />
             <span className="text-gradient-orange">&amp; Technical Mastery</span>
           </h2>
-          <p className="text-sm sm:text-base text-zinc-300 leading-relaxed max-w-prose">
+          <p className="text-sm sm:text-base text-[#adb3b7] leading-relaxed max-w-prose">
             Leading product design and digital platforms from early conceptual vision to high-impact production releases.
           </p>
         </div>
@@ -58,19 +58,19 @@ export function ExperienceTimeline() {
         {/* Unified Column Headers with 100% Matching Baseline */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-4">
           <div className="lg:col-span-7 flex items-center justify-between">
-            <h3 className="text-xs font-mono uppercase tracking-wider text-zinc-300 flex items-center gap-2">
-              <Briefcase className="w-4 h-4 text-orange-400" />
+            <h3 className="text-xs font-mono uppercase tracking-wider text-[#adb3b7] flex items-center gap-2">
+              <Briefcase className="w-4 h-4 text-[#ff7235]" />
               Strategic Roles &amp; Experience
             </h3>
-            <span className="text-[11px] font-mono text-zinc-400 tabular-nums">2018 - PRESENT</span>
+            <span className="text-[11px] font-mono text-[#adb3b7]/60 tabular-nums">2018 - PRESENT</span>
           </div>
 
           <div className="lg:col-span-5 flex items-center justify-between">
-            <h3 className="text-xs font-mono uppercase tracking-wider text-zinc-300 flex items-center gap-2">
+            <h3 className="text-xs font-mono uppercase tracking-wider text-[#adb3b7] flex items-center gap-2">
               <Wrench className="w-4 h-4 text-cyan-400" />
               Core Toolset &amp; Requirements
             </h3>
-            <span className="text-[11px] font-mono text-zinc-400">GLOBAL TECH BENCHMARK</span>
+            <span className="text-[11px] font-mono text-[#adb3b7]/60">GLOBAL TECH BENCHMARK</span>
           </div>
         </div>
 
@@ -89,32 +89,32 @@ export function ExperienceTimeline() {
                 className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-stretch"
               >
                 {/* Left Card: Experience Milestone (7 cols) */}
-                <div className="lg:col-span-7 h-full p-5 sm:p-7 rounded-3xl bg-[#0f1015] border border-white/10 hover:border-orange-500/30 transition-all duration-300 hover:shadow-xl hover:shadow-orange-500/5 shadow-[inset_0_1px_0_rgba(255,255,255,0.08)] flex flex-col justify-between">
+                <div className="lg:col-span-7 h-full p-5 sm:p-7 rounded-3xl bg-white/[0.02] backdrop-blur-md border border-[#adb3b7]/12 hover:border-[#ff7235]/40 transition-all duration-300 hover:shadow-lg hover:shadow-[#ff7235]/10 shadow-[inset_0_1px_0_rgba(173,179,183,0.08)] flex flex-col justify-between">
                   <div className="space-y-3">
                     <div className="flex flex-wrap items-center justify-between gap-2">
                       <div className="flex items-center gap-2.5">
-                        <span className="w-2.5 h-2.5 rounded-full bg-orange-400 shrink-0" />
+                        <span className="w-2.5 h-2.5 rounded-full bg-[#ff7235] shrink-0" />
                         <h4 className="text-base sm:text-lg font-bold text-white tracking-tight">
                           {experience.role}
                         </h4>
                       </div>
-                      <span className="text-[11px] sm:text-xs font-mono text-orange-400 bg-orange-500/10 px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-full border border-orange-500/20">
+                      <span className="text-[11px] sm:text-xs font-mono text-[#ff7235] bg-[#ff7235]/10 px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-full border border-[#ff7235]/25">
                         {experience.period}
                       </span>
                     </div>
 
-                    <div className="text-xs font-mono text-zinc-400 pl-0 sm:pl-5">
-                      {experience.company} <span className="text-zinc-600">•</span> {experience.location}
+                    <div className="text-xs font-mono text-[#adb3b7] pl-0 sm:pl-5">
+                      {experience.company} <span className="text-[#adb3b7]/40">•</span> {experience.location}
                     </div>
 
-                    <p className="text-xs sm:text-sm text-zinc-300 leading-relaxed pl-0 sm:pl-5">
+                    <p className="text-xs sm:text-sm text-[#adb3b7] leading-relaxed pl-0 sm:pl-5">
                       {experience.description}
                     </p>
                   </div>
 
-                  <div className="pt-4 mt-4 border-t border-white/[0.06] pl-0 sm:pl-5 space-y-2">
+                  <div className="pt-4 mt-4 border-t border-[#adb3b7]/15 pl-0 sm:pl-5 space-y-2">
                     {experience.highlights.map((highlight, hIdx) => (
-                      <div key={hIdx} className="flex items-start gap-2.5 text-xs sm:text-[13px] text-zinc-300 leading-relaxed">
+                      <div key={hIdx} className="flex items-start gap-2.5 text-xs sm:text-[13px] text-[#e7ece5] leading-relaxed">
                         <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0 mt-0.5" />
                         <span>{highlight}</span>
                       </div>
@@ -123,8 +123,8 @@ export function ExperienceTimeline() {
                 </div>
 
                 {/* Right Card: Toolset Category (5 cols) */}
-                <div className="lg:col-span-5 h-full p-5 sm:p-7 rounded-3xl bg-[#0f1015] border border-white/10 hover:border-white/20 transition-all duration-300 shadow-[inset_0_1px_0_rgba(255,255,255,0.08)] flex flex-col justify-between">
-                  <div className="flex items-center justify-between pb-3 border-b border-white/[0.06] gap-2">
+                <div className="lg:col-span-5 h-full p-5 sm:p-7 rounded-3xl bg-white/[0.02] backdrop-blur-md border border-[#adb3b7]/12 hover:border-[#adb3b7]/30 transition-all duration-300 shadow-[inset_0_1px_0_rgba(173,179,183,0.08)] flex flex-col justify-between">
+                  <div className="flex items-center justify-between pb-3 border-b border-[#adb3b7]/15 gap-2">
                     <div className="flex items-center gap-2 min-w-0">
                       <span className={`w-2 h-2 rounded-full shrink-0 ${toolset.dotColor}`} />
                       <span className="text-xs font-mono text-white font-bold uppercase tracking-wider truncate">
@@ -140,7 +140,7 @@ export function ExperienceTimeline() {
                     {toolset.tools.map((tool, tIdx) => (
                       <div
                         key={tIdx}
-                        className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 sm:gap-2 pb-2 border-b border-white/[0.04] last:border-0 last:pb-0"
+                        className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 sm:gap-2 pb-2 border-b border-[#adb3b7]/10 last:border-0 last:pb-0"
                       >
                         <span className="text-zinc-200 font-medium text-xs sm:text-sm leading-snug">
                           {tool.name}
@@ -152,7 +152,7 @@ export function ExperienceTimeline() {
                     ))}
                   </div>
 
-                  <div className="pt-3 text-[10px] font-mono text-zinc-400 flex flex-wrap items-center justify-between gap-1 border-t border-white/[0.04]">
+                  <div className="pt-3 text-[10px] font-mono text-[#adb3b7]/70 flex flex-wrap items-center justify-between gap-1 border-t border-[#adb3b7]/15">
                     <span>PROFICIENCY BENCHMARK</span>
                     <span className="text-emerald-400/90 font-semibold">100% PRODUCTION READY</span>
                   </div>

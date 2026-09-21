@@ -68,7 +68,7 @@ export function RiveOrbBeacon({ size = 28, className = "" }: RiveOrbBeaconProps)
         stateMachine="State Machine 1"
         className="w-full h-full"
         onRiveReady={setRiveInstance}
-        fallback={<span className="w-2.5 h-2.5 rounded-full bg-orange-500 animate-pulse" />}
+        fallback={<span className="w-2.5 h-2.5 rounded-full bg-[#ff7235] animate-pulse" />}
       />
     </div>
   );
