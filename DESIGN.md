@@ -10,13 +10,13 @@ All colors are systematically defined via CSS variables and Tailwind utility map
 
 | Token | CSS Variable / Value | Role & Usage | Contrast Ratio (WCAG) |
 | :--- | :--- | :--- | :--- |
-| **Canvas Background** | `--background: #18181b` | Industrial deep carbon base for the entire viewport canvas. | Baseline (Dark) |
-| **Surface Base (Graphite)**| `--surface: #242424` / `#1f2024` | Industrial matte graphite container for cards, modules, and sections. | Surface Layer 1 |
-| **Surface Raised / Hover** | `--surface-hover: #292a30` | Elevated hover state for interactive surfaces and dropdowns. | Surface Layer 2 |
+| **Canvas Background** | `--background: #08090a` | Pitch Basalt OLED monolith base for the entire viewport canvas. | Baseline (Dark 4% L) |
+| **Surface Base (Graphite)**| `--surface: #121316` | Industrial matte graphite container for cards, modules, and sections. | Surface Layer 1 |
+| **Surface Raised / Hover** | `--surface-hover: #1a1b20` | Elevated hover state for interactive surfaces and dropdowns. | Surface Layer 2 |
 | **Technical Steel (Hairline)**| `--steel: #adb3b7` | Brushed aluminum / steel accent and technical wireframe lines. | Technical Steel |
 | **Border Hairline** | `--border: rgba(173, 179, 183, 0.18)` | Subtle titanium hairline boundary for cards, dividers, and navbars. | 1.8:1 (Hairline) |
 | **Border Active** | `--border-active: rgba(255, 114, 53, 0.45)` | Focus and active states on interactive controls (Safety Vermilion). | High Tension |
-| **Text Primary (Bone Chalk)**| `--foreground: #f2f5f1` | Warm industrial off-white body, titles, and critical UI numbers. | **16.5:1 (AAA)** |
+| **Text Primary (Bone Chalk)**| `--foreground: #f2f5f1` | Warm industrial off-white body, titles, and critical UI numbers. | **20.1:1 (AAA Max)** |
 | **Text Secondary (Steel)** | `text-steel / #adb3b7` | Subheaders, descriptions, metadata tags, and technical captions. | **7.8:1 (AA+)** |
 | **Text Muted / Mono** | `rgba(173, 179, 183, 0.60)` | Footnotes, helper text, inactive navigation links, timestamps. | **4.8:1 (AA)** |
 | **Primary Accent (Safety Vermilion)**| `--creatio-orange: #ff7235` | Brass Hands signature safety vermilion for CTA buttons and active indicators. | High Energy |

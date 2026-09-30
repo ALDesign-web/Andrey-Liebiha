@@ -135,7 +135,7 @@ export function ProjectsShowcase() {
               viewport={{ once: true, amount: 0.15 }}
               transition={{ duration: 0.5, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
               whileHover={{ y: -6, transition: { duration: 0.25, ease: "easeOut" } }}
-              className="relative rounded-3xl bg-gradient-to-br from-[#1f2024] to-[#18181b] border border-dashed border-[#adb3b7]/25 p-6 sm:p-8 flex flex-col justify-between overflow-hidden group hover:border-[#ff7235]/45 transition-colors duration-300"
+              className="relative rounded-3xl bg-gradient-to-br from-[#121316] to-[#08090a] border border-dashed border-[#adb3b7]/25 p-6 sm:p-8 flex flex-col justify-between overflow-hidden group hover:border-[#ff7235]/45 transition-colors duration-300"
             >
                 {/* Ambient glow in corner */}
                 <div className="absolute top-0 right-0 w-48 h-48 bg-[#ff7235]/10 rounded-full blur-3xl pointer-events-none" />

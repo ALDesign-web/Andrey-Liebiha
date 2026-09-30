@@ -97,7 +97,7 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.97, y: 20 }}
           transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-          className="relative w-full max-w-5xl my-4 sm:my-8 bg-[#1f2024] border border-[#adb3b7]/25 rounded-3xl shadow-[0_25px_70px_rgba(0,0,0,0.95)] z-10 p-5 sm:p-8 lg:p-10 text-white"
+          className="relative w-full max-w-5xl my-4 sm:my-8 bg-[#121316] border border-[#adb3b7]/25 rounded-3xl shadow-[0_25px_70px_rgba(0,0,0,0.95)] z-10 p-5 sm:p-8 lg:p-10 text-white"
         >
           {/* Top Bar with Single Canonical Back Button */}
           <div className="flex flex-wrap items-center justify-between gap-4 mb-6 pb-4 border-b border-[#adb3b7]/15">
@@ -202,7 +202,7 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
 
             {/* Thumbnail Strip */}
             {slides.length > 1 && (
-              <div className="p-2.5 bg-[#18181b] border-t border-[#adb3b7]/15 flex items-center gap-2 overflow-x-auto no-scrollbar">
+              <div className="p-2.5 bg-[#08090a] border-t border-[#adb3b7]/15 flex items-center gap-2 overflow-x-auto no-scrollbar">
                 {slides.map((slide, idx) => (
                   <button
                     key={idx}
@@ -337,7 +337,7 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.25, ease: "easeOut" }}
-              className="fixed inset-0 z-[100] bg-[#18181b]/98 backdrop-blur-2xl select-none overflow-hidden flex items-center justify-center cursor-default"
+              className="fixed inset-0 z-[100] bg-[#08090a]/98 backdrop-blur-2xl select-none overflow-hidden flex items-center justify-center cursor-default"
               onClick={() => setIsFullScreen(false)}
             >
               {/* Edge-to-Edge Fullscreen Canvas */}
@@ -368,7 +368,7 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
                 </AnimatePresence>
 
                 {/* Floating Top-Left Slide Counter */}
-                <div className="absolute top-5 left-5 sm:top-6 sm:left-7 z-30 flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#1f2024]/85 backdrop-blur-xl border border-[#adb3b7]/20 text-xs font-mono text-[#adb3b7] shadow-[0_8px_30px_rgba(0,0,0,0.6)] pointer-events-none">
+                <div className="absolute top-5 left-5 sm:top-6 sm:left-7 z-30 flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#121316]/85 backdrop-blur-xl border border-[#adb3b7]/20 text-xs font-mono text-[#adb3b7] shadow-[0_8px_30px_rgba(0,0,0,0.6)] pointer-events-none">
                   <span className="text-[#ff7235] font-bold">{activeSlideIndex + 1}</span>
                   <span className="text-[#adb3b7]/50">/</span>
                   <span className="text-[#f2f5f1]">{slides.length}</span>
@@ -379,7 +379,7 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
                 {/* Floating Top-Right Exit Button */}
                 <button
                   onClick={() => setIsFullScreen(false)}
-                  className="absolute top-5 right-5 sm:top-6 sm:right-7 z-30 flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#1f2024]/85 hover:bg-[#242424] backdrop-blur-xl border border-[#adb3b7]/20 hover:border-[#adb3b7]/40 text-[#adb3b7] hover:text-[#f2f5f1] transition-all cursor-pointer shadow-[0_8px_30px_rgba(0,0,0,0.6)] group"
+                  className="absolute top-5 right-5 sm:top-6 sm:right-7 z-30 flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#121316]/85 hover:bg-[#1a1b20] backdrop-blur-xl border border-[#adb3b7]/20 hover:border-[#adb3b7]/40 text-[#adb3b7] hover:text-[#f2f5f1] transition-all cursor-pointer shadow-[0_8px_30px_rgba(0,0,0,0.6)] group"
                   aria-label="Exit fullscreen"
                 >
                   <kbd className="px-1.5 py-0.5 rounded bg-white/10 text-[#adb3b7] text-[10px] font-mono group-hover:bg-white/20">
@@ -397,7 +397,7 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
                         e.stopPropagation();
                         setActiveSlideIndex((prev) => (prev - 1 + slides.length) % slides.length);
                       }}
-                      className="absolute left-4 sm:left-7 top-1/2 -translate-y-1/2 p-3 sm:p-4 rounded-full bg-[#1f2024]/85 hover:bg-[#242424] backdrop-blur-xl text-[#adb3b7] hover:text-[#f2f5f1] border border-[#adb3b7]/20 hover:border-[#ff7235]/60 transition-all hover:scale-110 cursor-pointer shadow-[0_10px_35px_rgba(0,0,0,0.7)] z-30 group"
+                      className="absolute left-4 sm:left-7 top-1/2 -translate-y-1/2 p-3 sm:p-4 rounded-full bg-[#121316]/85 hover:bg-[#1a1b20] backdrop-blur-xl text-[#adb3b7] hover:text-[#f2f5f1] border border-[#adb3b7]/20 hover:border-[#ff7235]/60 transition-all hover:scale-110 cursor-pointer shadow-[0_10px_35px_rgba(0,0,0,0.7)] z-30 group"
                       aria-label="Previous slide"
                     >
                       <ChevronLeft className="w-6 h-6 transition-transform group-hover:-translate-x-0.5" />
@@ -408,7 +408,7 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
                         e.stopPropagation();
                         setActiveSlideIndex((prev) => (prev + 1) % slides.length);
                       }}
-                      className="absolute right-4 sm:right-7 top-1/2 -translate-y-1/2 p-3 sm:p-4 rounded-full bg-[#1f2024]/85 hover:bg-[#242424] backdrop-blur-xl text-[#adb3b7] hover:text-[#f2f5f1] border border-[#adb3b7]/20 hover:border-[#ff7235]/60 transition-all hover:scale-110 cursor-pointer shadow-[0_10px_35px_rgba(0,0,0,0.7)] z-30 group"
+                      className="absolute right-4 sm:right-7 top-1/2 -translate-y-1/2 p-3 sm:p-4 rounded-full bg-[#121316]/85 hover:bg-[#1a1b20] backdrop-blur-xl text-[#adb3b7] hover:text-[#f2f5f1] border border-[#adb3b7]/20 hover:border-[#ff7235]/60 transition-all hover:scale-110 cursor-pointer shadow-[0_10px_35px_rgba(0,0,0,0.7)] z-30 group"
                       aria-label="Next slide"
                     >
                       <ChevronRight className="w-6 h-6 transition-transform group-hover:translate-x-0.5" />

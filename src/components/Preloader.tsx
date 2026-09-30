@@ -82,7 +82,7 @@ export function Preloader() {
             opacity: 0.95,
             transition: { duration: 0.65, ease: [0.16, 1, 0.3, 1] } 
           }}
-          className="fixed inset-0 z-[100] bg-[#18181b] flex flex-col justify-between p-6 sm:p-10 select-none overflow-hidden"
+          className="fixed inset-0 z-[100] bg-[#08090a] flex flex-col justify-between p-6 sm:p-10 select-none overflow-hidden"
         >
           {/* Subtle Ambient Glows */}
           <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[550px] h-[350px] bg-gradient-to-tr from-[#ff7235]/15 via-[#ffa043]/10 to-transparent rounded-full blur-3xl pointer-events-none" />

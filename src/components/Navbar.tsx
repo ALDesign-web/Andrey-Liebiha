@@ -36,7 +36,7 @@ export function Navbar() {
           <nav
             className={`w-full flex items-center justify-between px-3.5 sm:px-5 py-2 sm:py-3 rounded-full transition-all duration-300 ${
               isScrolled
-                ? "bg-[#1f2024]/85 backdrop-blur-xl border border-[#adb3b7]/20 shadow-[0_10px_30px_rgba(0,0,0,0.5)]"
+                ? "bg-[#121316]/85 backdrop-blur-xl border border-[#adb3b7]/20 shadow-[0_10px_30px_rgba(0,0,0,0.5)]"
                 : "bg-white/[0.04] backdrop-blur-md border border-[#adb3b7]/15"
             }`}
           >
@@ -112,7 +112,7 @@ export function Navbar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.2 }}
-            className="fixed inset-x-4 top-24 z-40 lg:hidden p-6 rounded-3xl bg-[#18181b]/95 backdrop-blur-2xl border border-[#adb3b7]/15 shadow-[0_20px_60px_rgba(0,0,0,0.4)] flex flex-col gap-6"
+            className="fixed inset-x-4 top-24 z-40 lg:hidden p-6 rounded-3xl bg-[#08090a]/95 backdrop-blur-2xl border border-[#adb3b7]/15 shadow-[0_20px_60px_rgba(0,0,0,0.4)] flex flex-col gap-6"
           >
             <div className="flex items-center justify-between pb-4 border-b border-[#adb3b7]/15">
               <div className="flex items-center gap-2 text-xs font-mono text-emerald-400">
