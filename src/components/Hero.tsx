@@ -59,7 +59,7 @@ export function Hero() {
 
           <a
             href="#lab"
-            className="px-6 py-3.5 rounded-full bg-white/[0.05] border border-[#adb3b7]/20 hover:border-[#adb3b7]/40 text-white font-medium text-sm hover:bg-white/[0.08] active:scale-[0.98] transition-all flex items-center justify-center gap-2 backdrop-blur-md"
+            className="px-6 py-3.5 rounded-full safari-btn text-white font-medium text-sm flex items-center justify-center gap-2"
           >
             <Sparkles className="w-4 h-4 text-[#ffa043]" />
             <span>Interactive UI Lab</span>
