@@ -14,11 +14,13 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Andrii Liebiha // Senior Product Designer & Digital Architect",
-  description: "Portfolio of Andrii Liebiha. Scalable digital products, enterprise AI interfaces, and design systems.",
+  title: "Andrii Liebiha | Senior Mobile UX/UI & Product Designer",
+  description:
+    "Portfolio of Andrii Liebiha. Designing tactile iOS & Android apps, interactive Rive motion systems, and high-converting commerce products.",
   openGraph: {
-    title: "Andrii Liebiha // Senior Product Designer & Digital Architect",
-    description: "Scalable digital products, enterprise AI interfaces, and design systems.",
+    title: "Andrii Liebiha | Senior Mobile UX/UI & Product Designer",
+    description:
+      "Designing tactile iOS & Android apps, interactive Rive motion systems, and high-converting commerce products.",
     type: "website",
   },
 };

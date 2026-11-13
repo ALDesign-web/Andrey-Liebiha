@@ -2,156 +2,175 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
-import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, ArrowUpRight } from "lucide-react";
+import { Menu, X, ArrowUpRight, FileText } from "lucide-react";
+
+const navLinks = [
+  { label: "Work", href: "/#work" },
+  { label: "Motion Lab", href: "/#lab" },
+  { label: "Approach", href: "/#pillars" },
+  { label: "Experience", href: "/#experience" },
+];
 
 export function Navbar() {
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 30);
-    };
+    const handleScroll = () => setScrolled(window.scrollY > 24);
+    handleScroll();
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const navLinks = [
-    { label: "Selected Works", href: "#projects" },
-    { label: "Interactive Lab", href: "#lab" },
-    { label: "Design Pillars", href: "#pillars" },
-    { label: "Experience", href: "#experience" },
-    { label: "Contact", href: "#contact" }
-  ];
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setMobileMenuOpen(false);
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, []);
 
   return (
     <>
+      {mobileMenuOpen && (
+        <div
+          aria-hidden="true"
+          onClick={() => setMobileMenuOpen(false)}
+          className="fixed inset-0 z-40 bg-[#08090a]/88 backdrop-blur-md md:hidden"
+        />
+      )}
       <header
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 animate-nav-enter ${
-          isScrolled ? "py-2.5 sm:py-4" : "py-3.5 sm:py-6"
+        onKeyDown={(e) => {
+          if (e.key === "Escape" && mobileMenuOpen) {
+            setMobileMenuOpen(false);
+          }
+        }}
+        className={`animate-nav-enter fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+          scrolled
+            ? "pt-[max(0.65rem,env(safe-area-inset-top))] pb-2 sm:py-3"
+            : "pt-[max(0.85rem,env(safe-area-inset-top))] pb-3 sm:py-5"
         }`}
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-8">
-          <nav
-            className={`w-full flex items-center justify-between px-3.5 sm:px-5 py-2 sm:py-2.5 rounded-full transition-all duration-300 ${
-              isScrolled
-                ? "safari-glass-scrolled shadow-[0_20px_50px_rgba(0,0,0,0.6)]"
-                : "safari-glass"
-            }`}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between gap-4">
+        <div
+          className={`w-full flex items-center justify-between px-4 sm:px-5 py-2 rounded-full transition-all duration-300 ${
+            scrolled ? "safari-glass-scrolled" : "safari-glass"
+          }`}
+        >
+          {/* Brand Monogram */}
+          <Link
+            href="/"
+            className="flex items-center gap-3 min-h-[40px] rounded-full pr-2 group focus-visible:outline-none"
           >
-            {/* Left: Brand / Title */}
-            <Link
-              href="/"
-              className="flex items-center gap-3 group text-sm font-medium tracking-tight"
-            >
-              <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-[#ff7235] to-[#ffa043] flex items-center justify-center text-black font-bold text-xs shadow-lg shadow-[#ff7235]/25 group-hover:scale-105 transition-transform">
+            <div className="w-8 h-8 rounded-full bg-white/[0.06] border border-white/15 flex items-center justify-center relative overflow-hidden">
+              <span className="font-mono font-semibold text-xs tracking-wider text-[#f2f5f1]">
                 AL
-              </div>
-              <div className="flex flex-col">
-                <span className="font-semibold text-white tracking-tight flex items-center gap-1.5">
-                  Andrii Liebiha
-                </span>
-                <span className="text-[11px] text-[#adb3b7] hidden sm:inline whitespace-nowrap font-mono">
-                  Senior Product Designer
-                </span>
-              </div>
-            </Link>
-
-            {/* Center: Desktop Nav Links (Safari Segmented Control) */}
-            <div className="hidden lg:flex items-center gap-1 safari-control rounded-full px-2 py-1">
-              {navLinks.map((link) => (
-                <a
-                  key={link.label}
-                  href={link.href}
-                  className="px-3.5 py-1.5 text-[13px] font-medium text-[#adb3b7] hover:text-white rounded-full hover:bg-white/[0.10] active:scale-[0.98] transition-all"
-                >
-                  {link.label}
-                </a>
-              ))}
+              </span>
+              <span className="absolute inset-x-0 bottom-0 h-[2px] bg-[#ff7235] opacity-85" />
             </div>
+            <div className="flex flex-col leading-none">
+              <span className="font-semibold text-sm tracking-tight text-[#f2f5f1] group-hover:text-white transition-colors">
+                Andrii Liebiha
+              </span>
+              <span className="text-[11px] font-mono text-[#adb3b7]">
+                Mobile UX/UI · Motion
+              </span>
+            </div>
+          </Link>
 
-            {/* Right: Availability Badge & CTA */}
-            <div className="hidden md:flex items-center gap-3">
-              {/* Availability Indicator */}
-              <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-500/[0.08] border border-emerald-500/20 text-emerald-400 text-xs font-mono backdrop-blur-md">
-                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse shadow-[0_0_8px_#10b981]" />
-                <span>Available for Product Roles</span>
-              </div>
-
-              {/* Action Button (Safari Frosted Tactile Capsule) */}
-              <a
-                href="https://t.me/ALMotion3D"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group relative inline-flex items-center gap-2 px-4 py-1.5 rounded-full safari-btn text-white font-medium text-xs tracking-tight"
+          {/* Desktop Center Navigation */}
+          <nav
+            aria-label="Primary navigation"
+            className="hidden md:flex items-center gap-1 rounded-full p-1 safari-control"
+          >
+            {navLinks.map((item) => (
+              <Link
+                key={item.label}
+                href={item.href}
+                className="px-4 py-2 text-xs font-medium text-[#c4cacd] hover:text-[#f2f5f1] rounded-full hover:bg-white/[0.06] transition-colors"
               >
-                <span className="font-semibold text-[#f2f5f1] group-hover:text-white transition-colors">Book a Call</span>
-                <span className="w-5 h-5 rounded-full bg-[#ff7235]/15 border border-[#ff7235]/30 flex items-center justify-center text-[#ff7235] group-hover:bg-[#ff7235] group-hover:text-black group-hover:border-transparent transition-all shadow-sm">
-                  <ArrowUpRight className="w-3 h-3 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-                </span>
-              </a>
-            </div>
-
-            {/* Mobile Menu Button (Safari Capsule Icon Button) */}
-            <button
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="lg:hidden w-10 h-10 rounded-full safari-btn flex items-center justify-center text-[#adb3b7] hover:text-white transition-all cursor-pointer"
-              aria-label="Toggle navigation menu"
-              aria-expanded={isMobileMenuOpen}
+                {item.label}
+              </Link>
+            ))}
+            <Link
+              href="/cv"
+              className="px-4 py-2 text-xs font-medium text-[#c4cacd] hover:text-[#ff7235] rounded-full hover:bg-white/[0.06] transition-colors inline-flex items-center gap-1.5"
             >
-              {isMobileMenuOpen ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
-            </button>
+              <FileText className="w-3.5 h-3.5" aria-hidden="true" />
+              CV
+            </Link>
+          </nav>
+
+          {/* Desktop Right CTA */}
+          <div className="hidden md:flex items-center gap-3">
+            <span className="hidden lg:inline-flex items-center gap-2 text-xs font-mono text-[#adb3b7] pr-1">
+              <span className="w-2 h-2 rounded-full bg-emerald-400" aria-hidden="true" />
+              Open to Mobile Roles
+            </span>
+            <Link
+              href="/#contact"
+              className="tm-press min-h-[40px] px-4 py-2 rounded-full bg-[#ff7235] hover:bg-[#ff834d] text-[#08090a] text-xs font-semibold inline-flex items-center gap-1.5 transition-colors"
+            >
+              Get in Touch
+              <ArrowUpRight className="w-3.5 h-3.5" aria-hidden="true" />
+            </Link>
+          </div>
+
+          {/* Mobile Drawer Trigger (minimum 44x44 touch area) */}
+          <button
+            type="button"
+            className="md:hidden min-w-[44px] min-h-[44px] flex items-center justify-center rounded-full text-[#f2f5f1] hover:bg-white/[0.08] transition-colors"
+            onClick={() => setMobileMenuOpen((prev) => !prev)}
+            aria-expanded={mobileMenuOpen}
+            aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
+          >
+            {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+          </button>
+        </div>
+      </div>
+
+      {/* Mobile Navigation Drawer */}
+      {mobileMenuOpen && (
+        <div className="md:hidden max-w-7xl mx-auto px-4 mt-2.5">
+          <nav
+            id="mobile-navigation-drawer"
+            data-mobile-nav-open="true"
+            aria-label="Mobile navigation"
+            className="mobile-nav-drawer rounded-2xl p-3.5 sm:p-4 flex flex-col gap-1 max-h-[calc(100dvh-6rem)] overflow-y-auto overscroll-contain"
+          >
+            {navLinks.map((item) => (
+              <Link
+                key={item.label}
+                href={item.href}
+                onClick={() => setMobileMenuOpen(false)}
+                className="min-h-[44px] px-4 flex items-center justify-between text-sm font-medium text-[#e7ece5] hover:text-[#ff7235] rounded-xl hover:bg-white/[0.05] transition-colors"
+              >
+                <span>{item.label}</span>
+                <ArrowUpRight className="w-4 h-4 text-[#adb3b7]" aria-hidden="true" />
+              </Link>
+            ))}
+            <Link
+              href="/cv"
+              onClick={() => setMobileMenuOpen(false)}
+              className="min-h-[44px] px-4 flex items-center justify-between text-sm font-medium text-[#e7ece5] hover:text-[#ff7235] rounded-xl hover:bg-white/[0.05] transition-colors"
+            >
+              <span>Resume / CV</span>
+              <FileText className="w-4 h-4 text-[#adb3b7]" aria-hidden="true" />
+            </Link>
+            <div className="pt-3 mt-2 border-t border-white/10">
+              <Link
+                href="/#contact"
+                onClick={() => setMobileMenuOpen(false)}
+                className="tm-press min-h-[44px] w-full rounded-xl bg-[#ff7235] hover:bg-[#ff834d] text-[#08090a] text-sm font-semibold inline-flex items-center justify-center gap-2 transition-colors"
+              >
+                Get in Touch
+                <ArrowUpRight className="w-4 h-4" aria-hidden="true" />
+              </Link>
+            </div>
           </nav>
         </div>
+      )}
       </header>
-
-      {/* Mobile Drawer Navigation */}
-      <AnimatePresence>
-        {isMobileMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.2 }}
-            className="fixed inset-x-4 top-24 z-40 lg:hidden p-6 rounded-3xl safari-glass-scrolled border border-white/[0.12] shadow-[0_25px_60px_rgba(0,0,0,0.7)] flex flex-col gap-6"
-          >
-            <div className="flex items-center justify-between pb-4 border-b border-[#adb3b7]/15">
-              <div className="flex items-center gap-2 text-xs font-mono text-emerald-400">
-                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                Available for Product Design &amp; Systems Roles
-              </div>
-            </div>
-
-            <div className="flex flex-col gap-3">
-              {navLinks.map((link) => (
-                <a
-                  key={link.label}
-                  href={link.href}
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className="text-lg font-medium text-zinc-200 hover:text-[#ff7235] py-2 transition-colors flex items-center justify-between"
-                >
-                  <span>{link.label}</span>
-                  <ArrowUpRight className="w-4 h-4 opacity-50" />
-                </a>
-              ))}
-            </div>
-
-            <div className="pt-4 border-t border-white/10 flex flex-col gap-3">
-              <a
-                href="https://t.me/ALMotion3D"
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="w-full text-center py-3 rounded-full bg-[#ff7235] hover:bg-[#ff854d] text-white font-medium text-sm shadow-[0_4px_24px_rgba(255,114,53,0.3)] flex items-center justify-center gap-2 transition-all"
-              >
-                <span>Book a Call on Telegram</span>
-                <ArrowUpRight className="w-4 h-4" />
-              </a>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
     </>
   );
 }

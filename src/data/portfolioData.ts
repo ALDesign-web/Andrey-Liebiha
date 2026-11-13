@@ -1,280 +1,469 @@
 import { ProjectItem, ExperienceItem, SkillCategory, CVMetadata } from "@/types/portfolio";
 
 export const PORTFOLIO_HERO = {
-  availability: "Available for Senior / Lead Product Design & Mobile Roles",
+  availability: "Open to Senior Mobile UX/UI & Product Design Roles",
   name: "ANDRII LIEBIHA",
-  role: "Senior Product Designer & Mobile Systems Architect",
-  tagline: "Designing High-Impact Mobile Apps, Tactile 3D Experiences & Scalable Systems.",
-  bio: "Senior / Lead Product Designer & Systems Architect with formal academic qualification (Higher Degree in Product Design) and 7+ years of commercial craft. Leading 0-to-1 mobile applications (iOS & Android), spatial 3D experiences, and web platforms at Vortex Lab, with past contracts at Aircall (AI Call Center SaaS), Fintech, and E-Commerce. Active Creative Developer engineering personal Fintech software with Python and React to quantitatively validate product hypotheses with data.",
-  stats: [
-    { value: "+141%", label: "Max Funnel CVR Uplift", sub: "Bookify Rebranding (ex-Небо)" },
-    { value: "$1.42M+", label: "ARR Run-Rate Generated", sub: "Expedition Mahjong Economy" },
-    { value: "73.4%", label: "30-Day Cohort Retention", sub: "Luro AI Social Operations" },
-    { value: "7+ Yrs", label: "Product & Systems Craft", sub: "Global High-Growth Tech" }
-  ]
+  role: "Senior Mobile UX/UI Designer",
+  headlineTop: "Mobile UX/UI",
+  headlineBottom: "built to feel tactile.",
+  tagline: "Designing iOS and Android apps, fluid micro-interactions, and high-converting digital products.",
+  bio: "Senior Mobile UX/UI Designer with 7+ years of commercial experience and a Higher Degree in Product Design. Focused on native-feeling mobile experiences (iOS HIG & Material 3), interactive motion systems, and practical code prototypes built in React and Rive."
 };
 
 export const CV_METADATA: CVMetadata = {
-  availability: "Available for Senior / Lead Product Design & Mobile Roles",
+  availability: "Open to Senior Mobile UX/UI & Product Design Roles",
   location: "Remote / Hybrid (Worldwide)",
+  email: "liebihadesign@gmail.com",
+  telegram: "https://t.me/ALMotion3D",
+  behance: "https://www.behance.net/ALMotion3D",
   education: {
     degree: "Higher Degree in Product Design",
     field: "Product & Industrial Design",
     type: "Formal Academic Qualification",
-    details: "Foundational academic training in ergonomics, physical & digital product design, spatial balance, and user perception."
+    details: "Foundational academic training in human ergonomics, spatial balance, tactile materials, and visual hierarchy."
   },
   languages: [
     {
       language: "English",
       level: "Full Professional Proficiency",
-      details: "C1 / C2 • Advanced Working & Executive Communication"
+      details: "C1 / C2 · Product Critique, Documentation & Stakeholder Lead"
     },
     {
       language: "Ukrainian",
       level: "Native",
-      details: "Native / Bilingual Proficiency"
+      details: "Native Proficiency"
     }
   ]
 };
 
 export const PROJECTS_DATA: ProjectItem[] = [
   {
-    id: "bookify-art-ecommerce",
-    number: "01",
-    title: "Bookify Platform",
-    subtitle: "Rebranding & Digital Evolution of «Книгарня Небо»",
-    client: "Книгарня Небо (Nebo Books) ➔ Bookify",
-    year: "2026",
-    category: "ecommerce-cro",
-    categoryLabel: "Rebranding & E-Commerce CRO",
-    imageSrc: "/projects/bookify/slide_01.webp",
-    slides: [
-      "/projects/bookify/slide_01.webp",
-      "/projects/bookify/slide_02.webp",
-      "/projects/bookify/slide_03.webp",
-      "/projects/bookify/slide_04.webp",
-      "/projects/bookify/slide_05.webp",
-      "/projects/bookify/slide_06.webp",
-      "/projects/bookify/slide_07.webp"
-    ],
-    summary: "Strategic rebranding and end-to-end digital transformation of the traditional bookstore 'Книгарня Небо' into the modern Bookify online platform. Transitioned a legacy brick-and-mortar retail bookshop into a high-conversion digital ecosystem for curated art, design, and collector books with a 4-stage sales funnel.",
-    challenge: "The traditional bookstore 'Книгарня Небо' operated primarily as a physical retail space with an outdated web presence. The core challenge was translating tactile in-store book curation into a digital experience, overcoming customer hesitation on premium art editions (₴400–₴600), eliminating 68% cart abandonment, and rebranding into 'Bookify' without losing loyal readers.",
-    solution: "Executed a comprehensive brand transformation from 'Книгарня Небо' to Bookify. Architected a digital-first editorial design system, high-resolution double-spread interior previews to replicate physical browsing, verified collector trust badges, and an in-context express checkout modal that achieved a +141% conversion rate lift.",
-    role: "Lead / Senior Product Designer & Brand Strategist (Brand Identity, E-Commerce UX/UI, Funnel CRO Architecture)",
-    metrics: [
-      { label: "Overall Funnel CVR", value: "5.8%", change: "+141.6% Relative Lift" },
-      { label: "Checkout Velocity", value: "45s", change: "-58.3% Time-to-Buy" },
-      { label: "Average Order Value", value: "₴1,595", change: "+28.5% AOV Lift" }
-    ],
-    tools: ["Brand Identity & Systems", "Figma (Variables & AutoLayout)", "Next.js / Tailwind CSS", "Apple / Google Pay Primitives", "CRO Analytics"],
-    deliverables: [
-      "Brand Identity Evolution ('Книгарня Небо' ➔ Bookify)",
-      "4-Stage Conversion Funnel UX Architecture",
-      "Editorial Art Book Catalog & Double-Spread Previews",
-      "Zero-Redirect Express Modal Checkout System",
-      "Verified Collector Social Proof & Q&A Framework",
-      "Design Token Pipeline (Obsidian #07080C, Royal Blue #3B82F6)"
-    ],
-    featured: true,
-    behanceUrl: "https://www.behance.net/ALMotion3D",
-    liveUrl: "https://bookify.store",
-    figmaUrl: "#"
-  },
-  {
     id: "expedition-mahjong-3d",
-    number: "02",
+    slug: "expedition-mahjong",
+    number: "01",
     title: "Expedition Mahjong",
-    subtitle: "3D Spatial Mobile Experience & Tactile PBR Game System",
-    client: "Expedition Gaming / Global Studios",
-    year: "2026",
+    subtitle: "3D Spatial Mobile UI, PBR Material System & Interactive Polish",
+    client: "Vortex Lab s.r.o. (Live on App Store)",
+    year: "2025 – 2026",
+    platform: "iOS & Android",
+    stage: "commercial",
+    stageLabel: "Live Mobile Product",
     category: "3d-mobile",
-    categoryLabel: "3D Spatial Mobile & Web",
-    imageSrc: "/projects/mahjong/slide_01.jpg",
+    categoryLabel: "Mobile Game UX/UI & 3D Craft",
+    imageSrc: "/projects/mahjong/mockups/slide05_victory_34.webp",
+    heroMobileImage: "/projects/mahjong/screens/01_victory_celebration.webp",
+    screens: [
+      {
+        src: "/projects/mahjong/screens/01_victory_celebration.webp",
+        title: "Victory & Reward Hierarchy",
+        caption: "Celebration overlay balanced inside portrait viewport with carved jade primary CTA and clear bonus reward action.",
+        orientation: "portrait",
+        tag: "Core Loop"
+      },
+      {
+        src: "/projects/mahjong/screens/02_streak_protection.webp",
+        title: "Low-Friction Recovery Bottom Sheet",
+        caption: "Half-height parchment recovery drawer keeps the tile board readable above while placing shuffle recovery inside thumb reach.",
+        orientation: "portrait",
+        tag: "Bottom Sheet"
+      },
+      {
+        src: "/projects/mahjong/screens/04_material_store.webp",
+        title: "Material Store & Theme Stack",
+        caption: "Tactile store pairs carved jade, obsidian, and an amethyst VIP shader with a stacked swipe deck previewing 8 board suites.",
+        orientation: "portrait",
+        tag: "Visual System"
+      },
+      {
+        src: "/projects/mahjong/screens/05_vip_paywall.webp",
+        title: "VIP Subscription Paywall",
+        caption: "Single-screen $1.99/mo subscription sheet pairing clear benefit scannability, compliant renewal terms, and an amethyst stone CTA.",
+        orientation: "portrait",
+        tag: "Monetization"
+      },
+      {
+        src: "/projects/mahjong/screens/06_rewarded_boosters.webp",
+        title: "Booster Selection Modal",
+        caption: "Three equidistant ceramic booster buttons tuned for quick recognition and comfortable touch targets.",
+        orientation: "portrait",
+        tag: "Micro-UI"
+      },
+      {
+        src: "/projects/mahjong/screens/09_audio_haptic_settings.webp",
+        title: "Audio & Haptic Preferences",
+        caption: "Physical toggle switches separate sound effects, haptics, and music alongside Apple and Google Play progress sync.",
+        orientation: "portrait",
+        tag: "Settings"
+      },
+      {
+        src: "/projects/mahjong/screens/10_calendar_challenges.webp",
+        title: "Daily Login & Retention Loop",
+        caption: "Progressive 3-stage login reward modal with tactile jade Claim CTA encouraging D7 and D30 return habits.",
+        orientation: "portrait",
+        tag: "Retention Loop"
+      },
+      {
+        src: "/projects/mahjong/screens/12_organic_rating_funnel.webp",
+        title: "Two-Step Sentiment Sheet",
+        caption: "Contextual rating prompt separates satisfied players from constructive support feedback inside a single thumb-zone card.",
+        orientation: "portrait",
+        tag: "Feedback Flow"
+      }
+    ],
     slides: [
-      "/projects/mahjong/slide_01.jpg",
-      "/projects/mahjong/slide_02.jpg",
-      "/projects/mahjong/slide_03.jpg",
-      "/projects/mahjong/slide_04.jpg",
-      "/projects/mahjong/slide_05.jpg",
-      "/projects/mahjong/slide_06.jpg",
-      "/projects/mahjong/slide_07.jpg",
-      "/projects/mahjong/slide_08.jpg",
-      "/projects/mahjong/slide_09.jpg",
-      "/projects/mahjong/slide_10.jpg"
+      "/projects/mahjong/screens/01_victory_celebration.webp",
+      "/projects/mahjong/screens/02_streak_protection.webp",
+      "/projects/mahjong/screens/04_material_store.webp",
+      "/projects/mahjong/screens/05_vip_paywall.webp",
+      "/projects/mahjong/screens/06_rewarded_boosters.webp",
+      "/projects/mahjong/screens/09_audio_haptic_settings.webp",
+      "/projects/mahjong/screens/10_calendar_challenges.webp"
     ],
-    summary: "Complete 0-to-1 design and spatial UX architecture transforming casual 2D mahjong into an Apple-grade tactile sensory journey with 350+ sculpted 3D assets, physical PBR shaders, and thumb-zone ergonomics.",
-    challenge: "Generic 2D casual clones suffered from severe 46.2% rage-quit drop-offs, intrusive ad fatigue, lack of tactile feedback, and high churn rates.",
-    solution: "Designed 43 Retina screens, 8 authentic physical materials (Jade, Ivory, Obsidian, Wood), real-time elevation lighting, acoustic haptics, ethical hybrid VIP monetization, and a 4K companion web platform.",
-    role: "Lead / Senior Product Designer (0-to-1 Wireframes, UX Architecture, 3D Art Pipeline, Companion Web Platform)",
+    summary: "End-to-end visual direction, spatial UI architecture, and 43+ portrait mobile screens across 200 hand-crafted levels for a shipped iOS & Android mahjong title.",
+    challenge: "Classic mobile tile games frequently suffer from noisy HUDs, flat buttons with weak feedback, and jarring popup interruptions that pull players out of flow. We needed multi-layer 3D boards across 200 hand-crafted levels to stay readable on compact smartphone screens while giving every tap physical weight.",
+    solution: "Designed a cohesive material and layout system spanning 43+ screens and 200 hand-crafted levels: one-handed thumb-zone action placement, 8 physical PBR board suites (Imperial Jade, Obsidian, Carrara Marble, Royal Velvet, Porcelain, Antique Ivory, Teak Wood & Terracotta), an Amethyst VIP shader CTA, bottom-sheet recovery states that preserve board visibility, and dedicated haptic-paired preference controls.",
+    mobileAndMotionNotes: "Every primary action sits within the lower portrait thumb arc with minimum 48px touch geometry. Elevation shadows, rim highlights, and short spring curves distinguish pressable stone controls from informational parchment surfaces without heavy shader overhead.",
+    role: "Lead Mobile UX/UI Designer (UI Architecture, 3D Material System, Screen Flows & Motion Direction)",
     metrics: [
-      { label: "Day-1 Retention (D1)", value: "64.8%", change: "+131.4% Lift (vs 28%)" },
-      { label: "Avg Daily Session", value: "18.4m", change: "3.1x Casual Benchmark" },
-      { label: "VIP Paywall CVR", value: "6.8%", change: "+223.8% Conversion Lift" }
+      { label: "Level Architecture", value: "200 Levels", change: "Live App Store Release" },
+      { label: "Designed Scope", value: "43+ Screens", change: "End-to-End Mobile System" },
+      { label: "Material Library", value: "8 PBR Themes", change: "Jade, Marble, Porcelain & More" }
     ],
-    tools: ["Figma", "Blender / Cinema 4D (PBR Shaders)", "Metal / WebGL 60fps", "Plus Jakarta Sans & JetBrains Mono", "iOS 18+ HIG & Material 3"],
+    processSteps: [
+      {
+        phase: "Portrait Ergonomics",
+        title: "Thumb-Zone Action Mapping",
+        detail: "Moved primary Play, Claim, Restart, and recovery triggers into the bottom third of portrait viewports while reserving upper screen real estate for score, close triggers, and uninterrupted tile boards."
+      },
+      {
+        phase: "Physical Material Tokens",
+        title: "Carved Stone & Ceramic UI Kit",
+        detail: "Crafted 8 distinct tile and tabletop suites (Imperial Jade, Obsidian, Carrara Marble, Royal Velvet, Porcelain, Antique Ivory, Teak Wood, Terracotta) alongside an amethyst VIP subscription shader and ceramic booster tokens."
+      },
+      {
+        phase: "Non-Destructive Interruptions",
+        title: "Board-Visible Recovery Sheets",
+        detail: "Structured stuck-board and rating prompts as contextual bottom sheets so players never lose spatial awareness of remaining tile matches."
+      }
+    ],
+    tools: ["Figma", "3D PBR Materials", "iOS HIG & Material 3", "Audio-Haptic Choreography", "Unity UI Handoff"],
     deliverables: [
-      "43 Production Screens (iOS, iPadOS & Android)",
-      "350+ Handcrafted 3D Tile Assets & 8 PBR Shaders",
-      "Thumb-Zone Ergonomics & Elevation Lighting Matrix",
-      "Ethical Hybrid VIP Monetization & Rewarded Boosters",
-      "4K Responsive Retina Companion Web Platform & Compliance"
+      "43+ Portrait Mobile Screens (iOS & Android)",
+      "8 Custom Material & Tile Theme Suites",
+      "Thumb-Zone Recovery Bottom Sheets & Rating Funnel",
+      "Monetization Storefront & VIP Subscription UI",
+      "Tactile Audio-Haptic Control System"
     ],
     featured: true,
-    behanceUrl: "https://www.behance.net/ALMotion3D",
-    liveUrl: "https://expedition-mahjong.com",
-    figmaUrl: "#"
+    behanceUrl: "https://www.behance.net/ALMotion3D"
   },
   {
-    id: "luro-social-intelligence",
-    number: "03",
-    title: "Luro Social Intelligence",
-    subtitle: "AI Social Operations & Multi-Channel Dispatch Platform",
-    client: "Luro Technologies Inc.",
-    year: "2026",
-    category: "ai-saas",
-    categoryLabel: "AI SaaS & Workbench Architecture",
-    imageSrc: "/projects/luro/slide_01.jpg",
+    id: "bookify-art-ecommerce",
+    slug: "bookify",
+    number: "02",
+    title: "Bookify Platform",
+    subtitle: "Rebranding «Книгарня Небо» & Express Checkout CRO System",
+    client: "Bookify («Книгарня Небо» · bookify.com.ua)",
+    year: "2023 – 2024",
+    platform: "Responsive Web & Mobile Checkout",
+    stage: "commercial",
+    stageLabel: "Commercial Product",
+    category: "ecommerce-cro",
+    categoryLabel: "Brand Evolution & E-Commerce CRO",
+    imageSrc: "/projects/bookify/crop_product_detail.webp",
+    screens: [
+      {
+        src: "/projects/bookify/crop_catalog_browser.webp",
+        title: "Editorial Collector Catalog",
+        caption: "High-clarity cover grid with curatorial edition ratings and concise metadata for rapid art-book discovery.",
+        orientation: "landscape",
+        tag: "Catalog UX"
+      },
+      {
+        src: "/projects/bookify/crop_product_detail.webp",
+        title: "Product Detail & Gallery",
+        caption: "Dual-locale storefront supports regional UA editions (₴400–₴600, ₴1,595 store AOV) and international collector folios ($260 Atlas Maior) with interior spread previews.",
+        orientation: "landscape",
+        tag: "PDP Layout"
+      },
+      {
+        src: "/projects/bookify/crop_checkout.webp",
+        title: "Zero-Redirect Inline Express Checkout",
+        caption: "Purchase Now tab condenses checkout into 3 essential inputs (Name, Email, Phone) directly inside the product page.",
+        orientation: "landscape",
+        tag: "Checkout CRO"
+      },
+      {
+        src: "/projects/bookify/crop_reviews.webp",
+        title: "Verified Reader Reviews",
+        caption: "Embedded review cards address print quality and paper weight expectations before cart entry.",
+        orientation: "landscape",
+        tag: "Trust UI"
+      },
+      {
+        src: "/projects/bookify/crop_atlas_spread.webp",
+        title: "Macro Interior Spread Preview",
+        caption: "Detail photography communicates binding scale and archival print quality for collector editions.",
+        orientation: "landscape",
+        tag: "Visual Craft"
+      }
+    ],
     slides: [
-      "/projects/luro/slide_01.jpg",
-      "/projects/luro/slide_02.jpg",
-      "/projects/luro/slide_03.jpg",
-      "/projects/luro/slide_04.jpg",
-      "/projects/luro/slide_05.jpg",
-      "/projects/luro/slide_06.jpg",
-      "/projects/luro/slide_07.jpg",
-      "/projects/luro/slide_08.jpg",
-      "/projects/luro/slide_09.jpg",
-      "/projects/luro/slide_10.jpg"
+      "/projects/bookify/crop_product_detail.webp",
+      "/projects/bookify/crop_catalog_browser.webp",
+      "/projects/bookify/crop_checkout.webp",
+      "/projects/bookify/crop_reviews.webp",
+      "/projects/bookify/crop_atlas_spread.webp"
     ],
-    summary: "High-density AI productivity platform that unifies copywriting, multi-format media generation, analytics, and dispatch across 6 major networks into a cohesive, keyboard-first 3-pane workbench.",
-    challenge: "Creators and growth agencies were juggling 7+ fragmented tools (Notion, Buffer, Canva, ChatGPT, Analytics), suffering from context fragmentation, high tool sprawl costs, and repetitive manual formatting.",
-    solution: "Constructed an integrated 3-pane workstation featuring dynamic token streaming, real-time engagement radars, multi-account governance, and an ethical token-based self-serve pricing engine.",
-    role: "Lead / Senior Product Designer (Information Architecture, Design Tokens, AI Interaction Paradigms & Workbench UX)",
+    summary: "Digital transformation and rebranding of Kyiv art bookstore «Книгарня Небо» into Bookify (bookify.com.ua), rebuilding discovery, interior print inspection, and checkout speed into a measurable conversion engine.",
+    challenge: "Buyers hesitated to purchase curated art books (₴400 to ₴600+ everyday editions, up to $260 archival folios) online when they could not inspect paper texture or interior spreads, while a sluggish 108-second multi-page checkout caused severe drop-off.",
+    solution: "Unified brand identity across UA & international locales (supporting Nova Poshta branch delivery and multi-currency collector folios) and redesigned the commerce flow around three interventions: gallery-grade double-spread photography on PDPs, contextual collector reviews inside the evaluation tab bar, and a progressive inline Purchase Now checkout requiring only 3 essential fields.",
+    mobileAndMotionNotes: "Structured progressive tab transitions (Product Details -> Rating & Reviews -> Purchase Now) so shoppers complete an express order without losing context, forming the blueprint for a compact mobile bottom-sheet checkout flow.",
+    role: "Lead Product Designer (Rebranding, E-Commerce IA, PDP & Checkout CRO)",
     metrics: [
-      { label: "Drafting Speed Velocity", value: "+284%", change: "42 min → 11.2 min" },
-      { label: "Trial Conversion (CVR)", value: "19.8%", change: "+140% vs Benchmark" },
-      { label: "30-Day Cohort Retention", value: "73.4%", change: "45,000+ SMM Users" }
+      { label: "Checkout CVR", value: "5.8%", change: "+141.6% vs 2.4% baseline" },
+      { label: "Checkout Time", value: "45s", change: "-58.3% down from 108s" },
+      { label: "Average Order Value", value: "₴1,595", change: "+28.5% Order Lift" }
     ],
-    tools: ["Figma (Variables & AutoLayout)", "Next.js 14 / Radix UI", "Tailwind CSS (Obsidian Tokens)", "Framer Motion", "LLM Streaming Tokens"],
+    processSteps: [
+      {
+        phase: "Funnel Bottleneck Audit",
+        title: "Eliminating Redirect Abandonment",
+        detail: "Mapped drop-offs between Add-to-Cart and final order submission and removed redundant account registration prompts before purchase."
+      },
+      {
+        phase: "Collector Confidence",
+        title: "In-Context Print Inspection",
+        detail: "Added macro interior spread thumbnails and curated edition specs right above the fold to replicate physical bookstore browsing."
+      },
+      {
+        phase: "3-Field Express Tab",
+        title: "45-Second Completion Flow",
+        detail: "Embedded Name, Email, Phone, and immediate Buy Now execution inside an inline PDP tab so decisive buyers never leave the page."
+      }
+    ],
+    tools: ["Figma (AutoLayout & Variables)", "Funnel CRO & Analytics", "Editorial Typography", "Express Payment UX", "Responsive Grid System"],
     deliverables: [
-      "Integrated 3-Pane Social Operations Workbench",
-      "Obsidian Glass 2.0 Design System & Tokens (WCAG AAA)",
-      "Predictive Engagement Radar & Virality Propensity Scoring",
-      "Self-Serve Pricing Engine with Interactive ROI Visualizer",
-      "Multi-Account Governance & 1-Click Calendar Auto-Fill"
+      "Rebranding («Книгарня Небо» -> Bookify)",
+      "Editorial Art-Book Catalog & Curation Score UI",
+      "Macro Spread Inspection Gallery on PDP",
+      "45s Inline 3-Field Express Checkout Architecture",
+      "Responsive Design Token & Component Specification"
     ],
     featured: true,
-    behanceUrl: "https://www.behance.net/ALMotion3D",
-    liveUrl: "https://luro.heyshreyas.com",
-    figmaUrl: "#"
+    behanceUrl: "https://www.behance.net/ALMotion3D"
+  },
+  {
+    id: "kinetix-creator-studio",
+    slug: "kinetix-ai",
+    number: "03",
+    title: "Kinetix AI Studio",
+    subtitle: "Conceptual Exploration of Dark-Mode Creator Telemetry & Bento UI",
+    client: "Conceptual Study & Design Token Exploration",
+    year: "2024",
+    platform: "Web & Mobile Companion Study",
+    stage: "concept",
+    stageLabel: "Concept & UI Study",
+    category: "ai-saas",
+    categoryLabel: "Conceptual SaaS & Design Tokens",
+    imageSrc: "/projects/kinetix/crop_analytics.webp",
+    screens: [
+      {
+        src: "/projects/kinetix/crop_analytics.webp",
+        title: "Creator Telemetry Workbench",
+        caption: "Concept exploration balancing cross-channel reach KPIs, area trend curves, and channel attribution cards on low-glare surfaces.",
+        orientation: "landscape",
+        tag: "Workspace UI"
+      },
+      {
+        src: "/projects/kinetix/crop_node_flow.webp",
+        title: "Multi-Channel Routing Graph",
+        caption: "Diagram study visualizing how automated publishing pipelines connect content briefs, asset synthesis, and analytics endpoints.",
+        orientation: "landscape",
+        tag: "IA Study"
+      },
+      {
+        src: "/projects/kinetix/crop_bento.webp",
+        title: "Modular Feature Bento Tokens",
+        caption: "Component spacing and asymmetric dark-surface bento framing practice built on an 8pt baseline grid.",
+        orientation: "landscape",
+        tag: "Component Study"
+      },
+      {
+        src: "/projects/kinetix/crop_ai_studio.webp",
+        title: "Visual Synthesis & Topic Clustering",
+        caption: "UI exploration of compact story-frame generators and reach-weighted topic recommendations inside feature cards.",
+        orientation: "landscape",
+        tag: "UI Micro-Pattern"
+      }
+    ],
+    slides: [
+      "/projects/kinetix/crop_analytics.webp",
+      "/projects/kinetix/crop_node_flow.webp",
+      "/projects/kinetix/crop_bento.webp",
+      "/projects/kinetix/crop_ai_studio.webp"
+    ],
+    summary: "Self-directed conceptual UI study exploring information density, dark-mode surface hierarchy, and modular bento component tokens for an AI creator telemetry workspace.",
+    challenge: "High-density productivity concepts often overwhelm screens with saturated gradients and competing panels. This exercise focused on keeping multi-pane navigation, charts, and workflow cards calm and structured.",
+    solution: "Built a disciplined dark surface token study using subtle borders, disciplined violet state highlights, an 8pt spacing system, and clear separation between primary navigation, analytics charts, and contextual action modules.",
+    mobileAndMotionNotes: "Focused on strict typographic hierarchy, card restraint, and predictable panel density rather than decorative chrome.",
+    role: "Product Design Practice (UI Exploration, Token Structure & Bento Hierarchy)",
+    metrics: [
+      { label: "Project Classification", value: "Study Project", change: "Non-Production Concept" },
+      { label: "System Structure", value: "8pt Grid", change: "Obsidian Token Exercise" },
+      { label: "UI Exploration", value: "3-Pane + Bento", change: "IA & Visual Hierarchy" }
+    ],
+    processSteps: [
+      {
+        phase: "Surface Restraint",
+        title: "Dark-Mode Token Contrast",
+        detail: "Defined neutral elevated containers with hairline borders so charts and inline controls stand out without neon glare."
+      },
+      {
+        phase: "Information Grouping",
+        title: "KPIs, Trends & Action Cards",
+        detail: "Tested how summary tiles, time-series area charts, and modular feature previews balance on a single viewport."
+      }
+    ],
+    tools: ["Figma (Variables & Styles)", "Dark-Mode Hierarchy", "Bento Component Layout", "Design Token Practice"],
+    deliverables: [
+      "Conceptual Analytics Workbench UI",
+      "Dark-Mode Token & Border Contrast Exploration",
+      "Integration Node Diagram & Bento Grid Studies"
+    ],
+    featured: false,
+    behanceUrl: "https://www.behance.net/ALMotion3D"
   }
 ];
 
 export const SKILL_PILLARS: SkillCategory[] = [
   {
-    title: "Conversion-Led CRO & Funnels",
-    description: "Multi-stage persuasion architectures, frictionless 1-tap purchasing, in-context checkout modals, and statistically significant conversion lifts.",
-    iconName: "TrendingUp",
-    skills: ["4-Stage Persuasion Blueprints", "1-Tap Express Modal Checkout", "Multivariate A/B Testing", "Friction & Abandonment Elimination"]
+    title: "Mobile UX/UI & Ergonomics",
+    tag: "Core Discipline",
+    focusArea: "iOS HIG & Material 3",
+    description: "Structuring portrait flows, navigation sheets, paywalls, and multi-state controls around real thumb geometry and effortless scanability.",
+    iconName: "Smartphone",
+    skills: ["Thumb-Zone Action Mapping", "Bottom-Sheet & Modal Flows", "Safe-Area & Dynamic Type", "Native Platform Conventions"]
   },
   {
-    title: "3D Spatial UI & Tactile Craft",
-    description: "Physical PBR shader systems, elevation shadow projections, thumb-zone ergonomics, and Apple-grade 60fps kinetic visual interactions.",
+    title: "Motion Choreography & Rive",
+    tag: "Interactive Craft",
+    focusArea: "60fps State Machines",
+    description: "Using purposeful spring physics, tactile state feedback, and interactive Rive scenes to clarify system state rather than decorate screens.",
     iconName: "Sparkles",
-    skills: ["3D PBR Material Pipelines", "Dynamic Elevation Shadows", "Thumb-Zone Mobile Ergonomics", "Sensory Audio-Haptic Feedback"]
+    skills: ["Rive State Machines", "Spring & Gesture Transitions", "Audio-Haptic Pairing", "Reduced-Motion Fallbacks"]
   },
   {
-    title: "AI Workspaces & Progressive UX",
-    description: "Sub-100ms streaming token interfaces, multi-pane workbenches, predictive virality scoring, and non-deterministic UX governance.",
-    iconName: "Layers",
-    skills: ["3-Tier Progressive Disclosure", "LLM Streaming Token UX", "Predictive Virality Radars", "Multi-Network Auto-Dispatch"]
+    title: "Conversion-Led Product Flows",
+    tag: "Business Impact",
+    focusArea: "CRO & Funnel Architecture",
+    description: "Finding where users hesitate, trimming unnecessary steps, and building transparent checkout and onboarding journeys that convert.",
+    iconName: "TrendingUp",
+    skills: ["Inline Express Checkout", "Paywall & Tier Framing", "Trust & Social Proof Placement", "Hypotheses Tested in Code"]
   },
   {
-    title: "Scalable Design Systems & Tokens",
-    description: "Production-ready Figma token architectures, dark-mode obsidian ergonomics, WCAG AAA accessibility, and zero-drift developer handoff.",
+    title: "Design Systems & Code Handoff",
+    tag: "Engineering Fluency",
+    focusArea: "Figma -> React & Native",
+    description: "Bridging tokenized Figma libraries directly to SwiftUI, Compose, and React/Tailwind builds with working prototypes engineers can inspect.",
     iconName: "Component",
-    skills: ["Obsidian Glass Token Kits", "Figma Variables & Modes", "WCAG AAA Color Systems", "Tailwind & Radix UI Primitives"]
+    skills: ["Figma Variables & Modes", "Tactile & PBR Material Specs", "React / Motion Prototypes", "WCAG AA Contrast Discipline"]
   }
 ];
 
 export const EXPERIENCE_TIMELINE: ExperienceItem[] = [
   {
-    period: "2023 - Present",
-    role: "Senior / Lead Product Designer & Mobile Systems Architect",
-    company: "Vortex Lab (Mobile Apps, Spatial 3D & Web)",
-    location: "Studio & Venture Lab",
-    description: "Leading 0-to-1 mobile application architecture (iOS & Android), spatial 3D systems, and cross-platform web platforms. Active Creative Developer building personal Fintech software with Python and React.",
-    executiveSummary: "Leading 0-to-1 mobile application architecture (iOS & Android) and design systems. Delivered 43+ production mobile screens and 350+ tactile assets with thumb-zone ergonomics, sustaining $1.42M+ ARR run-rate and 64.8% D1 retention.",
+    period: "2025 - Present",
+    role: "Senior Mobile UX/UI Designer",
+    company: "Vortex Lab s.r.o. (Prague, CZ · Mobile Games & Apps)",
+    location: "Remote / Prague",
+    description: "Leading mobile product design, 3D visual craft, and cross-platform UI systems for Expedition Mahjong (200 hand-crafted levels, 43+ portrait screens) alongside interactive code prototypes in React and Rive.",
+    executiveSummary: "Owned end-to-end mobile UX/UI for shipped iOS & Android title Expedition Mahjong (200 levels, 43+ screens, 8 PBR tile suites), plus interactive React/Rive prototyping.",
     highlights: [
-      "Architecting 0-to-1 mobile applications (iOS & Android), spatial 3D interfaces, and thumb-zone ergonomic systems compliant with iOS 18+ HIG and Material 3.",
-      "Engineered tactile mobile gaming & utility interfaces featuring physical PBR shaders, dynamic elevation lighting, and sensory audio-haptic feedback.",
-      "Built unified Figma token pipelines syncing mobile squads (SwiftUI & Jetpack Compose design tokens) and web squads with 100% token consistency.",
-      "Developing personal Fintech software with Python and React, writing automated data-validation tests to backtest and quantitatively validate UX/UI product hypotheses."
+      "Designed 43+ shipped mobile screens and 8 bespoke PBR tabletop/tile suites (Imperial Jade, Obsidian, Carrara Marble, Royal Velvet, Porcelain, Antique Ivory, Teak Wood & Terracotta) for Expedition Mahjong across 200 levels.",
+      "Built portrait thumb-zone navigation, non-intrusive bottom-sheet recovery flows, and tactile audio-haptic preference systems synced with Apple & Google Play.",
+      "Crafted fair-play monetization flows featuring the $1.99/mo Amethyst VIP subscription paywall, voluntary rewarded boosters, and daily login retention modals.",
+      "Prototyped interactive mobile gestures, bottom sheets, and Rive state machines directly in React/TypeScript for realistic engineering handoff."
     ],
     mobileHighlights: [
-      "43+ production Retina screens designed with strict thumb-zone ergonomics",
-      "Native iOS 18+ HIG & Material 3 architecture with sensory haptic feedback",
-      "Unified mobile token pipeline bridging Figma Variables directly to native code"
+      "43+ shipped iOS & Android screens across 200 levels built around thumb-zone reachability",
+      "Custom 8 PBR material themes, bottom-sheet recovery & $1.99/mo VIP paywall"
     ],
-    tools: ["iOS HIG & Material 3", "Mobile Apps UX/UI", "Figma (Variables & Tokens)", "Python (Data & Testing)", "React / Next.js", "3D Spatial UI"]
+    tools: ["iOS & Android UI", "3D PBR Materials", "Figma Variables", "Rive & Motion", "React Prototyping"]
+  },
+  {
+    period: "2023 - 2025",
+    role: "Lead Product & Mobile UX/UI Designer",
+    company: "Bookify («Книгарня Небо») & Independent Product Studio",
+    location: "Kyiv / Remote",
+    description: "Led the digital rebrand of Kyiv art bookstore «Книгарня Небо» into Bookify (bookify.com.ua) and independent mobile R&D (early prototyping leading into Vortex Lab s.r.o. incorporation + Kinetix AI dark-surface system studies).",
+    executiveSummary: "Executed Bookify («Книгарня Небо») digital rebrand and inline 3-field checkout, lifting CVR from 2.4% to 5.8% (+141.6%) and AOV to ₴1,595 (+28.5%).",
+    highlights: [
+      "Executed Bookify (bookify.com.ua / nebobookshop.com.ua) digital rebrand and inline Purchase Now checkout, lifting CVR to 5.8% (+141.6%), cutting checkout time to 45s (-58.3%), and growing store AOV to ₴1,595 (+28.5%).",
+      "Designed dual-locale editorial storefront flows supporting both regional Ukrainian art books (₴400–₴600, Nova Poshta branch shipping) and collector editions ($260 Atlas Maior).",
+      "Led early mobile R&D, shader prototyping, and dark-mode UI system studies (Kinetix AI Studio) on an 8pt tokenized component architecture."
+    ],
+    mobileHighlights: [
+      "Express 3-field checkout architecture built for rapid single-screen conversion",
+      "Dual-locale e-commerce PDP inspection & modular design token studies"
+    ],
+    tools: ["E-Commerce CRO", "Mobile-First Checkout", "Design Tokens", "Figma", "Editorial UX"]
   },
   {
     period: "2021 - 2023",
-    role: "Senior Product & UX/UI Designer",
-    company: "Aircall (AI Call Center SaaS) • Fintech & Mobile E-Commerce",
-    location: "Global Contracts",
-    description: "Designed customer communication workflows, mobile-responsive interaction tooling, and B2B SaaS dashboards for Aircall, alongside high-impact contracts in Fintech and E-Commerce.",
-    executiveSummary: "Designed high-velocity B2B communication tooling, mobile companion experiences, and frictionless checkout funnels yielding +141.6% conversion uplift and 45s checkout velocity.",
+    role: "Product UI/UX Designer",
+    company: "Aircall · Fintech & SaaS Product Contracts",
+    location: "Remote Contracts",
+    description: "Delivered communication workflows, mobile companion tools, and dense operational SaaS interfaces with a focus on keyboard speed, scannability, and reduced task friction.",
+    executiveSummary: "Designed communication workflows, AI call-summary tooling, mobile companion views, and operational fintech dashboards with verified WCAG AA contrast.",
     highlights: [
-      "Designed call-handling workflows, AI voice transcription dashboards, and companion mobile interaction patterns for enterprise teams.",
-      "Engineered high-converting mobile-first purchase funnels for e-commerce brands, cutting checkout velocity to 45s (-58.3% time-to-buy) and lifting CVR by +141.6%.",
-      "Architected data-dense dashboards for fintech platforms with keyboard-first navigation and dark-mode ergonomics.",
-      "Partnered directly with mobile and frontend engineering squads to maintain 100% fidelity between design tokens and production code."
+      "Designed call-handling interfaces, AI call-summary workflows, and mobile companion views for enterprise communication teams.",
+      "Created dense fintech operational screens with clear keyboard navigation, scannable tables, and verified contrast ratios.",
+      "Standardized shared Figma variable libraries and component states across web and mobile surfaces."
     ],
     mobileHighlights: [
-      "Mobile-first responsive checkout with native Apple Pay and Google Pay integration",
-      "High-density mobile SaaS workflows for field agents and on-the-go communications"
+      "Mobile companion workflows for on-the-go voice & client operations",
+      "High-contrast operational views & tokenized Figma component kits"
     ],
-    tools: ["Mobile E-Commerce CRO", "Figma", "B2B SaaS Architecture", "AI Voice UX", "Apple / Google Pay UX", "Design Systems"]
+    tools: ["B2B SaaS UX", "Mobile Companion UI", "Design Systems", "Figma", "WCAG Accessibility"]
   },
   {
-    period: "2018 - 2021",
-    role: "Product & Digital Designer",
-    company: "Commercial Products & Venture Studios",
+    period: "2019 - 2021",
+    role: "UI/UX & 3D Motion Designer",
+    company: "Digital Agencies & Production Studios",
     location: "Remote",
-    description: "Delivered mobile application concepts, brand identity systems, and conversion-focused web layouts for international commercial clients.",
-    executiveSummary: "Delivered foundational mobile prototypes, design systems, and digital brand identities for global commercial clients, grounded in formal academic design education.",
+    description: "Built clickable mobile application prototypes, brand identity systems, and 3D motion assets grounded in formal industrial and product design education.",
+    executiveSummary: "Delivered foundational mobile UI prototypes, 3D product motion assets, and structured responsive grids for international clients.",
     highlights: [
-      "Crafted comprehensive brand packages, vector asset systems, and responsive digital interfaces for international commercial clients.",
-      "Engineered early interactive mobile app prototypes and design guidelines for consumer products.",
-      "Applied formal academic training (Higher Degree in Product Design) to establish spatial balance, ergonomic grids, and typography hierarchy."
+      "Created clickable mobile app prototypes, component libraries, and user journey specs for consumer products.",
+      "Delivered complete brand systems, custom iconography, 3D visual motion assets, and responsive storefronts.",
+      "Applied academic training (Higher Degree in Product Design) to physical-to-digital hierarchy, ergonomics, and typography."
     ],
     mobileHighlights: [
-      "Interactive mobile prototyping and user journey mapping",
-      "Ergonomic grid system construction for cross-device responsive viewports"
+      "Interactive clickable prototypes and onboarding flows",
+      "3D visual craft, tactile motion & layout grid fundamentals"
     ],
-    tools: ["Adobe CC Suite", "Mobile Prototyping", "Brand Systems", "Typography & Grid", "Visual Hierarchy"]
+    tools: ["Mobile Prototyping", "Brand Systems", "After Effects & 3D", "Typography & Grids"]
   }
 ];
 
 export const TOOLS_MATRIX = {
   design: [
-    { name: "Mobile App UX (iOS HIG & Material 3)", level: "Mastery (100%)" },
-    { name: "Figma (Variables, Tokens, AutoLayout)", level: "Mastery (100%)" },
-    { name: "Design System Token Pipelines", level: "Expert (100%)" },
-    { name: "Thumb-Zone Ergonomics & WCAG AAA", level: "Advanced (98%)" }
+    { name: "Mobile App UX (iOS HIG & Material 3)", level: "Core Focus" },
+    { name: "Figma (Variables, Tokens & AutoLayout)", level: "Daily Stack" },
+    { name: "Interactive Bottom Sheets & Micro-Flows", level: "Shipped Apps" },
+    { name: "Typography, Grid & WCAG AA Contrast", level: "Foundation" }
   ],
   motionAndMedia: [
-    { name: "3D PBR Materials & Spatial UI", level: "Advanced (92%)" },
-    { name: "Mobile Haptics & Micro-Interactions", level: "Mastery (95%)" },
-    { name: "Adobe After Effects (Kinetic Motion)", level: "Advanced (90%)" },
-    { name: "Adobe CC (Photoshop & Illustrator)", level: "Proficient (94%)" }
+    { name: "Rive (Interactive State Machines)", level: "Live Runtime" },
+    { name: "Framer Motion & Spring Choreography", level: "Prototyping" },
+    { name: "3D PBR Materials & Tactile Shaders", level: "Shipped Game" },
+    { name: "Adobe After Effects & CC Suite", level: "Motion & Assets" }
   ],
   engineeringAndAI: [
-    { name: "Python (Data Analysis & UX Testing)", level: "Production Fluent (92%)" },
-    { name: "React / Next.js / TypeScript", level: "Production Fluent (90%)" },
-    { name: "AI Generative & Streaming UX (LLMs)", level: "Production Fluent (95%)" },
-    { name: "Tailwind CSS & Radix UI Primitives", level: "Mastery (95%)" }
+    { name: "React / Next.js / TypeScript", level: "Code Prototypes" },
+    { name: "Tailwind CSS & Accessible Primitives", level: "UI Implementation" },
+    { name: "Python (Data Scripts & Validation)", level: "Analysis" },
+    { name: "AI-Assisted Prototyping & Design Ops", level: "Workflow" }
   ]
 };
-

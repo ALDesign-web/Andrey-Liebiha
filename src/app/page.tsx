@@ -1,7 +1,3 @@
-"use client";
-
-import React from "react";
-import { Preloader } from "@/components/Preloader";
 import { Navbar } from "@/components/Navbar";
 import { Hero } from "@/components/Hero";
 import { ProjectsShowcase } from "@/components/ProjectsShowcase";
@@ -12,32 +8,23 @@ import { Footer } from "@/components/Footer";
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-[#08090a] bg-tech-grid text-[#f2f5f1] flex flex-col selection:bg-[#ff7235]/30 selection:text-white relative">
-      {/* 0. Studio-Grade Asset Preloader & Loading Slider */}
-      <Preloader />
+    <div className="min-h-screen bg-[#08090a] text-[#f2f5f1] flex flex-col selection:bg-[#ff7235]/30 selection:text-white relative">
+      {/* Subtle Studio Texture Grid behind content */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none fixed inset-0 opacity-[0.03] bg-[linear-gradient(to_right,#ffffff_1px,transparent_1px),linear-gradient(to_bottom,#ffffff_1px,transparent_1px)] bg-[size:64px_64px] z-0"
+      />
 
-      {/* Floating Glassmorphism Navbar */}
       <Navbar />
 
-      {/* Main Content Sections */}
-      <main className="flex-1 flex flex-col">
-        {/* 1. Hero Section with Statement Typography & Metrics */}
+      <main className="flex-1 flex flex-col relative z-10">
         <Hero />
-
-        {/* 2. Selected Case Studies (Behance / Miraclesux Showcase) */}
         <ProjectsShowcase />
-
-        {/* 3. Interactive UI & System Lab (Live Node Canvas & Token Playground) */}
         <InteractiveSystemLab />
-
-        {/* 4. Strategic Leadership Pillars */}
         <DesignPillars />
-
-        {/* 5. Experience Timeline & Tools Checklist */}
         <ExperienceTimeline />
       </main>
 
-      {/* 6. Footer & Closing CTA */}
       <Footer />
     </div>
   );

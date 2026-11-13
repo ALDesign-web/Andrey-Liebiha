@@ -14,15 +14,15 @@
   --background: #08090a;
   --foreground: #f2f5f1;
   --surface: #121316;
-  --surface-hover: #1a1b20;
+  --surface-alt: #0d0f12;
+  --surface-hover: #181a20;
   --steel: #adb3b7;
   --chalk: #e7ece5;
-  --border: rgba(173, 179, 183, 0.18);
+  --border: rgba(255, 255, 255, 0.09);
+  --border-strong: rgba(255, 255, 255, 0.16);
   --border-active: rgba(255, 114, 53, 0.45);
-  --creatio-orange: #ff7235;
-  --creatio-amber: #ffa043;
-  --electric-cyan: #06b6d4;
-  --neon-indigo: #6366f1;
+  --accent: #ff7235;
+  --accent-soft: #ffa043;
 }
 
 html {
@@ -93,14 +93,17 @@ html.lenis body {
   box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(173, 179, 183, 0.15);
 }
 
+/* Tactile Glass Surface Hover */
 .glass-panel-hover {
-  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  transition:
+    transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.25s ease,
+    background-color 0.25s ease;
 }
 
 .glass-panel-hover:hover {
-  border-color: rgba(255, 114, 53, 0.45);
-  transform: translateY(-4px);
-  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6), 0 0 30px rgba(255, 114, 53, 0.14), inset 0 1px 0 rgba(173, 179, 183, 0.22);
+  border-color: rgba(255, 114, 53, 0.42);
+  transform: translate3d(0, -3px, 0);
 }
 
 .glass-pill {
@@ -111,24 +114,42 @@ html.lenis body {
 }
 
 /* Apple Safari Liquid Glass & Tactile Controls Material System (HIG Specification) */
+html {
+  scroll-padding-top: 5.5rem;
+}
+
+body:has([data-mobile-nav-open="true"]) {
+  overflow: hidden;
+}
+
 .safari-glass {
-  background: rgba(20, 21, 26, 0.48);
+  background: rgba(13, 15, 18, 0.88);
   backdrop-filter: blur(20px) saturate(180%);
   -webkit-backdrop-filter: blur(20px) saturate(180%);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   box-shadow: 
     inset 0 1px 0 rgba(255, 255, 255, 0.12),
-    0 10px 30px -5px rgba(0, 0, 0, 0.4);
+    0 10px 30px -5px rgba(0, 0, 0, 0.45);
 }
 
 .safari-glass-scrolled {
-  background: rgba(18, 19, 24, 0.55);
+  background: rgba(12, 13, 17, 0.985);
   backdrop-filter: blur(20px) saturate(180%);
   -webkit-backdrop-filter: blur(20px) saturate(180%);
-  border: 1px solid rgba(255, 255, 255, 0.09);
+  border: 1px solid rgba(255, 255, 255, 0.13);
   box-shadow: 
     inset 0 1px 0 rgba(255, 255, 255, 0.14),
-    0 16px 36px -8px rgba(0, 0, 0, 0.5);
+    0 16px 36px -8px rgba(0, 0, 0, 0.72);
+}
+
+.mobile-nav-drawer {
+  background: rgba(16, 17, 22, 0.98);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.12),
+    0 24px 60px -10px rgba(0, 0, 0, 0.85);
 }
 
 /* Safari Frosted Tactile Capsule Button */
@@ -164,77 +185,49 @@ html.lenis body {
   border: 1px solid rgba(255, 255, 255, 0.06);
 }
 
-/* Ambient Glow Gradients */
+/* Ambient Single-Accent Radial Glow (kept subtle per Three Consistency Locks) */
 .glow-spot-orange {
-  background: radial-gradient(circle, rgba(255, 114, 53, 0.18) 0%, rgba(255, 114, 53, 0) 70%);
+  background: radial-gradient(circle, rgba(255, 114, 53, 0.08) 0%, rgba(255, 114, 53, 0) 68%);
 }
 
-.glow-spot-cyan {
-  background: radial-gradient(circle, rgba(6, 182, 212, 0.10) 0%, rgba(6, 182, 212, 0) 70%);
-}
-
-.glow-spot-indigo {
-  background: radial-gradient(circle, rgba(255, 160, 67, 0.12) 0%, rgba(255, 160, 67, 0) 70%);
-}
-
-/* Background Subtle Grid */
-.bg-tech-grid {
-  background-size: 48px 48px;
-  background-image: 
-    linear-gradient(to right, rgba(173, 179, 183, 0.04) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(173, 179, 183, 0.04) 1px, transparent 1px);
-}
-
-.bg-tech-dots {
-  background-image: radial-gradient(rgba(173, 179, 183, 0.10) 1px, transparent 1px);
-  background-size: 24px 24px;
-}
-
-/* Animated Liquid Silk Gradient Text Presets */
-@keyframes gradient-flow {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
-}
-
+/* Crisp Tactile Gradient Ink (no continuous repaint loop) */
 .text-gradient-white {
-  background: linear-gradient(90deg, #ffffff 0%, #d4d4d8 25%, #a1a1aa 50%, #d4d4d8 75%, #ffffff 100%);
-  background-size: 200% auto;
+  background: linear-gradient(135deg, #ffffff 0%, #e7ece5 45%, #adb3b7 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  animation: gradient-flow 10s ease-in-out infinite;
 }
 
 .text-gradient-orange {
-  background: linear-gradient(90deg, #ffe0d1 0%, #ff8d4d 20%, #ff7235 45%, #ea4f18 65%, #ffa043 85%, #ffe0d1 100%);
-  background-size: 250% auto;
+  background: linear-gradient(135deg, #ffc299 0%, #ff8547 45%, #ff7235 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  animation: gradient-flow 8s ease-in-out infinite;
-  will-change: background-position;
 }
 
-.text-gradient-cyan {
-  background: linear-gradient(90deg, #cffafe 0%, #38bdf8 25%, #06b6d4 50%, #0284c7 75%, #cffafe 100%);
-  background-size: 250% auto;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: gradient-flow 9s ease-in-out infinite;
-  will-change: background-position;
+/* TailMotion Zero-Runtime Utility Classes */
+.tm-hover-lift {
+  transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.22s ease;
 }
-
+.tm-hover-lift:hover {
+  transform: translate3d(0, -3px, 0);
+}
+.tm-press {
+  transition: transform 0.16s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.2s ease, border-color 0.2s ease;
+}
+.tm-press:active {
+  transform: scale(0.97);
+}
 @media (prefers-reduced-motion: reduce) {
-  .text-gradient-orange,
-  .text-gradient-cyan,
-  .text-gradient-white {
-    animation: none;
-    background-size: 100% auto;
+  .tm-hover-lift,
+  .tm-hover-lift:hover,
+  .tm-press,
+  .tm-press:active,
+  .glass-panel-hover,
+  .glass-panel-hover:hover,
+  .safari-btn,
+  .safari-btn:hover,
+  .safari-btn:active {
+    transition-duration: 1ms !important;
+    transform: none !important;
   }
 }
 

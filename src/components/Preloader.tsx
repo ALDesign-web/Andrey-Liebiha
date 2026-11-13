@@ -7,7 +7,7 @@ import { Sparkles } from "lucide-react";
 const ASSETS_TO_PRELOAD = [
   "/projects/bookify/slide_01.webp",
   "/projects/mahjong/slide_01.jpg",
-  "/projects/luro/slide_01.jpg",
+  "/projects/kinetix/crop_analytics.webp",
   "/projects/project-4.jpg"
 ];
 
@@ -99,7 +99,7 @@ export function Preloader() {
                   Andrii Liebiha
                 </span>
                 <span className="text-[10px] font-mono text-[#adb3b7]">
-                  Senior Product Designer &amp; Systems Architect
+                  Senior Mobile UX/UI Designer
                 </span>
               </div>
             </div>

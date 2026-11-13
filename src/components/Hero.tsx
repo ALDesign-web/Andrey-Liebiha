@@ -1,99 +1,222 @@
 "use client";
 
-import React from "react";
-import { Sparkles, ArrowUpRight } from "lucide-react";
+import React, { useState } from "react";
+import Link from "next/link";
+import Image from "next/image";
+import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
+import { ArrowDownRight, Play, FileText, ArrowUpRight, Smartphone } from "lucide-react";
 import { PORTFOLIO_HERO } from "@/data/portfolioData";
 import { RiveOrbBeacon } from "@/components/RiveOrbBeacon";
 
+const HERO_PHONES = [
+  {
+    id: "victory",
+    tab: "Core Reward",
+    screenTitle: "Victory Celebration Loop",
+    meta: "Expedition Mahjong · Portrait Thumb-Zone CTA",
+    src: "/projects/mahjong/mockups/slide05_victory_34.webp",
+    alt: "3D iPhone render displaying Expedition Mahjong portrait victory celebration screen with jade primary CTA button",
+  },
+  {
+    id: "paywall",
+    tab: "Paywall UI",
+    screenTitle: "Subscription Framing",
+    meta: "Expedition Mahjong · Amethyst Material Hierarchy",
+    src: "/projects/mahjong/mockups/slide06_paywall_34.webp",
+    alt: "3D iPhone render showing Expedition Mahjong VIP monthly subscription paywall with amethyst tactile button",
+  },
+  {
+    id: "settings",
+    tab: "Haptic Toggles",
+    screenTitle: "Audio & Haptic Matrix",
+    meta: "Expedition Mahjong · Physical 3D Switch States",
+    src: "/projects/mahjong/mockups/slide07_settings_34.webp",
+    alt: "3D iPhone render displaying tactile sound, vibration, and music switches inside settings screen",
+  },
+];
+
 export function Hero() {
-  const statAnimClasses = [
-    "animate-hero-stat-1",
-    "animate-hero-stat-2",
-    "animate-hero-stat-3",
-    "animate-hero-stat-4"
-  ];
+  const [activeIndex, setActiveIndex] = useState(0);
+  const shouldReduceMotion = useReducedMotion();
+  const activePhone = HERO_PHONES[activeIndex];
 
   return (
-    <section className="relative min-h-[92vh] pt-36 pb-20 flex flex-col justify-between overflow-hidden">
-      {/* Ambient background glow spots */}
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[500px] glow-spot-orange pointer-events-none opacity-40 blur-3xl" />
-      <div className="absolute top-1/3 left-1/4 w-[400px] h-[400px] glow-spot-cyan pointer-events-none opacity-30 blur-3xl" />
-      <div className="absolute top-1/2 right-1/4 w-[450px] h-[450px] glow-spot-indigo pointer-events-none opacity-25 blur-3xl" />
+    <section
+      id="hero"
+      className="relative pt-24 pb-12 sm:pt-32 sm:pb-20 lg:pt-36 lg:pb-24 flex flex-col justify-start overflow-hidden border-b border-white/[0.06]"
+    >
+      {/* Subtle Single-Accent Ambient Spot */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute -top-24 right-[8%] w-[520px] h-[520px] rounded-full glow-spot-orange blur-3xl opacity-80"
+      />
 
-      <div className="relative max-w-7xl mx-auto px-6 sm:px-8 w-full flex-1 flex flex-col justify-center">
-        {/* Top Monospace Eyebrow Badge */}
-        <div className="animate-hero-eyebrow flex items-center gap-3 mb-6">
-          <div className="inline-flex items-center gap-2.5 px-3 py-1 rounded-full bg-white/[0.04] border border-[#adb3b7]/20 backdrop-blur-md">
-            <RiveOrbBeacon size={20} className="-my-1" />
-            <span className="text-[11px] font-mono tracking-wider uppercase text-[#adb3b7]">
-              LEAD PRODUCT DESIGN &amp; SYSTEMS
-            </span>
-          </div>
-          <span className="text-xs font-mono text-[#adb3b7]/60 hidden sm:inline">
-            {"// E-COMMERCE CRO • 3D SPATIAL UI • AI SAAS WORKSPACES"}
-          </span>
-        </div>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-10 items-center">
+          {/* Left Column: Clear Positioning & Primary Actions */}
+          <div className="lg:col-span-7 flex flex-col items-start text-left">
+            {/* Role Eyebrow with Rive Beacon */}
+            <div className="animate-hero-eyebrow inline-flex items-center gap-2.5 px-3 py-1.5 sm:px-3.5 rounded-full bg-white/[0.04] border border-white/10 mb-4 sm:mb-6">
+              <RiveOrbBeacon size={18} />
+              <span className="text-[11px] sm:text-xs font-mono uppercase tracking-wider text-[#e7ece5]">
+                {PORTFOLIO_HERO.role}
+              </span>
+            </div>
 
-        {/* Main Display Headline */}
-        <div className="space-y-2 mb-8 max-w-5xl">
-          <h1 className="animate-hero-title text-4xl sm:text-6xl md:text-7xl lg:text-[80px] font-black tracking-tight leading-[0.95] text-white uppercase">
-            Product Designer <br />
-            <span className="text-gradient-orange">&amp; Systems Architect</span>
-          </h1>
+            {/* Max 2-line Display Headline */}
+            <h1 className="animate-hero-title text-[clamp(2.15rem,7.2vw,4.25rem)] font-semibold tracking-[-0.035em] leading-[1.04] text-[#f2f5f1] mb-4 sm:mb-6">
+              {PORTFOLIO_HERO.headlineTop}
+              <br />
+              <span className="text-gradient-orange">{PORTFOLIO_HERO.headlineBottom}</span>
+            </h1>
 
-          <p className="animate-hero-desc text-lg sm:text-xl md:text-2xl text-[#adb3b7] font-normal max-w-3xl leading-relaxed pt-2">
-            Designing <strong className="text-white font-semibold">high-converting digital products</strong>, 
-            tactile 3D spatial experiences, and AI-native SaaS platforms with measurable business impact.
-          </p>
-        </div>
+            {/* Tight <= 20-word Value Proposition */}
+            <p className="animate-hero-desc text-sm sm:text-lg text-[#adb3b7] max-w-xl leading-relaxed mb-6 sm:mb-8">
+              {PORTFOLIO_HERO.tagline}
+            </p>
 
-        {/* Action Buttons & Quick Anchors */}
-        <div className="animate-hero-cta flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4 mb-12 sm:mb-16 w-full sm:w-auto">
-          <a
-            href="#projects"
-            className="group px-7 py-3.5 rounded-full bg-gradient-to-r from-[#ff7235] to-[#ffa043] text-black font-semibold text-sm shadow-xl shadow-[#ff7235]/25 hover:shadow-[#ff7235]/40 hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-2"
-          >
-            <span>Explore Case Studies</span>
-            <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-          </a>
+            {/* Primary & Secondary CTAs Above Fold */}
+            <div className="animate-hero-cta w-full sm:w-auto flex flex-wrap items-center gap-2.5 sm:gap-3.5 mb-7 sm:mb-10">
+              <Link
+                href="/#work"
+                className="tm-press min-h-[44px] sm:min-h-[46px] px-4 sm:px-6 py-2.5 sm:py-3 rounded-xl bg-[#ff7235] hover:bg-[#ff834d] text-[#08090a] text-sm font-semibold inline-flex items-center justify-center gap-2 transition-colors"
+              >
+                Explore Case Studies
+                <ArrowDownRight className="w-4 h-4" aria-hidden="true" />
+              </Link>
 
-          <a
-            href="#lab"
-            className="px-6 py-3.5 rounded-full safari-btn text-white font-medium text-sm flex items-center justify-center gap-2"
-          >
-            <Sparkles className="w-4 h-4 text-[#ffa043]" />
-            <span>Interactive UI Lab</span>
-          </a>
+              <Link
+                href="/#lab"
+                className="tm-press min-h-[44px] sm:min-h-[46px] px-4 sm:px-5 py-2.5 sm:py-3 rounded-xl bg-white/[0.05] hover:bg-white/[0.09] border border-white/12 hover:border-[#ff7235]/40 text-[#f2f5f1] text-sm font-medium inline-flex items-center justify-center gap-2 transition-colors"
+              >
+                <Play className="w-3.5 h-3.5 text-[#ff7235]" aria-hidden="true" />
+                Motion Lab
+              </Link>
 
-          <a
-            href="https://www.behance.net/ALMotion3D"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="px-5 py-3 rounded-full text-[#adb3b7] hover:text-white active:scale-[0.98] text-xs font-mono tracking-wider uppercase transition-all flex items-center justify-center gap-1.5"
-          >
-            <span>Behance Profile</span>
-            <ArrowUpRight className="w-3.5 h-3.5" />
-          </a>
-        </div>
-
-        {/* Bottom Hero Metrics Bar (Miraclesux Signature Style) */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 pt-6 sm:pt-8">
-          {PORTFOLIO_HERO.stats.map((stat, idx) => (
-            <div
-              key={idx}
-              className={`${statAnimClasses[idx] || "animate-hero-stats"} p-4 sm:p-5 rounded-2xl bg-white/[0.02] backdrop-blur-md border border-[#adb3b7]/12 hover:border-[#ff7235]/40 shadow-[inset_0_1px_0_rgba(173,179,183,0.08)] transition-all group`}
-            >
-              <div className="text-2xl sm:text-4xl font-black text-white group-hover:text-[#ff7235] transition-colors tracking-tight font-sans tabular-nums">
-                {stat.value}
-              </div>
-              <div className="text-xs font-medium text-[#e7ece5] mt-1 line-clamp-1">
-                {stat.label}
-              </div>
-              <div className="text-[10px] font-mono text-[#adb3b7] mt-0.5 line-clamp-1">
-                {stat.sub}
+              <div className="flex items-center gap-4 pl-0.5 sm:pl-1">
+                <Link
+                  href="/cv"
+                  className="min-h-[44px] inline-flex items-center gap-1.5 text-sm font-mono text-[#adb3b7] hover:text-[#f2f5f1] transition-colors"
+                >
+                  <FileText className="w-4 h-4 text-[#ff7235]" aria-hidden="true" />
+                  CV
+                </Link>
+                <a
+                  href="https://www.behance.net/ALMotion3D"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="min-h-[44px] inline-flex items-center gap-1 text-sm font-mono text-[#adb3b7] hover:text-[#f2f5f1] transition-colors"
+                >
+                  Behance
+                  <ArrowUpRight className="w-3.5 h-3.5" aria-hidden="true" />
+                </a>
               </div>
             </div>
-          ))}
+
+            {/* Verified Proof Strip */}
+            <div className="animate-hero-stats w-full pt-5 sm:pt-7 border-t border-white/[0.08] grid grid-cols-3 gap-2.5 sm:gap-6">
+              <div>
+                <div className="text-sm sm:text-3xl font-semibold font-mono tracking-tight text-[#f2f5f1] tabular-nums leading-tight">
+                  43+ Screens
+                </div>
+                <div className="text-[11px] sm:text-xs font-mono text-[#adb3b7] mt-1 leading-snug">
+                  Expedition Mahjong (iOS & Android)
+                </div>
+              </div>
+              <div>
+                <div className="text-sm sm:text-3xl font-semibold font-mono tracking-tight text-[#ff7235] tabular-nums leading-tight">
+                  5.8% CVR
+                </div>
+                <div className="text-[11px] sm:text-xs font-mono text-[#adb3b7] mt-1 leading-snug">
+                  +141.6% lift on Bookify checkout
+                </div>
+              </div>
+              <div>
+                <div className="text-sm sm:text-3xl font-semibold font-mono tracking-tight text-[#f2f5f1] tabular-nums leading-tight">
+                  7+ Years
+                </div>
+                <div className="text-[11px] sm:text-xs font-mono text-[#adb3b7] mt-1 leading-snug">
+                  Mobile UX/UI, 3D & Rive systems
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Right Column: Interactive Mobile Craft Stage */}
+          <div className="lg:col-span-5 flex flex-col items-center">
+            <div className="w-full max-w-[420px] rounded-3xl bg-[#121316]/90 border border-white/[0.09] p-4 sm:p-6 relative overflow-hidden">
+              {/* Top Stage Bar */}
+              <div className="flex items-center justify-between gap-2 mb-2.5 sm:mb-3">
+                <div className="flex items-center gap-2 text-xs font-mono text-[#adb3b7]">
+                  <Smartphone className="w-3.5 h-3.5 text-[#ff7235]" aria-hidden="true" />
+                  <span>{activePhone.screenTitle}</span>
+                </div>
+                <span className="text-[11px] font-mono text-[#adb3b7] tabular-nums">
+                  {activeIndex + 1} / {HERO_PHONES.length}
+                </span>
+              </div>
+
+              {/* 3D Phone Viewport */}
+              <div className="relative h-[280px] sm:h-[400px] w-full flex items-center justify-center">
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={activePhone.id}
+                    initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0, y: 14, scale: 0.96 }}
+                    animate={shouldReduceMotion ? { opacity: 1 } : { opacity: 1, y: 0, scale: 1 }}
+                    exit={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: -10, scale: 0.96 }}
+                    transition={
+                      shouldReduceMotion
+                        ? { duration: 0.01 }
+                        : { type: "spring", stiffness: 280, damping: 24 }
+                    }
+                    className="relative w-[165px] sm:w-[230px] h-full flex items-center justify-center"
+                  >
+                    <Image
+                      src={activePhone.src}
+                      alt={activePhone.alt}
+                      fill
+                      priority
+                      sizes="(max-width: 640px) 165px, 230px"
+                      className="object-contain drop-shadow-[0_24px_38px_rgba(0,0,0,0.65)]"
+                    />
+                  </motion.div>
+                </AnimatePresence>
+              </div>
+
+              {/* Screen Context & Switcher Controls */}
+              <div className="mt-2.5 sm:mt-3 pt-3.5 sm:pt-4 border-t border-white/[0.08] flex flex-col gap-2.5 sm:gap-3">
+                <p className="text-[11px] sm:text-xs font-mono text-[#adb3b7] text-center">
+                  {activePhone.meta}
+                </p>
+
+                <div
+                  role="tablist"
+                  aria-label="Preview mobile screens"
+                  className="grid grid-cols-3 gap-1.5 sm:gap-2"
+                >
+                  {HERO_PHONES.map((phone, idx) => {
+                    const isSelected = idx === activeIndex;
+                    return (
+                      <button
+                        key={phone.id}
+                        type="button"
+                        role="tab"
+                        aria-selected={isSelected}
+                        onClick={() => setActiveIndex(idx)}
+                        className={`tm-press min-h-[44px] px-1.5 sm:px-2.5 py-2 rounded-xl text-[11px] sm:text-xs font-mono transition-colors ${
+                          isSelected
+                            ? "bg-[#ff7235] text-[#08090a] font-semibold"
+                            : "bg-white/[0.04] hover:bg-white/[0.08] text-[#c4cacd] border border-white/[0.08]"
+                        }`}
+                      >
+                        {phone.tab}
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>

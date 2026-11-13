@@ -1,16 +1,17 @@
 "use client";
 
 import React, { useState } from "react";
-import { ArrowUpRight, Copy, Check, Mail, ArrowUp } from "lucide-react";
+import Link from "next/link";
+import { Mail, Check, Copy, ArrowUpRight, Send, ArrowUp, FileText } from "lucide-react";
+import { CV_METADATA } from "@/data/portfolioData";
 
 export function Footer() {
   const [copied, setCopied] = useState(false);
-  const emailAddress = "liebihadesign@gmail.com";
 
   const handleCopyEmail = () => {
-    navigator.clipboard.writeText(emailAddress);
+    navigator.clipboard.writeText(CV_METADATA.email);
     setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
+    window.setTimeout(() => setCopied(false), 2400);
   };
 
   const scrollToTop = () => {
@@ -18,100 +19,103 @@ export function Footer() {
   };
 
   return (
-    <footer id="contact" className="py-24 relative overflow-hidden">
-      {/* Glow highlight */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] glow-spot-orange pointer-events-none opacity-20 blur-3xl" />
+    <footer
+      id="contact"
+      className="py-16 sm:py-24 bg-[#0d0f12] relative"
+    >
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Closing Conversion Block */}
+        <div className="rounded-3xl bg-[#121316] border border-white/[0.09] p-6 sm:p-12 lg:p-16 text-center mb-10 sm:mb-12">
+          <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/[0.04] border border-white/10 text-xs font-mono text-[#e7ece5] mb-5 sm:mb-6">
+            <span className="w-2 h-2 rounded-full bg-emerald-400" aria-hidden="true" />
+            {CV_METADATA.availability}
+          </span>
 
-      <div className="max-w-7xl mx-auto px-6 sm:px-8 relative">
-        {/* Main CTA Banner — Option 2: Ultra-delicate Glass / Low-Contrast Surface */}
-        <div className="p-8 sm:p-14 rounded-3xl bg-white/[0.02] backdrop-blur-md border border-[#adb3b7]/12 shadow-[inset_0_1px_0_rgba(173,179,183,0.08)] text-center space-y-8 mb-16 relative overflow-hidden">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-mono">
-            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-            <span>Ready for Product Design &amp; Systems Collaboration</span>
-          </div>
-
-          <h2 className="text-3xl sm:text-5xl lg:text-6xl font-black text-[#f2f5f1] uppercase tracking-tight max-w-3xl mx-auto leading-tight">
-            Let&apos;s Build the Next <br />
-            <span className="text-gradient-orange">Benchmark Experience</span>
+          <h2 className="text-3xl sm:text-5xl font-semibold tracking-tight text-[#f2f5f1] leading-[1.08] max-w-2xl mx-auto mb-4">
+            Looking for a{" "}
+            <span className="whitespace-nowrap">hands-on</span>{" "}
+            <span className="text-gradient-orange">Mobile UX/UI Designer?</span>
           </h2>
 
-          <p className="text-sm sm:text-base text-[#adb3b7] max-w-xl mx-auto leading-relaxed">
-            Interested in scaling digital products, crafting high-converting web interfaces, 
-            or elevating your team&apos;s design system? Let&apos;s connect.
+          <p className="text-sm sm:text-base text-[#adb3b7] max-w-xl mx-auto leading-relaxed mb-7 sm:mb-8">
+            Happy to share live Figma files, interactive prototypes, or NDA walkthroughs tailored to your product team.
           </p>
 
-          {/* Email Copy Box */}
-          <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3 pt-2 w-full max-w-md sm:max-w-none mx-auto">
-            <button
-              onClick={handleCopyEmail}
-              aria-label="Copy official email address"
-              title="Copy official email address"
-              className="px-5 py-3.5 rounded-full bg-white/[0.03] hover:bg-white/[0.06] border border-[#adb3b7]/15 hover:border-[#ff7235]/40 text-[#f2f5f1] font-mono text-xs sm:text-sm flex items-center justify-center gap-2.5 transition-all cursor-pointer group"
-            >
-              <Mail className="w-4 h-4 text-[#ff7235] shrink-0" />
-              <span className="truncate">{emailAddress}</span>
-              {copied ? (
-                <Check className="w-4 h-4 text-emerald-400 shrink-0" />
-              ) : (
-                <Copy className="w-4 h-4 text-[#adb3b7] group-hover:text-white transition-colors shrink-0" />
-              )}
-            </button>
-
+          <div className="flex flex-col sm:flex-row sm:flex-wrap items-stretch sm:items-center justify-center gap-2.5 sm:gap-3.5 max-w-md sm:max-w-none mx-auto">
             <a
-              href="https://t.me/ALMotion3D"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="px-7 py-3.5 rounded-full bg-gradient-to-r from-[#ff7235] to-[#ffa043] text-black font-semibold text-xs sm:text-sm shadow-lg shadow-[#ff7235]/20 hover:shadow-[#ff7235]/35 hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-2"
+              href={`mailto:${CV_METADATA.email}?subject=Mobile%20UX%2FUI%20Role%20Inquiry`}
+              className="tm-press min-h-[48px] w-full sm:w-auto px-5 sm:px-6 py-3 rounded-xl bg-[#ff7235] hover:bg-[#ff834d] text-[#08090a] text-sm font-semibold inline-flex items-center justify-center gap-2 transition-colors"
             >
-              <span>Book a Call on Telegram</span>
-              <ArrowUpRight className="w-4 h-4 shrink-0" />
+              <Mail className="w-4 h-4 shrink-0" aria-hidden="true" />
+              <span className="truncate">{CV_METADATA.email}</span>
             </a>
+
+            <div className="grid grid-cols-2 sm:contents gap-2.5">
+              <button
+                type="button"
+                onClick={handleCopyEmail}
+                className="tm-press min-h-[48px] px-3 sm:px-4 py-3 rounded-xl bg-white/[0.05] hover:bg-white/[0.1] border border-white/12 text-[#f2f5f1] text-xs font-mono inline-flex items-center justify-center gap-2 transition-colors"
+              >
+                {copied ? (
+                  <>
+                    <Check className="w-4 h-4 text-emerald-400 shrink-0" aria-hidden="true" />
+                    Copied
+                  </>
+                ) : (
+                  <>
+                    <Copy className="w-4 h-4 text-[#adb3b7] shrink-0" aria-hidden="true" />
+                    Copy Email
+                  </>
+                )}
+              </button>
+
+              <a
+                href={CV_METADATA.telegram}
+                target="_blank"
+                rel="noreferrer"
+                title="Telegram @ALMotion3D"
+                aria-label="Open Telegram @ALMotion3D"
+                className="tm-press min-h-[48px] px-3 sm:px-5 py-3 rounded-xl bg-white/[0.05] hover:bg-white/[0.1] border border-white/12 text-[#f2f5f1] text-xs font-mono inline-flex items-center justify-center gap-2 transition-colors"
+              >
+                <Send className="w-3.5 h-3.5 text-[#ff7235] shrink-0" aria-hidden="true" />
+                <span className="sm:hidden">Telegram</span>
+                <span className="hidden sm:inline">Telegram (@ALMotion3D)</span>
+              </a>
+            </div>
           </div>
         </div>
 
-        {/* Footer Bottom Bar */}
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-6 pt-4 text-xs font-mono text-[#adb3b7]">
-          <div className="flex items-center gap-2">
-            <span>© {new Date().getFullYear()} ANDRII LIEBIHA</span>
-            <span>•</span>
-            <span className="text-[#e7ece5]">PRODUCT DESIGN ARCHITECT</span>
+        {/* Bottom Metadata Bar */}
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-4 pt-6 border-t border-white/[0.07] text-xs font-mono text-[#adb3b7] text-center sm:text-left">
+          <div>
+            Andrii Liebiha · {CV_METADATA.location}
           </div>
 
-          {/* Social Links */}
-          <div className="flex items-center gap-6">
+          <div className="flex flex-wrap items-center justify-center sm:justify-end gap-4 sm:gap-5">
             <a
-              href="https://www.behance.net/ALMotion3D"
+              href={CV_METADATA.behance}
               target="_blank"
-              rel="noopener noreferrer"
-              className="text-[#adb3b7] hover:text-[#ff7235] transition-colors flex items-center gap-1"
+              rel="noreferrer"
+              className="min-h-[44px] inline-flex items-center gap-1 hover:text-[#f2f5f1] transition-colors"
             >
-              <span>Behance</span>
-              <ArrowUpRight className="w-3 h-3" />
+              Behance
+              <ArrowUpRight className="w-3.5 h-3.5" aria-hidden="true" />
             </a>
-            <a
-              href="https://linkedin.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-[#adb3b7] hover:text-[#ff7235] transition-colors flex items-center gap-1"
+            <Link
+              href="/cv"
+              className="min-h-[44px] inline-flex items-center gap-1.5 hover:text-[#f2f5f1] transition-colors"
             >
-              <span>LinkedIn</span>
-              <ArrowUpRight className="w-3 h-3" />
-            </a>
-            <a
-              href="https://t.me/ALMotion3D"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-[#adb3b7] hover:text-[#ff7235] transition-colors flex items-center gap-1"
-            >
-              <span>Telegram</span>
-              <ArrowUpRight className="w-3 h-3" />
-            </a>
+              <FileText className="w-3.5 h-3.5 text-[#ff7235]" aria-hidden="true" />
+              Resume / CV
+            </Link>
             <button
+              type="button"
               onClick={scrollToTop}
-              className="w-11 h-11 flex items-center justify-center rounded-full bg-white/5 border border-[#adb3b7]/20 text-[#adb3b7] hover:text-white hover:bg-white/10 active:scale-90 transition-all cursor-pointer"
-              aria-label="Back to top"
+              className="min-h-[44px] inline-flex items-center gap-1.5 hover:text-[#f2f5f1] transition-colors"
+              aria-label="Scroll back to top"
             >
-              <ArrowUp className="w-3.5 h-3.5" />
+              Top
+              <ArrowUp className="w-3.5 h-3.5" aria-hidden="true" />
             </button>
           </div>
         </div>

@@ -12,8 +12,8 @@ import { PORTFOLIO_HERO, EXPERIENCE_TIMELINE, CV_METADATA, TOOLS_MATRIX } from "
 export async function createCvDocxBlob(): Promise<Blob> {
   const doc = new Document({
     creator: "Andrii Liebiha",
-    title: "Andrii Liebiha - Senior Product Designer & Mobile Systems Architect CV",
-    description: "Curriculum Vitae of Andrii Liebiha - Senior Product Designer, Mobile App UX, Systems Architect",
+    title: "Andrii Liebiha - Senior Mobile UX/UI Designer CV",
+    description: "Curriculum Vitae of Andrii Liebiha - Senior Mobile UX/UI Designer, iOS & Android Product Design, Interactive Motion & 3D UI",
     styles: {
       default: {
         document: {
@@ -66,10 +66,10 @@ export async function createCvDocxBlob(): Promise<Blob> {
             spacing: { after: 80 },
             children: [
               new TextRun({
-                text: "Senior Product Designer & Mobile Systems Architect",
+                text: PORTFOLIO_HERO.role,
                 bold: true,
                 size: 24, // 12pt
-                color: "2563EB"
+                color: "C2410C"
               })
             ]
           }),
@@ -93,7 +93,7 @@ export async function createCvDocxBlob(): Promise<Blob> {
             spacing: { after: 300 },
             children: [
               new TextRun({
-                text: "Portfolio: andriiliebiha.com  •  Behance: behance.net/ALMotion3D  •  Direct inquiries upon request",
+                text: `Email: ${CV_METADATA.email}  ·  Behance: behance.net/ALMotion3D  ·  Telegram: t.me/ALMotion3D`,
                 size: 18,
                 color: "6B7280"
               })
@@ -150,10 +150,10 @@ export async function createCvDocxBlob(): Promise<Blob> {
                   color: "111827"
                 }),
                 new TextRun({
-                  text: ` — ${exp.company}`,
+                  text: ` · ${exp.company}`,
                   bold: true,
                   size: 22,
-                  color: "2563EB"
+                  color: "C2410C"
                 }),
                 new TextRun({
                   text: `  (${exp.period})`,
@@ -256,7 +256,7 @@ export async function createCvDocxBlob(): Promise<Blob> {
             spacing: { after: 60 },
             children: [
               new TextRun({
-                text: `${CV_METADATA.education.degree} — ${CV_METADATA.education.field}`,
+                text: `${CV_METADATA.education.degree} · ${CV_METADATA.education.field}`,
                 bold: true,
                 size: 21,
                 color: "111827"

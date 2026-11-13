@@ -61,7 +61,7 @@ export function RiveOrbBeacon({ size = 28, className = "" }: RiveOrbBeaconProps)
       onPointerEnter={handlePointerEnter}
       onPointerLeave={handlePointerLeave}
       onClick={handleClick}
-      title="Rive Vector State Machine — Active System Core"
+      title="Rive Vector State Machine · Active System Core"
     >
       <RiveCanvas
         src="/rive/orb-beacon.riv"

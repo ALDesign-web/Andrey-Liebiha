@@ -1,207 +1,273 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
+import Link from "next/link";
 import Image from "next/image";
-import { motion } from "framer-motion";
-import { ArrowUpRight, Eye, Lock, ShieldCheck } from "lucide-react";
+import { ArrowRight, Lock, Smartphone, Globe, Layers } from "lucide-react";
 import { PROJECTS_DATA } from "@/data/portfolioData";
-import { ProjectItem } from "@/types/portfolio";
-import { ProjectModal } from "./ProjectModal";
 
 export function ProjectsShowcase() {
-  const [activeModalProject, setActiveModalProject] = useState<ProjectItem | null>(null);
+  const mahjong = PROJECTS_DATA.find((p) => p.slug === "expedition-mahjong") ?? PROJECTS_DATA[0];
+  const bookify = PROJECTS_DATA.find((p) => p.slug === "bookify") ?? PROJECTS_DATA[1];
+  const kinetix = PROJECTS_DATA.find((p) => p.slug === "kinetix-ai") ?? PROJECTS_DATA[2];
 
   return (
-    <section id="projects" className="py-24 relative overflow-hidden">
-      {/* Background ambient lighting */}
-      <div className="absolute top-1/3 right-0 w-[500px] h-[500px] glow-spot-orange pointer-events-none opacity-20 blur-3xl" />
-      <div className="absolute bottom-1/4 left-0 w-[500px] h-[500px] glow-spot-cyan pointer-events-none opacity-20 blur-3xl" />
-
-      <div className="max-w-7xl mx-auto px-6 sm:px-8 relative">
-        {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
-          <div>
-            <div className="flex items-center gap-2 text-xs font-mono text-[#ff7235] uppercase tracking-widest mb-3">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#ff7235]" />
-              FEATURED CASE STUDIES &amp; PRODUCTION CRAFT
-            </div>
-            <h2 className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight text-white uppercase">
-              Selected Works <br />
-              <span className="text-gradient-orange">&amp; Quantifiable Impact</span>
+    <section
+      id="work"
+      className="py-16 sm:py-28 bg-[#0d0f12] border-b border-white/[0.06] relative"
+    >
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Section Heading */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 sm:gap-6 mb-10 sm:mb-14">
+          <div className="max-w-2xl">
+            <span className="inline-block text-xs font-mono uppercase tracking-widest text-[#ff7235] mb-3">
+              Selected Work · Commercial & Study
+            </span>
+            <h2 className="text-3xl sm:text-5xl font-semibold tracking-tight text-[#f2f5f1] leading-[1.08]">
+              Mobile products shaped for touch and clarity.
             </h2>
           </div>
-
           <p className="text-sm sm:text-base text-[#adb3b7] max-w-md leading-relaxed">
-            Detailed 0-to-1 case studies demonstrating conversion optimization, tactile 3D mobile experiences, 
-            and AI-native SaaS workbench architectures.
+            Live shipped products led end-to-end across mobile UX/UI, tactile 3D craft, and conversion architecture, followed by a conceptual systems study.
           </p>
         </div>
 
-        {/* Project Cards Bento Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10">
-          {PROJECTS_DATA.map((project, pIdx) => (
-            <motion.article
-              key={project.id}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.15 }}
-              transition={{ duration: 0.5, delay: (pIdx % 2) * 0.1, ease: [0.16, 1, 0.3, 1] }}
-              whileHover={{ y: -6, transition: { duration: 0.25, ease: "easeOut" } }}
-              onClick={() => setActiveModalProject(project)}
-              className="group relative rounded-3xl bg-white/[0.02] backdrop-blur-md border border-[#adb3b7]/12 hover:border-[#ff7235]/45 shadow-[inset_0_1px_0_rgba(173,179,183,0.08)] p-5 sm:p-6 transition-all duration-300 hover:shadow-[0_16px_40px_rgba(255,114,53,0.12)] cursor-pointer flex flex-col justify-between overflow-hidden"
+        {/* Flagship 1: Expedition Mahjong (Mobile Game UX/UI & 3D Craft) */}
+        <article className="tm-hover-lift rounded-3xl bg-[#121316] border border-white/[0.09] overflow-hidden mb-8">
+          <div className="grid grid-cols-1 lg:grid-cols-12 items-stretch">
+            {/* Visual Showcase */}
+            <Link
+              href={`/work/${mahjong.slug}`}
+              className="lg:col-span-7 bg-[#08090a] p-4 py-6 sm:p-10 flex items-center justify-center relative overflow-hidden group border-b lg:border-b-0 lg:border-r border-white/[0.07]"
+              aria-label={`Open ${mahjong.title} case study`}
             >
-                {/* Ambient Top Spotlight Sheen */}
-                <div className="absolute -inset-px rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-b from-[#ff7235]/15 via-transparent to-transparent pointer-events-none" />
+              <div className="grid grid-cols-3 gap-2 sm:gap-5 w-full max-w-[580px] items-center">
+                <div className="relative aspect-[9/19.5] rounded-2xl overflow-hidden border border-white/10 bg-[#121316] translate-y-3 group-hover:translate-y-1 transition-transform duration-300">
+                  <Image
+                    src="/projects/mahjong/screens/02_streak_protection.webp"
+                    alt="Expedition Mahjong recovery bottom sheet overlay"
+                    fill
+                    sizes="(max-width: 1024px) 28vw, 180px"
+                    className="object-cover"
+                  />
+                </div>
+                <div className="relative aspect-[9/19.5] rounded-2xl overflow-hidden border border-[#ff7235]/35 bg-[#121316] -translate-y-2 shadow-2xl group-hover:-translate-y-4 transition-transform duration-300">
+                  <Image
+                    src="/projects/mahjong/screens/01_victory_celebration.webp"
+                    alt="Expedition Mahjong portrait victory celebration screen"
+                    fill
+                    sizes="(max-width: 1024px) 30vw, 200px"
+                    className="object-cover"
+                  />
+                </div>
+                <div className="relative aspect-[9/19.5] rounded-2xl overflow-hidden border border-white/10 bg-[#121316] translate-y-4 group-hover:translate-y-2 transition-transform duration-300">
+                  <Image
+                    src="/projects/mahjong/screens/04_material_store.webp"
+                    alt="Expedition Mahjong PBR material store and card deck"
+                    fill
+                    sizes="(max-width: 1024px) 28vw, 180px"
+                    className="object-cover"
+                  />
+                </div>
+              </div>
+            </Link>
 
-                <div className="relative z-10">
-                  {/* Card Meta Header */}
-                  <div className="flex items-center justify-between gap-2 mb-3.5">
-                    <span className="font-mono text-xs font-bold text-[#ff7235] bg-[#ff7235]/10 px-2.5 py-1 rounded-md border border-[#ff7235]/25">
-                      {`${project.number} // 2026`}
-                    </span>
-                    <span className="font-mono text-xs text-[#adb3b7] bg-white/[0.04] px-2.5 py-1 rounded-md border border-[#adb3b7]/18">
-                      {project.categoryLabel}
-                    </span>
-                  </div>
+            {/* Editorial Copy & Honest Specs */}
+            <div className="lg:col-span-5 p-6 sm:p-10 flex flex-col justify-between gap-6">
+              <div>
+                <div className="flex flex-wrap items-center gap-2 mb-4">
+                  <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#ff7235]/12 border border-[#ff7235]/30 text-xs font-mono text-[#ff8547]">
+                    <Smartphone className="w-3.5 h-3.5" aria-hidden="true" />
+                    {mahjong.stageLabel}
+                  </span>
+                  <span className="text-xs font-mono text-[#adb3b7]">
+                    {mahjong.platform} · {mahjong.year}
+                  </span>
+                </div>
 
-                  {/* Image Card Container (16:9 full fit) */}
-                  <div className="relative w-full aspect-[16/9] rounded-2xl overflow-hidden mb-6 bg-black border border-[#adb3b7]/15 shadow-inner">
-                    <Image
-                      src={project.imageSrc}
-                      alt={project.title}
-                      fill
-                      priority
-                      className="object-contain transition-transform duration-500 ease-out group-hover:scale-[1.02]"
-                      sizes="(max-width: 768px) 100vw, 50vw"
-                    />
+                <h3 className="text-2xl sm:text-3xl font-semibold tracking-tight text-[#f2f5f1] mb-2">
+                  {mahjong.title}
+                </h3>
+                <p className="text-xs font-mono text-[#adb3b7] mb-4">
+                  {mahjong.subtitle}
+                </p>
+                <p className="text-sm sm:text-base text-[#adb3b7] leading-relaxed mb-6">
+                  {mahjong.summary}
+                </p>
 
-                    {/* Subtle Gradient Overlay */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-40 group-hover:opacity-10 transition-opacity pointer-events-none" />
-
-                    {/* Hover Action Badge */}
-                    <div className="absolute bottom-3 right-3 opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-1.5 group-hover:translate-y-0">
-                      <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white text-black font-semibold text-xs shadow-xl backdrop-blur-md">
-                        <Eye className="w-3.5 h-3.5" />
-                        <span>View Deep Dive ({project.slides.length} Slides)</span>
+                {/* Honest Craft Specs */}
+                <div className="grid grid-cols-3 gap-2.5 sm:gap-3 py-4 border-y border-white/[0.08]">
+                  {mahjong.metrics.map((metric) => (
+                    <div key={metric.label}>
+                      <div className="text-base sm:text-xl font-semibold font-mono text-[#f2f5f1] tabular-nums leading-tight">
+                        {metric.value}
+                      </div>
+                      <div className="text-[11px] font-mono text-[#adb3b7] mt-0.5 leading-snug">
+                        {metric.label}
                       </div>
                     </div>
-                  </div>
-
-                  {/* Title & Description */}
-                  <div className="space-y-2 mb-6">
-                    <div className="flex items-center justify-between gap-2">
-                      <h3 className="text-2xl sm:text-3xl font-black text-white group-hover:text-[#ff7235] transition-colors tracking-tight">
-                        {project.title}
-                      </h3>
-                      <ArrowUpRight className="w-5 h-5 text-[#adb3b7]/60 group-hover:text-[#ff7235] transition-all shrink-0 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                    </div>
-                    <p className="text-[#adb3b7] text-sm leading-relaxed line-clamp-2">
-                      {project.subtitle}
-                    </p>
-                  </div>
+                  ))}
                 </div>
+              </div>
 
-                {/* Bottom Row: Metrics & Tools Chips */}
-                <div className="pt-4 border-t border-[#adb3b7]/15 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-                  {/* Primary Metric Pill */}
-                  <div className="flex items-center gap-2">
-                    <span className="text-sm font-bold text-emerald-400 font-mono tabular-nums">
-                      {project.metrics[0]?.value}
-                    </span>
-                    <span className="text-xs text-[#adb3b7]">
-                      {project.metrics[0]?.label}
-                    </span>
-                  </div>
-
-                  {/* Tools Stack Tags */}
-                  <div className="flex flex-wrap gap-1.5">
-                    {project.tools.slice(0, 3).map((tool, idx) => (
-                      <span
-                        key={idx}
-                        className="px-2 py-0.5 rounded bg-white/[0.04] border border-[#adb3b7]/18 text-[10px] font-mono text-[#adb3b7]"
-                      >
-                        {tool.split(" ")[0]}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              </motion.article>
-            ))}
-
-            {/* NDA / Confidential Archive Card */}
-            <motion.article
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.15 }}
-              transition={{ duration: 0.5, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-              whileHover={{ y: -6, transition: { duration: 0.25, ease: "easeOut" } }}
-              className="relative rounded-3xl bg-gradient-to-br from-[#121316] to-[#08090a] border border-dashed border-[#adb3b7]/25 p-6 sm:p-8 flex flex-col justify-between overflow-hidden group hover:border-[#ff7235]/45 transition-colors duration-300"
-            >
-                {/* Ambient glow in corner */}
-                <div className="absolute top-0 right-0 w-48 h-48 bg-[#ff7235]/10 rounded-full blur-3xl pointer-events-none" />
-
-                <div>
-                  {/* Top Bar with NDA Badge */}
-                  <div className="flex items-center justify-between gap-2 mb-6">
-                    <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-[#ffa043]/10 border border-[#ffa043]/20 text-[#ffa043] font-mono text-xs font-semibold">
-                      <Lock className="w-3.5 h-3.5" />
-                      <span>CONFIDENTIAL &amp; PROPRIETARY</span>
-                    </div>
-                    <span className="text-xs font-mono text-[#adb3b7]/60">15+ ARCHIVED SYSTEMS</span>
-                  </div>
-
-                  {/* Headline */}
-                  <h3 className="text-2xl sm:text-3xl font-black text-white mb-3 tracking-tight">
-                    Enterprise Archive <br />
-                    <span className="text-[#adb3b7]">&amp; NDA Portfolio</span>
-                  </h3>
-
-                  <p className="text-sm text-[#adb3b7] leading-relaxed mb-6">
-                    In addition to the 3 public case studies presented above, I have engineered 
-                    15+ enterprise SaaS platforms, fintech checkout cores, and multi-brand design systems.
-                  </p>
-
-                  {/* List of Protected Domains */}
-                  <div className="space-y-2.5 mb-6">
-                    <div className="flex items-center gap-2.5 text-xs text-[#adb3b7]">
-                      <ShieldCheck className="w-4 h-4 text-emerald-400 shrink-0" />
-                      <span>B2B Enterprise Workflow &amp; AI CRM Engines</span>
-                    </div>
-                    <div className="flex items-center gap-2.5 text-xs text-[#adb3b7]">
-                      <ShieldCheck className="w-4 h-4 text-emerald-400 shrink-0" />
-                      <span>Multi-Brand Token Systems for 40+ Engineering Squads</span>
-                    </div>
-                    <div className="flex items-center gap-2.5 text-xs text-[#adb3b7]">
-                      <ShieldCheck className="w-4 h-4 text-emerald-400 shrink-0" />
-                      <span>High-Security Cloud Analytics &amp; Telemetry Dashboards</span>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Bottom CTA */}
-                <div className="pt-6 border-t border-[#adb3b7]/15 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-                  <span className="text-xs text-[#adb3b7]/60 font-mono">
-                    Protected under Mutual NDA
-                  </span>
-                  <a
-                    href="#contact"
-                    className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-full bg-white/10 hover:bg-white/20 text-white text-xs font-semibold transition-all border border-[#adb3b7]/20 hover:scale-105"
-                  >
-                    <span>Request Private Walkthrough</span>
-                    <ArrowUpRight className="w-3.5 h-3.5" />
-                  </a>
-                </div>
-              </motion.article>
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pt-2">
+                <span className="text-xs font-mono text-[#adb3b7]">
+                  Thumb-zone UI · PBR materials · Bottom sheets
+                </span>
+                <Link
+                  href={`/work/${mahjong.slug}`}
+                  className="tm-press min-h-[44px] w-full sm:w-auto px-5 py-2.5 rounded-xl bg-[#ff7235] hover:bg-[#ff834d] text-[#08090a] text-sm font-semibold inline-flex items-center justify-center gap-2 transition-colors shrink-0"
+                >
+                  Read Case Study
+                  <ArrowRight className="w-4 h-4" aria-hidden="true" />
+                </Link>
+              </div>
+            </div>
           </div>
-      </div>
+        </article>
 
-      {/* Deep-Dive Modal */}
-      <ProjectModal
-        key={activeModalProject?.id || "empty-modal"}
-        project={activeModalProject}
-        onClose={() => setActiveModalProject(null)}
-      />
+        {/* Flagship 2: Bookify (Commercial Rebrand & CRO Engine) */}
+        <article className="tm-hover-lift rounded-3xl bg-[#121316] border border-white/[0.09] overflow-hidden mb-8">
+          <div className="grid grid-cols-1 lg:grid-cols-12 items-stretch">
+            {/* Editorial Copy & Verified Funnel Lift */}
+            <div className="lg:col-span-5 p-6 sm:p-10 flex flex-col justify-between gap-6 order-2 lg:order-1">
+              <div>
+                <div className="flex flex-wrap items-center gap-2 mb-4">
+                  <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/[0.06] border border-white/15 text-xs font-mono text-[#f2f5f1]">
+                    <Globe className="w-3.5 h-3.5 text-[#ff7235]" aria-hidden="true" />
+                    {bookify.stageLabel}
+                  </span>
+                  <span className="text-xs font-mono text-[#adb3b7]">
+                    {bookify.platform} · {bookify.year}
+                  </span>
+                </div>
+
+                <h3 className="text-2xl sm:text-3xl font-semibold tracking-tight text-[#f2f5f1] mb-2">
+                  {bookify.title}
+                </h3>
+                <p className="text-xs font-mono text-[#adb3b7] mb-4">
+                  {bookify.subtitle}
+                </p>
+                <p className="text-sm sm:text-base text-[#adb3b7] leading-relaxed mb-6">
+                  {bookify.summary}
+                </p>
+
+                {/* Verified Metrics */}
+                <div className="grid grid-cols-3 gap-2.5 sm:gap-3 py-4 border-y border-white/[0.08]">
+                  {bookify.metrics.map((metric) => (
+                    <div key={metric.label}>
+                      <div className="text-base sm:text-xl font-semibold font-mono text-[#ff7235] tabular-nums leading-tight">
+                        {metric.value}
+                      </div>
+                      <div className="text-[11px] font-mono text-[#adb3b7] mt-0.5 leading-snug">
+                        {metric.label}
+                      </div>
+                      <div className="text-[10px] font-mono text-[#adb3b7] leading-snug">
+                        {metric.change}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pt-2">
+                <span className="text-xs font-mono text-[#adb3b7]">
+                  Rebrand · Inline 3-field checkout
+                </span>
+                <Link
+                  href={`/work/${bookify.slug}`}
+                  className="tm-press min-h-[44px] w-full sm:w-auto px-5 py-2.5 rounded-xl bg-white/[0.07] hover:bg-white/[0.12] border border-white/15 text-[#f2f5f1] text-sm font-semibold inline-flex items-center justify-center gap-2 transition-colors shrink-0"
+                >
+                  Read Case Study
+                  <ArrowRight className="w-4 h-4 text-[#ff7235]" aria-hidden="true" />
+                </Link>
+              </div>
+            </div>
+
+            {/* Clean Bookify Product Visual */}
+            <Link
+              href={`/work/${bookify.slug}`}
+              className="lg:col-span-7 bg-[#08090a] p-4 sm:p-10 flex items-center justify-center relative overflow-hidden group border-b lg:border-b-0 lg:border-l border-white/[0.07] order-1 lg:order-2"
+              aria-label={`Open ${bookify.title} case study`}
+            >
+              <div className="relative w-full aspect-[16/12] rounded-2xl overflow-hidden border border-white/10 shadow-2xl group-hover:scale-[1.01] transition-transform duration-300">
+                <Image
+                  src="/projects/bookify/crop_checkout.webp"
+                  alt="Bookify product page featuring Joan Blaeu Atlas Maior with inline Purchase Now express tab"
+                  fill
+                  sizes="(max-width: 1024px) 92vw, 660px"
+                  className="object-cover object-top"
+                />
+              </div>
+            </Link>
+          </div>
+        </article>
+
+        {/* Secondary Row: Conceptual Study (Kinetix AI Studio) + Confidential Archive */}
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
+          {/* Kinetix AI Studio: Explicit Study Classification */}
+          <article className="md:col-span-7 tm-hover-lift rounded-3xl bg-[#121316] border border-white/[0.08] p-6 sm:p-8 flex flex-col sm:flex-row gap-6 items-start sm:items-center">
+            <Link
+              href={`/work/${kinetix.slug}`}
+              className="relative w-full sm:w-56 aspect-[4/3] rounded-2xl overflow-hidden border border-white/10 shrink-0 bg-[#08090a]"
+              aria-label={`Open ${kinetix.title} conceptual study`}
+            >
+              <Image
+                src={kinetix.imageSrc}
+                alt="Kinetix AI conceptual dark-mode telemetry dashboard exploration"
+                fill
+                sizes="(max-width: 640px) 90vw, 224px"
+                className="object-cover object-top"
+              />
+            </Link>
+
+            <div className="flex-1 flex flex-col justify-between gap-3">
+              <div>
+                <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-white/[0.05] border border-white/10 text-[11px] font-mono text-[#adb3b7] mb-3">
+                  <Layers className="w-3 h-3 text-[#ff7235]" aria-hidden="true" />
+                  {kinetix.stageLabel}
+                </span>
+                <h3 className="text-xl font-semibold text-[#f2f5f1] mb-1.5">
+                  {kinetix.title}
+                </h3>
+                <p className="text-sm text-[#adb3b7] leading-relaxed">
+                  {kinetix.summary}
+                </p>
+              </div>
+              <Link
+                href={`/work/${kinetix.slug}`}
+                className="min-h-[44px] inline-flex items-center gap-1.5 text-sm font-mono text-[#ff8547] hover:text-[#ffa043] transition-colors w-fit"
+              >
+                Inspect Study Screens
+                <ArrowRight className="w-4 h-4" aria-hidden="true" />
+              </Link>
+            </div>
+          </article>
+
+          {/* Confidential Commercial NDA Note */}
+          <article className="md:col-span-5 rounded-3xl bg-[#121316]/60 border border-dashed border-white/15 p-6 sm:p-8 flex flex-col justify-between gap-4">
+            <div>
+              <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-[#adb3b7] mb-3">
+                <Lock className="w-3.5 h-3.5 text-[#ff7235]" aria-hidden="true" />
+                Confidential Work
+              </div>
+              <h3 className="text-xl font-semibold text-[#f2f5f1] mb-2">
+                Aircall, Fintech & Private Mobile Flows
+              </h3>
+              <p className="text-sm text-[#adb3b7] leading-relaxed">
+                Additional native mobile flows, AI communication tools, and internal fintech prototypes under NDA are available for live screen-share review during interviews.
+              </p>
+            </div>
+            <Link
+              href="/#contact"
+              className="min-h-[44px] inline-flex items-center gap-2 text-sm font-mono text-[#f2f5f1] hover:text-[#ff7235] transition-colors w-fit"
+            >
+              Request Walkthrough
+              <ArrowRight className="w-4 h-4 text-[#ff7235]" aria-hidden="true" />
+            </Link>
+          </article>
+        </div>
+      </div>
     </section>
   );
 }
-

@@ -13,8 +13,8 @@ import {
 async function buildDocx() {
   const doc = new Document({
     creator: "Andrii Liebiha",
-    title: "Andrii Liebiha - Senior Product Designer & Mobile Systems Architect CV",
-    description: "Curriculum Vitae of Andrii Liebiha - Senior Product Designer, Mobile App UX, Systems Architect",
+    title: "Andrii Liebiha - Senior Mobile UX/UI Designer CV",
+    description: "Curriculum Vitae of Andrii Liebiha - Senior Mobile UX/UI Designer, iOS & Android Product Design, Interactive Motion & 3D UI",
     styles: {
       default: {
         document: {
@@ -64,19 +64,19 @@ async function buildDocx() {
             spacing: { after: 80 },
             children: [
               new TextRun({
-                text: "Senior Product Designer & Mobile Systems Architect",
+                text: "Senior Mobile UX/UI Designer",
                 bold: true,
                 size: 24,
-                color: "2563EB"
+                color: "C2410C"
               })
             ]
           }),
           new Paragraph({
             alignment: AlignmentType.CENTER,
-            spacing: { after: 200 },
+            spacing: { after: 160 },
             children: [
               new TextRun({
-                text: "Available for Senior / Lead Product Design & Mobile Roles | Remote / Hybrid (Worldwide) | English: Fluent (C1/C2)",
+                text: "Open to Senior Mobile UX/UI & Product Design Roles | Remote / Hybrid (Worldwide) | English: Fluent (C1/C2)",
                 size: 18,
                 color: "4B5563"
               })
@@ -84,10 +84,10 @@ async function buildDocx() {
           }),
           new Paragraph({
             alignment: AlignmentType.CENTER,
-            spacing: { after: 300 },
+            spacing: { after: 280 },
             children: [
               new TextRun({
-                text: "Portfolio: andriiliebiha.com  •  Behance: behance.net/ALMotion3D  •  Direct inquiries upon request",
+                text: "Email: liebihadesign@gmail.com  ·  Behance: behance.net/ALMotion3D  ·  Telegram: t.me/ALMotion3D",
                 size: 18,
                 color: "6B7280"
               })
@@ -95,7 +95,7 @@ async function buildDocx() {
           }),
           new Paragraph({
             heading: HeadingLevel.HEADING_2,
-            spacing: { before: 200, after: 120 },
+            spacing: { before: 180, after: 120 },
             children: [
               new TextRun({
                 text: "PROFESSIONAL SUMMARY",
@@ -106,10 +106,10 @@ async function buildDocx() {
             ]
           }),
           new Paragraph({
-            spacing: { after: 240 },
+            spacing: { after: 220 },
             children: [
               new TextRun({
-                text: "Senior / Lead Product Designer & Systems Architect with formal academic qualification (Higher Degree in Product Design) and 7+ years of commercial craft. Leading 0-to-1 mobile applications (iOS & Android), spatial 3D experiences, and web platforms at Vortex Lab, with past contracts at Aircall (AI Call Center SaaS), Fintech, and E-Commerce. Active Creative Developer engineering personal Fintech software with Python and React to quantitatively validate product hypotheses with data.",
+                text: "Senior Mobile UX/UI Designer with 7+ years of commercial experience and a Higher Degree in Product Design. Focused on native-feeling mobile experiences (iOS HIG & Material 3), interactive motion systems, and practical code prototypes built in React and Rive.",
                 size: 21,
                 color: "374151"
               })
@@ -117,7 +117,7 @@ async function buildDocx() {
           }),
           new Paragraph({
             heading: HeadingLevel.HEADING_2,
-            spacing: { before: 240, after: 140 },
+            spacing: { before: 220, after: 140 },
             children: [
               new TextRun({
                 text: "COMMERCIAL EXPERIENCE",
@@ -127,24 +127,23 @@ async function buildDocx() {
               })
             ]
           }),
-          // Vortex Lab
           new Paragraph({
-            spacing: { before: 180, after: 40 },
+            spacing: { before: 160, after: 40 },
             children: [
               new TextRun({
-                text: "Senior / Lead Product Designer & Mobile Systems Architect",
+                text: "Senior Mobile UX/UI Designer",
                 bold: true,
                 size: 22,
                 color: "111827"
               }),
               new TextRun({
-                text: " — Vortex Lab (Mobile Apps, Spatial 3D & Web)",
+                text: " · Vortex Lab s.r.o. (Prague, CZ · Mobile Games & Apps)",
                 bold: true,
                 size: 22,
-                color: "2563EB"
+                color: "C2410C"
               }),
               new TextRun({
-                text: "  (2023 - Present)",
+                text: "  (2025 - Present)",
                 italics: true,
                 size: 20,
                 color: "6B7280"
@@ -155,72 +154,84 @@ async function buildDocx() {
             spacing: { after: 80 },
             children: [
               new TextRun({
-                text: "Leading 0-to-1 mobile application architecture (iOS & Android), spatial 3D systems, and cross-platform web platforms. Active Creative Developer building personal Fintech software with Python and React.",
+                text: "Leading mobile product design, 3D visual craft, and cross-platform UI systems for Expedition Mahjong (200 hand-crafted levels, 43+ portrait screens) alongside interactive code prototypes in React and Rive.",
                 size: 21,
                 color: "4B5563"
               })
             ]
           }),
-          new Paragraph({
-            bullet: { level: 0 },
-            spacing: { before: 30, after: 30 },
-            children: [
-              new TextRun({
-                text: "Architecting 0-to-1 mobile applications (iOS & Android), spatial 3D interfaces, and thumb-zone ergonomic systems compliant with iOS 18+ HIG and Material 3.",
-                size: 20,
-                color: "374151"
+          ...[
+            "Designed 43+ shipped mobile screens and 8 bespoke PBR tabletop/tile suites (Imperial Jade, Obsidian, Carrara Marble, Royal Velvet, Porcelain, Antique Ivory, Teak Wood & Terracotta) for Expedition Mahjong across 200 levels.",
+            "Built portrait thumb-zone navigation, non-intrusive bottom-sheet recovery flows, and tactile audio-haptic preference systems synced with Apple & Google Play.",
+            "Crafted fair-play monetization flows featuring the $1.99/mo Amethyst VIP subscription paywall, voluntary rewarded boosters, and daily login retention modals.",
+            "Prototyped interactive mobile gestures, bottom sheets, and Rive state machines directly in React/TypeScript for realistic engineering handoff."
+          ].map(
+            (text) =>
+              new Paragraph({
+                bullet: { level: 0 },
+                spacing: { before: 30, after: 30 },
+                children: [new TextRun({ text, size: 20, color: "374151" })]
               })
-            ]
-          }),
-          new Paragraph({
-            bullet: { level: 0 },
-            spacing: { before: 30, after: 30 },
-            children: [
-              new TextRun({
-                text: "Engineered tactile mobile gaming & utility interfaces featuring physical PBR shaders, dynamic elevation lighting, and sensory audio-haptic feedback.",
-                size: 20,
-                color: "374151"
-              })
-            ]
-          }),
-          new Paragraph({
-            bullet: { level: 0 },
-            spacing: { before: 30, after: 30 },
-            children: [
-              new TextRun({
-                text: "Built unified Figma token pipelines syncing mobile squads (SwiftUI & Jetpack Compose design tokens) and web squads with 100% token consistency.",
-                size: 20,
-                color: "374151"
-              })
-            ]
-          }),
-          new Paragraph({
-            bullet: { level: 0 },
-            spacing: { before: 30, after: 30 },
-            children: [
-              new TextRun({
-                text: "Developing personal Fintech software with Python and React, writing automated data-validation tests to backtest and quantitatively validate UX/UI product hypotheses.",
-                size: 20,
-                color: "374151"
-              })
-            ]
-          }),
-
-          // Aircall
+          ),
           new Paragraph({
             spacing: { before: 180, after: 40 },
             children: [
               new TextRun({
-                text: "Senior Product & UX/UI Designer",
+                text: "Lead Product & Mobile UX/UI Designer",
                 bold: true,
                 size: 22,
                 color: "111827"
               }),
               new TextRun({
-                text: " — Aircall (AI Call Center SaaS) • Fintech & Mobile E-Commerce",
+                text: " · Bookify («Книгарня Небо») & Independent Product Studio",
                 bold: true,
                 size: 22,
-                color: "2563EB"
+                color: "C2410C"
+              }),
+              new TextRun({
+                text: "  (2023 - 2025)",
+                italics: true,
+                size: 20,
+                color: "6B7280"
+              })
+            ]
+          }),
+          new Paragraph({
+            spacing: { after: 80 },
+            children: [
+              new TextRun({
+                text: "Led the digital rebrand of Kyiv art bookstore «Книгарня Небо» into Bookify (bookify.com.ua) and independent mobile R&D (early prototyping leading into Vortex Lab s.r.o. incorporation + Kinetix AI dark-surface system studies).",
+                size: 21,
+                color: "4B5563"
+              })
+            ]
+          }),
+          ...[
+            "Executed Bookify (bookify.com.ua / nebobookshop.com.ua) digital rebrand and inline Purchase Now checkout, lifting CVR to 5.8% (+141.6%), cutting checkout time to 45s (-58.3%), and growing store AOV to ₴1,595 (+28.5%).",
+            "Designed dual-locale editorial storefront flows supporting both regional Ukrainian art books (₴400–₴600, Nova Poshta branch shipping) and collector editions ($260 Atlas Maior).",
+            "Led early mobile R&D, shader prototyping, and dark-mode UI system studies (Kinetix AI Studio) on an 8pt tokenized component architecture."
+          ].map(
+            (text) =>
+              new Paragraph({
+                bullet: { level: 0 },
+                spacing: { before: 30, after: 30 },
+                children: [new TextRun({ text, size: 20, color: "374151" })]
+              })
+          ),
+          new Paragraph({
+            spacing: { before: 180, after: 40 },
+            children: [
+              new TextRun({
+                text: "Product UI/UX Designer",
+                bold: true,
+                size: 22,
+                color: "111827"
+              }),
+              new TextRun({
+                text: " · Aircall · Fintech & SaaS Product Contracts",
+                bold: true,
+                size: 22,
+                color: "C2410C"
               }),
               new TextRun({
                 text: "  (2021 - 2023)",
@@ -234,75 +245,41 @@ async function buildDocx() {
             spacing: { after: 80 },
             children: [
               new TextRun({
-                text: "Designed customer communication workflows, mobile-responsive interaction tooling, and B2B SaaS dashboards for Aircall, alongside high-impact contracts in Fintech and E-Commerce.",
+                text: "Delivered communication workflows, mobile companion tools, and dense operational SaaS interfaces with a focus on keyboard speed, scannability, and reduced task friction.",
                 size: 21,
                 color: "4B5563"
               })
             ]
           }),
-          new Paragraph({
-            bullet: { level: 0 },
-            spacing: { before: 30, after: 30 },
-            children: [
-              new TextRun({
-                text: "Designed call-handling workflows, AI voice transcription dashboards, and companion mobile interaction patterns for enterprise teams.",
-                size: 20,
-                color: "374151"
+          ...[
+            "Designed call-handling interfaces, AI call-summary workflows, and mobile companion views for enterprise communication teams.",
+            "Created dense fintech operational screens with clear keyboard navigation, scannable tables, and verified contrast ratios.",
+            "Standardized shared Figma variable libraries and component states across web and mobile surfaces."
+          ].map(
+            (text) =>
+              new Paragraph({
+                bullet: { level: 0 },
+                spacing: { before: 30, after: 30 },
+                children: [new TextRun({ text, size: 20, color: "374151" })]
               })
-            ]
-          }),
-          new Paragraph({
-            bullet: { level: 0 },
-            spacing: { before: 30, after: 30 },
-            children: [
-              new TextRun({
-                text: "Engineered high-converting mobile-first purchase funnels for e-commerce brands, cutting checkout velocity to 45s (-58.3% time-to-buy) and lifting CVR by +141.6%.",
-                size: 20,
-                color: "374151"
-              })
-            ]
-          }),
-          new Paragraph({
-            bullet: { level: 0 },
-            spacing: { before: 30, after: 30 },
-            children: [
-              new TextRun({
-                text: "Architected data-dense dashboards for fintech platforms with keyboard-first navigation and dark-mode ergonomics.",
-                size: 20,
-                color: "374151"
-              })
-            ]
-          }),
-          new Paragraph({
-            bullet: { level: 0 },
-            spacing: { before: 30, after: 30 },
-            children: [
-              new TextRun({
-                text: "Partnered directly with mobile and frontend engineering squads to maintain 100% fidelity between design tokens and production code.",
-                size: 20,
-                color: "374151"
-              })
-            ]
-          }),
-
-          // Freelance / Commercial
+          ),
           new Paragraph({
             spacing: { before: 180, after: 40 },
             children: [
               new TextRun({
-                text: "Product & Digital Designer",
+                text: "UI/UX & 3D Motion Designer",
                 bold: true,
                 size: 22,
                 color: "111827"
               }),
               new TextRun({
-                text: " — Commercial Products & Venture Studios",
+                text: " · Digital Agencies & Production Studios",
                 bold: true,
                 size: 22,
-                color: "2563EB"
+                color: "C2410C"
               }),
               new TextRun({
-                text: "  (2018 - 2021)",
+                text: "  (2019 - 2021)",
                 italics: true,
                 size: 20,
                 color: "6B7280"
@@ -313,53 +290,30 @@ async function buildDocx() {
             spacing: { after: 80 },
             children: [
               new TextRun({
-                text: "Delivered mobile application concepts, brand identity systems, and conversion-focused web layouts for international commercial clients.",
+                text: "Built clickable mobile application prototypes, brand identity systems, and 3D motion assets grounded in formal industrial and product design education.",
                 size: 21,
                 color: "4B5563"
               })
             ]
           }),
-          new Paragraph({
-            bullet: { level: 0 },
-            spacing: { before: 30, after: 30 },
-            children: [
-              new TextRun({
-                text: "Crafted comprehensive brand packages, vector asset systems, and responsive digital interfaces for international commercial clients.",
-                size: 20,
-                color: "374151"
+          ...[
+            "Created clickable mobile app prototypes, component libraries, and user journey specs for consumer products.",
+            "Delivered complete brand systems, custom iconography, 3D visual motion assets, and responsive storefronts.",
+            "Applied academic training (Higher Degree in Product Design) to physical-to-digital hierarchy, ergonomics, and typography."
+          ].map(
+            (text) =>
+              new Paragraph({
+                bullet: { level: 0 },
+                spacing: { before: 30, after: 30 },
+                children: [new TextRun({ text, size: 20, color: "374151" })]
               })
-            ]
-          }),
-          new Paragraph({
-            bullet: { level: 0 },
-            spacing: { before: 30, after: 30 },
-            children: [
-              new TextRun({
-                text: "Engineered early interactive mobile app prototypes and design guidelines for consumer products.",
-                size: 20,
-                color: "374151"
-              })
-            ]
-          }),
-          new Paragraph({
-            bullet: { level: 0 },
-            spacing: { before: 30, after: 30 },
-            children: [
-              new TextRun({
-                text: "Applied formal academic training (Higher Degree in Product Design) to establish spatial balance, ergonomic grids, and typography hierarchy.",
-                size: 20,
-                color: "374151"
-              })
-            ]
-          }),
-
-          // Core Skills
+          ),
           new Paragraph({
             heading: HeadingLevel.HEADING_2,
-            spacing: { before: 300, after: 140 },
+            spacing: { before: 260, after: 140 },
             children: [
               new TextRun({
-                text: "CORE SKILLS & TECHNICAL PROFICIENCY",
+                text: "CORE SKILLS & TOOLING",
                 bold: true,
                 size: 24,
                 color: "111827"
@@ -370,9 +324,9 @@ async function buildDocx() {
             bullet: { level: 0 },
             spacing: { before: 30, after: 30 },
             children: [
-              new TextRun({ text: "Mobile & UI Design: ", bold: true, size: 20 }),
+              new TextRun({ text: "Mobile & Product Design: ", bold: true, size: 20 }),
               new TextRun({
-                text: "Mobile App UX (iOS HIG & Material 3), Figma (Variables, Tokens, AutoLayout), Design System Token Pipelines, Thumb-Zone Ergonomics & WCAG AAA",
+                text: "Mobile App UX (iOS HIG & Material 3), Figma (Variables, Tokens & AutoLayout), Interactive Bottom Sheets & Micro-Flows, Typography, Grid & WCAG AA Contrast",
                 size: 20,
                 color: "374151"
               })
@@ -382,9 +336,9 @@ async function buildDocx() {
             bullet: { level: 0 },
             spacing: { before: 30, after: 30 },
             children: [
-              new TextRun({ text: "3D, Motion & Media: ", bold: true, size: 20 }),
+              new TextRun({ text: "Motion & 3D Craft: ", bold: true, size: 20 }),
               new TextRun({
-                text: "3D PBR Materials & Spatial UI, Mobile Haptics & Micro-Interactions, Adobe After Effects (Kinetic Motion), Adobe CC (Photoshop & Illustrator)",
+                text: "Rive (Interactive State Machines), Framer Motion & Spring Choreography, 3D PBR Materials & Tactile Shaders, Adobe After Effects & CC Suite",
                 size: 20,
                 color: "374151"
               })
@@ -394,22 +348,20 @@ async function buildDocx() {
             bullet: { level: 0 },
             spacing: { before: 30, after: 30 },
             children: [
-              new TextRun({ text: "Engineering, AI & Code: ", bold: true, size: 20 }),
+              new TextRun({ text: "Engineering & Prototyping: ", bold: true, size: 20 }),
               new TextRun({
-                text: "Python (Data Analysis & UX Testing), React / Next.js / TypeScript, AI Generative & Streaming UX (LLMs), Tailwind CSS & Radix UI Primitives",
+                text: "React / Next.js / TypeScript, Tailwind CSS & Accessible Primitives, Python (Data Scripts & Validation), AI-Assisted Prototyping",
                 size: 20,
                 color: "374151"
               })
             ]
           }),
-
-          // Education
           new Paragraph({
             heading: HeadingLevel.HEADING_2,
-            spacing: { before: 300, after: 140 },
+            spacing: { before: 260, after: 120 },
             children: [
               new TextRun({
-                text: "EDUCATION & QUALIFICATIONS",
+                text: "EDUCATION & LANGUAGES",
                 bold: true,
                 size: 24,
                 color: "111827"
@@ -420,7 +372,7 @@ async function buildDocx() {
             spacing: { after: 60 },
             children: [
               new TextRun({
-                text: "Higher Degree in Product Design — Product & Industrial Design",
+                text: "Higher Degree in Product Design · Product & Industrial Design",
                 bold: true,
                 size: 21,
                 color: "111827"
@@ -428,26 +380,12 @@ async function buildDocx() {
             ]
           }),
           new Paragraph({
-            spacing: { after: 180 },
+            spacing: { after: 120 },
             children: [
               new TextRun({
-                text: "Formal Academic Qualification. Foundational academic training in ergonomics, physical & digital product design, spatial balance, and user perception.",
+                text: "Formal Academic Qualification. Foundational training in human ergonomics, spatial balance, tactile materials, and visual hierarchy.",
                 size: 20,
                 color: "4B5563"
-              })
-            ]
-          }),
-
-          // Languages
-          new Paragraph({
-            heading: HeadingLevel.HEADING_2,
-            spacing: { before: 200, after: 120 },
-            children: [
-              new TextRun({
-                text: "LANGUAGES",
-                bold: true,
-                size: 24,
-                color: "111827"
               })
             ]
           }),
@@ -457,7 +395,7 @@ async function buildDocx() {
             children: [
               new TextRun({ text: "English: ", bold: true, size: 20 }),
               new TextRun({
-                text: "Full Professional Proficiency (C1 / C2 • Advanced Working & Executive Communication)",
+                text: "Full Professional Proficiency (C1 / C2 · Product Critique, Documentation & Stakeholder Lead)",
                 size: 20,
                 color: "374151"
               })
@@ -469,7 +407,7 @@ async function buildDocx() {
             children: [
               new TextRun({ text: "Ukrainian: ", bold: true, size: 20 }),
               new TextRun({
-                text: "Native (Native / Bilingual Proficiency)",
+                text: "Native Proficiency",
                 size: 20,
                 color: "374151"
               })
@@ -482,6 +420,7 @@ async function buildDocx() {
 
   const buffer = await Packer.toBuffer(doc);
   const outPath = path.resolve(process.cwd(), "public/cv/Andrii_Liebiha_Senior_Product_Designer_CV.docx");
+  fs.mkdirSync(path.dirname(outPath), { recursive: true });
   fs.writeFileSync(outPath, buffer);
   console.log("Successfully written CV docx to:", outPath);
 }
