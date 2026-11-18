@@ -533,13 +533,13 @@ export function InteractiveSystemLab() {
 
               {/* Right: Shipped Screen Translation */}
               <div className="lg:col-span-6 flex flex-col items-center">
-                <div className="w-full max-w-[260px] sm:max-w-[300px] relative aspect-[9/19.5] rounded-3xl overflow-hidden border border-white/12 bg-[#08090a] shadow-2xl">
+                <div className="w-full max-w-[260px] sm:max-w-[300px] relative aspect-[9/19.5] rounded-3xl overflow-hidden border border-white/12 bg-[#08090a] shadow-2xl p-3">
                   <Image
-                    src="/projects/mahjong/screens/09_audio_haptic_settings.webp"
-                    alt="Expedition Mahjong shipped audio and haptic preferences screen showing physical 3D toggle switches"
+                    src="/projects/mahjong/mockups/07_settings_mock.webp"
+                    alt="Expedition Mahjong shipped audio and haptic preferences 3D iPhone mockup showing physical toggle switches"
                     fill
                     sizes="300px"
-                    className="object-contain p-2"
+                    className="object-contain p-3 drop-shadow-[0_20px_34px_rgba(0,0,0,0.8)]"
                   />
                 </div>
                 <p className="text-xs font-mono text-[#adb3b7] text-center mt-4 max-w-xs">
@@ -555,8 +555,8 @@ export function InteractiveSystemLab() {
               <div className="lg:col-span-6 flex justify-center">
                 <div className="w-full max-w-[260px] sm:max-w-[300px] relative aspect-[9/19.5] rounded-[34px] sm:rounded-[36px] overflow-hidden border border-white/15 bg-[#08090a] shadow-2xl">
                   <Image
-                    src="/projects/mahjong/screens/02_streak_protection.webp"
-                    alt="Expedition Mahjong stuck recovery screen demonstrating lower-half thumb-zone action placement"
+                    src="/projects/mahjong/screens/02_gameplay_board.webp"
+                    alt="Expedition Mahjong core gameplay board demonstrating lower-half thumb-zone booster dock"
                     fill
                     sizes="300px"
                     className="object-cover"
@@ -568,8 +568,8 @@ export function InteractiveSystemLab() {
                       aria-hidden="true"
                       className="absolute inset-0 pointer-events-none flex flex-col justify-between p-4"
                     >
-                      <div className="mt-9 rounded-xl bg-black/80 border border-white/20 px-3 py-2 text-[11px] font-mono text-[#f2f5f1]">
-                        Safe Top HUD: Passive Score & Pair Count (No stretch required)
+                      <div className="mt-8 rounded-xl bg-black/80 border border-white/20 px-3 py-2 text-[11px] font-mono text-[#f2f5f1]">
+                        Safe Top HUD: Passive Score & Pairs Telemetry (No stretch required)
                       </div>
 
                       <div className="relative rounded-2xl bg-[#ff7235]/20 border-2 border-[#ff7235] p-3 backdrop-blur-[1px]">
@@ -577,7 +577,7 @@ export function InteractiveSystemLab() {
                           Natural One-Hand Thumb Arc
                         </div>
                         <div className="text-xs text-white mt-1">
-                          Recovery trigger & Restart placed in bottom 40% reach zone (min 48px height).
+                          Back, Hint, Shuffle, Undo & Settings dock placed in bottom thumb zone (min 48px targets).
                         </div>
                       </div>
                     </div>

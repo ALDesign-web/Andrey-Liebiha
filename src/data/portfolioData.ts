@@ -50,78 +50,146 @@ export const PROJECTS_DATA: ProjectItem[] = [
     stageLabel: "Live Mobile Product",
     category: "3d-mobile",
     categoryLabel: "Mobile Game UX/UI & 3D Craft",
-    imageSrc: "/projects/mahjong/mockups/slide05_victory_34.webp",
-    heroMobileImage: "/projects/mahjong/screens/01_victory_celebration.webp",
-    screens: [
+    imageSrc: "/projects/mahjong/mockups/02_gameplay_board_mock.webp",
+    heroMobileImage: "/projects/mahjong/screens/01_home_hub.webp",
+    mockups: [
       {
-        src: "/projects/mahjong/screens/01_victory_celebration.webp",
-        title: "Victory & Reward Hierarchy",
-        caption: "Celebration overlay balanced inside portrait viewport with carved jade primary CTA and clear bonus reward action.",
+        src: "/projects/mahjong/mockups/01_home_hub_mock.webp",
+        title: "Home Hub & World Map Entry",
+        caption: "Sculpted leather & ivory title over an explorer chart with a central tactile Play CTA and bottom 4-icon navigation dock.",
         orientation: "portrait",
-        tag: "Core Loop"
+        tag: "3D Mockup · Entry Flow"
       },
       {
-        src: "/projects/mahjong/screens/02_streak_protection.webp",
-        title: "Low-Friction Recovery Bottom Sheet",
-        caption: "Half-height parchment recovery drawer keeps the tile board readable above while placing shuffle recovery inside thumb reach.",
+        src: "/projects/mahjong/mockups/02_gameplay_board_mock.webp",
+        title: "Core 3D Gameplay & Timber Dock",
+        caption: "Layered 3D bone tiles with ambient drop-shadows paired with a 5-slot thumb-zone timber dock (Back, Hint, Shuffle, Undo, Settings).",
+        orientation: "portrait",
+        tag: "3D Mockup · Core Loop"
+      },
+      {
+        src: "/projects/mahjong/mockups/03_victory_mock.webp",
+        title: "Victory & Reward Hierarchy",
+        caption: "Bonsai pavilion celebration overlay balanced inside portrait viewport with carved jade primary CTA and bonus reward option.",
+        orientation: "portrait",
+        tag: "3D Mockup · Win Loop"
+      },
+      {
+        src: "/projects/mahjong/mockups/04_bonus_reward_mock.webp",
+        title: "Rewarded Booster Chest",
+        caption: "Voluntary ad reward screen presenting 3 circular ceramic utility tokens (Hint, Shuffle, Undo) alongside a clear Double reward CTA.",
+        orientation: "portrait",
+        tag: "3D Mockup · Rewarded UX"
+      },
+      {
+        src: "/projects/mahjong/mockups/05_no_ads_mock.webp",
+        title: "Permanent No-Ads Offer ($4.99)",
+        caption: "Transparent single-purchase paywall removing interstitial ads forever while keeping optional rewarded videos accessible.",
+        orientation: "portrait",
+        tag: "3D Mockup · One-Time Pass"
+      },
+      {
+        src: "/projects/mahjong/mockups/06_subscription_mock.webp",
+        title: "VIP Subscription Paywall ($1.99/mo)",
+        caption: "Single-screen subscription sheet pairing benefit scannability, compliant renewal terms, and an amethyst stone Purchase CTA.",
+        orientation: "portrait",
+        tag: "3D Mockup · Monetization"
+      },
+      {
+        src: "/projects/mahjong/mockups/07_settings_mock.webp",
+        title: "Audio, Haptics & Cloud Sync",
+        caption: "Physical 3D toggle switches separate SFX, haptic vibration, and music alongside Apple Sign-In and Google Play cloud backup.",
+        orientation: "portrait",
+        tag: "3D Mockup · Preferences"
+      },
+      {
+        src: "/projects/mahjong/mockups/08_rate_us_mock.webp",
+        title: "Two-Step Sentiment Sheet",
+        caption: "Half-height bottom sheet keeps active tiles visible above while routing happy players to store ratings or constructive feedback.",
+        orientation: "portrait",
+        tag: "3D Mockup · Rating Flow"
+      }
+    ],
+    screens: [
+      {
+        src: "/projects/mahjong/screens/01_home_hub.webp",
+        title: "Home Screen & Thumb Dock",
+        caption: "Clean portrait entry uniting embossed branding, giant ivory Play button, and calendar, map, store, and settings icons.",
+        orientation: "portrait",
+        tag: "Entry UI"
+      },
+      {
+        src: "/projects/mahjong/screens/02_gameplay_board.webp",
+        title: "3D Tile Board & Booster Bar",
+        caption: "Passive top HUD (Score, Level, Pairs) keeps full focus on stacked 3D tiles while primary gameplay utilities anchor to the bottom arc.",
+        orientation: "portrait",
+        tag: "Gameplay HUD"
+      },
+      {
+        src: "/projects/mahjong/screens/03_victory_celebration.webp",
+        title: "Victory Screen Hierarchy",
+        caption: "Balanced hierarchy placing carved jade Play CTA first, voluntary Bonus reward second, and a calm Restart link at safe-area bottom.",
+        orientation: "portrait",
+        tag: "Victory"
+      },
+      {
+        src: "/projects/mahjong/screens/04_stuck_recovery.webp",
+        title: "Low-Friction Recovery Sheet",
+        caption: "Board-visible parchment recovery drawer offers an instant wheel shuffle on deadlock so players never lose match context.",
         orientation: "portrait",
         tag: "Bottom Sheet"
       },
       {
-        src: "/projects/mahjong/screens/04_material_store.webp",
-        title: "Material Store & Theme Stack",
-        caption: "Tactile store pairs carved jade, obsidian, and an amethyst VIP shader with a stacked swipe deck previewing 8 board suites.",
-        orientation: "portrait",
-        tag: "Visual System"
-      },
-      {
-        src: "/projects/mahjong/screens/05_vip_paywall.webp",
-        title: "VIP Subscription Paywall",
-        caption: "Single-screen $1.99/mo subscription sheet pairing clear benefit scannability, compliant renewal terms, and an amethyst stone CTA.",
-        orientation: "portrait",
-        tag: "Monetization"
-      },
-      {
-        src: "/projects/mahjong/screens/06_rewarded_boosters.webp",
-        title: "Booster Selection Modal",
-        caption: "Three equidistant ceramic booster buttons tuned for quick recognition and comfortable touch targets.",
+        src: "/projects/mahjong/screens/05_bonus_reward.webp",
+        title: "Post-Ad Booster Selection",
+        caption: "Three equidistant ceramic tokens allow players to claim their preferred gameplay helper in a single thumb tap.",
         orientation: "portrait",
         tag: "Micro-UI"
       },
       {
-        src: "/projects/mahjong/screens/09_audio_haptic_settings.webp",
-        title: "Audio & Haptic Preferences",
-        caption: "Physical toggle switches separate sound effects, haptics, and music alongside Apple and Google Play progress sync.",
+        src: "/projects/mahjong/screens/06_no_ads_offer.webp",
+        title: "Permanent No-Ads Paywall",
+        caption: "Plain-language single-purchase card clearly distinguishes interstitial removal from voluntary rewarded videos.",
+        orientation: "portrait",
+        tag: "Monetization"
+      },
+      {
+        src: "/projects/mahjong/screens/07_vip_subscription.webp",
+        title: "VIP Monthly Paywall ($1.99/mo)",
+        caption: "App Store guideline compliant renewal notice paired with amethyst CTA unlocking all 8 PBR tile suites and double rewards.",
+        orientation: "portrait",
+        tag: "Subscription"
+      },
+      {
+        src: "/projects/mahjong/screens/08_audio_haptic_settings.webp",
+        title: "Sensory Toggles & Cloud Sync",
+        caption: "Independent toggles for SFX, Taptic feedback, and music with scannable preference rows and Google Play / Apple account sync.",
         orientation: "portrait",
         tag: "Settings"
       },
       {
-        src: "/projects/mahjong/screens/10_calendar_challenges.webp",
-        title: "Daily Login & Retention Loop",
-        caption: "Progressive 3-stage login reward modal with tactile jade Claim CTA encouraging D7 and D30 return habits.",
-        orientation: "portrait",
-        tag: "Retention Loop"
-      },
-      {
-        src: "/projects/mahjong/screens/12_organic_rating_funnel.webp",
-        title: "Two-Step Sentiment Sheet",
-        caption: "Contextual rating prompt separates satisfied players from constructive support feedback inside a single thumb-zone card.",
+        src: "/projects/mahjong/screens/09_rate_us_funnel.webp",
+        title: "Contextual Rating Bottom Sheet",
+        caption: "Thumb-zone sentiment modal pairing emerald Good CTA and warm parchment feedback action right below the live board.",
         orientation: "portrait",
         tag: "Feedback Flow"
       }
     ],
     slides: [
-      "/projects/mahjong/screens/01_victory_celebration.webp",
-      "/projects/mahjong/screens/02_streak_protection.webp",
-      "/projects/mahjong/screens/04_material_store.webp",
-      "/projects/mahjong/screens/05_vip_paywall.webp",
-      "/projects/mahjong/screens/06_rewarded_boosters.webp",
-      "/projects/mahjong/screens/09_audio_haptic_settings.webp",
-      "/projects/mahjong/screens/10_calendar_challenges.webp"
+      "/projects/mahjong/slide_01.jpg",
+      "/projects/mahjong/slide_02.jpg",
+      "/projects/mahjong/slide_03.jpg",
+      "/projects/mahjong/slide_04.jpg",
+      "/projects/mahjong/slide_05.jpg",
+      "/projects/mahjong/slide_06.jpg",
+      "/projects/mahjong/slide_07.jpg",
+      "/projects/mahjong/slide_08.jpg",
+      "/projects/mahjong/slide_09.jpg",
+      "/projects/mahjong/slide_10.jpg"
     ],
     summary: "End-to-end visual direction, spatial UI architecture, and 43+ portrait mobile screens across 200 hand-crafted levels for a shipped iOS & Android mahjong title.",
     challenge: "Classic mobile tile games frequently suffer from noisy HUDs, flat buttons with weak feedback, and jarring popup interruptions that pull players out of flow. We needed multi-layer 3D boards across 200 hand-crafted levels to stay readable on compact smartphone screens while giving every tap physical weight.",
-    solution: "Designed a cohesive material and layout system spanning 43+ screens and 200 hand-crafted levels: one-handed thumb-zone action placement, 8 physical PBR board suites (Imperial Jade, Obsidian, Carrara Marble, Royal Velvet, Porcelain, Antique Ivory, Teak Wood & Terracotta), an Amethyst VIP shader CTA, bottom-sheet recovery states that preserve board visibility, and dedicated haptic-paired preference controls.",
+    solution: "Designed a cohesive material and layout system spanning 43+ screens and 200 hand-crafted levels: one-handed thumb-zone action placement, 8 physical PBR board suites (Imperial Jade, Obsidian, Carrara Marble, Royal Velvet, Porcelain, Antique Ivory, Teak Wood & Terracotta), ethical monetization flows ($4.99 permanent No-Ads pass, $1.99/mo Amethyst VIP paywall, 3-choice Rewarded Booster modal), board-visible recovery sheets, and haptic-paired preference controls.",
     mobileAndMotionNotes: "Every primary action sits within the lower portrait thumb arc with minimum 48px touch geometry. Elevation shadows, rim highlights, and short spring curves distinguish pressable stone controls from informational parchment surfaces without heavy shader overhead.",
     role: "Lead Mobile UX/UI Designer (UI Architecture, 3D Material System, Screen Flows & Motion Direction)",
     metrics: [
@@ -151,8 +219,8 @@ export const PROJECTS_DATA: ProjectItem[] = [
       "43+ Portrait Mobile Screens (iOS & Android)",
       "8 Custom Material & Tile Theme Suites",
       "Thumb-Zone Recovery Bottom Sheets & Rating Funnel",
-      "Monetization Storefront & VIP Subscription UI",
-      "Tactile Audio-Haptic Control System"
+      "$4.99 No-Ads Pass, $1.99/mo VIP Paywall & 3-Choice Booster UI",
+      "Tactile Audio-Haptic Control & Cloud Save System"
     ],
     featured: true,
     behanceUrl: "https://www.behance.net/ALMotion3D"

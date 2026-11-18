@@ -35,38 +35,42 @@ export function ProjectsShowcase() {
         {/* Flagship 1: Expedition Mahjong (Mobile Game UX/UI & 3D Craft) */}
         <article className="tm-hover-lift rounded-3xl bg-[#121316] border border-white/[0.09] overflow-hidden mb-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 items-stretch">
-            {/* Visual Showcase */}
+            {/* Visual Showcase: 3-Device Perspective Mockup Composition */}
             <Link
               href={`/work/${mahjong.slug}`}
-              className="lg:col-span-7 bg-[#08090a] p-4 py-6 sm:p-10 flex items-center justify-center relative overflow-hidden group border-b lg:border-b-0 lg:border-r border-white/[0.07]"
+              className="lg:col-span-7 bg-[#08090a] p-4 py-7 sm:p-10 flex items-center justify-center relative overflow-hidden group border-b lg:border-b-0 lg:border-r border-white/[0.07]"
               aria-label={`Open ${mahjong.title} case study`}
             >
-              <div className="grid grid-cols-3 gap-2 sm:gap-5 w-full max-w-[580px] items-center">
-                <div className="relative aspect-[9/19.5] rounded-2xl overflow-hidden border border-white/10 bg-[#121316] translate-y-3 group-hover:translate-y-1 transition-transform duration-300">
+              <div
+                aria-hidden="true"
+                className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_45%,rgba(255,114,53,0.12),transparent_68%)]"
+              />
+              <div className="relative grid grid-cols-3 gap-2 sm:gap-4 w-full max-w-[610px] items-center">
+                <div className="relative aspect-[9/19] translate-y-3 group-hover:translate-y-1 transition-transform duration-300">
                   <Image
-                    src="/projects/mahjong/screens/02_streak_protection.webp"
-                    alt="Expedition Mahjong recovery bottom sheet overlay"
+                    src="/projects/mahjong/mockups/01_home_hub_mock.webp"
+                    alt="Expedition Mahjong 3D Home Hub perspective mockup"
                     fill
-                    sizes="(max-width: 1024px) 28vw, 180px"
-                    className="object-cover"
+                    sizes="(max-width: 1024px) 30vw, 195px"
+                    className="object-contain drop-shadow-[0_24px_40px_rgba(0,0,0,0.75)]"
                   />
                 </div>
-                <div className="relative aspect-[9/19.5] rounded-2xl overflow-hidden border border-[#ff7235]/35 bg-[#121316] -translate-y-2 shadow-2xl group-hover:-translate-y-4 transition-transform duration-300">
+                <div className="relative aspect-[9/19.5] -translate-y-2 scale-[1.06] z-10 group-hover:-translate-y-4 transition-transform duration-300">
                   <Image
-                    src="/projects/mahjong/screens/01_victory_celebration.webp"
-                    alt="Expedition Mahjong portrait victory celebration screen"
+                    src="/projects/mahjong/mockups/02_gameplay_board_mock.webp"
+                    alt="Expedition Mahjong 3D gameplay board and bottom booster dock mockup"
                     fill
-                    sizes="(max-width: 1024px) 30vw, 200px"
-                    className="object-cover"
+                    sizes="(max-width: 1024px) 32vw, 215px"
+                    className="object-contain drop-shadow-[0_28px_46px_rgba(0,0,0,0.85)]"
                   />
                 </div>
-                <div className="relative aspect-[9/19.5] rounded-2xl overflow-hidden border border-white/10 bg-[#121316] translate-y-4 group-hover:translate-y-2 transition-transform duration-300">
+                <div className="relative aspect-[9/19] translate-y-4 group-hover:translate-y-2 transition-transform duration-300">
                   <Image
-                    src="/projects/mahjong/screens/04_material_store.webp"
-                    alt="Expedition Mahjong PBR material store and card deck"
+                    src="/projects/mahjong/mockups/03_victory_mock.webp"
+                    alt="Expedition Mahjong 3D victory screen mockup with carved jade CTA"
                     fill
-                    sizes="(max-width: 1024px) 28vw, 180px"
-                    className="object-cover"
+                    sizes="(max-width: 1024px) 30vw, 195px"
+                    className="object-contain drop-shadow-[0_24px_40px_rgba(0,0,0,0.75)]"
                   />
                 </div>
               </div>

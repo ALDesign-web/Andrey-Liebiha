@@ -36,6 +36,7 @@ export interface ProjectItem {
   categoryLabel: string;
   imageSrc: string;
   heroMobileImage?: string;
+  mockups?: ProjectScreen[];
   screens: ProjectScreen[];
   slides: string[];
   summary: string;

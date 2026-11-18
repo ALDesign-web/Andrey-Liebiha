@@ -10,28 +10,36 @@ import { RiveOrbBeacon } from "@/components/RiveOrbBeacon";
 
 const HERO_PHONES = [
   {
+    id: "gameplay",
+    tab: "3D Board",
+    screenTitle: "Core 3D Gameplay & Dock",
+    meta: "Expedition Mahjong · Bottom-Arc Booster Bar",
+    src: "/projects/mahjong/mockups/02_gameplay_board_mock.webp",
+    alt: "3D iPhone render displaying Expedition Mahjong core 3D tile board and bottom timber booster dock",
+  },
+  {
+    id: "home",
+    tab: "Home Hub",
+    screenTitle: "Tactile Expedition Hub",
+    meta: "Expedition Mahjong · World Map & 4-Tab Nav",
+    src: "/projects/mahjong/mockups/01_home_hub_mock.webp",
+    alt: "3D iPhone render displaying Expedition Mahjong tactile map home screen and carved Play button",
+  },
+  {
     id: "victory",
-    tab: "Core Reward",
+    tab: "Victory",
     screenTitle: "Victory Celebration Loop",
-    meta: "Expedition Mahjong · Portrait Thumb-Zone CTA",
-    src: "/projects/mahjong/mockups/slide05_victory_34.webp",
+    meta: "Expedition Mahjong · Carved Jade Primary CTA",
+    src: "/projects/mahjong/mockups/03_victory_mock.webp",
     alt: "3D iPhone render displaying Expedition Mahjong portrait victory celebration screen with jade primary CTA button",
   },
   {
     id: "paywall",
-    tab: "Paywall UI",
-    screenTitle: "Subscription Framing",
-    meta: "Expedition Mahjong · Amethyst Material Hierarchy",
-    src: "/projects/mahjong/mockups/slide06_paywall_34.webp",
+    tab: "Paywall",
+    screenTitle: "VIP & No-Ads Framing",
+    meta: "Expedition Mahjong · Amethyst $1.99/mo Pass",
+    src: "/projects/mahjong/mockups/06_subscription_mock.webp",
     alt: "3D iPhone render showing Expedition Mahjong VIP monthly subscription paywall with amethyst tactile button",
-  },
-  {
-    id: "settings",
-    tab: "Haptic Toggles",
-    screenTitle: "Audio & Haptic Matrix",
-    meta: "Expedition Mahjong · Physical 3D Switch States",
-    src: "/projects/mahjong/mockups/slide07_settings_34.webp",
-    alt: "3D iPhone render displaying tactile sound, vibration, and music switches inside settings screen",
   },
 ];
 
@@ -192,7 +200,7 @@ export function Hero() {
                 <div
                   role="tablist"
                   aria-label="Preview mobile screens"
-                  className="grid grid-cols-3 gap-1.5 sm:gap-2"
+                  className="grid grid-cols-2 sm:grid-cols-4 gap-1.5 sm:gap-2"
                 >
                   {HERO_PHONES.map((phone, idx) => {
                     const isSelected = idx === activeIndex;

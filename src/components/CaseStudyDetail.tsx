@@ -25,29 +25,43 @@ interface CaseStudyDetailProps {
 export function CaseStudyDetail({ project, nextProject }: CaseStudyDetailProps) {
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
 
+  const mockupItems = project.mockups ?? [];
+  const screenItems = project.screens;
+  const presentationSlides = (project.slides ?? [])
+    .filter((src) => /\/slide_\d+\.jpe?g$/i.test(src))
+    .map((src, idx) => ({
+      src,
+      title: `${project.title} — Presentation Slide ${String(idx + 1).padStart(2, "0")}`,
+      caption: "Widescreen 16:9 product case study presentation deck board.",
+      orientation: "landscape" as const,
+      tag: `Slide ${String(idx + 1).padStart(2, "0")} / 10`,
+    }));
+
+  const lightboxItems = [...mockupItems, ...screenItems, ...presentationSlides];
+
   useEffect(() => {
     const onKeyDown = (e: KeyboardEvent) => {
       if (lightboxIndex === null) return;
       if (e.key === "Escape") setLightboxIndex(null);
       if (e.key === "ArrowRight") {
         setLightboxIndex((prev) =>
-          prev === null ? null : (prev + 1) % project.screens.length
+          prev === null ? null : (prev + 1) % lightboxItems.length
         );
       }
       if (e.key === "ArrowLeft") {
         setLightboxIndex((prev) =>
           prev === null
             ? null
-            : (prev - 1 + project.screens.length) % project.screens.length
+            : (prev - 1 + lightboxItems.length) % lightboxItems.length
         );
       }
     };
     window.addEventListener("keydown", onKeyDown);
     return () => window.removeEventListener("keydown", onKeyDown);
-  }, [lightboxIndex, project.screens.length]);
+  }, [lightboxIndex, lightboxItems.length]);
 
   const activeScreen =
-    lightboxIndex !== null ? project.screens[lightboxIndex] : null;
+    lightboxIndex !== null ? lightboxItems[lightboxIndex] : null;
   const hasPortraitScreens = project.screens.some(
     (s) => s.orientation === "portrait"
   );
@@ -198,6 +212,67 @@ export function CaseStudyDetail({ project, nextProject }: CaseStudyDetailProps) 
           </div>
         </section>
 
+        {/* 3D Perspective Device Mockups (Primary Showcase when provided) */}
+        {mockupItems.length > 0 && (
+          <section className="py-14 border-b border-white/[0.08]">
+            <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8">
+              <div>
+                <span className="text-xs font-mono uppercase tracking-widest text-[#ff7235]">
+                  3D Hardware Presentation
+                </span>
+                <h2 className="text-2xl sm:text-3xl font-semibold text-[#f2f5f1] mt-2">
+                  3D Perspective Device Mockups ({mockupItems.length})
+                </h2>
+              </div>
+              <p className="text-xs font-mono text-[#adb3b7]">
+                Select any 3D render to inspect full resolution
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+              {mockupItems.map((mockup, idx) => (
+                <figure
+                  key={mockup.src}
+                  className="rounded-2xl bg-[#121316] border border-white/[0.08] overflow-hidden flex flex-col"
+                >
+                  <button
+                    type="button"
+                    onClick={() => setLightboxIndex(idx)}
+                    className="relative w-full aspect-[9/17] bg-[#08090a] bg-[radial-gradient(circle_at_50%_45%,rgba(255,114,53,0.12),transparent_72%)] group overflow-hidden text-left focus-visible:outline-none"
+                    aria-label={`Inspect ${mockup.title} full screen`}
+                  >
+                    <Image
+                      src={mockup.src}
+                      alt={mockup.title}
+                      fill
+                      sizes="(max-width: 640px) 86vw, (max-width: 1024px) 44vw, 280px"
+                      className="object-contain p-3 sm:p-4 drop-shadow-[0_22px_36px_rgba(0,0,0,0.85)] group-hover:scale-[1.03] transition-transform duration-300"
+                    />
+                    <span className="absolute bottom-3 right-3 w-9 h-9 rounded-full bg-[#08090a]/85 border border-white/15 flex items-center justify-center text-[#f2f5f1] opacity-85 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity">
+                      <Maximize2 className="w-4 h-4" aria-hidden="true" />
+                    </span>
+                  </button>
+                  <figcaption className="p-4 sm:p-5 border-t border-white/[0.06] flex-1 flex flex-col justify-between gap-2">
+                    <div>
+                      {mockup.tag && (
+                        <span className="text-[11px] font-mono text-[#ff8547] block mb-1">
+                          {mockup.tag}
+                        </span>
+                      )}
+                      <h3 className="text-sm sm:text-base font-semibold text-[#f2f5f1]">
+                        {mockup.title}
+                      </h3>
+                    </div>
+                    <p className="text-xs sm:text-sm text-[#adb3b7] leading-relaxed">
+                      {mockup.caption}
+                    </p>
+                  </figcaption>
+                </figure>
+              ))}
+            </div>
+          </section>
+        )}
+
         {/* Screen Showcase Grid (Portrait-native for Mobile vs Landscape for Commerce/SaaS) */}
         <section className="py-14 border-b border-white/[0.08]">
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8">
@@ -206,7 +281,11 @@ export function CaseStudyDetail({ project, nextProject }: CaseStudyDetailProps) 
                 Interface Walkthrough
               </span>
               <h2 className="text-2xl sm:text-3xl font-semibold text-[#f2f5f1] mt-2">
-                {hasPortraitScreens ? "Shipped Mobile Screens" : "Key Interface Surfaces"}
+                {mockupItems.length > 0
+                  ? `Flat Portrait UI Screens (${screenItems.length})`
+                  : hasPortraitScreens
+                    ? "Shipped Mobile Screens"
+                    : "Key Interface Surfaces"}
               </h2>
             </div>
             <p className="text-xs font-mono text-[#adb3b7]">
@@ -217,21 +296,21 @@ export function CaseStudyDetail({ project, nextProject }: CaseStudyDetailProps) 
           <div
             className={
               hasPortraitScreens
-                ? "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"
+                ? "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
                 : "grid grid-cols-1 lg:grid-cols-2 gap-6"
             }
           >
-            {project.screens.map((screen, idx) => (
+            {screenItems.map((screen, idx) => (
               <figure
                 key={screen.src}
                 className="rounded-2xl bg-[#121316] border border-white/[0.08] overflow-hidden flex flex-col"
               >
                 <button
                   type="button"
-                  onClick={() => setLightboxIndex(idx)}
+                  onClick={() => setLightboxIndex(mockupItems.length + idx)}
                   className={`relative w-full bg-[#08090a] group overflow-hidden text-left focus-visible:outline-none ${
                     screen.orientation === "portrait"
-                      ? "aspect-[9/17.5] sm:aspect-[9/19.2] max-h-[430px] sm:max-h-[520px] mx-auto"
+                      ? "aspect-[9/19.2] max-h-[480px] sm:max-h-[520px] mx-auto"
                       : "aspect-[16/11]"
                   }`}
                   aria-label={`Inspect ${screen.title} full screen`}
@@ -247,7 +326,7 @@ export function CaseStudyDetail({ project, nextProject }: CaseStudyDetailProps) 
                     }
                     className={
                       screen.orientation === "portrait"
-                        ? "object-contain p-1.5 sm:p-3 group-hover:scale-[1.02] transition-transform duration-300"
+                        ? "object-contain p-2.5 sm:p-3 rounded-[26px] group-hover:scale-[1.02] transition-transform duration-300"
                         : "object-cover object-top group-hover:scale-[1.02] transition-transform duration-300"
                     }
                   />
@@ -274,6 +353,62 @@ export function CaseStudyDetail({ project, nextProject }: CaseStudyDetailProps) 
             ))}
           </div>
         </section>
+
+        {/* Product Case Study Presentation Slides (16:9 Boards) */}
+        {presentationSlides.length > 0 && (
+          <section className="py-14 border-b border-white/[0.08]">
+            <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8">
+              <div>
+                <span className="text-xs font-mono uppercase tracking-widest text-[#ff7235]">
+                  Full Case Study Deck
+                </span>
+                <h2 className="text-2xl sm:text-3xl font-semibold text-[#f2f5f1] mt-2">
+                  Product Case Study Presentation ({presentationSlides.length} Slides)
+                </h2>
+              </div>
+              <p className="text-xs font-mono text-[#adb3b7]">
+                Updated 4K presentation boards with 3D device mockups
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              {presentationSlides.map((slide, idx) => (
+                <figure
+                  key={slide.src}
+                  className="rounded-2xl bg-[#121316] border border-white/[0.08] overflow-hidden flex flex-col"
+                >
+                  <button
+                    type="button"
+                    onClick={() =>
+                      setLightboxIndex(mockupItems.length + screenItems.length + idx)
+                    }
+                    className="relative w-full aspect-[16/9] bg-[#08090a] group overflow-hidden text-left focus-visible:outline-none"
+                    aria-label={`Inspect ${slide.title} full screen`}
+                  >
+                    <Image
+                      src={slide.src}
+                      alt={slide.title}
+                      fill
+                      sizes="(max-width: 1024px) 94vw, 600px"
+                      className="object-cover group-hover:scale-[1.015] transition-transform duration-300"
+                    />
+                    <span className="absolute bottom-3 right-3 w-9 h-9 rounded-full bg-[#08090a]/85 border border-white/15 flex items-center justify-center text-[#f2f5f1] opacity-85 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity">
+                      <Maximize2 className="w-4 h-4" aria-hidden="true" />
+                    </span>
+                  </button>
+                  <figcaption className="px-4 py-3 border-t border-white/[0.06] flex items-center justify-between gap-2">
+                    <span className="text-xs font-mono text-[#e7ece5]">
+                      {slide.title}
+                    </span>
+                    <span className="text-[11px] font-mono text-[#ff8547]">
+                      {slide.tag}
+                    </span>
+                  </figcaption>
+                </figure>
+              ))}
+            </div>
+          </section>
+        )}
 
         {/* Deliverables & Tooling */}
         <section className="py-12 border-b border-white/[0.08] grid grid-cols-1 lg:grid-cols-12 gap-8">
@@ -406,8 +541,8 @@ export function CaseStudyDetail({ project, nextProject }: CaseStudyDetailProps) 
               type="button"
               onClick={() =>
                 setLightboxIndex(
-                  (lightboxIndex - 1 + project.screens.length) %
-                    project.screens.length
+                  (lightboxIndex - 1 + lightboxItems.length) %
+                    lightboxItems.length
                 )
               }
               className="min-h-[44px] px-4 rounded-xl bg-white/[0.06] hover:bg-white/[0.12] border border-white/10 text-xs font-mono text-[#f2f5f1] inline-flex items-center gap-2 transition-colors"
@@ -416,12 +551,12 @@ export function CaseStudyDetail({ project, nextProject }: CaseStudyDetailProps) 
               Prev
             </button>
             <span className="text-xs font-mono text-[#adb3b7] tabular-nums">
-              {lightboxIndex + 1} / {project.screens.length}
+              {lightboxIndex + 1} / {lightboxItems.length}
             </span>
             <button
               type="button"
               onClick={() =>
-                setLightboxIndex((lightboxIndex + 1) % project.screens.length)
+                setLightboxIndex((lightboxIndex + 1) % lightboxItems.length)
               }
               className="min-h-[44px] px-4 rounded-xl bg-white/[0.06] hover:bg-white/[0.12] border border-white/10 text-xs font-mono text-[#f2f5f1] inline-flex items-center gap-2 transition-colors"
             >
