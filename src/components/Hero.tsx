@@ -7,6 +7,7 @@ import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { ArrowDownRight, Play, FileText, ArrowUpRight, Smartphone } from "lucide-react";
 import { PORTFOLIO_HERO } from "@/data/portfolioData";
 import { RiveOrbBeacon } from "@/components/RiveOrbBeacon";
+import { Interactive3DPhone } from "@/components/mahjong/Interactive3DPhone";
 
 const HERO_PHONES = [
   {
@@ -14,7 +15,7 @@ const HERO_PHONES = [
     tab: "3D Board",
     screenTitle: "Core 3D Gameplay & Dock",
     meta: "Expedition Mahjong · Bottom-Arc Booster Bar",
-    src: "/projects/mahjong/mockups/02_gameplay_board_mock.webp",
+    src: "/projects/mahjong/mockups/02_gameplay_board_upright.webp",
     alt: "3D iPhone render displaying Expedition Mahjong core 3D tile board and bottom timber booster dock",
   },
   {
@@ -22,7 +23,7 @@ const HERO_PHONES = [
     tab: "Home Hub",
     screenTitle: "Tactile Expedition Hub",
     meta: "Expedition Mahjong · World Map & 4-Tab Nav",
-    src: "/projects/mahjong/mockups/01_home_hub_mock.webp",
+    src: "/projects/mahjong/mockups/01_home_hub_upright.webp",
     alt: "3D iPhone render displaying Expedition Mahjong tactile map home screen and carved Play button",
   },
   {
@@ -30,7 +31,7 @@ const HERO_PHONES = [
     tab: "Victory",
     screenTitle: "Victory Celebration Loop",
     meta: "Expedition Mahjong · Carved Jade Primary CTA",
-    src: "/projects/mahjong/mockups/03_victory_mock.webp",
+    src: "/projects/mahjong/mockups/03_victory_upright.webp",
     alt: "3D iPhone render displaying Expedition Mahjong portrait victory celebration screen with jade primary CTA button",
   },
   {
@@ -38,7 +39,7 @@ const HERO_PHONES = [
     tab: "Paywall",
     screenTitle: "VIP & No-Ads Framing",
     meta: "Expedition Mahjong · Amethyst $1.99/mo Pass",
-    src: "/projects/mahjong/mockups/06_subscription_mock.webp",
+    src: "/projects/mahjong/mockups/06_subscription_upright.webp",
     alt: "3D iPhone render showing Expedition Mahjong VIP monthly subscription paywall with amethyst tactile button",
   },
 ];
@@ -152,7 +153,7 @@ export function Hero() {
 
           {/* Right Column: Interactive Mobile Craft Stage */}
           <div className="lg:col-span-5 flex flex-col items-center">
-            <div className="w-full max-w-[420px] rounded-3xl bg-[#121316]/90 border border-white/[0.09] p-4 sm:p-6 relative overflow-hidden">
+            <div className="w-full max-w-[420px] rounded-3xl bg-[#121316]/90 border border-white/[0.09] p-4 sm:p-6 relative overflow-visible">
               {/* Top Stage Bar */}
               <div className="flex items-center justify-between gap-2 mb-2.5 sm:mb-3">
                 <div className="flex items-center gap-2 text-xs font-mono text-[#adb3b7]">
@@ -164,31 +165,39 @@ export function Hero() {
                 </span>
               </div>
 
-              {/* 3D Phone Viewport */}
-              <div className="relative h-[280px] sm:h-[400px] w-full flex items-center justify-center">
-                <AnimatePresence mode="wait">
-                  <motion.div
-                    key={activePhone.id}
-                    initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0, y: 14, scale: 0.96 }}
-                    animate={shouldReduceMotion ? { opacity: 1 } : { opacity: 1, y: 0, scale: 1 }}
-                    exit={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: -10, scale: 0.96 }}
-                    transition={
-                      shouldReduceMotion
-                        ? { duration: 0.01 }
-                        : { type: "spring", stiffness: 280, damping: 24 }
-                    }
-                    className="relative w-[165px] sm:w-[230px] h-full flex items-center justify-center"
-                  >
-                    <Image
-                      src={activePhone.src}
-                      alt={activePhone.alt}
-                      fill
-                      priority
-                      sizes="(max-width: 640px) 165px, 230px"
-                      className="object-contain drop-shadow-[0_24px_38px_rgba(0,0,0,0.65)]"
-                    />
-                  </motion.div>
-                </AnimatePresence>
+              {/* Interactive Cursor-Tracking 3D Phone Viewport */}
+              <div className="relative w-full flex items-center justify-center py-2 overflow-visible">
+                <Interactive3DPhone
+                  maxRotateX={14}
+                  maxRotateY={20}
+                  showHint
+                  stageClassName="relative w-[170px] sm:w-[230px] h-[280px] sm:h-[400px]"
+                  customVisual={
+                    <AnimatePresence mode="wait">
+                      <motion.div
+                        key={activePhone.id}
+                        initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0, y: 14, scale: 0.96 }}
+                        animate={shouldReduceMotion ? { opacity: 1 } : { opacity: 1, y: 0, scale: 1 }}
+                        exit={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: -10, scale: 0.96 }}
+                        transition={
+                          shouldReduceMotion
+                            ? { duration: 0.01 }
+                            : { type: "spring", stiffness: 280, damping: 24 }
+                        }
+                        className="relative w-full h-full flex items-center justify-center"
+                      >
+                        <Image
+                          src={activePhone.src}
+                          alt={activePhone.alt}
+                          fill
+                          priority
+                          sizes="(max-width: 640px) 170px, 230px"
+                          className="object-contain drop-shadow-[0_24px_38px_rgba(0,0,0,0.75)]"
+                        />
+                      </motion.div>
+                    </AnimatePresence>
+                  }
+                />
               </div>
 
               {/* Screen Context & Switcher Controls */}

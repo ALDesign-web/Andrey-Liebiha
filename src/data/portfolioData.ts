@@ -50,60 +50,60 @@ export const PROJECTS_DATA: ProjectItem[] = [
     stageLabel: "Live Mobile Product",
     category: "3d-mobile",
     categoryLabel: "Mobile Game UX/UI & 3D Craft",
-    imageSrc: "/projects/mahjong/mockups/02_gameplay_board_mock.webp",
+    imageSrc: "/projects/mahjong/mockups/02_gameplay_board_upright.webp",
     heroMobileImage: "/projects/mahjong/screens/01_home_hub.webp",
     mockups: [
       {
-        src: "/projects/mahjong/mockups/01_home_hub_mock.webp",
+        src: "/projects/mahjong/mockups/01_home_hub_upright.webp",
         title: "Home Hub & World Map Entry",
         caption: "Sculpted leather & ivory title over an explorer chart with a central tactile Play CTA and bottom 4-icon navigation dock.",
         orientation: "portrait",
         tag: "3D Mockup · Entry Flow"
       },
       {
-        src: "/projects/mahjong/mockups/02_gameplay_board_mock.webp",
+        src: "/projects/mahjong/mockups/02_gameplay_board_upright.webp",
         title: "Core 3D Gameplay & Timber Dock",
         caption: "Layered 3D bone tiles with ambient drop-shadows paired with a 5-slot thumb-zone timber dock (Back, Hint, Shuffle, Undo, Settings).",
         orientation: "portrait",
         tag: "3D Mockup · Core Loop"
       },
       {
-        src: "/projects/mahjong/mockups/03_victory_mock.webp",
+        src: "/projects/mahjong/mockups/03_victory_upright.webp",
         title: "Victory & Reward Hierarchy",
         caption: "Bonsai pavilion celebration overlay balanced inside portrait viewport with carved jade primary CTA and bonus reward option.",
         orientation: "portrait",
         tag: "3D Mockup · Win Loop"
       },
       {
-        src: "/projects/mahjong/mockups/04_bonus_reward_mock.webp",
+        src: "/projects/mahjong/mockups/04_bonus_reward_upright.webp",
         title: "Rewarded Booster Chest",
         caption: "Voluntary ad reward screen presenting 3 circular ceramic utility tokens (Hint, Shuffle, Undo) alongside a clear Double reward CTA.",
         orientation: "portrait",
         tag: "3D Mockup · Rewarded UX"
       },
       {
-        src: "/projects/mahjong/mockups/05_no_ads_mock.webp",
+        src: "/projects/mahjong/mockups/05_no_ads_upright.webp",
         title: "Permanent No-Ads Offer ($4.99)",
         caption: "Transparent single-purchase paywall removing interstitial ads forever while keeping optional rewarded videos accessible.",
         orientation: "portrait",
         tag: "3D Mockup · One-Time Pass"
       },
       {
-        src: "/projects/mahjong/mockups/06_subscription_mock.webp",
+        src: "/projects/mahjong/mockups/06_subscription_upright.webp",
         title: "VIP Subscription Paywall ($1.99/mo)",
         caption: "Single-screen subscription sheet pairing benefit scannability, compliant renewal terms, and an amethyst stone Purchase CTA.",
         orientation: "portrait",
         tag: "3D Mockup · Monetization"
       },
       {
-        src: "/projects/mahjong/mockups/07_settings_mock.webp",
+        src: "/projects/mahjong/mockups/07_settings_upright.webp",
         title: "Audio, Haptics & Cloud Sync",
         caption: "Physical 3D toggle switches separate SFX, haptic vibration, and music alongside Apple Sign-In and Google Play cloud backup.",
         orientation: "portrait",
         tag: "3D Mockup · Preferences"
       },
       {
-        src: "/projects/mahjong/mockups/08_rate_us_mock.webp",
+        src: "/projects/mahjong/mockups/08_rate_us_upright.webp",
         title: "Two-Step Sentiment Sheet",
         caption: "Half-height bottom sheet keeps active tiles visible above while routing happy players to store ratings or constructive feedback.",
         orientation: "portrait",

@@ -41,6 +41,9 @@ async function processMockups() {
     const outPath = path.join(MOCKUPS_OUT, item.out);
     const deckPath = path.join(DECK_FIXED_DIR, item.out);
 
+    const uprightOut = item.out.replace("_mock.webp", "_upright.webp");
+    const uprightPath = path.join(MOCKUPS_OUT, uprightOut);
+
     const outBuf = await sharp(srcPath)
       .trim({ threshold: 2 })
       .resize({ height: 1800, withoutEnlargement: true })
@@ -48,9 +51,10 @@ async function processMockups() {
       .toBuffer();
 
     fs.writeFileSync(outPath, outBuf);
+    fs.writeFileSync(uprightPath, outBuf);
     fs.writeFileSync(deckPath, outBuf);
     const meta = await sharp(outBuf).metadata();
-    console.log(`Mockup ${item.out}: ${meta.width}x${meta.height}`);
+    console.log(`Mockup ${item.out} (+ ${uprightOut}): ${meta.width}x${meta.height}`);
   }
 
   // Keep legacy mockup paths updated as well

@@ -47,19 +47,19 @@ export const HERO_TRIPTYCH = [
   {
     id: "home",
     label: "Home Hub",
-    src: "/projects/mahjong/mockups/01_home_hub_mock.webp",
+    src: "/projects/mahjong/mockups/01_home_hub_upright.webp",
     alt: "Expedition Mahjong 3D perspective iPhone showing carved title, ivory Play CTA and 4-icon bottom navigation dock",
   },
   {
     id: "gameplay",
     label: "3D Board",
-    src: "/projects/mahjong/mockups/02_gameplay_board_mock.webp",
+    src: "/projects/mahjong/mockups/02_gameplay_board_upright.webp",
     alt: "Expedition Mahjong 3D perspective iPhone displaying active stacked bone tiles and timber utility dock",
   },
   {
     id: "victory",
     label: "Victory",
-    src: "/projects/mahjong/mockups/03_victory_mock.webp",
+    src: "/projects/mahjong/mockups/03_victory_upright.webp",
     alt: "Expedition Mahjong 3D perspective iPhone showing bonsai pavilion victory screen and jade Play button",
   },
 ];
@@ -236,7 +236,7 @@ export const MONETIZATION_MODES: MonetizationMode[] = [
     badge: "One-Time Purchase",
     title: "Explicit lifetime clarity with zero dark patterns.",
     priceTag: "$4.99 once",
-    screenSrc: "/projects/mahjong/mockups/05_no_ads_mock.webp",
+    screenSrc: "/projects/mahjong/mockups/05_no_ads_upright.webp",
     screenAlt: "Expedition Mahjong permanent No Ads $4.99 one-time purchase 3D mockup",
     rationale:
       "Plain-language microcopy states upfront what the single payment removes (interstitial ads forever) while leaving optional rewarded videos untouched.",
@@ -253,7 +253,7 @@ export const MONETIZATION_MODES: MonetizationMode[] = [
     badge: "Fair-Play Subscription",
     title: "Amethyst material signature exclusively signals VIP status.",
     priceTag: "$1.99 / month",
-    screenSrc: "/projects/mahjong/mockups/06_subscription_mock.webp",
+    screenSrc: "/projects/mahjong/mockups/06_subscription_upright.webp",
     screenAlt: "Expedition Mahjong VIP monthly $1.99 subscription 3D mockup with amethyst Purchase button",
     rationale:
       "Reserved the purple amethyst crystalline shader strictly for subscription touchpoints so players build an instant visual mental model across the app.",
@@ -270,7 +270,7 @@ export const MONETIZATION_MODES: MonetizationMode[] = [
     badge: "100% Opt-In Boosters",
     title: "Player choice transforms ad tolerance into agency.",
     priceTag: "Voluntary Opt-In",
-    screenSrc: "/projects/mahjong/mockups/04_bonus_reward_mock.webp",
+    screenSrc: "/projects/mahjong/mockups/04_bonus_reward_upright.webp",
     screenAlt: "Expedition Mahjong rewarded booster selection 3D mockup showing chest and 3 ceramic tokens",
     rationale:
       "Rather than forcing random drops, the post-reward sheet hands players three circular ceramic utility tokens (Hint, Shuffle, Undo) and an optional Double reward path.",

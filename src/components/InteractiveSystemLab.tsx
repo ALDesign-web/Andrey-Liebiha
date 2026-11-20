@@ -14,6 +14,7 @@ import {
   RotateCcw,
 } from "lucide-react";
 import { RiveOrbBeacon } from "@/components/RiveOrbBeacon";
+import { Interactive3DPhone } from "@/components/mahjong/Interactive3DPhone";
 
 function TactileSwitch({
   checked,
@@ -533,13 +534,17 @@ export function InteractiveSystemLab() {
 
               {/* Right: Shipped Screen Translation */}
               <div className="lg:col-span-6 flex flex-col items-center">
-                <div className="w-full max-w-[260px] sm:max-w-[300px] relative aspect-[9/19.5] rounded-3xl overflow-hidden border border-white/12 bg-[#08090a] shadow-2xl p-3">
-                  <Image
-                    src="/projects/mahjong/mockups/07_settings_mock.webp"
+                <div className="w-full max-w-[290px] sm:max-w-[330px] rounded-3xl border border-white/12 bg-[#08090a] shadow-2xl p-4 sm:p-6 overflow-visible">
+                  <Interactive3DPhone
+                    src="/projects/mahjong/mockups/07_settings_upright.webp"
                     alt="Expedition Mahjong shipped audio and haptic preferences 3D iPhone mockup showing physical toggle switches"
-                    fill
                     sizes="300px"
-                    className="object-contain p-3 drop-shadow-[0_20px_34px_rgba(0,0,0,0.8)]"
+                    maxRotateX={13}
+                    maxRotateY={18}
+                    showHint
+                    className="w-full"
+                    stageClassName="relative w-full aspect-[9/19.2]"
+                    imageClassName="object-contain p-1 drop-shadow-[0_22px_36px_rgba(0,0,0,0.85)]"
                   />
                 </div>
                 <p className="text-xs font-mono text-[#adb3b7] text-center mt-4 max-w-xs">

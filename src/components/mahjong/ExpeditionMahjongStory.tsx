@@ -25,6 +25,7 @@ import {
   Volume2,
   VolumeX,
   RotateCw,
+  Rotate3d,
   Layers,
   Sparkles,
 } from "lucide-react";
@@ -39,6 +40,7 @@ import {
   GameplayBeat,
 } from "./mahjongStoryData";
 import { StickyGameplayStage, SensoryAndFunnelLab } from "./GameplaySimulator";
+import { Interactive3DPhone } from "./Interactive3DPhone";
 
 const SPRING_SNAPPY = { type: "spring" as const, stiffness: 400, damping: 30, mass: 1 };
 const SPRING_SMOOTH = { type: "spring" as const, stiffness: 200, damping: 24, mass: 1 };
@@ -69,16 +71,16 @@ export function ExpeditionMahjongStory({
 
   const rawTiltX = useMotionValue(0);
   const rawTiltY = useMotionValue(0);
-  const tiltX = useSpring(rawTiltX, { stiffness: 180, damping: 24 });
-  const tiltY = useSpring(rawTiltY, { stiffness: 180, damping: 24 });
+  const tiltX = useSpring(rawTiltX, { stiffness: 170, damping: 20 });
+  const tiltY = useSpring(rawTiltY, { stiffness: 170, damping: 20 });
 
-  const handleHeroMouseMove = (e: React.MouseEvent<HTMLElement>) => {
-    if (shouldReduceMotion) return;
+  const handleHeroMouseMove = (e: React.PointerEvent<HTMLElement>) => {
+    if (shouldReduceMotion || e.pointerType === "touch") return;
     const rect = e.currentTarget.getBoundingClientRect();
     const normX = (e.clientX - rect.left) / rect.width - 0.5;
     const normY = (e.clientY - rect.top) / rect.height - 0.5;
-    rawTiltY.set(normX * 10);
-    rawTiltX.set(-normY * 6);
+    rawTiltY.set(normX * 26);
+    rawTiltX.set(-normY * 18);
   };
 
   const resetHeroTilt = () => {
@@ -211,27 +213,31 @@ export function ExpeditionMahjongStory({
       {/* =================================================================== */}
       <section
         ref={heroRef}
-        onMouseMove={handleHeroMouseMove}
-        onMouseLeave={resetHeroTilt}
-        className="relative min-h-[100dvh] pt-20 pb-8 sm:pt-24 sm:pb-10 flex flex-col justify-between overflow-hidden border-b border-white/[0.06]"
+        onPointerMove={handleHeroMouseMove}
+        onPointerLeave={resetHeroTilt}
+        className="relative min-h-[100dvh] pt-20 pb-8 sm:pt-24 sm:pb-10 flex flex-col justify-between overflow-x-clip border-b border-white/[0.06]"
       >
-        {/* Nano Banana 2 Pro Obsidian Basalt Backdrop + Scroll Parallax */}
-        <motion.div
-          style={shouldReduceMotion ? undefined : { y: bgParallaxY }}
+        {/* Nano Banana 2 Pro Obsidian Basalt Backdrop + Scroll Parallax (clipped strictly inside backdrop wrapper) */}
+        <div
           aria-hidden="true"
-          className="pointer-events-none absolute inset-0 z-0"
+          className="pointer-events-none absolute inset-0 z-0 overflow-hidden"
         >
-          <Image
-            src="/projects/mahjong/art/hero_sanctuary_bg.webp"
-            alt=""
-            fill
-            priority
-            sizes="100vw"
-            className="object-cover opacity-80"
-          />
+          <motion.div
+            style={shouldReduceMotion ? undefined : { y: bgParallaxY }}
+            className="relative w-full h-full"
+          >
+            <Image
+              src="/projects/mahjong/art/hero_sanctuary_bg.webp"
+              alt=""
+              fill
+              priority
+              sizes="100vw"
+              className="object-cover opacity-80"
+            />
+          </motion.div>
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_75%_65%_at_50%_42%,rgba(8,9,10,0.45)_0%,rgba(8,9,10,0.88)_75%,#08090a_100%)]" />
           <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-[#08090a] to-transparent" />
-        </motion.div>
+        </div>
 
         <div className="relative z-10 max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 flex-1 flex flex-col justify-between gap-4 sm:gap-5">
           {/* Top Bar: Breadcrumb + Sound Switch */}
@@ -322,77 +328,92 @@ export function ExpeditionMahjongStory({
             </motion.div>
           </motion.div>
 
-          {/* Z-Axis 3D Triptych (Desktop: 3 phones with CSS perspective + pointer tilt) */}
-          <div className="hidden md:flex items-center justify-center [perspective:1400px]">
+          {/* Z-Axis 3D Triptych (Desktop: 3 interactive 3D phones with CSS perspective + pointer orbit) */}
+          <div className="hidden md:flex flex-col items-center justify-center [perspective:1400px] overflow-visible">
             <motion.div
               style={
                 shouldReduceMotion
                   ? undefined
                   : { rotateX: tiltX, rotateY: tiltY, transformStyle: "preserve-3d" }
               }
-              className="relative flex items-center justify-center w-full max-w-4xl h-[300px] lg:h-[345px]"
+              className="relative flex items-center justify-center w-full max-w-4xl h-[330px] lg:h-[395px] my-1 overflow-visible"
             >
-              {/* Left Flanking Phone (outer motion handles scroll fan-out, inner handles Z-depth position) */}
+              {/* Left Flanking Phone (outer motion handles scroll fan-out, inner handles Z-depth position & individual 3D cursor tilt) */}
               <motion.div
-                style={shouldReduceMotion ? undefined : { x: leftWingX }}
-                className="absolute z-10 pointer-events-none flex items-center justify-center"
+                style={shouldReduceMotion ? undefined : { x: leftWingX, transformStyle: "preserve-3d" }}
+                className="absolute z-10 flex items-center justify-center"
               >
                 <motion.div
-                  initial={shouldReduceMotion ? undefined : { opacity: 0, x: -130, rotateY: 16, scale: 0.84 }}
-                  animate={{ opacity: 0.88, x: -205, rotateY: 16, scale: 0.84 }}
+                  initial={shouldReduceMotion ? undefined : { opacity: 0, x: -130, rotateY: 16, scale: 0.86 }}
+                  animate={{ opacity: 0.92, x: -195, rotateY: 16, scale: 0.86 }}
                   transition={{ duration: 0.75, ease: EASE_SNAP }}
-                  className="relative w-[150px] lg:w-[172px] aspect-[9/19.2]"
+                  style={shouldReduceMotion ? undefined : { transform: "translateZ(-18px)", transformStyle: "preserve-3d" }}
+                  className="relative w-[142px] lg:w-[164px] aspect-[9/19.2] overflow-visible"
                 >
-                  <Image
+                  <Interactive3DPhone
                     src={HERO_TRIPTYCH[0].src}
                     alt={HERO_TRIPTYCH[0].alt}
-                    fill
+                    sizes="164px"
                     priority
-                    sizes="172px"
-                    className="object-contain drop-shadow-[0_26px_44px_rgba(0,0,0,0.85)]"
+                    maxRotateX={14}
+                    maxRotateY={18}
+                    hoverScale={1.06}
+                    imageClassName="object-contain drop-shadow-[0_26px_44px_rgba(0,0,0,0.88)]"
                   />
                 </motion.div>
               </motion.div>
 
-              {/* Focal Center Phone */}
+              {/* Focal Center Phone (elevated closer on Z axis) */}
               <motion.div
                 initial={shouldReduceMotion ? undefined : { opacity: 0, y: 20, scale: 0.94 }}
                 animate={{ opacity: 1, y: 0, scale: 1 }}
                 transition={{ duration: 0.7, ease: EASE_SNAP }}
-                className="relative w-[165px] lg:w-[190px] aspect-[9/19.5] z-20"
+                style={shouldReduceMotion ? undefined : { transform: "translateZ(50px)", transformStyle: "preserve-3d" }}
+                className="relative w-[156px] lg:w-[178px] aspect-[9/19.5] z-20 overflow-visible"
               >
-                <Image
+                <Interactive3DPhone
                   src={HERO_TRIPTYCH[1].src}
                   alt={HERO_TRIPTYCH[1].alt}
-                  fill
+                  sizes="178px"
                   priority
-                  sizes="190px"
-                  className="object-contain drop-shadow-[0_34px_64px_rgba(0,0,0,0.95)]"
+                  maxRotateX={15}
+                  maxRotateY={20}
+                  hoverScale={1.05}
+                  stageClassName="relative w-full aspect-[9/19.5]"
+                  imageClassName="object-contain drop-shadow-[0_34px_64px_rgba(0,0,0,0.95)]"
                 />
               </motion.div>
 
               {/* Right Flanking Phone */}
               <motion.div
-                style={shouldReduceMotion ? undefined : { x: rightWingX }}
-                className="absolute z-10 pointer-events-none flex items-center justify-center"
+                style={shouldReduceMotion ? undefined : { x: rightWingX, transformStyle: "preserve-3d" }}
+                className="absolute z-10 flex items-center justify-center"
               >
                 <motion.div
-                  initial={shouldReduceMotion ? undefined : { opacity: 0, x: 130, rotateY: -16, scale: 0.84 }}
-                  animate={{ opacity: 0.88, x: 205, rotateY: -16, scale: 0.84 }}
+                  initial={shouldReduceMotion ? undefined : { opacity: 0, x: 130, rotateY: -16, scale: 0.86 }}
+                  animate={{ opacity: 0.92, x: 195, rotateY: -16, scale: 0.86 }}
                   transition={{ duration: 0.75, ease: EASE_SNAP }}
-                  className="relative w-[150px] lg:w-[172px] aspect-[9/19.2]"
+                  style={shouldReduceMotion ? undefined : { transform: "translateZ(-18px)", transformStyle: "preserve-3d" }}
+                  className="relative w-[142px] lg:w-[164px] aspect-[9/19.2] overflow-visible"
                 >
-                  <Image
+                  <Interactive3DPhone
                     src={HERO_TRIPTYCH[2].src}
                     alt={HERO_TRIPTYCH[2].alt}
-                    fill
+                    sizes="164px"
                     priority
-                    sizes="172px"
-                    className="object-contain drop-shadow-[0_26px_44px_rgba(0,0,0,0.85)]"
+                    maxRotateX={14}
+                    maxRotateY={18}
+                    hoverScale={1.06}
+                    imageClassName="object-contain drop-shadow-[0_26px_44px_rgba(0,0,0,0.88)]"
                   />
                 </motion.div>
               </motion.div>
             </motion.div>
+
+            <div className="relative z-30 inline-flex items-center gap-1.5 mt-3 px-3 py-1 rounded-full bg-white/[0.04] border border-white/[0.08] text-[10px] font-mono text-[#adb3b7]">
+              <Rotate3d className="w-3 h-3 text-[#ff7235]" aria-hidden="true" />
+              <span>Move cursor to orbit 3D stage</span>
+            </div>
           </div>
 
           {/* Mobile Collapse (< md): Clean single focal 3D device + 3 switch tabs */}
@@ -564,58 +585,71 @@ export function ExpeditionMahjongStory({
                 })}
               </div>
 
-              <div className="relative w-full max-w-[300px] sm:max-w-[330px] aspect-[9/19.2] flex items-center justify-center">
-                {homeViewMode === "3d" ? (
-                  <Image
-                    src="/projects/mahjong/mockups/01_home_hub_mock.webp"
-                    alt="Expedition Mahjong interactive home hub 3D mockup"
-                    fill
-                    sizes="330px"
-                    className="object-contain drop-shadow-[0_28px_52px_rgba(0,0,0,0.85)]"
-                  />
-                ) : (
-                  <div className="relative w-[90%] h-full rounded-[38px] overflow-hidden border-[3px] border-white/18 bg-[#08090a] shadow-2xl">
-                    <Image
-                      src="/projects/mahjong/screens/01_home_hub.webp"
-                      alt="Expedition Mahjong flat home hub UI screen"
-                      fill
-                      sizes="300px"
-                      className="object-cover"
-                    />
-                  </div>
-                )}
-
-                {/* Pulsing Hotspot Dots directly mapped over UI elements */}
-                {HOME_HOTSPOTS.map((spot) => {
-                  const isSelected = spot.id === activeHotspotId;
-                  return (
-                    <button
-                      key={spot.id}
-                      type="button"
-                      onClick={() => {
-                        playTactileSound("ivory", soundEnabled);
-                        setActiveHotspotId(spot.id);
-                      }}
-                      style={{ left: `${spot.xPercent}%`, top: `${spot.yPercent}%` }}
-                      aria-label={`Inspect hotspot ${spot.code}: ${spot.label}`}
-                      className="absolute -translate-x-1/2 -translate-y-1/2 w-10 h-10 flex items-center justify-center z-20 group focus-visible:outline-none"
-                    >
-                      {isSelected && !shouldReduceMotion && (
-                        <span className="absolute w-9 h-9 rounded-full bg-[#ff7235]/35 animate-ping" />
-                      )}
-                      <span
-                        className={`relative w-7 h-7 rounded-full font-mono text-[11px] font-bold flex items-center justify-center border shadow-lg transition-[transform,background-color] ${
-                          isSelected
-                            ? "bg-[#ff7235] text-[#08090a] border-white scale-110"
-                            : "bg-[#08090a]/85 text-white border-white/60 group-hover:scale-110"
-                        }`}
-                      >
-                        {spot.code}
-                      </span>
-                    </button>
-                  );
-                })}
-              </div>
+              <Interactive3DPhone
+                src={
+                  homeViewMode === "3d"
+                    ? "/projects/mahjong/mockups/01_home_hub_upright.webp"
+                    : undefined
+                }
+                alt={
+                  homeViewMode === "3d"
+                    ? "Expedition Mahjong interactive home hub 3D mockup"
+                    : undefined
+                }
+                customVisual={
+                  homeViewMode === "flat" ? (
+                    <div className="relative w-[90%] h-full rounded-[38px] overflow-hidden border-[3px] border-white/18 bg-[#08090a] shadow-2xl">
+                      <Image
+                        src="/projects/mahjong/screens/01_home_hub.webp"
+                        alt="Expedition Mahjong flat home hub UI screen"
+                        fill
+                        sizes="300px"
+                        className="object-cover"
+                      />
+                    </div>
+                  ) : undefined
+                }
+                floatingLayer={
+                  <>
+                    {/* Pulsing Hotspot Dots directly mapped in Z-depth over UI elements */}
+                    {HOME_HOTSPOTS.map((spot) => {
+                      const isSelected = spot.id === activeHotspotId;
+                      return (
+                        <button
+                          key={spot.id}
+                          type="button"
+                          onClick={() => {
+                            playTactileSound("ivory", soundEnabled);
+                            setActiveHotspotId(spot.id);
+                          }}
+                          style={{ left: `${spot.xPercent}%`, top: `${spot.yPercent}%` }}
+                          aria-label={`Inspect hotspot ${spot.code}: ${spot.label}`}
+                          className="absolute -translate-x-1/2 -translate-y-1/2 w-10 h-10 flex items-center justify-center z-20 group focus-visible:outline-none"
+                        >
+                          {isSelected && !shouldReduceMotion && (
+                            <span className="absolute w-9 h-9 rounded-full bg-[#ff7235]/35 animate-ping" />
+                          )}
+                          <span
+                            className={`relative w-7 h-7 rounded-full font-mono text-[11px] font-bold flex items-center justify-center border shadow-lg transition-[transform,background-color] ${
+                              isSelected
+                                ? "bg-[#ff7235] text-[#08090a] border-white scale-110"
+                                : "bg-[#08090a]/85 text-white border-white/60 group-hover:scale-110"
+                            }`}
+                          >
+                            {spot.code}
+                          </span>
+                        </button>
+                      );
+                    })}
+                  </>
+                }
+                floatingZ={34}
+                maxRotateX={13}
+                maxRotateY={18}
+                showHint
+                stageClassName="relative w-full max-w-[300px] sm:max-w-[330px] aspect-[9/19.2]"
+                className="w-full"
+              />
 
               {/* Active Hotspot Quick Caption */}
               <div className="mt-4 text-center max-w-xs">
@@ -895,8 +929,8 @@ export function ExpeditionMahjongStory({
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-14">
           {/* Monetization Switchboard framed with Nano Banana 2 Pro editorial art */}
-          <div className="relative rounded-3xl overflow-hidden border border-white/[0.09] bg-[#101218] p-6 sm:p-10 lg:p-12">
-            <div aria-hidden="true" className="pointer-events-none absolute inset-0">
+          <div className="relative rounded-3xl border border-white/[0.09] bg-[#101218] p-6 sm:p-10 lg:p-12 overflow-visible">
+            <div aria-hidden="true" className="pointer-events-none absolute inset-0 rounded-3xl overflow-hidden">
               <Image
                 src="/projects/mahjong/art/monetization_craft_stage.webp"
                 alt=""
@@ -997,28 +1031,35 @@ export function ExpeditionMahjongStory({
                 </AnimatePresence>
               </div>
 
-              {/* Right: Live Morphing 3D Device Showcase */}
-              <div className="lg:col-span-5 flex justify-center">
-                <div className="relative w-full max-w-[270px] sm:max-w-[300px] aspect-[9/19]">
-                  <AnimatePresence mode="wait">
-                    <motion.div
-                      key={activeMonetization.id}
-                      initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0, scale: 0.94, filter: "blur(5px)" }}
-                      animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
-                      exit={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, scale: 0.94, filter: "blur(5px)" }}
-                      transition={shouldReduceMotion ? { duration: 0.01 } : SPRING_SMOOTH}
-                      className="relative w-full h-full"
-                    >
-                      <Image
-                        src={activeMonetization.screenSrc}
-                        alt={activeMonetization.screenAlt}
-                        fill
-                        sizes="300px"
-                        className="object-contain drop-shadow-[0_28px_52px_rgba(0,0,0,0.92)]"
-                      />
-                    </motion.div>
-                  </AnimatePresence>
-                </div>
+              {/* Right: Live Morphing Interactive 3D Device Showcase */}
+              <div className="lg:col-span-5 flex justify-center overflow-visible">
+                <Interactive3DPhone
+                  maxRotateX={14}
+                  maxRotateY={20}
+                  showHint
+                  stageClassName="relative w-full max-w-[275px] sm:max-w-[305px] aspect-[9/19.2]"
+                  className="w-full"
+                  customVisual={
+                    <AnimatePresence mode="wait">
+                      <motion.div
+                        key={activeMonetization.id}
+                        initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0, scale: 0.94, filter: "blur(5px)" }}
+                        animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
+                        exit={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, scale: 0.94, filter: "blur(5px)" }}
+                        transition={shouldReduceMotion ? { duration: 0.01 } : SPRING_SMOOTH}
+                        className="relative w-full h-full"
+                      >
+                        <Image
+                          src={activeMonetization.screenSrc}
+                          alt={activeMonetization.screenAlt}
+                          fill
+                          sizes="305px"
+                          className="object-contain drop-shadow-[0_28px_52px_rgba(0,0,0,0.92)]"
+                        />
+                      </motion.div>
+                    </AnimatePresence>
+                  }
+                />
               </div>
             </div>
           </div>
@@ -1136,25 +1177,41 @@ export function ExpeditionMahjongStory({
                   <button
                     type="button"
                     onClick={() => openInLightbox(globalOffset, idx)}
-                    className={`relative w-full bg-[#08090a] group overflow-hidden text-left focus-visible:outline-none ${
-                      isLandscape ? "aspect-[16/9]" : "aspect-[9/17.5]"
+                    className={`relative w-full bg-[#08090a] group text-left focus-visible:outline-none ${
+                      isLandscape
+                        ? "aspect-[16/9] overflow-hidden"
+                        : vaultTab === "mockups"
+                          ? "aspect-[9/17.5] p-4 overflow-visible"
+                          : "aspect-[9/17.5] overflow-hidden"
                     }`}
                     aria-label={`Inspect ${item.title} full screen`}
                   >
-                    <Image
-                      src={item.src}
-                      alt={item.title}
-                      fill
-                      sizes={isLandscape ? "460px" : "270px"}
-                      className={
-                        isLandscape
-                          ? "object-cover group-hover:scale-[1.02] transition-transform duration-300"
-                          : vaultTab === "mockups"
-                            ? "object-contain p-3 drop-shadow-[0_20px_32px_rgba(0,0,0,0.85)] group-hover:scale-[1.03] transition-transform duration-300"
+                    {vaultTab === "mockups" && !isLandscape ? (
+                      <Interactive3DPhone
+                        src={item.src}
+                        alt={item.title}
+                        sizes="240px"
+                        maxRotateX={10}
+                        maxRotateY={14}
+                        hoverScale={1.04}
+                        stageClassName="relative w-full h-full aspect-[9/17.5]"
+                        className="w-full h-full"
+                        imageClassName="object-contain drop-shadow-[0_20px_32px_rgba(0,0,0,0.88)]"
+                      />
+                    ) : (
+                      <Image
+                        src={item.src}
+                        alt={item.title}
+                        fill
+                        sizes={isLandscape ? "460px" : "270px"}
+                        className={
+                          isLandscape
+                            ? "object-cover group-hover:scale-[1.02] transition-transform duration-300"
                             : "object-contain p-2.5 rounded-[24px] group-hover:scale-[1.02] transition-transform duration-300"
-                      }
-                    />
-                    <span className="absolute bottom-3 right-3 w-9 h-9 rounded-full bg-[#08090a]/85 border border-white/15 flex items-center justify-center text-[#f2f5f1] opacity-90 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity">
+                        }
+                      />
+                    )}
+                    <span className="pointer-events-none absolute bottom-3 right-3 w-9 h-9 rounded-full bg-[#08090a]/85 border border-white/15 flex items-center justify-center text-[#f2f5f1] opacity-90 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity z-20">
                       <Maximize2 className="w-4 h-4" aria-hidden="true" />
                     </span>
                   </button>

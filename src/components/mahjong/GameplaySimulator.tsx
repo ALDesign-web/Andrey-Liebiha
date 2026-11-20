@@ -5,6 +5,7 @@ import Image from "next/image";
 import { motion, AnimatePresence, useDragControls, PanInfo, useReducedMotion } from "framer-motion";
 import { RotateCw, Sparkles, Volume2, Vibrate, Music, Star, CheckCircle2, MessageSquare } from "lucide-react";
 import { playTactileSound } from "@/lib/tactileAudio";
+import { Interactive3DPhone } from "./Interactive3DPhone";
 
 const SPRING_SNAPPY = { type: "spring" as const, stiffness: 400, damping: 30, mass: 1 };
 const SPRING_SMOOTH = { type: "spring" as const, stiffness: 200, damping: 24, mass: 1 };
@@ -126,7 +127,7 @@ export function StickyGameplayStage({ activeBeat, soundEnabled }: StickyGameplay
       </div>
 
       {/* Main Sticky Phone Viewport */}
-      <div className="relative w-full max-w-[310px] sm:max-w-[330px] aspect-[9/19.2] flex items-center justify-center">
+      <div className="relative w-full max-w-[310px] sm:max-w-[330px] flex flex-col items-center justify-center overflow-visible">
         <AnimatePresence mode="wait">
           {activeBeat === "board" && (
             <motion.div
@@ -135,44 +136,59 @@ export function StickyGameplayStage({ activeBeat, soundEnabled }: StickyGameplay
               animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
               exit={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, scale: 0.96, filter: "blur(4px)" }}
               transition={shouldReduceMotion ? { duration: 0.01 } : SPRING_SMOOTH}
-              className="relative w-full h-full flex items-center justify-center"
+              className="relative w-full flex items-center justify-center overflow-visible"
             >
               {boardViewMode === "3d" ? (
-                <Image
-                  src="/projects/mahjong/mockups/02_gameplay_board_mock.webp"
+                <Interactive3DPhone
+                  src="/projects/mahjong/mockups/02_gameplay_board_upright.webp"
                   alt="Expedition Mahjong 3D gameplay board perspective mockup"
-                  fill
                   sizes="330px"
-                  className="object-contain drop-shadow-[0_28px_48px_rgba(0,0,0,0.85)]"
+                  maxRotateX={13}
+                  maxRotateY={18}
+                  showHint
+                  className="w-full"
+                  stageClassName="relative w-full aspect-[9/19.2]"
                 />
               ) : (
-                <div className="relative w-[90%] h-full rounded-[38px] overflow-hidden border-[3px] border-white/18 bg-[#08090a] shadow-[0_28px_60px_rgba(0,0,0,0.85)]">
-                  <Image
-                    src="/projects/mahjong/screens/02_gameplay_board.webp"
-                    alt="Expedition Mahjong flat gameplay HUD and thumb booster dock"
-                    fill
-                    sizes="300px"
-                    className="object-cover"
-                  />
-                  {boardViewMode === "xray" && (
-                    <div
-                      aria-hidden="true"
-                      className="absolute inset-0 pointer-events-none flex flex-col justify-between p-3"
-                    >
-                      <div className="mt-7 rounded-xl bg-black/80 backdrop-blur-sm border border-sky-400/35 px-3 py-2 text-[11px] font-mono text-sky-200">
-                        Passive Top HUD · Safe-Area Locked
-                      </div>
-                      <div className="rounded-2xl bg-[#ff7235]/20 border-2 border-[#ff7235] p-2.5 backdrop-blur-[2px]">
-                        <div className="text-[10px] font-mono font-bold uppercase tracking-wider text-[#ffd1bd]">
-                          Thumb-Reach Timber Dock
-                        </div>
-                        <div className="text-[11px] text-white/95 leading-snug mt-0.5">
-                          5 core controls anchored in bottom arc · Zero top stretching
-                        </div>
-                      </div>
+                <Interactive3DPhone
+                  maxRotateX={13}
+                  maxRotateY={18}
+                  showHint
+                  floatingZ={26}
+                  className="w-full"
+                  stageClassName="relative w-full aspect-[9/19.2]"
+                  customVisual={
+                    <div className="relative w-[90%] h-full rounded-[38px] overflow-hidden border-[3px] border-white/18 bg-[#08090a] shadow-[0_28px_60px_rgba(0,0,0,0.85)]">
+                      <Image
+                        src="/projects/mahjong/screens/02_gameplay_board.webp"
+                        alt="Expedition Mahjong flat gameplay HUD and thumb booster dock"
+                        fill
+                        sizes="300px"
+                        className="object-cover"
+                      />
                     </div>
-                  )}
-                </div>
+                  }
+                  floatingLayer={
+                    boardViewMode === "xray" ? (
+                      <div
+                        aria-hidden="true"
+                        className="w-[90%] h-full mx-auto pointer-events-none flex flex-col justify-between p-3"
+                      >
+                        <div className="mt-7 rounded-xl bg-black/85 backdrop-blur-sm border border-sky-400/45 px-3 py-2 text-[11px] font-mono text-sky-200 shadow-lg">
+                          Passive Top HUD · Safe-Area Locked
+                        </div>
+                        <div className="rounded-2xl bg-[#ff7235]/25 border-2 border-[#ff7235] p-2.5 backdrop-blur-[2px] shadow-lg">
+                          <div className="text-[10px] font-mono font-bold uppercase tracking-wider text-[#ffd1bd]">
+                            Thumb-Reach Timber Dock
+                          </div>
+                          <div className="text-[11px] text-white/95 leading-snug mt-0.5">
+                            5 core controls anchored in bottom arc · Zero top stretching
+                          </div>
+                        </div>
+                      </div>
+                    ) : undefined
+                  }
+                />
               )}
             </motion.div>
           )}
@@ -184,18 +200,29 @@ export function StickyGameplayStage({ activeBeat, soundEnabled }: StickyGameplay
               animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
               exit={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, scale: 0.96, filter: "blur(4px)" }}
               transition={shouldReduceMotion ? { duration: 0.01 } : SPRING_SMOOTH}
-              className="relative w-[90%] h-full rounded-[38px] overflow-hidden border-[3px] border-white/18 bg-[#08090a] shadow-[0_28px_60px_rgba(0,0,0,0.85)]"
+              className="relative w-full flex items-center justify-center overflow-visible"
             >
               {stuckCompareShipped ? (
-                <Image
-                  src="/projects/mahjong/screens/04_stuck_recovery.webp"
-                  alt="Expedition Mahjong shipped deadlock recovery bottom sheet"
-                  fill
-                  sizes="300px"
-                  className="object-cover"
+                <Interactive3DPhone
+                  maxRotateX={13}
+                  maxRotateY={18}
+                  showHint
+                  className="w-full"
+                  stageClassName="relative w-full aspect-[9/19.2]"
+                  customVisual={
+                    <div className="relative w-[90%] h-full rounded-[38px] overflow-hidden border-[3px] border-white/18 bg-[#08090a] shadow-[0_28px_60px_rgba(0,0,0,0.85)]">
+                      <Image
+                        src="/projects/mahjong/screens/04_stuck_recovery.webp"
+                        alt="Expedition Mahjong shipped deadlock recovery bottom sheet"
+                        fill
+                        sizes="300px"
+                        className="object-cover"
+                      />
+                    </div>
+                  }
                 />
               ) : (
-                <>
+                <div className="relative w-[90%] aspect-[9/19.2] rounded-[38px] overflow-hidden border-[3px] border-white/18 bg-[#08090a] shadow-[0_28px_60px_rgba(0,0,0,0.85)]">
                   {/* Underlying live tile board stays readable */}
                   <Image
                     src="/projects/mahjong/screens/02_gameplay_board.webp"
@@ -324,7 +351,7 @@ export function StickyGameplayStage({ activeBeat, soundEnabled }: StickyGameplay
                       </motion.div>
                     )}
                   </AnimatePresence>
-                </>
+                </div>
               )}
             </motion.div>
           )}
@@ -336,14 +363,18 @@ export function StickyGameplayStage({ activeBeat, soundEnabled }: StickyGameplay
               animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
               exit={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, scale: 0.96, filter: "blur(4px)" }}
               transition={shouldReduceMotion ? { duration: 0.01 } : SPRING_SMOOTH}
-              className="relative w-full h-full flex items-center justify-center"
+              className="relative w-full flex items-center justify-center overflow-visible"
             >
-              <Image
-                src="/projects/mahjong/mockups/03_victory_mock.webp"
+              <Interactive3DPhone
+                src="/projects/mahjong/mockups/03_victory_upright.webp"
                 alt="Expedition Mahjong victory celebration 3D mockup with emerald jade Play CTA"
-                fill
                 sizes="330px"
-                className="object-contain drop-shadow-[0_28px_48px_rgba(0,0,0,0.85)]"
+                maxRotateX={14}
+                maxRotateY={20}
+                showHint
+                className="w-full"
+                stageClassName="relative w-full aspect-[9/19.2]"
+                imageClassName="object-contain drop-shadow-[0_28px_48px_rgba(0,0,0,0.85)]"
               />
             </motion.div>
           )}
@@ -379,13 +410,16 @@ export function SensoryAndFunnelLab({ soundEnabled }: SensoryAndFunnelLabProps) 
       {/* Left Card: Live Sensory Toggles + Settings 3D Mockup */}
       <div className="rounded-3xl bg-[#12141a] border border-white/[0.09] p-6 sm:p-8 flex flex-col justify-between gap-6">
         <div className="grid grid-cols-1 sm:grid-cols-12 gap-6 items-center">
-          <div className="sm:col-span-5 relative aspect-[9/18] max-w-[200px] w-full mx-auto">
-            <Image
-              src="/projects/mahjong/mockups/07_settings_mock.webp"
+          <div className="sm:col-span-5 max-w-[215px] w-full mx-auto overflow-visible">
+            <Interactive3DPhone
+              src="/projects/mahjong/mockups/07_settings_upright.webp"
               alt="Expedition Mahjong audio and haptic settings 3D mockup"
-              fill
-              sizes="200px"
-              className="object-contain drop-shadow-[0_22px_34px_rgba(0,0,0,0.85)]"
+              sizes="215px"
+              maxRotateX={13}
+              maxRotateY={18}
+              showHint
+              stageClassName="relative w-full aspect-[9/19.2]"
+              imageClassName="object-contain drop-shadow-[0_22px_34px_rgba(0,0,0,0.85)]"
             />
           </div>
 
@@ -444,13 +478,16 @@ export function SensoryAndFunnelLab({ soundEnabled }: SensoryAndFunnelLabProps) 
       {/* Right Card: Interactive Two-Step Sentiment Simulator + Fresh RATE US Mockup */}
       <div className="rounded-3xl bg-[#12141a] border border-white/[0.09] p-6 sm:p-8 flex flex-col justify-between gap-6">
         <div className="grid grid-cols-1 sm:grid-cols-12 gap-6 items-center">
-          <div className="sm:col-span-5 relative aspect-[9/18] max-w-[200px] w-full mx-auto">
-            <Image
-              src="/projects/mahjong/mockups/08_rate_us_mock.webp"
+          <div className="sm:col-span-5 max-w-[215px] w-full mx-auto overflow-visible">
+            <Interactive3DPhone
+              src="/projects/mahjong/mockups/08_rate_us_upright.webp"
               alt="Expedition Mahjong newly updated two-step sentiment funnel 3D mockup"
-              fill
-              sizes="200px"
-              className="object-contain drop-shadow-[0_22px_34px_rgba(0,0,0,0.85)]"
+              sizes="215px"
+              maxRotateX={13}
+              maxRotateY={18}
+              showHint
+              stageClassName="relative w-full aspect-[9/19.2]"
+              imageClassName="object-contain drop-shadow-[0_22px_34px_rgba(0,0,0,0.85)]"
             />
           </div>
 

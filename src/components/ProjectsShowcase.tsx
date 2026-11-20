@@ -5,6 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight, Lock, Smartphone, Globe, Layers } from "lucide-react";
 import { PROJECTS_DATA } from "@/data/portfolioData";
+import { Interactive3DPhone } from "@/components/mahjong/Interactive3DPhone";
 
 export function ProjectsShowcase() {
   const mahjong = PROJECTS_DATA.find((p) => p.slug === "expedition-mahjong") ?? PROJECTS_DATA[0];
@@ -38,39 +39,48 @@ export function ProjectsShowcase() {
             {/* Visual Showcase: 3-Device Perspective Mockup Composition */}
             <Link
               href={`/work/${mahjong.slug}`}
-              className="lg:col-span-7 bg-[#08090a] p-4 py-7 sm:p-10 flex items-center justify-center relative overflow-hidden group border-b lg:border-b-0 lg:border-r border-white/[0.07]"
+              className="lg:col-span-7 bg-[#08090a] p-5 py-8 sm:p-10 flex items-center justify-center relative overflow-visible group border-b lg:border-b-0 lg:border-r border-white/[0.07]"
               aria-label={`Open ${mahjong.title} case study`}
             >
               <div
                 aria-hidden="true"
                 className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_45%,rgba(255,114,53,0.12),transparent_68%)]"
               />
-              <div className="relative grid grid-cols-3 gap-2 sm:gap-4 w-full max-w-[610px] items-center">
-                <div className="relative aspect-[9/19] translate-y-3 group-hover:translate-y-1 transition-transform duration-300">
-                  <Image
-                    src="/projects/mahjong/mockups/01_home_hub_mock.webp"
+              <div className="relative grid grid-cols-3 gap-2 sm:gap-4 w-full max-w-[610px] items-center overflow-visible">
+                <div className="translate-y-3 overflow-visible">
+                  <Interactive3DPhone
+                    src="/projects/mahjong/mockups/01_home_hub_upright.webp"
                     alt="Expedition Mahjong 3D Home Hub perspective mockup"
-                    fill
                     sizes="(max-width: 1024px) 30vw, 195px"
-                    className="object-contain drop-shadow-[0_24px_40px_rgba(0,0,0,0.75)]"
+                    maxRotateX={11}
+                    maxRotateY={16}
+                    hoverScale={1.04}
+                    stageClassName="relative w-full aspect-[9/19]"
+                    imageClassName="object-contain drop-shadow-[0_24px_40px_rgba(0,0,0,0.75)]"
                   />
                 </div>
-                <div className="relative aspect-[9/19.5] -translate-y-2 scale-[1.06] z-10 group-hover:-translate-y-4 transition-transform duration-300">
-                  <Image
-                    src="/projects/mahjong/mockups/02_gameplay_board_mock.webp"
+                <div className="-translate-y-2 scale-[1.06] z-10 overflow-visible">
+                  <Interactive3DPhone
+                    src="/projects/mahjong/mockups/02_gameplay_board_upright.webp"
                     alt="Expedition Mahjong 3D gameplay board and bottom booster dock mockup"
-                    fill
                     sizes="(max-width: 1024px) 32vw, 215px"
-                    className="object-contain drop-shadow-[0_28px_46px_rgba(0,0,0,0.85)]"
+                    maxRotateX={12}
+                    maxRotateY={18}
+                    hoverScale={1.05}
+                    stageClassName="relative w-full aspect-[9/19.5]"
+                    imageClassName="object-contain drop-shadow-[0_28px_46px_rgba(0,0,0,0.85)]"
                   />
                 </div>
-                <div className="relative aspect-[9/19] translate-y-4 group-hover:translate-y-2 transition-transform duration-300">
-                  <Image
-                    src="/projects/mahjong/mockups/03_victory_mock.webp"
+                <div className="translate-y-4 overflow-visible">
+                  <Interactive3DPhone
+                    src="/projects/mahjong/mockups/03_victory_upright.webp"
                     alt="Expedition Mahjong 3D victory screen mockup with carved jade CTA"
-                    fill
                     sizes="(max-width: 1024px) 30vw, 195px"
-                    className="object-contain drop-shadow-[0_24px_40px_rgba(0,0,0,0.75)]"
+                    maxRotateX={11}
+                    maxRotateY={16}
+                    hoverScale={1.04}
+                    stageClassName="relative w-full aspect-[9/19]"
+                    imageClassName="object-contain drop-shadow-[0_24px_40px_rgba(0,0,0,0.75)]"
                   />
                 </div>
               </div>
