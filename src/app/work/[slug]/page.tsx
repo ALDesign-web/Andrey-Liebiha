@@ -5,6 +5,7 @@ import { PROJECTS_DATA } from "@/data/portfolioData";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { CaseStudyDetail } from "@/components/CaseStudyDetail";
+import { ExpeditionMahjongStory } from "@/components/mahjong/ExpeditionMahjongStory";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -52,7 +53,11 @@ export default async function CaseStudyPage({ params }: PageProps) {
     <div className="min-h-screen bg-[#08090a] text-[#f2f5f1] flex flex-col">
       <Navbar />
       <main className="flex-1">
-        <CaseStudyDetail project={project} nextProject={nextProject} />
+        {project.slug === "expedition-mahjong" ? (
+          <ExpeditionMahjongStory project={project} nextProject={nextProject} />
+        ) : (
+          <CaseStudyDetail project={project} nextProject={nextProject} />
+        )}
       </main>
       <Footer />
     </div>
