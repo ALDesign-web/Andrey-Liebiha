@@ -45,7 +45,7 @@ export function Navbar() {
             setMobileMenuOpen(false);
           }
         }}
-        className={`animate-nav-enter fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        className={`animate-nav-enter fixed top-0 left-0 right-0 z-50 transition-[padding] duration-300 ${
           scrolled
             ? "pt-[max(0.65rem,env(safe-area-inset-top))] pb-2 sm:py-3"
             : "pt-[max(0.85rem,env(safe-area-inset-top))] pb-3 sm:py-5"
@@ -53,7 +53,7 @@ export function Navbar() {
       >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between gap-4">
         <div
-          className={`w-full flex items-center justify-between px-4 sm:px-5 py-2 rounded-full transition-all duration-300 ${
+          className={`w-full flex items-center justify-between px-4 sm:px-5 py-2 rounded-full transition-[background-color,border-color,box-shadow] duration-300 ${
             scrolled ? "safari-glass-scrolled" : "safari-glass"
           }`}
         >

@@ -6,6 +6,7 @@ import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { CaseStudyDetail } from "@/components/CaseStudyDetail";
 import { ExpeditionMahjongStory } from "@/components/mahjong/ExpeditionMahjongStory";
+import { BookifyCaseStudy } from "@/components/bookify/BookifyCaseStudy";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -55,6 +56,8 @@ export default async function CaseStudyPage({ params }: PageProps) {
       <main className="flex-1">
         {project.slug === "expedition-mahjong" ? (
           <ExpeditionMahjongStory project={project} nextProject={nextProject} />
+        ) : project.slug === "bookify" ? (
+          <BookifyCaseStudy project={project} nextProject={nextProject} />
         ) : (
           <CaseStudyDetail project={project} nextProject={nextProject} />
         )}

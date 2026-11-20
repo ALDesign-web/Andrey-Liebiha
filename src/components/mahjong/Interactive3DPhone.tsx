@@ -7,13 +7,12 @@ import {
   useMotionValue,
   useSpring,
   useTransform,
-  useMotionTemplate,
   useReducedMotion,
 } from "framer-motion";
 import { Rotate3d } from "lucide-react";
 
 const SPRING_ORBIT = { stiffness: 190, damping: 20, mass: 0.8 };
-const SPRING_GLARE = { stiffness: 220, damping: 24, mass: 0.6 };
+const SPRING_SCALE = { stiffness: 220, damping: 24, mass: 0.6 };
 
 export interface Interactive3DPhoneProps {
   src?: string;
@@ -37,7 +36,7 @@ export interface Interactive3DPhoneProps {
 
 /**
  * Interactive cursor-tracking 3D phone stage with spring physics,
- * counter-shifting floor shadow, specular glass sweep, and optional Z-lifted overlay layer.
+ * counter-shifting floor shadow, and optional Z-lifted overlay layer.
  */
 export function Interactive3DPhone({
   src,
@@ -52,7 +51,6 @@ export function Interactive3DPhone({
   maxRotateY = 20,
   hoverScale = 1.035,
   perspective = 1100,
-  glare = true,
   showHint = false,
   hintText = "Move cursor to rotate 3D",
   className = "",
@@ -64,12 +62,10 @@ export function Interactive3DPhone({
   const rawNormX = useMotionValue(0);
   const rawNormY = useMotionValue(0);
   const rawScale = useMotionValue(1);
-  const rawGlareOpacity = useMotionValue(0);
 
   const smoothNormX = useSpring(rawNormX, SPRING_ORBIT);
   const smoothNormY = useSpring(rawNormY, SPRING_ORBIT);
-  const smoothScale = useSpring(rawScale, SPRING_GLARE);
-  const smoothGlareOpacity = useSpring(rawGlareOpacity, SPRING_GLARE);
+  const smoothScale = useSpring(rawScale, SPRING_SCALE);
 
   // 3D hardware rotation + magnetic translation
   const rotateY = useTransform(smoothNormX, [-0.5, 0.5], [-maxRotateY, maxRotateY]);
@@ -81,11 +77,6 @@ export function Interactive3DPhone({
   const shadowX = useTransform(smoothNormX, [-0.5, 0.5], [16, -16]);
   const shadowY = useTransform(smoothNormY, [-0.5, 0.5], [9, -9]);
 
-  // Specular glass highlight percentages (0%..100%)
-  const glareX = useTransform(smoothNormX, [-0.5, 0.5], [15, 85]);
-  const glareY = useTransform(smoothNormY, [-0.5, 0.5], [15, 85]);
-  const glareBackground = useMotionTemplate`radial-gradient(240px circle at ${glareX}% ${glareY}%, rgba(255,255,255,0.22), rgba(255,255,255,0.04) 42%, transparent 70%)`;
-
   const handlePointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
     if (shouldReduceMotion || e.pointerType === "touch") return;
     const rect = e.currentTarget.getBoundingClientRect();
@@ -96,7 +87,6 @@ export function Interactive3DPhone({
     rawNormX.set(nx);
     rawNormY.set(ny);
     rawScale.set(hoverScale);
-    rawGlareOpacity.set(1);
     if (!hasInteracted) setHasInteracted(true);
   };
 
@@ -104,7 +94,6 @@ export function Interactive3DPhone({
     rawNormX.set(0);
     rawNormY.set(0);
     rawScale.set(1);
-    rawGlareOpacity.set(0);
   };
 
   return (
@@ -155,19 +144,6 @@ export function Interactive3DPhone({
               className={imageClassName}
             />
           ) : null}
-
-          {/* Specular glass reflection sweep */}
-          {glare && !shouldReduceMotion && (
-            <motion.div
-              aria-hidden="true"
-              style={{
-                background: glareBackground,
-                opacity: smoothGlareOpacity,
-                transform: "translateZ(10px)",
-              }}
-              className="pointer-events-none absolute inset-[2%] rounded-[42px] mix-blend-screen"
-            />
-          )}
 
           {/* Optional Z-elevated interactive layer (e.g., Act II hotspot pins or X-Ray tags) */}
           {floatingLayer && (
