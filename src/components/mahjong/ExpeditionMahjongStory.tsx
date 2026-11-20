@@ -805,9 +805,10 @@ export function ExpeditionMahjongStory({
           {/* Widescreen Editorial Break via Nano Banana 2 Pro */}
           <div className="relative rounded-3xl overflow-hidden border border-white/10 aspect-[16/9] max-h-[540px] w-full bg-[#08090a] shadow-2xl">
             <Image
-              src="/projects/mahjong/art/pbr_atelier_macro_v2.webp"
-              alt="Macro studio composition featuring all 8 authentic Expedition Mahjong tile materials: Imperial Jade, Royal Velvet fur, Onyx Marble, Craquelure Porcelain, Chipped Obsidian, Raw Clay, Antique Ivory, and Classic Bone"
+              src="/projects/mahjong/art/pbr_atelier_macro_v3.webp"
+              alt="Macro studio composition featuring authentic Expedition Mahjong tile materials: Imperial Jade, Chipped Obsidian, Royal Velvet fur, Raw Clay, Onyx Marble, and Antique Ivory"
               fill
+              unoptimized
               sizes="(max-width: 1280px) 96vw, 1240px"
               className="object-cover"
             />
