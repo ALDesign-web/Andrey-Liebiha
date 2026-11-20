@@ -57,16 +57,31 @@ export function ExpeditionMahjongStory({
   const shouldReduceMotion = useReducedMotion();
   const [soundEnabled, setSoundEnabled] = useState(true);
 
-  // Hero state (mobile tab switcher + pointer-tracked 3D triptych tilt)
+  // Hero state (mobile tab switcher + pronounced spring-smoothed scroll choreography + pointer-tracked 3D triptych tilt)
   const [heroMobileIdx, setHeroMobileIdx] = useState(1);
   const heroRef = useRef<HTMLElement>(null);
   const { scrollYProgress: heroScrollProgress } = useScroll({
     target: heroRef,
     offset: ["start start", "end start"],
   });
-  const bgParallaxY = useTransform(heroScrollProgress, [0, 1], [0, 80]);
-  const leftWingX = useTransform(heroScrollProgress, [0, 1], [0, -34]);
-  const rightWingX = useTransform(heroScrollProgress, [0, 1], [0, 34]);
+  const smoothHeroScroll = useSpring(heroScrollProgress, { stiffness: 110, damping: 22, mass: 0.25 });
+
+  const bgParallaxY = useTransform(smoothHeroScroll, [0, 1], [0, 180]);
+  const bgParallaxScale = useTransform(smoothHeroScroll, [0, 1], [1, 1.15]);
+
+  const lockupY = useTransform(smoothHeroScroll, [0, 0.7], [0, -70]);
+  const lockupOpacity = useTransform(smoothHeroScroll, [0, 0.65], [1, 0.15]);
+
+  const centerScrollY = useTransform(smoothHeroScroll, [0, 1], [0, -85]);
+  const centerScrollScale = useTransform(smoothHeroScroll, [0, 0.85], [1, 1.11]);
+
+  const leftWingX = useTransform(smoothHeroScroll, [0, 1], [0, -175]);
+  const rightWingX = useTransform(smoothHeroScroll, [0, 1], [0, 175]);
+  const wingScrollY = useTransform(smoothHeroScroll, [0, 1], [0, 60]);
+  const leftWingRotateZ = useTransform(smoothHeroScroll, [0, 1], [0, -10]);
+  const rightWingRotateZ = useTransform(smoothHeroScroll, [0, 1], [0, 10]);
+  const leftWingRotateY = useTransform(smoothHeroScroll, [0, 1], [0, 16]);
+  const rightWingRotateY = useTransform(smoothHeroScroll, [0, 1], [0, -16]);
 
   const rawTiltX = useMotionValue(0);
   const rawTiltY = useMotionValue(0);
@@ -220,8 +235,8 @@ export function ExpeditionMahjongStory({
           className="pointer-events-none absolute inset-0 z-0 overflow-hidden"
         >
           <motion.div
-            style={shouldReduceMotion ? undefined : { y: bgParallaxY }}
-            className="relative w-full h-full"
+            style={shouldReduceMotion ? undefined : { y: bgParallaxY, scale: bgParallaxScale }}
+            className="relative w-full h-full will-change-transform"
           >
             <Image
               src="/projects/mahjong/art/hero_sanctuary_bg_v2.webp"
@@ -265,67 +280,71 @@ export function ExpeditionMahjongStory({
             </button>
           </div>
 
-          {/* Center Editorial Lockup */}
+          {/* Center Editorial Lockup (scroll-linked upward parallax & fade) */}
           <motion.div
-            initial={shouldReduceMotion ? undefined : "hidden"}
-            animate="visible"
-            variants={{
-              hidden: {},
-              visible: { transition: { staggerChildren: 0.1, delayChildren: 0.05 } },
-            }}
-            className="text-center max-w-4xl mx-auto flex flex-col items-center"
+            style={shouldReduceMotion ? undefined : { y: lockupY, opacity: lockupOpacity }}
+            className="w-full"
           >
-            <motion.span
-              variants={{
-                hidden: { opacity: 0, y: 18, filter: "blur(6px)" },
-                visible: { opacity: 1, y: 0, filter: "blur(0px)", transition: { duration: 0.65, ease: EASE_SNAP } },
-              }}
-              className="text-[11px] sm:text-xs font-mono uppercase tracking-[0.16em] text-[#ff8547] mb-2"
-            >
-              {project.client} · {project.platform} · {project.year}
-            </motion.span>
-
-            <motion.h1
-              variants={{
-                hidden: { opacity: 0, y: 26, filter: "blur(8px)" },
-                visible: { opacity: 1, y: 0, filter: "blur(0px)", transition: { duration: 0.75, ease: EASE_SNAP } },
-              }}
-              className="text-[clamp(2.5rem,6vw,4.9rem)] font-semibold tracking-[-0.04em] leading-[0.94] text-[#f2f5f1] text-balance"
-            >
-              EXPEDITION
-              <span className="block text-gradient-orange">MAHJONG</span>
-            </motion.h1>
-
-            <motion.p
-              variants={{
-                hidden: { opacity: 0, y: 18 },
-                visible: { opacity: 1, y: 0, transition: { duration: 0.65, ease: EASE_SNAP } },
-              }}
-              className="text-sm sm:text-base text-[#c4cacd] max-w-xl leading-relaxed mt-3"
-            >
-              43+ portrait screens, 8 PBR tile materials, and zero-friction mobile flow engineered across 200 levels.
-            </motion.p>
-
-            {/* Single Focused Hero CTA */}
             <motion.div
+              initial={shouldReduceMotion ? undefined : "hidden"}
+              animate="visible"
               variants={{
-                hidden: { opacity: 0, y: 14, scale: 0.96 },
-                visible: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.55, ease: EASE_SNAP } },
+                hidden: {},
+                visible: { transition: { staggerChildren: 0.1, delayChildren: 0.05 } },
               }}
-              className="mt-4"
+              className="text-center max-w-5xl mx-auto flex flex-col items-center"
             >
-              <a
-                href="#act-anatomy"
-                onClick={() => playTactileSound("jade", soundEnabled)}
-                className="min-h-[44px] px-6 py-2.5 rounded-full bg-[#ff7235] hover:bg-[#ff834d] text-[#08090a] text-sm font-semibold inline-flex items-center gap-2 shadow-[0_12px_36px_rgba(255,114,53,0.3)] hover:-translate-y-0.5 active:scale-[0.98] transition-[transform,background-color]"
+              <motion.span
+                variants={{
+                  hidden: { opacity: 0, y: 18, filter: "blur(6px)" },
+                  visible: { opacity: 1, y: 0, filter: "blur(0px)", transition: { duration: 0.65, ease: EASE_SNAP } },
+                }}
+                className="text-[11px] sm:text-xs font-mono uppercase tracking-[0.16em] text-[#ff8547] mb-1.5"
               >
-                Start Interactive Walkthrough
-                <ArrowDown className="w-4 h-4" aria-hidden="true" />
-              </a>
+                {project.client} · {project.platform} · {project.year}
+              </motion.span>
+
+              <motion.h1
+                variants={{
+                  hidden: { opacity: 0, y: 26, filter: "blur(8px)" },
+                  visible: { opacity: 1, y: 0, filter: "blur(0px)", transition: { duration: 0.75, ease: EASE_SNAP } },
+                }}
+                className="text-[clamp(1.65rem,4.9vw,4.35rem)] font-semibold tracking-[-0.04em] leading-[1.02] text-[#f2f5f1] whitespace-nowrap"
+              >
+                EXPEDITION <span className="text-gradient-orange">MAHJONG</span>
+              </motion.h1>
+
+              <motion.p
+                variants={{
+                  hidden: { opacity: 0, y: 18 },
+                  visible: { opacity: 1, y: 0, transition: { duration: 0.65, ease: EASE_SNAP } },
+                }}
+                className="text-sm sm:text-base text-[#c4cacd] max-w-xl leading-relaxed mt-2"
+              >
+                43+ portrait screens, 8 PBR tile materials, and zero-friction mobile flow engineered across 200 levels.
+              </motion.p>
+
+              {/* Single Focused Hero CTA */}
+              <motion.div
+                variants={{
+                  hidden: { opacity: 0, y: 14, scale: 0.96 },
+                  visible: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.55, ease: EASE_SNAP } },
+                }}
+                className="mt-3.5"
+              >
+                <a
+                  href="#act-anatomy"
+                  onClick={() => playTactileSound("jade", soundEnabled)}
+                  className="min-h-[44px] px-6 py-2.5 rounded-full bg-[#ff7235] hover:bg-[#ff834d] text-[#08090a] text-sm font-semibold inline-flex items-center gap-2 shadow-[0_12px_36px_rgba(255,114,53,0.3)] hover:-translate-y-0.5 active:scale-[0.98] transition-[transform,background-color]"
+                >
+                  Start Interactive Walkthrough
+                  <ArrowDown className="w-4 h-4" aria-hidden="true" />
+                </a>
+              </motion.div>
             </motion.div>
           </motion.div>
 
-          {/* Z-Axis 3D Triptych (Desktop: 3 interactive 3D phones with CSS perspective + pointer orbit) */}
+          {/* Z-Axis 3D Triptych (Desktop: oversized interactive 3D phones + pronounced scroll fan-out choreography) */}
           <div className="hidden md:flex flex-col items-center justify-center [perspective:1400px] overflow-visible">
             <motion.div
               style={
@@ -333,75 +352,104 @@ export function ExpeditionMahjongStory({
                   ? undefined
                   : { rotateX: tiltX, rotateY: tiltY, transformStyle: "preserve-3d" }
               }
-              className="relative flex items-center justify-center w-full max-w-4xl h-[330px] lg:h-[395px] my-1 overflow-visible"
+              className="relative flex items-center justify-center w-full max-w-5xl h-[465px] md:h-[495px] lg:h-[570px] xl:h-[600px] mt-3 mb-1 overflow-visible"
             >
-              {/* Left Flanking Phone (outer motion handles scroll fan-out, inner handles Z-depth position & individual 3D cursor tilt) */}
+              {/* Left Flanking Phone (outer motion handles wide scroll fan-out & counter-tilt, inner handles Z-depth position & individual 3D cursor tilt) */}
               <motion.div
-                style={shouldReduceMotion ? undefined : { x: leftWingX, transformStyle: "preserve-3d" }}
+                style={
+                  shouldReduceMotion
+                    ? undefined
+                    : {
+                        x: leftWingX,
+                        y: wingScrollY,
+                        rotateZ: leftWingRotateZ,
+                        rotateY: leftWingRotateY,
+                        transformStyle: "preserve-3d",
+                      }
+                }
                 className="absolute z-10 flex items-center justify-center"
               >
                 <motion.div
-                  initial={shouldReduceMotion ? undefined : { opacity: 0, x: -130, rotateY: 16, scale: 0.86 }}
-                  animate={{ opacity: 0.92, x: -195, rotateY: 16, scale: 0.86 }}
+                  initial={shouldReduceMotion ? undefined : { opacity: 0, x: -165, rotateY: 16, scale: 0.9 }}
+                  animate={{ opacity: 0.94, x: -245, rotateY: 16, scale: 0.9 }}
                   transition={{ duration: 0.75, ease: EASE_SNAP }}
-                  style={shouldReduceMotion ? undefined : { transform: "translateZ(-18px)", transformStyle: "preserve-3d" }}
-                  className="relative w-[142px] lg:w-[164px] aspect-[9/19.2] overflow-visible"
+                  style={shouldReduceMotion ? undefined : { transform: "translateZ(-24px)", transformStyle: "preserve-3d" }}
+                  className="relative w-[188px] md:w-[205px] lg:w-[235px] xl:w-[248px] aspect-[9/19.2] overflow-visible"
                 >
                   <Interactive3DPhone
                     src={HERO_TRIPTYCH[0].src}
                     alt={HERO_TRIPTYCH[0].alt}
-                    sizes="164px"
+                    sizes="250px"
                     priority
                     maxRotateX={14}
                     maxRotateY={18}
                     hoverScale={1.06}
-                    imageClassName="object-contain drop-shadow-[0_26px_44px_rgba(0,0,0,0.88)]"
+                    imageClassName="object-contain drop-shadow-[0_28px_48px_rgba(0,0,0,0.9)]"
                   />
                 </motion.div>
               </motion.div>
 
-              {/* Focal Center Phone (elevated closer on Z axis) */}
+              {/* Focal Center Phone (outer motion lifts & scales on scroll, inner elevated on Z axis) */}
               <motion.div
-                initial={shouldReduceMotion ? undefined : { opacity: 0, y: 20, scale: 0.94 }}
-                animate={{ opacity: 1, y: 0, scale: 1 }}
-                transition={{ duration: 0.7, ease: EASE_SNAP }}
-                style={shouldReduceMotion ? undefined : { transform: "translateZ(50px)", transformStyle: "preserve-3d" }}
-                className="relative w-[156px] lg:w-[178px] aspect-[9/19.5] z-20 overflow-visible"
+                style={
+                  shouldReduceMotion
+                    ? undefined
+                    : { y: centerScrollY, scale: centerScrollScale, transformStyle: "preserve-3d" }
+                }
+                className="relative z-20 flex items-center justify-center overflow-visible"
               >
-                <Interactive3DPhone
-                  src={HERO_TRIPTYCH[1].src}
-                  alt={HERO_TRIPTYCH[1].alt}
-                  sizes="178px"
-                  priority
-                  maxRotateX={15}
-                  maxRotateY={20}
-                  hoverScale={1.05}
-                  stageClassName="relative w-full aspect-[9/19.5]"
-                  imageClassName="object-contain drop-shadow-[0_34px_64px_rgba(0,0,0,0.95)]"
-                />
+                <motion.div
+                  initial={shouldReduceMotion ? undefined : { opacity: 0, y: 24, scale: 0.94 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  transition={{ duration: 0.7, ease: EASE_SNAP }}
+                  style={shouldReduceMotion ? undefined : { transform: "translateZ(60px)", transformStyle: "preserve-3d" }}
+                  className="relative w-[215px] md:w-[225px] lg:w-[260px] xl:w-[272px] aspect-[9/19.5] overflow-visible"
+                >
+                  <Interactive3DPhone
+                    src={HERO_TRIPTYCH[1].src}
+                    alt={HERO_TRIPTYCH[1].alt}
+                    sizes="280px"
+                    priority
+                    maxRotateX={15}
+                    maxRotateY={20}
+                    hoverScale={1.05}
+                    stageClassName="relative w-full aspect-[9/19.5]"
+                    imageClassName="object-contain drop-shadow-[0_38px_72px_rgba(0,0,0,0.95)]"
+                  />
+                </motion.div>
               </motion.div>
 
               {/* Right Flanking Phone */}
               <motion.div
-                style={shouldReduceMotion ? undefined : { x: rightWingX, transformStyle: "preserve-3d" }}
+                style={
+                  shouldReduceMotion
+                    ? undefined
+                    : {
+                        x: rightWingX,
+                        y: wingScrollY,
+                        rotateZ: rightWingRotateZ,
+                        rotateY: rightWingRotateY,
+                        transformStyle: "preserve-3d",
+                      }
+                }
                 className="absolute z-10 flex items-center justify-center"
               >
                 <motion.div
-                  initial={shouldReduceMotion ? undefined : { opacity: 0, x: 130, rotateY: -16, scale: 0.86 }}
-                  animate={{ opacity: 0.92, x: 195, rotateY: -16, scale: 0.86 }}
+                  initial={shouldReduceMotion ? undefined : { opacity: 0, x: 165, rotateY: -16, scale: 0.9 }}
+                  animate={{ opacity: 0.94, x: 245, rotateY: -16, scale: 0.9 }}
                   transition={{ duration: 0.75, ease: EASE_SNAP }}
-                  style={shouldReduceMotion ? undefined : { transform: "translateZ(-18px)", transformStyle: "preserve-3d" }}
-                  className="relative w-[142px] lg:w-[164px] aspect-[9/19.2] overflow-visible"
+                  style={shouldReduceMotion ? undefined : { transform: "translateZ(-24px)", transformStyle: "preserve-3d" }}
+                  className="relative w-[188px] md:w-[205px] lg:w-[235px] xl:w-[248px] aspect-[9/19.2] overflow-visible"
                 >
                   <Interactive3DPhone
                     src={HERO_TRIPTYCH[2].src}
                     alt={HERO_TRIPTYCH[2].alt}
-                    sizes="164px"
+                    sizes="250px"
                     priority
                     maxRotateX={14}
                     maxRotateY={18}
                     hoverScale={1.06}
-                    imageClassName="object-contain drop-shadow-[0_26px_44px_rgba(0,0,0,0.88)]"
+                    imageClassName="object-contain drop-shadow-[0_28px_48px_rgba(0,0,0,0.9)]"
                   />
                 </motion.div>
               </motion.div>
@@ -413,9 +461,12 @@ export function ExpeditionMahjongStory({
             </div>
           </div>
 
-          {/* Mobile Collapse (< md): Clean single focal 3D device + 3 switch tabs */}
+          {/* Mobile Collapse (< md): Enlarged single focal 3D device + scroll lift + 3 switch tabs */}
           <div className="flex md:hidden flex-col items-center gap-4 pt-2">
-            <div className="relative w-[190px] aspect-[9/19.5]">
+            <motion.div
+              style={shouldReduceMotion ? undefined : { y: centerScrollY, scale: centerScrollScale }}
+              className="relative w-[250px] sm:w-[275px] aspect-[9/19.5]"
+            >
               <AnimatePresence mode="wait">
                 <motion.div
                   key={HERO_TRIPTYCH[heroMobileIdx].id}
@@ -430,12 +481,12 @@ export function ExpeditionMahjongStory({
                     alt={HERO_TRIPTYCH[heroMobileIdx].alt}
                     fill
                     priority
-                    sizes="190px"
-                    className="object-contain drop-shadow-[0_24px_40px_rgba(0,0,0,0.9)]"
+                    sizes="275px"
+                    className="object-contain drop-shadow-[0_26px_46px_rgba(0,0,0,0.92)]"
                   />
                 </motion.div>
               </AnimatePresence>
-            </div>
+            </motion.div>
             <div className="inline-flex p-1 rounded-full bg-white/[0.05] border border-white/10 gap-1">
               {HERO_TRIPTYCH.map((item, idx) => (
                 <button
