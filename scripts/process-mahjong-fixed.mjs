@@ -105,8 +105,8 @@ async function processTiles() {
 
     const outBuf = await sharp(srcPath)
       .trim({ threshold: 2 })
-      .resize({ height: 1100, withoutEnlargement: true })
-      .webp({ quality: 92, alphaQuality: 95 })
+      .resize({ height: 720, withoutEnlargement: true })
+      .webp({ quality: 90, alphaQuality: 95 })
       .toBuffer();
 
     fs.writeFileSync(outPath, outBuf);

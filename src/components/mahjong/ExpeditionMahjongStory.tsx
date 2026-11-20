@@ -865,7 +865,9 @@ export function ExpeditionMahjongStory({
                           src={mat.tileSrc}
                           alt=""
                           fill
+                          unoptimized
                           loading="eager"
+                          decoding="sync"
                           sizes="28px"
                           className="object-contain drop-shadow-[0_2px_6px_rgba(0,0,0,0.65)]"
                         />
@@ -889,40 +891,25 @@ export function ExpeditionMahjongStory({
               </div>
 
               <div className="relative z-10 grid grid-cols-1 sm:grid-cols-12 gap-6 sm:gap-8 items-center">
-                {/* Real Game Tile Specimen (static visual presentation, zero cursor 3D rotation) */}
+                {/* Real Game Tile Specimen (static visual presentation sharing preloaded tile URL, Safari-safe) */}
                 <div className="sm:col-span-5 flex flex-col items-center justify-center">
-                  <div className="relative w-[170px] sm:w-[195px] aspect-[812/1100]">
-                    {PBR_MATERIALS.map((mat) => {
-                      const isActiveMat = mat.id === activeMaterial.id;
-                      return (
-                        <motion.div
-                          key={mat.id}
-                          initial={false}
-                          animate={
-                            shouldReduceMotion
-                              ? { opacity: isActiveMat ? 1 : 0 }
-                              : {
-                                  opacity: isActiveMat ? 1 : 0,
-                                  scale: isActiveMat ? 1 : 0.92,
-                                }
-                          }
-                          transition={shouldReduceMotion ? { duration: 0.01 } : SPRING_SMOOTH}
-                          className={`absolute inset-0 ${
-                            isActiveMat ? "z-10" : "z-0 pointer-events-none"
-                          }`}
-                        >
-                          <Image
-                            src={mat.tileSrc}
-                            alt={mat.tileAlt}
-                            fill
-                            loading="eager"
-                            sizes="200px"
-                            className="object-contain drop-shadow-[0_26px_40px_rgba(0,0,0,0.85)]"
-                          />
-                        </motion.div>
-                      );
-                    })}
-                  </div>
+                  <motion.div
+                    key={activeMaterial.id}
+                    initial={shouldReduceMotion ? false : { opacity: 0, y: 6 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={shouldReduceMotion ? { duration: 0.01 } : SPRING_SNAPPY}
+                    className="relative w-[170px] sm:w-[195px] aspect-[812/1100]"
+                  >
+                    <Image
+                      src={activeMaterial.tileSrc}
+                      alt={activeMaterial.tileAlt}
+                      fill
+                      unoptimized
+                      decoding="sync"
+                      sizes="200px"
+                      className="object-contain drop-shadow-[0_24px_38px_rgba(0,0,0,0.8)]"
+                    />
+                  </motion.div>
                 </div>
 
                 {/* Shader Metadata */}
