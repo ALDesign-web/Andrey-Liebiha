@@ -129,8 +129,8 @@ export function StickyGameplayStage({ activeBeat, soundEnabled }: StickyGameplay
               className="relative w-full flex items-center justify-center overflow-visible"
             >
               <Interactive3DPhone
-                src="/projects/mahjong/mockups/03_victory_upright.webp"
-                alt="Expedition Mahjong victory celebration 3D mockup with emerald jade Play CTA"
+                src="/projects/mahjong/mockups/03_victory_front.webp"
+                alt="Expedition Mahjong front-view victory celebration 3D mockup with emerald jade Play CTA"
                 sizes="330px"
                 maxRotateX={14}
                 maxRotateY={20}

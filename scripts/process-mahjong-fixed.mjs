@@ -28,6 +28,7 @@ const MOCKUPS = [
 const FRONT_MOCKUPS = [
   { src: "HOME8frontmock.png", out: "01_home_hub_front.webp" },
   { src: "GAMEfront mock.png", out: "02_gameplay_board_front.webp" },
+  { src: "WONfrontmock.png", out: "03_victory_front.webp" },
 ];
 
 const TILES = [
