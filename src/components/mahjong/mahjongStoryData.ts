@@ -10,7 +10,7 @@ export interface HotspotPin {
 }
 
 export interface GameplayBeat {
-  id: "board" | "stuck" | "victory";
+  id: "board" | "victory";
   step: string;
   eyebrow: string;
   title: string;
@@ -26,7 +26,8 @@ export interface PbrMaterialSpec {
   shaderNote: string;
   acousticFeel: string;
   accentHex: string;
-  surfaceGradient: string;
+  tileSrc: string;
+  tileAlt: string;
   sound: "jade" | "ivory" | "stone";
 }
 
@@ -53,8 +54,8 @@ export const HERO_TRIPTYCH = [
   {
     id: "gameplay",
     label: "3D Board",
-    src: "/projects/mahjong/mockups/02_gameplay_board_upright.webp",
-    alt: "Expedition Mahjong 3D perspective iPhone displaying active stacked bone tiles and timber utility dock",
+    src: "/projects/mahjong/mockups/02_gameplay_board_front.webp",
+    alt: "Expedition Mahjong front-facing iPhone displaying active stacked bone tiles and timber utility dock",
   },
   {
     id: "victory",
@@ -84,7 +85,7 @@ export const HOME_HOTSPOTS: HotspotPin[] = [
     detail:
       "Anchor and nautical red character tiles act as silent onboarding—signaling crisp tap boundaries and high-contrast glyph legibility at phone reading distance.",
     metric: "Contrast ratio > 11:1",
-    xPercent: 48,
+    xPercent: 50,
     yPercent: 44,
   },
   {
@@ -106,8 +107,8 @@ export const HOME_HOTSPOTS: HotspotPin[] = [
     detail:
       "Anchored along the lower 15% bottom safe zone so players reach every secondary hub with one thumb shift without blocking the central expedition chart.",
     metric: "56px+ hit geometry",
-    xPercent: 71,
-    yPercent: 85,
+    xPercent: 72,
+    yPercent: 88,
   },
 ];
 
@@ -118,19 +119,11 @@ export const GAMEPLAY_BEATS: GameplayBeat[] = [
     eyebrow: "Active Play & Thumb Ergonomics",
     title: "Zero HUD clutter. Every utility inside the lower thumb arc.",
     body: "Upper screen real estate carries strictly passive telemetry (Score, Level, Remaining Pairs) tucked safely beside the Dynamic Island. Below the board, a weathered timber dock pins five large ceramic triggers (Back, Hint, Shuffle, Undo, Settings) right under the user's thumb.",
-    highlight: "Inspect live Thumb-Zone & Safe-Area overlays on the device.",
-  },
-  {
-    id: "stuck",
-    step: "02",
-    eyebrow: "Non-Destructive Deadlock Recovery",
-    title: "Keeping the board visible inside a draggable bottom sheet.",
-    body: "When no valid pairs remain, full-screen dark modals cause disorientation and rage-quits. Instead, a half-height parchment drawer slides up smoothly while keeping the upper tile stack clear. Drag the sheet down or spin the shuffle helm directly on the phone to test the transition.",
-    highlight: "Drag the parchment sheet downward or click the helm on the device.",
+    highlight: "Rotate the 3D device with your cursor or inspect the Flat UI Spec.",
   },
   {
     id: "victory",
-    step: "03",
+    step: "02",
     eyebrow: "Rewarding Resolution Hierarchy",
     title: "Clear visual weight between primary progression and optional reward.",
     body: "Victory celebration pairs a tranquil 3D bonsai shrine with strict 3-tier action weight: translucent sculpted emerald jade for next-stage Play, warm ivory for optional Bonus reward, and a quiet understated text trigger for Restart.",
@@ -142,90 +135,98 @@ export const PBR_MATERIALS: PbrMaterialSpec[] = [
   {
     id: "imperial-jade",
     name: "Imperial Jade",
-    finish: "Translucent Emerald SSS",
+    finish: "Clouded Emerald SSS",
     roughness: "0.08",
-    shaderNote: "Subsurface scattering + internal mineral inclusions give primary Play CTAs unmistakable physical depth.",
+    shaderNote: "Translucent mineral jade body with smoky white quartz clouds and deeply recessed concentric ivory circles.",
     acousticFeel: "Dense resonant stone click",
     accentHex: "#10b981",
-    surfaceGradient: "linear-gradient(135deg, #0b4f3a 0%, #177b59 48%, #073426 100%)",
+    tileSrc: "/projects/mahjong/tiles/tile_01_imperial_jade.webp",
+    tileAlt: "Expedition Mahjong Imperial Jade 8-Circle 3D PBR tile render",
+    sound: "jade",
+  },
+  {
+    id: "royal-velvet",
+    name: "Royal Velvet",
+    finish: "Crimson Plush & Gold Foil",
+    roughness: "0.92",
+    shaderNote: "Groomed deep burgundy fur shader contrasting tactile pile fibers against satin gold-gradient engraved characters.",
+    acousticFeel: "Soft plush damped thud",
+    accentHex: "#be123c",
+    tileSrc: "/projects/mahjong/tiles/tile_02_royal_velvet.webp",
+    tileAlt: "Expedition Mahjong Royal Velvet plush burgundy 3-Wan 3D tile render",
+    sound: "ivory",
+  },
+  {
+    id: "onyx-marble",
+    name: "Onyx Marble",
+    finish: "Milky Stone & Amber Seam",
+    roughness: "0.10",
+    shaderNote: "Translucent white alabaster stone divided by a mineral amber fissure with dual-tone charcoal and gilt engraving.",
+    acousticFeel: "Cool heavy stone clack",
+    accentHex: "#d97706",
+    tileSrc: "/projects/mahjong/tiles/tile_03_onyx_marble.webp",
+    tileAlt: "Expedition Mahjong Onyx Marble amber-veined 5-Wan 3D tile render",
+    sound: "stone",
+  },
+  {
+    id: "porcelain",
+    name: "Porcelain",
+    finish: "Fine Craquelure Glaze",
+    roughness: "0.05",
+    shaderNote: "High-gloss ceramic clearcoat over subtle hairline kiln cracks framing a sharply inset crimson Red Dragon glyph.",
+    acousticFeel: "Bright glassy porcelain ring",
+    accentHex: "#dc2626",
+    tileSrc: "/projects/mahjong/tiles/tile_04_porcelain.webp",
+    tileAlt: "Expedition Mahjong Porcelain craquelure Red Dragon 3D tile render",
     sound: "jade",
   },
   {
     id: "obsidian",
     name: "Obsidian",
-    finish: "Kintsugi Gold Vein Glass",
+    finish: "Fractured Volcanic Glass",
     roughness: "0.04",
-    shaderNote: "Specially tuned specular rim with warm metallic veins for high-contrast night play without neon glare.",
+    shaderNote: "Knapped conchoidal black glass perimeter catching razor specular rim highlights around a warm ivory-rimmed East glyph.",
     acousticFeel: "Crisp volcanic glass tap",
     accentHex: "#f59e0b",
-    surfaceGradient: "linear-gradient(135deg, #121318 0%, #262933 50%, #090a0d 100%)",
+    tileSrc: "/projects/mahjong/tiles/tile_05_obsidian.webp",
+    tileAlt: "Expedition Mahjong Chipped Black Obsidian East Wind 3D tile render",
     sound: "stone",
   },
   {
-    id: "carrara-marble",
-    name: "Carrara Marble",
-    finish: "Honed Italian Stone",
-    roughness: "0.12",
-    shaderNote: "Soft grey calcite veining maintains crisp character contrast for dark engraved mahjong suits.",
-    acousticFeel: "Cool heavy marble clack",
-    accentHex: "#e2e8f0",
-    surfaceGradient: "linear-gradient(135deg, #cfd6df 0%, #eef2f6 52%, #b2bcc8 100%)",
+    id: "terracotta-clay",
+    name: "Raw Clay",
+    finish: "Hand-Sculpted Matte Earth",
+    roughness: "0.88",
+    shaderNote: "Artisan unglazed clay surface retaining authentic fingerprint ridges and organic bevel wear with charcoal West carving.",
+    acousticFeel: "Earthy dry ceramic clink",
+    accentHex: "#d6a57c",
+    tileSrc: "/projects/mahjong/tiles/tile_06_terracotta_clay.webp",
+    tileAlt: "Expedition Mahjong hand-sculpted Raw Clay West Wind 3D tile render",
     sound: "stone",
-  },
-  {
-    id: "royal-velvet",
-    name: "Royal Velvet",
-    finish: "Gold Inlay Weave",
-    roughness: "0.85",
-    shaderNote: "Anisotropic sheen absorbs harsh highlights along the table surface so foreground bone tiles pop effortlessly.",
-    acousticFeel: "Muffled felt-cushioned thud",
-    accentHex: "#f43f5e",
-    surfaceGradient: "linear-gradient(135deg, #591124 0%, #8e1d38 50%, #3b0a16 100%)",
-    sound: "ivory",
-  },
-  {
-    id: "porcelain",
-    name: "Porcelain",
-    finish: "Cobalt Ming Glaze",
-    roughness: "0.05",
-    shaderNote: "High-gloss ceramic clearcoat over subtle dragon blue filigree framing classic tile symbols.",
-    acousticFeel: "Bright glassy porcelain ring",
-    accentHex: "#38bdf8",
-    surfaceGradient: "linear-gradient(135deg, #dce8f5 0%, #f5f9ff 52%, #bfd4ec 100%)",
-    sound: "jade",
   },
   {
     id: "antique-ivory",
     name: "Antique Ivory",
-    finish: "Warm Craquelure Patina",
+    finish: "Aged Veined Patina",
     roughness: "0.22",
-    shaderNote: "Default signature suite balancing warm cream midtones with deep emerald and crimson carved inks.",
-    acousticFeel: "Warm classic bone snap",
-    accentHex: "#facc15",
-    surfaceGradient: "linear-gradient(135deg, #d8c39b 0%, #f1e3c4 52%, #b99f72 100%)",
+    shaderNote: "Heirloom mineral patina with warm hairline veins and a multi-depth green and crimson carved floral 1-Dot emblem.",
+    acousticFeel: "Warm aged bone snap",
+    accentHex: "#16a34a",
+    tileSrc: "/projects/mahjong/tiles/tile_07_antique_ivory.webp",
+    tileAlt: "Expedition Mahjong Antique Ivory Lotus 1-Circle 3D tile render",
     sound: "ivory",
   },
   {
-    id: "teak-wood",
-    name: "Teak Wood",
-    finish: "Oiled Timber Grain",
-    roughness: "0.35",
-    shaderNote: "Warm longitudinal grain anchoring the in-game bottom utility bar with organic furniture warmth.",
-    acousticFeel: "Dry hollow hardwood knock",
-    accentHex: "#d97706",
-    surfaceGradient: "linear-gradient(135deg, #5a3821 0%, #865635 50%, #3d2413 100%)",
+    id: "classic-bone",
+    name: "Classic Bone",
+    finish: "Polished Expedition Ivory",
+    roughness: "0.14",
+    shaderNote: "Signature high-contrast smooth ivory tile with subtle grain and deep cobalt blue engraving used on the core game board.",
+    acousticFeel: "Clean classic mahjong clack",
+    accentHex: "#2563eb",
+    tileSrc: "/projects/mahjong/tiles/tile_08_classic_bone.webp",
+    tileAlt: "Expedition Mahjong Classic Bone cobalt East Wind 3D tile render",
     sound: "ivory",
-  },
-  {
-    id: "terracotta",
-    name: "Terracotta",
-    finish: "Matte Kiln Clay",
-    roughness: "0.90",
-    shaderNote: "Earthy unglazed clay finish offering high micro-contrast and warm Mediterranean palette variety.",
-    acousticFeel: "Earthy dry ceramic clink",
-    accentHex: "#fb923c",
-    surfaceGradient: "linear-gradient(135deg, #8a4124 0%, #b85b35 50%, #5c2814 100%)",
-    sound: "stone",
   },
 ];
 

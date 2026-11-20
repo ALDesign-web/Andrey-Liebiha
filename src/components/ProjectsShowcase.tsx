@@ -61,8 +61,8 @@ export function ProjectsShowcase() {
                 </div>
                 <div className="-translate-y-2 scale-[1.06] z-10 overflow-visible">
                   <Interactive3DPhone
-                    src="/projects/mahjong/mockups/02_gameplay_board_upright.webp"
-                    alt="Expedition Mahjong 3D gameplay board and bottom booster dock mockup"
+                    src="/projects/mahjong/mockups/02_gameplay_board_front.webp"
+                    alt="Expedition Mahjong front-view 3D gameplay board and bottom booster dock mockup"
                     sizes="(max-width: 1024px) 32vw, 215px"
                     maxRotateX={12}
                     maxRotateY={18}

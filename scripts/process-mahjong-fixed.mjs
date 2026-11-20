@@ -6,10 +6,12 @@ const ROOT = process.cwd();
 const SRC_DIR = path.join(ROOT, "screens fixed");
 const MOCKUPS_OUT = path.join(ROOT, "public/projects/mahjong/mockups");
 const SCREENS_OUT = path.join(ROOT, "public/projects/mahjong/screens");
+const TILES_OUT = path.join(ROOT, "public/projects/mahjong/tiles");
 const DECK_FIXED_DIR = "/Users/design/HQplug/landing portfolio/mahjong screens/fixed";
 
 fs.mkdirSync(MOCKUPS_OUT, { recursive: true });
 fs.mkdirSync(SCREENS_OUT, { recursive: true });
+fs.mkdirSync(TILES_OUT, { recursive: true });
 fs.mkdirSync(DECK_FIXED_DIR, { recursive: true });
 
 const MOCKUPS = [
@@ -21,6 +23,22 @@ const MOCKUPS = [
   { src: "SUBSCRIPTIONmock.png", out: "06_subscription_mock.webp" },
   { src: "SETTINGSmock.png", out: "07_settings_mock.webp" },
   { src: "RATE USmock.png", out: "08_rate_us_mock.webp" },
+];
+
+const FRONT_MOCKUPS = [
+  { src: "HOME8frontmock.png", out: "01_home_hub_front.webp" },
+  { src: "GAMEfront mock.png", out: "02_gameplay_board_front.webp" },
+];
+
+const TILES = [
+  { src: "Tile1.png", out: "tile_01_imperial_jade.webp" },
+  { src: "Tile2.png", out: "tile_02_royal_velvet.webp" },
+  { src: "Tile3.png", out: "tile_03_onyx_marble.webp" },
+  { src: "Tile4.png", out: "tile_04_porcelain.webp" },
+  { src: "Tile5.png", out: "tile_05_obsidian.webp" },
+  { src: "Tile6.png", out: "tile_06_terracotta_clay.webp" },
+  { src: "Tile7.png", out: "tile_07_antique_ivory.webp" },
+  { src: "Tile8.png", out: "tile_08_classic_bone.webp" },
 ];
 
 const FLAT_SCREENS = [
@@ -61,6 +79,40 @@ async function processMockups() {
   fs.copyFileSync(path.join(MOCKUPS_OUT, "03_victory_mock.webp"), path.join(MOCKUPS_OUT, "slide05_victory_34.webp"));
   fs.copyFileSync(path.join(MOCKUPS_OUT, "06_subscription_mock.webp"), path.join(MOCKUPS_OUT, "slide06_paywall_34.webp"));
   fs.copyFileSync(path.join(MOCKUPS_OUT, "07_settings_mock.webp"), path.join(MOCKUPS_OUT, "slide07_settings_34.webp"));
+}
+
+async function processFrontMockups() {
+  for (const item of FRONT_MOCKUPS) {
+    const srcPath = path.join(SRC_DIR, item.src);
+    const outPath = path.join(MOCKUPS_OUT, item.out);
+
+    const outBuf = await sharp(srcPath)
+      .trim({ threshold: 2 })
+      .resize({ height: 1800, withoutEnlargement: true })
+      .webp({ quality: 92, alphaQuality: 95 })
+      .toBuffer();
+
+    fs.writeFileSync(outPath, outBuf);
+    const meta = await sharp(outBuf).metadata();
+    console.log(`Front Mockup ${item.out}: ${meta.width}x${meta.height}`);
+  }
+}
+
+async function processTiles() {
+  for (const item of TILES) {
+    const srcPath = path.join(SRC_DIR, item.src);
+    const outPath = path.join(TILES_OUT, item.out);
+
+    const outBuf = await sharp(srcPath)
+      .trim({ threshold: 2 })
+      .resize({ height: 1100, withoutEnlargement: true })
+      .webp({ quality: 92, alphaQuality: 95 })
+      .toBuffer();
+
+    fs.writeFileSync(outPath, outBuf);
+    const meta = await sharp(outBuf).metadata();
+    console.log(`Tile ${item.out}: ${meta.width}x${meta.height}`);
+  }
 }
 
 async function processFlatScreens() {
@@ -112,8 +164,10 @@ async function processFlatScreens() {
 
 async function main() {
   await processMockups();
+  await processFrontMockups();
+  await processTiles();
   await processFlatScreens();
-  console.log("All 17 Mahjong assets processed cleanly.");
+  console.log("All Mahjong mockups, front renders, tiles, and screens processed cleanly.");
 }
 
 main().catch((err) => {

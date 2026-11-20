@@ -24,7 +24,6 @@ import {
   CheckCircle2,
   Volume2,
   VolumeX,
-  RotateCw,
   Rotate3d,
   Layers,
   Sparkles,
@@ -98,7 +97,6 @@ export function ExpeditionMahjongStory({
   const [activeBeat, setActiveBeat] = useState<GameplayBeat["id"]>("board");
   const beatRefs = useRef<Record<GameplayBeat["id"], HTMLDivElement | null>>({
     board: null,
-    stuck: null,
     victory: null,
   });
 
@@ -125,7 +123,6 @@ export function ExpeditionMahjongStory({
 
   // Act IV: PBR Material Atelier
   const [activeMaterialId, setActiveMaterialId] = useState<string>(PBR_MATERIALS[0].id);
-  const [sampleSpin, setSampleSpin] = useState(0);
   const activeMaterial =
     PBR_MATERIALS.find((m) => m.id === activeMaterialId) ?? PBR_MATERIALS[0];
 
@@ -227,7 +224,7 @@ export function ExpeditionMahjongStory({
             className="relative w-full h-full"
           >
             <Image
-              src="/projects/mahjong/art/hero_sanctuary_bg.webp"
+              src="/projects/mahjong/art/hero_sanctuary_bg_v2.webp"
               alt=""
               fill
               priority
@@ -588,7 +585,7 @@ export function ExpeditionMahjongStory({
               <Interactive3DPhone
                 src={
                   homeViewMode === "3d"
-                    ? "/projects/mahjong/mockups/01_home_hub_upright.webp"
+                    ? "/projects/mahjong/mockups/01_home_hub_front.webp"
                     : undefined
                 }
                 alt={
@@ -676,15 +673,15 @@ export function ExpeditionMahjongStory({
               Chapter 02 · Interactive Sticky Narrative
             </span>
             <h2 className="text-3xl sm:text-5xl font-semibold tracking-tight text-[#f2f5f1] mt-2 leading-[1.06]">
-              From tactile puzzle flow to non-destructive recovery.
+              From tactile puzzle flow to sculpted victory momentum.
             </h2>
             <p className="text-sm sm:text-base text-[#adb3b7] leading-relaxed mt-3">
-              Scroll through the three core gameplay states below—or click any beat directly—and test the live ergonomic X-Ray and draggable bottom sheet on the device.
+              Move between the two core gameplay moments below and inspect the front-facing 3D device with live cursor rotation or Flat UI Spec.
             </p>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
-            {/* Left Column: 3 Scrollytelling Narrative Beats */}
+            {/* Left Column: 2 Scrollytelling Narrative Beats */}
             <div className="lg:col-span-6 space-y-6 lg:space-y-24 lg:py-8">
               {GAMEPLAY_BEATS.map((beat) => {
                 const isCurrent = activeBeat === beat.id;
@@ -760,8 +757,8 @@ export function ExpeditionMahjongStory({
           {/* Widescreen Editorial Break via Nano Banana 2 Pro */}
           <div className="relative rounded-3xl overflow-hidden border border-white/10 aspect-[16/9] max-h-[540px] w-full bg-[#08090a] shadow-2xl">
             <Image
-              src="/projects/mahjong/art/pbr_atelier_macro.webp"
-              alt="Macro studio composition showing translucent Jade, Kintsugi Obsidian, Carrara Marble, Cobalt Porcelain, and Antique Ivory mahjong tiles"
+              src="/projects/mahjong/art/pbr_atelier_macro_v2.webp"
+              alt="Macro studio composition featuring all 8 authentic Expedition Mahjong tile materials: Imperial Jade, Royal Velvet fur, Onyx Marble, Craquelure Porcelain, Chipped Obsidian, Raw Clay, Antique Ivory, and Classic Bone"
               fill
               sizes="(max-width: 1280px) 96vw, 1240px"
               className="object-cover"
@@ -777,21 +774,21 @@ export function ExpeditionMahjongStory({
                 </h2>
               </div>
               <span className="px-3.5 py-1.5 rounded-full bg-[#08090a]/80 backdrop-blur-md border border-white/15 text-xs font-mono text-[#e7ece5] w-fit">
-                SSS · Specular Rim · Matte Felt
+                Jade · Velvet · Obsidian · Clay
               </span>
             </div>
           </div>
 
-          {/* Interactive 8-Theme Shader & Tactile Button Playground */}
+          {/* Interactive 8-Theme Real Tile Material Inspector */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
-            {/* Left: 8 Authentic App Store Theme Buttons */}
+            {/* Left: 8 Authentic Game Tile Theme Selectors */}
             <div className="lg:col-span-5 rounded-3xl bg-[#12141a] border border-white/[0.08] p-6 sm:p-7 flex flex-col justify-between gap-5">
               <div>
                 <h3 className="text-lg font-semibold text-[#f2f5f1] mb-1">
                   Inspect All 8 Production Suites
                 </h3>
                 <p className="text-xs sm:text-sm text-[#adb3b7]">
-                  Tap any material to preview surface shader parameters and hear its acoustic profile.
+                  Tap any real game tile to inspect its PBR shader behavior and hear its acoustic profile.
                 </p>
               </div>
 
@@ -806,18 +803,23 @@ export function ExpeditionMahjongStory({
                         playTactileSound(mat.sound, soundEnabled);
                         setActiveMaterialId(mat.id);
                       }}
-                      className={`min-h-[48px] px-3.5 py-2.5 rounded-xl border text-left flex items-center gap-2.5 active:scale-[0.97] transition-[transform,border-color,background-color] ${
+                      className={`min-h-[54px] px-2.5 sm:px-3 py-2 rounded-xl border text-left flex items-center gap-2 sm:gap-2.5 active:scale-[0.97] transition-[transform,border-color,background-color] ${
                         selected
-                          ? "bg-white/[0.09] border-[#ff7235]/60 text-white"
+                          ? "bg-white/[0.09] border-[#ff7235]/60 text-white shadow-[0_8px_20px_rgba(0,0,0,0.4)]"
                           : "bg-[#08090a] border-white/[0.07] text-[#adb3b7] hover:border-white/20 hover:text-white"
                       }`}
                     >
-                      <span
-                        className="w-3.5 h-3.5 rounded-full shrink-0 border border-white/25"
-                        style={{ backgroundColor: mat.accentHex }}
-                        aria-hidden="true"
-                      />
-                      <span className="text-xs font-mono font-medium truncate">
+                      <span className="relative w-5 h-7 sm:w-6 sm:h-8 shrink-0">
+                        <Image
+                          src={mat.tileSrc}
+                          alt=""
+                          fill
+                          loading="eager"
+                          sizes="28px"
+                          className="object-contain drop-shadow-[0_2px_6px_rgba(0,0,0,0.65)]"
+                        />
+                      </span>
+                      <span className="text-[11px] sm:text-xs font-mono font-medium leading-tight">
                         {mat.name}
                       </span>
                     </button>
@@ -826,37 +828,64 @@ export function ExpeditionMahjongStory({
               </div>
             </div>
 
-            {/* Right: Live Specimen Tile & Press-to-Feel Tactile Controls */}
-            <div className="lg:col-span-7 rounded-3xl bg-[#12141a] border border-white/[0.09] p-6 sm:p-8 flex flex-col justify-between gap-6 relative overflow-hidden">
-              <div
-                aria-hidden="true"
-                className="pointer-events-none absolute -top-24 -right-24 w-72 h-72 rounded-full blur-3xl opacity-20 transition-colors duration-500"
-                style={{ backgroundColor: activeMaterial.accentHex }}
-              />
+            {/* Right: Interactive 3D Real Tile Specimen & Shader Spec */}
+            <div className="lg:col-span-7 rounded-3xl bg-[#12141a] border border-white/[0.09] p-6 sm:p-8 flex flex-col justify-center gap-6 relative overflow-visible">
+              <div aria-hidden="true" className="pointer-events-none absolute inset-0 rounded-3xl overflow-hidden">
+                <div
+                  className="absolute -top-24 -right-24 w-72 h-72 rounded-full blur-3xl opacity-20 transition-colors duration-500"
+                  style={{ backgroundColor: activeMaterial.accentHex }}
+                />
+              </div>
 
-              <div className="relative z-10 grid grid-cols-1 sm:grid-cols-12 gap-6 items-center">
-                {/* Physical Tile Specimen Swatch */}
-                <motion.div
-                  key={activeMaterial.id}
-                  initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0.7, scale: 0.96 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={SPRING_SNAPPY}
-                  style={{ background: activeMaterial.surfaceGradient }}
-                  className="sm:col-span-5 aspect-square max-w-[180px] w-full mx-auto rounded-3xl border border-white/25 shadow-[0_20px_40px_rgba(0,0,0,0.6),inset_0_2px_4px_rgba(255,255,255,0.35)] flex flex-col items-center justify-center p-4 text-center"
-                >
-                  <span className="text-[10px] font-mono uppercase tracking-widest px-2.5 py-0.5 rounded-full bg-black/35 text-white/90 mb-2">
-                    Roughness {activeMaterial.roughness}
-                  </span>
-                  <span className="text-lg font-bold text-white drop-shadow">
-                    {activeMaterial.name}
-                  </span>
-                  <span className="text-[11px] font-mono text-white/80 mt-1">
-                    {activeMaterial.finish}
-                  </span>
-                </motion.div>
+              <div className="relative z-10 grid grid-cols-1 sm:grid-cols-12 gap-6 sm:gap-8 items-center">
+                {/* Real 3D Game Tile Specimen with Cursor Rotation */}
+                <div className="sm:col-span-5 flex flex-col items-center justify-center overflow-visible">
+                  <Interactive3DPhone
+                    maxRotateX={16}
+                    maxRotateY={22}
+                    hoverScale={1.07}
+                    showHint
+                    hintText="Move cursor to rotate tile in 3D"
+                    stageClassName="relative w-[170px] sm:w-[195px] aspect-[812/1100]"
+                    customVisual={
+                      <div className="relative w-full h-full">
+                        {PBR_MATERIALS.map((mat) => {
+                          const isActiveMat = mat.id === activeMaterial.id;
+                          return (
+                            <motion.div
+                              key={mat.id}
+                              initial={false}
+                              animate={
+                                shouldReduceMotion
+                                  ? { opacity: isActiveMat ? 1 : 0 }
+                                  : {
+                                      opacity: isActiveMat ? 1 : 0,
+                                      scale: isActiveMat ? 1 : 0.92,
+                                    }
+                              }
+                              transition={shouldReduceMotion ? { duration: 0.01 } : SPRING_SMOOTH}
+                              className={`absolute inset-0 ${
+                                isActiveMat ? "z-10" : "z-0 pointer-events-none"
+                              }`}
+                            >
+                              <Image
+                                src={mat.tileSrc}
+                                alt={mat.tileAlt}
+                                fill
+                                loading="eager"
+                                sizes="200px"
+                                className="object-contain drop-shadow-[0_26px_40px_rgba(0,0,0,0.85)]"
+                              />
+                            </motion.div>
+                          );
+                        })}
+                      </div>
+                    }
+                  />
+                </div>
 
                 {/* Shader Metadata */}
-                <div className="sm:col-span-7 space-y-3">
+                <div className="sm:col-span-7 space-y-3.5">
                   <div className="text-xs font-mono uppercase tracking-wider text-[#ff8547]">
                     PBR Material Spec
                   </div>
@@ -867,52 +896,13 @@ export function ExpeditionMahjongStory({
                     {activeMaterial.shaderNote}
                   </p>
                   <div className="pt-2 flex flex-wrap gap-3 text-xs font-mono text-[#e7ece5]">
-                    <span className="px-3 py-1 rounded-lg bg-[#08090a] border border-white/10">
+                    <span className="px-3 py-1.5 rounded-lg bg-[#08090a] border border-white/10">
                       Acoustic: {activeMaterial.acousticFeel}
                     </span>
-                    <span className="px-3 py-1 rounded-lg bg-[#08090a] border border-white/10">
+                    <span className="px-3 py-1.5 rounded-lg bg-[#08090a] border border-white/10">
                       Roughness: {activeMaterial.roughness}
                     </span>
                   </div>
-                </div>
-              </div>
-
-              {/* Press-to-Feel UI Tactile Controls */}
-              <div className="relative z-10 pt-5 border-t border-white/[0.08] flex flex-wrap items-center justify-between gap-4">
-                <span className="text-xs font-mono text-[#adb3b7]">
-                  Tap stone controls to feel compression &amp; audio detent:
-                </span>
-                <div className="flex flex-wrap items-center gap-3">
-                  <button
-                    type="button"
-                    onClick={() => playTactileSound("jade", soundEnabled)}
-                    className="min-h-[44px] px-6 rounded-2xl bg-gradient-to-b from-[#20845c] to-[#0d4d34] border-t border-emerald-300/45 shadow-[0_8px_20px_rgba(16,185,129,0.28),inset_0_2px_3px_rgba(255,255,255,0.3)] text-white text-sm font-semibold hover:brightness-110 active:translate-y-0.5 active:scale-[0.96] transition-[transform,filter]"
-                  >
-                    Play (Jade)
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => {
-                      playTactileSound("shuffle", soundEnabled);
-                      setSampleSpin((s) => s + 1);
-                    }}
-                    className="w-11 h-11 rounded-full bg-gradient-to-b from-[#f3e3c7] to-[#cbb187] border border-white/50 shadow-lg flex items-center justify-center active:scale-90 transition-transform"
-                    aria-label="Test ceramic shuffle token click"
-                  >
-                    <motion.div
-                      animate={{ rotate: sampleSpin * 180 }}
-                      transition={SPRING_SNAPPY}
-                    >
-                      <RotateCw className="w-4 h-4 text-[#c92a2a]" aria-hidden="true" />
-                    </motion.div>
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => playTactileSound("stone", soundEnabled)}
-                    className="min-h-[44px] px-5 rounded-2xl bg-gradient-to-b from-[#6e46a6] to-[#472870] border-t border-purple-300/40 shadow-[0_8px_20px_rgba(147,51,234,0.28),inset_0_2px_3px_rgba(255,255,255,0.3)] text-white text-sm font-semibold hover:brightness-110 active:translate-y-0.5 active:scale-[0.96] transition-[transform,filter]"
-                  >
-                    Purchase (Amethyst)
-                  </button>
                 </div>
               </div>
             </div>

@@ -2,8 +2,8 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
-import { motion, AnimatePresence, useDragControls, PanInfo, useReducedMotion } from "framer-motion";
-import { RotateCw, Sparkles, Volume2, Vibrate, Music, Star, CheckCircle2, MessageSquare } from "lucide-react";
+import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
+import { Volume2, Vibrate, Music, Star, CheckCircle2, MessageSquare } from "lucide-react";
 import { playTactileSound } from "@/lib/tactileAudio";
 import { Interactive3DPhone } from "./Interactive3DPhone";
 
@@ -11,35 +11,13 @@ const SPRING_SNAPPY = { type: "spring" as const, stiffness: 400, damping: 30, ma
 const SPRING_SMOOTH = { type: "spring" as const, stiffness: 200, damping: 24, mass: 1 };
 
 interface StickyGameplayStageProps {
-  activeBeat: "board" | "stuck" | "victory";
+  activeBeat: "board" | "victory";
   soundEnabled: boolean;
 }
 
 export function StickyGameplayStage({ activeBeat, soundEnabled }: StickyGameplayStageProps) {
   const shouldReduceMotion = useReducedMotion();
-  const [boardViewMode, setBoardViewMode] = useState<"3d" | "flat" | "xray">("xray");
-  const [sheetDismissed, setSheetDismissed] = useState(false);
-  const [stuckCompareShipped, setStuckCompareShipped] = useState(false);
-  const [wheelSpinCount, setWheelSpinCount] = useState(0);
-  const [shuffleToast, setShuffleToast] = useState(false);
-  const dragControls = useDragControls();
-
-  const handleSheetDragEnd = (_event: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) => {
-    if (info.offset.y > 75 || info.velocity.y > 260) {
-      playTactileSound("ivory", soundEnabled);
-      setSheetDismissed(true);
-    }
-  };
-
-  const handleWheelShuffle = () => {
-    playTactileSound("shuffle", soundEnabled);
-    setWheelSpinCount((c) => c + 1);
-    setShuffleToast(true);
-    setTimeout(() => {
-      setSheetDismissed(true);
-      setTimeout(() => setShuffleToast(false), 1600);
-    }, 520);
-  };
+  const [boardViewMode, setBoardViewMode] = useState<"3d" | "flat">("3d");
 
   return (
     <div className="flex flex-col items-center">
@@ -48,11 +26,10 @@ export function StickyGameplayStage({ activeBeat, soundEnabled }: StickyGameplay
         {activeBeat === "board" && (
           <div
             role="tablist"
-            aria-label="Inspect gameplay ergonomics mode"
+            aria-label="Inspect gameplay hardware or flat UI spec"
             className="inline-flex p-1 rounded-full bg-[#12141a] border border-white/12 gap-1"
           >
             {[
-              { id: "xray", label: "Thumb X-Ray" },
               { id: "3d", label: "3D Device" },
               { id: "flat", label: "Flat Spec" },
             ].map((mode) => {
@@ -65,9 +42,9 @@ export function StickyGameplayStage({ activeBeat, soundEnabled }: StickyGameplay
                   aria-selected={selected}
                   onClick={() => {
                     playTactileSound("ivory", soundEnabled);
-                    setBoardViewMode(mode.id as "3d" | "flat" | "xray");
+                    setBoardViewMode(mode.id as "3d" | "flat");
                   }}
-                  className="relative px-3.5 py-2 rounded-full text-xs font-mono transition-colors focus-visible:outline-none min-h-[38px]"
+                  className="relative px-4 py-2 rounded-full text-xs font-mono transition-colors focus-visible:outline-none min-h-[38px]"
                 >
                   {selected && (
                     <motion.span
@@ -86,36 +63,6 @@ export function StickyGameplayStage({ activeBeat, soundEnabled }: StickyGameplay
                 </button>
               );
             })}
-          </div>
-        )}
-
-        {activeBeat === "stuck" && (
-          <div className="inline-flex p-1 rounded-full bg-[#12141a] border border-white/12 gap-1">
-            <button
-              type="button"
-              onClick={() => {
-                playTactileSound("ivory", soundEnabled);
-                setStuckCompareShipped(false);
-                setSheetDismissed(false);
-              }}
-              className={`px-3.5 py-2 rounded-full text-xs font-mono transition-colors min-h-[38px] ${
-                !stuckCompareShipped ? "bg-[#ff7235] text-[#08090a] font-semibold" : "text-[#c4cacd]"
-              }`}
-            >
-              Live Sheet Simulator
-            </button>
-            <button
-              type="button"
-              onClick={() => {
-                playTactileSound("ivory", soundEnabled);
-                setStuckCompareShipped(true);
-              }}
-              className={`px-3.5 py-2 rounded-full text-xs font-mono transition-colors min-h-[38px] ${
-                stuckCompareShipped ? "bg-[#ff7235] text-[#08090a] font-semibold" : "text-[#c4cacd]"
-              }`}
-            >
-              Shipped UI
-            </button>
           </div>
         )}
 
@@ -140,11 +87,11 @@ export function StickyGameplayStage({ activeBeat, soundEnabled }: StickyGameplay
             >
               {boardViewMode === "3d" ? (
                 <Interactive3DPhone
-                  src="/projects/mahjong/mockups/02_gameplay_board_upright.webp"
-                  alt="Expedition Mahjong 3D gameplay board perspective mockup"
+                  src="/projects/mahjong/mockups/02_gameplay_board_front.webp"
+                  alt="Expedition Mahjong front-view 3D gameplay board mockup"
                   sizes="330px"
-                  maxRotateX={13}
-                  maxRotateY={18}
+                  maxRotateX={14}
+                  maxRotateY={20}
                   showHint
                   className="w-full"
                   stageClassName="relative w-full aspect-[9/19.2]"
@@ -154,7 +101,6 @@ export function StickyGameplayStage({ activeBeat, soundEnabled }: StickyGameplay
                   maxRotateX={13}
                   maxRotateY={18}
                   showHint
-                  floatingZ={26}
                   className="w-full"
                   stageClassName="relative w-full aspect-[9/19.2]"
                   customVisual={
@@ -168,190 +114,7 @@ export function StickyGameplayStage({ activeBeat, soundEnabled }: StickyGameplay
                       />
                     </div>
                   }
-                  floatingLayer={
-                    boardViewMode === "xray" ? (
-                      <div
-                        aria-hidden="true"
-                        className="w-[90%] h-full mx-auto pointer-events-none flex flex-col justify-between p-3"
-                      >
-                        <div className="mt-7 rounded-xl bg-black/85 backdrop-blur-sm border border-sky-400/45 px-3 py-2 text-[11px] font-mono text-sky-200 shadow-lg">
-                          Passive Top HUD · Safe-Area Locked
-                        </div>
-                        <div className="rounded-2xl bg-[#ff7235]/25 border-2 border-[#ff7235] p-2.5 backdrop-blur-[2px] shadow-lg">
-                          <div className="text-[10px] font-mono font-bold uppercase tracking-wider text-[#ffd1bd]">
-                            Thumb-Reach Timber Dock
-                          </div>
-                          <div className="text-[11px] text-white/95 leading-snug mt-0.5">
-                            5 core controls anchored in bottom arc · Zero top stretching
-                          </div>
-                        </div>
-                      </div>
-                    ) : undefined
-                  }
                 />
-              )}
-            </motion.div>
-          )}
-
-          {activeBeat === "stuck" && (
-            <motion.div
-              key={`beat-stuck-${stuckCompareShipped ? "shipped" : "sim"}`}
-              initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0, scale: 0.95, filter: "blur(4px)" }}
-              animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
-              exit={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, scale: 0.96, filter: "blur(4px)" }}
-              transition={shouldReduceMotion ? { duration: 0.01 } : SPRING_SMOOTH}
-              className="relative w-full flex items-center justify-center overflow-visible"
-            >
-              {stuckCompareShipped ? (
-                <Interactive3DPhone
-                  maxRotateX={13}
-                  maxRotateY={18}
-                  showHint
-                  className="w-full"
-                  stageClassName="relative w-full aspect-[9/19.2]"
-                  customVisual={
-                    <div className="relative w-[90%] h-full rounded-[38px] overflow-hidden border-[3px] border-white/18 bg-[#08090a] shadow-[0_28px_60px_rgba(0,0,0,0.85)]">
-                      <Image
-                        src="/projects/mahjong/screens/04_stuck_recovery.webp"
-                        alt="Expedition Mahjong shipped deadlock recovery bottom sheet"
-                        fill
-                        sizes="300px"
-                        className="object-cover"
-                      />
-                    </div>
-                  }
-                />
-              ) : (
-                <div className="relative w-[90%] aspect-[9/19.2] rounded-[38px] overflow-hidden border-[3px] border-white/18 bg-[#08090a] shadow-[0_28px_60px_rgba(0,0,0,0.85)]">
-                  {/* Underlying live tile board stays readable */}
-                  <Image
-                    src="/projects/mahjong/screens/02_gameplay_board.webp"
-                    alt="Underlying active game board behind parchment recovery sheet"
-                    fill
-                    sizes="300px"
-                    className="object-cover"
-                  />
-
-                  {/* Shuffle confirmation badge */}
-                  <AnimatePresence>
-                    {shuffleToast && (
-                      <motion.div
-                        initial={{ opacity: 0, y: -12, scale: 0.94 }}
-                        animate={{ opacity: 1, y: 0, scale: 1 }}
-                        exit={{ opacity: 0, y: -10, scale: 0.94 }}
-                        transition={SPRING_SNAPPY}
-                        className="absolute top-16 inset-x-4 z-30 rounded-2xl bg-emerald-950/90 border border-emerald-400/40 px-3.5 py-2.5 text-center shadow-xl"
-                      >
-                        <div className="text-xs font-mono text-emerald-300 font-semibold flex items-center justify-center gap-1.5">
-                          <Sparkles className="w-3.5 h-3.5" aria-hidden="true" />
-                          Tiles Shuffled · Streak Preserved
-                        </div>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-
-                  {/* Reopen Pill when dismissed */}
-                  {sheetDismissed && (
-                    <div className="absolute inset-x-0 bottom-20 z-20 flex justify-center px-4">
-                      <button
-                        type="button"
-                        onClick={() => {
-                          playTactileSound("ivory", soundEnabled);
-                          setSheetDismissed(false);
-                        }}
-                        className="px-4 py-2.5 rounded-full bg-[#12141a]/95 border border-[#ff7235]/60 text-xs font-mono text-[#ff8547] shadow-lg active:scale-95 transition-transform"
-                      >
-                        Re-trigger &ldquo;No more moves!&rdquo;
-                      </button>
-                    </div>
-                  )}
-
-                  {/* Draggable Parchment Bottom Sheet Simulator */}
-                  <AnimatePresence>
-                    {!sheetDismissed && (
-                      <motion.div
-                        drag={shouldReduceMotion ? false : "y"}
-                        dragControls={dragControls}
-                        dragListener={false}
-                        dragConstraints={{ top: 0, bottom: 260 }}
-                        dragElastic={0.14}
-                        onDragEnd={handleSheetDragEnd}
-                        initial={shouldReduceMotion ? { opacity: 1 } : { y: "100%" }}
-                        animate={shouldReduceMotion ? { opacity: 1 } : { y: 0 }}
-                        exit={shouldReduceMotion ? { opacity: 0 } : { y: "100%" }}
-                        transition={shouldReduceMotion ? { duration: 0.01 } : SPRING_SMOOTH}
-                        className="absolute inset-x-0 bottom-0 h-[53%] z-20 rounded-t-[28px] border-t border-amber-200/40 bg-gradient-to-b from-[#d8c199] to-[#c4a777] text-[#1a1612] p-4 flex flex-col justify-between shadow-[0_-18px_40px_rgba(0,0,0,0.65)]"
-                      >
-                        <div
-                          onPointerDown={(e) => {
-                            if (!shouldReduceMotion) dragControls.start(e);
-                          }}
-                          className="touch-none cursor-grab active:cursor-grabbing -mx-4 px-4 pt-0.5 pb-2"
-                        >
-                          <div className="w-10 h-1 rounded-full bg-[#1a1612]/25 mx-auto mb-2.5" />
-                          <div className="flex items-center justify-between">
-                            <span className="w-6" />
-                            <h4 className="text-base font-bold tracking-tight text-[#161310]">
-                              No more moves!
-                            </h4>
-                            <button
-                              type="button"
-                              onPointerDown={(e) => e.stopPropagation()}
-                              onClick={() => {
-                                playTactileSound("ivory", soundEnabled);
-                                setSheetDismissed(true);
-                              }}
-                              className="w-7 h-7 rounded-full flex items-center justify-center text-[#1a1612]/70 hover:text-black font-bold text-sm"
-                              aria-label="Close deadlock sheet"
-                            >
-                              ✕
-                            </button>
-                          </div>
-                        </div>
-
-                        {/* Interactive Rotating Shuffle Helm */}
-                        <div className="flex flex-col items-center justify-center my-auto">
-                          <button
-                            type="button"
-                            onClick={handleWheelShuffle}
-                            className="group relative w-24 h-24 rounded-full bg-gradient-to-br from-[#8c592b] to-[#563314] border-2 border-[#f1dfc0]/40 shadow-[0_12px_24px_rgba(0,0,0,0.4)] flex items-center justify-center active:scale-95 transition-transform"
-                            aria-label="Spin shuffle helm to recover board"
-                          >
-                            <motion.div
-                              animate={{ rotate: wheelSpinCount * 360 }}
-                              transition={{ type: "spring", stiffness: 160, damping: 18 }}
-                              className="w-16 h-16 rounded-full bg-[#efe1c6] border border-[#b99663] flex items-center justify-center shadow-inner"
-                            >
-                              <RotateCw className="w-7 h-7 text-[#c92a2a]" aria-hidden="true" />
-                            </motion.div>
-                            <span className="absolute -bottom-1 right-1 w-6 h-6 rounded-full bg-white text-[#1a1612] text-xs font-bold flex items-center justify-center shadow">
-                              3
-                            </span>
-                          </button>
-                          <span className="text-[10px] font-mono uppercase tracking-wider text-[#3b2f21] mt-2">
-                            Tap helm to shuffle · or drag down
-                          </span>
-                        </div>
-
-                        <div className="text-center pb-1">
-                          <p className="text-[11px] text-[#2a2219] leading-tight">
-                            &ldquo;Broken brush in hand — dawn begins again.&rdquo;
-                          </p>
-                          <button
-                            type="button"
-                            onClick={() => {
-                              playTactileSound("stone", soundEnabled);
-                              setSheetDismissed(true);
-                            }}
-                            className="mt-1.5 text-xs font-semibold underline text-[#2a2219]/75 hover:text-black"
-                          >
-                            Restart
-                          </button>
-                        </div>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                </div>
               )}
             </motion.div>
           )}
