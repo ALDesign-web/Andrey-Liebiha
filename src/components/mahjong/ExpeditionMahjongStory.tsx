@@ -879,8 +879,8 @@ export function ExpeditionMahjongStory({
               </div>
             </div>
 
-            {/* Right: Interactive 3D Real Tile Specimen & Shader Spec */}
-            <div className="lg:col-span-7 rounded-3xl bg-[#12141a] border border-white/[0.09] p-6 sm:p-8 flex flex-col justify-center gap-6 relative overflow-visible">
+            {/* Right: Real Tile Specimen & Shader Spec */}
+            <div className="lg:col-span-7 rounded-3xl bg-[#12141a] border border-white/[0.09] p-6 sm:p-8 flex flex-col justify-center gap-6 relative overflow-hidden">
               <div aria-hidden="true" className="pointer-events-none absolute inset-0 rounded-3xl overflow-hidden">
                 <div
                   className="absolute -top-24 -right-24 w-72 h-72 rounded-full blur-3xl opacity-20 transition-colors duration-500"
@@ -889,50 +889,40 @@ export function ExpeditionMahjongStory({
               </div>
 
               <div className="relative z-10 grid grid-cols-1 sm:grid-cols-12 gap-6 sm:gap-8 items-center">
-                {/* Real 3D Game Tile Specimen with Cursor Rotation */}
-                <div className="sm:col-span-5 flex flex-col items-center justify-center overflow-visible">
-                  <Interactive3DPhone
-                    maxRotateX={16}
-                    maxRotateY={22}
-                    hoverScale={1.07}
-                    showHint
-                    hintText="Move cursor to rotate tile in 3D"
-                    stageClassName="relative w-[170px] sm:w-[195px] aspect-[812/1100]"
-                    customVisual={
-                      <div className="relative w-full h-full">
-                        {PBR_MATERIALS.map((mat) => {
-                          const isActiveMat = mat.id === activeMaterial.id;
-                          return (
-                            <motion.div
-                              key={mat.id}
-                              initial={false}
-                              animate={
-                                shouldReduceMotion
-                                  ? { opacity: isActiveMat ? 1 : 0 }
-                                  : {
-                                      opacity: isActiveMat ? 1 : 0,
-                                      scale: isActiveMat ? 1 : 0.92,
-                                    }
-                              }
-                              transition={shouldReduceMotion ? { duration: 0.01 } : SPRING_SMOOTH}
-                              className={`absolute inset-0 ${
-                                isActiveMat ? "z-10" : "z-0 pointer-events-none"
-                              }`}
-                            >
-                              <Image
-                                src={mat.tileSrc}
-                                alt={mat.tileAlt}
-                                fill
-                                loading="eager"
-                                sizes="200px"
-                                className="object-contain drop-shadow-[0_26px_40px_rgba(0,0,0,0.85)]"
-                              />
-                            </motion.div>
-                          );
-                        })}
-                      </div>
-                    }
-                  />
+                {/* Real Game Tile Specimen (static visual presentation, zero cursor 3D rotation) */}
+                <div className="sm:col-span-5 flex flex-col items-center justify-center">
+                  <div className="relative w-[170px] sm:w-[195px] aspect-[812/1100]">
+                    {PBR_MATERIALS.map((mat) => {
+                      const isActiveMat = mat.id === activeMaterial.id;
+                      return (
+                        <motion.div
+                          key={mat.id}
+                          initial={false}
+                          animate={
+                            shouldReduceMotion
+                              ? { opacity: isActiveMat ? 1 : 0 }
+                              : {
+                                  opacity: isActiveMat ? 1 : 0,
+                                  scale: isActiveMat ? 1 : 0.92,
+                                }
+                          }
+                          transition={shouldReduceMotion ? { duration: 0.01 } : SPRING_SMOOTH}
+                          className={`absolute inset-0 ${
+                            isActiveMat ? "z-10" : "z-0 pointer-events-none"
+                          }`}
+                        >
+                          <Image
+                            src={mat.tileSrc}
+                            alt={mat.tileAlt}
+                            fill
+                            loading="eager"
+                            sizes="200px"
+                            className="object-contain drop-shadow-[0_26px_40px_rgba(0,0,0,0.85)]"
+                          />
+                        </motion.div>
+                      );
+                    })}
+                  </div>
                 </div>
 
                 {/* Shader Metadata */}
