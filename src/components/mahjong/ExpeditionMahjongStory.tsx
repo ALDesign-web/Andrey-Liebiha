@@ -727,7 +727,7 @@ export function ExpeditionMahjongStory({
               From tactile puzzle flow to sculpted victory momentum.
             </h2>
             <p className="text-sm sm:text-base text-[#adb3b7] leading-relaxed mt-3">
-              Move between the two core gameplay moments below and inspect the front-facing 3D device with live cursor rotation or Flat UI Spec.
+              Move between the two core gameplay moments below and rotate the front-facing 3D device with your cursor.
             </p>
           </div>
 
@@ -787,10 +787,7 @@ export function ExpeditionMahjongStory({
             {/* Right Column: Sticky Living Interactive Phone Stage */}
             <div className="lg:col-span-6 lg:sticky lg:top-24">
               <div className="rounded-3xl bg-[#101218] border border-white/[0.09] p-6 sm:p-10 bg-[radial-gradient(circle_at_50%_40%,rgba(255,114,53,0.12),transparent_70%)]">
-                <StickyGameplayStage
-                  activeBeat={activeBeat}
-                  soundEnabled={soundEnabled}
-                />
+                <StickyGameplayStage activeBeat={activeBeat} />
               </div>
             </div>
           </div>

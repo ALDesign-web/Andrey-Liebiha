@@ -119,7 +119,7 @@ export const GAMEPLAY_BEATS: GameplayBeat[] = [
     eyebrow: "Active Play & Thumb Ergonomics",
     title: "Zero HUD clutter. Every utility inside the lower thumb arc.",
     body: "Upper screen real estate carries strictly passive telemetry (Score, Level, Remaining Pairs) tucked safely beside the Dynamic Island. Below the board, a weathered timber dock pins five large ceramic triggers (Back, Hint, Shuffle, Undo, Settings) right under the user's thumb.",
-    highlight: "Rotate the 3D device with your cursor or inspect the Flat UI Spec.",
+    highlight: "Rotate the 3D device with your cursor to inspect thumb-zone ergonomics.",
   },
   {
     id: "victory",

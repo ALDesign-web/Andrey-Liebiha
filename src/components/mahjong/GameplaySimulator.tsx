@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState } from "react";
-import Image from "next/image";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { Volume2, Vibrate, Music, Star, CheckCircle2, MessageSquare } from "lucide-react";
 import { playTactileSound } from "@/lib/tactileAudio";
@@ -12,61 +11,20 @@ const SPRING_SMOOTH = { type: "spring" as const, stiffness: 200, damping: 24, ma
 
 interface StickyGameplayStageProps {
   activeBeat: "board" | "victory";
-  soundEnabled: boolean;
 }
 
-export function StickyGameplayStage({ activeBeat, soundEnabled }: StickyGameplayStageProps) {
+export function StickyGameplayStage({ activeBeat }: StickyGameplayStageProps) {
   const shouldReduceMotion = useReducedMotion();
-  const [boardViewMode, setBoardViewMode] = useState<"3d" | "flat">("3d");
 
   return (
     <div className="flex flex-col items-center">
-      {/* Contextual Top Utility Pill above Sticky Stage */}
+      {/* Contextual Status Label above Sticky Mockup */}
       <div className="w-full max-w-[340px] mb-4 flex items-center justify-center">
-        {activeBeat === "board" && (
-          <div
-            role="tablist"
-            aria-label="Inspect gameplay hardware or flat UI spec"
-            className="inline-flex p-1 rounded-full bg-[#12141a] border border-white/12 gap-1"
-          >
-            {[
-              { id: "3d", label: "3D Device" },
-              { id: "flat", label: "Flat Spec" },
-            ].map((mode) => {
-              const selected = boardViewMode === mode.id;
-              return (
-                <button
-                  key={mode.id}
-                  type="button"
-                  role="tab"
-                  aria-selected={selected}
-                  onClick={() => {
-                    playTactileSound("ivory", soundEnabled);
-                    setBoardViewMode(mode.id as "3d" | "flat");
-                  }}
-                  className="relative px-4 py-2 rounded-full text-xs font-mono transition-colors focus-visible:outline-none min-h-[38px]"
-                >
-                  {selected && (
-                    <motion.span
-                      layoutId="boardViewPill"
-                      transition={shouldReduceMotion ? { duration: 0.01 } : SPRING_SMOOTH}
-                      className="absolute inset-0 rounded-full bg-[#ff7235]"
-                    />
-                  )}
-                  <span
-                    className={`relative z-10 font-medium ${
-                      selected ? "text-[#08090a]" : "text-[#c4cacd] hover:text-white"
-                    }`}
-                  >
-                    {mode.label}
-                  </span>
-                </button>
-              );
-            })}
-          </div>
-        )}
-
-        {activeBeat === "victory" && (
+        {activeBeat === "board" ? (
+          <span className="px-3.5 py-1.5 rounded-full bg-[#ff7235]/10 border border-[#ff7235]/25 text-xs font-mono text-[#ff8547]">
+            Active Play · Thumb-Zone Ergonomics
+          </span>
+        ) : (
           <span className="px-3.5 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-400/25 text-xs font-mono text-emerald-300">
             Victory Flow · 3-Tier Visual Weight
           </span>
@@ -78,44 +36,23 @@ export function StickyGameplayStage({ activeBeat, soundEnabled }: StickyGameplay
         <AnimatePresence mode="wait">
           {activeBeat === "board" && (
             <motion.div
-              key={`beat-board-${boardViewMode}`}
+              key="beat-board"
               initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0, scale: 0.95, filter: "blur(4px)" }}
               animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
               exit={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, scale: 0.96, filter: "blur(4px)" }}
               transition={shouldReduceMotion ? { duration: 0.01 } : SPRING_SMOOTH}
               className="relative w-full flex items-center justify-center overflow-visible"
             >
-              {boardViewMode === "3d" ? (
-                <Interactive3DPhone
-                  src="/projects/mahjong/mockups/02_gameplay_board_front.webp"
-                  alt="Expedition Mahjong front-view 3D gameplay board mockup"
-                  sizes="330px"
-                  maxRotateX={14}
-                  maxRotateY={20}
-                  showHint
-                  className="w-full"
-                  stageClassName="relative w-full aspect-[9/19.2]"
-                />
-              ) : (
-                <Interactive3DPhone
-                  maxRotateX={13}
-                  maxRotateY={18}
-                  showHint
-                  className="w-full"
-                  stageClassName="relative w-full aspect-[9/19.2]"
-                  customVisual={
-                    <div className="relative w-[90%] h-full rounded-[38px] overflow-hidden border-[3px] border-white/18 bg-[#08090a] shadow-[0_28px_60px_rgba(0,0,0,0.85)]">
-                      <Image
-                        src="/projects/mahjong/screens/02_gameplay_board.webp"
-                        alt="Expedition Mahjong flat gameplay HUD and thumb booster dock"
-                        fill
-                        sizes="300px"
-                        className="object-cover"
-                      />
-                    </div>
-                  }
-                />
-              )}
+              <Interactive3DPhone
+                src="/projects/mahjong/mockups/02_gameplay_board_front.webp"
+                alt="Expedition Mahjong front-view 3D gameplay board mockup"
+                sizes="330px"
+                maxRotateX={14}
+                maxRotateY={20}
+                showHint
+                className="w-full"
+                stageClassName="relative w-full aspect-[9/19.2]"
+              />
             </motion.div>
           )}
 
