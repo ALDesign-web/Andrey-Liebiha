@@ -62,18 +62,42 @@ export function Navbar() {
             href="/"
             className="flex items-center gap-3 min-h-[40px] rounded-full pr-2 group focus-visible:outline-none"
           >
-            <div className="w-8 h-8 rounded-full bg-white/[0.06] border border-white/15 flex items-center justify-center relative overflow-hidden">
-              <span className="font-mono font-semibold text-xs tracking-wider text-[#f2f5f1]">
-                AL
-              </span>
-              <span className="absolute inset-x-0 bottom-0 h-[2px] bg-[#ff7235] opacity-85" />
+            <div className="w-8 h-8 shrink-0 rounded-full bg-gradient-to-b from-white/[0.10] to-white/[0.02] border border-white/15 group-hover:border-[#ff7235]/50 shadow-[inset_0_1px_0.5px_rgba(255,255,255,0.26)] flex items-center justify-center transition-colors">
+              <svg
+                width="32"
+                height="32"
+                viewBox="0 0 32 32"
+                fill="none"
+                aria-hidden="true"
+              >
+                <path
+                  d="M8.25 21.25L11.85 10.75L15.45 21.25"
+                  stroke="#f2f5f1"
+                  strokeWidth="1.85"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+                <path
+                  d="M9.8 17.85H13.9"
+                  stroke="#ff7235"
+                  strokeWidth="1.75"
+                  strokeLinecap="round"
+                />
+                <path
+                  d="M18.35 10.75V21.25H23.75"
+                  stroke="#f2f5f1"
+                  strokeWidth="1.85"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
             </div>
             <div className="flex flex-col leading-none">
-              <span className="font-semibold text-sm tracking-tight text-[#f2f5f1] group-hover:text-white transition-colors">
+              <span className="font-semibold text-sm tracking-tight text-[#f2f5f1] group-hover:text-white transition-colors whitespace-nowrap">
                 Andrii Liebiha
               </span>
-              <span className="text-[11px] font-mono text-[#adb3b7]">
-                Mobile UX/UI · Motion
+              <span className="text-[11px] font-mono text-[#adb3b7] whitespace-nowrap mt-0.5">
+                UX/UI &amp; Motion
               </span>
             </div>
           </Link>
@@ -103,9 +127,12 @@ export function Navbar() {
 
           {/* Desktop Right CTA */}
           <div className="hidden md:flex items-center gap-3">
-            <span className="hidden lg:inline-flex items-center gap-2 text-xs font-mono text-[#adb3b7] pr-1">
-              <span className="w-2 h-2 rounded-full bg-emerald-400" aria-hidden="true" />
-              Open to Mobile Roles
+            <span className="hidden lg:inline-flex items-center gap-2 text-xs font-mono text-[#adb3b7] pr-1 whitespace-nowrap">
+              <span className="w-2 h-2 rounded-full bg-emerald-400 shrink-0" aria-hidden="true" />
+              <span>
+                <span className="hidden xl:inline">Open to </span>
+                Middle / Senior UX/UI
+              </span>
             </span>
             <Link
               href="/#contact"
