@@ -21,6 +21,13 @@ export interface ProjectProcessStep {
   detail: string;
 }
 
+export interface ProjectHeroVideo {
+  src: string;
+  poster: string;
+  title?: string;
+  caption?: string;
+}
+
 export interface ProjectItem {
   id: string;
   slug: string;
@@ -36,6 +43,7 @@ export interface ProjectItem {
   categoryLabel: string;
   imageSrc: string;
   heroMobileImage?: string;
+  heroVideo?: ProjectHeroVideo;
   mockups?: ProjectScreen[];
   screens: ProjectScreen[];
   slides: string[];

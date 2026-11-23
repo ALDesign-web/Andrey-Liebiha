@@ -12,12 +12,16 @@
     "rive:build": "node scripts/build-rive.mjs",
     "remotion:preview": "remotion preview src/remotion/index.ts",
     "remotion:render": "remotion render src/remotion/index.ts BookifyCaseStudy out/bookify-reel.mp4",
-    "remotion:still": "remotion still src/remotion/index.ts BookifyCaseStudy out/still.png"
+    "remotion:still": "remotion still src/remotion/index.ts BookifyCaseStudy out/still.png",
+    "remotion:render:kinetix": "remotion render src/remotion/index.ts KinetixShowcase public/projects/kinetix/kinetix-showcase.mp4 --codec=h264 --crf=21 --pixel-format=yuv420p",
+    "remotion:still:kinetix": "remotion still src/remotion/index.ts KinetixShowcase public/projects/kinetix/kinetix-showcase-poster.png --frame=230"
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",
+    "@remotion/paths": "4.0.518",
     "@remotion/player": "^4.0.518",
     "@remotion/shapes": "^4.0.518",
+    "@remotion/transitions": "4.0.518",
     "@rive-app/react-canvas": "^4.34.3",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",

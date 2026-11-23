@@ -223,16 +223,30 @@ export function ProjectsShowcase() {
           <article className="md:col-span-7 tm-hover-lift rounded-3xl bg-[#121316] border border-white/[0.08] p-6 sm:p-8 flex flex-col sm:flex-row gap-6 items-start sm:items-center">
             <Link
               href={`/work/${kinetix.slug}`}
-              className="relative w-full sm:w-56 aspect-[4/3] rounded-2xl overflow-hidden border border-white/10 shrink-0 bg-[#08090a]"
+              className="relative w-full sm:w-64 aspect-video rounded-2xl overflow-hidden border border-white/10 shrink-0 bg-[#07080a] group"
               aria-label={`Open ${kinetix.title} conceptual study`}
             >
-              <Image
-                src={kinetix.imageSrc}
-                alt="Kinetix AI conceptual dark-mode telemetry dashboard exploration"
-                fill
-                sizes="(max-width: 640px) 90vw, 224px"
-                className="object-cover object-top"
-              />
+              {kinetix.heroVideo ? (
+                <video
+                  src={kinetix.heroVideo.src}
+                  poster={kinetix.heroVideo.poster}
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  preload="metadata"
+                  aria-label="Kinetix AI Studio animated UI showcase preview"
+                  className="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-300"
+                />
+              ) : (
+                <Image
+                  src={kinetix.imageSrc}
+                  alt="Kinetix AI conceptual dark-mode telemetry dashboard exploration"
+                  fill
+                  sizes="(max-width: 640px) 90vw, 256px"
+                  className="object-cover object-top"
+                />
+              )}
             </Link>
 
             <div className="flex-1 flex flex-col justify-between gap-3">
@@ -252,7 +266,7 @@ export function ProjectsShowcase() {
                 href={`/work/${kinetix.slug}`}
                 className="min-h-[44px] inline-flex items-center gap-1.5 text-sm font-mono text-[#ff8547] hover:text-[#ffa043] transition-colors w-fit"
               >
-                Inspect Study Screens
+                Watch Reel &amp; Inspect Study
                 <ArrowRight className="w-4 h-4" aria-hidden="true" />
               </Link>
             </div>

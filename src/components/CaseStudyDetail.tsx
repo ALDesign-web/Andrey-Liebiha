@@ -16,6 +16,7 @@ import {
   Layers,
 } from "lucide-react";
 import { ProjectItem } from "@/types/portfolio";
+import { CaseStudyHeroVideo } from "@/components/CaseStudyHeroVideo";
 
 interface CaseStudyDetailProps {
   project: ProjectItem;
@@ -135,6 +136,14 @@ export function CaseStudyDetail({ project, nextProject }: CaseStudyDetailProps) 
             </div>
           </div>
         </header>
+
+        {/* Animated Product Showcase Reel (when provided) */}
+        {project.heroVideo && (
+          <CaseStudyHeroVideo
+            video={project.heroVideo}
+            projectTitle={project.title}
+          />
+        )}
 
         {/* Overview, Problem & Solution */}
         <section className="py-12 border-b border-white/[0.08] grid grid-cols-1 lg:grid-cols-12 gap-8">

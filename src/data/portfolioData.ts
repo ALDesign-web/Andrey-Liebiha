@@ -335,6 +335,13 @@ export const PROJECTS_DATA: ProjectItem[] = [
     category: "ai-saas",
     categoryLabel: "Conceptual SaaS & Design Tokens",
     imageSrc: "/projects/kinetix/crop_analytics.webp",
+    heroVideo: {
+      src: "/projects/kinetix/kinetix-showcase.mp4",
+      poster: "/projects/kinetix/kinetix-showcase-poster.png",
+      title: "Kinetix AI Studio · Interactive Product Reel",
+      caption:
+        "1080p 60fps decomposed UI reel built in Remotion: telemetry workbench, live SVG curves, multi-channel routing graph, and modular bento micro-interactions.",
+    },
     screens: [
       {
         src: "/projects/kinetix/crop_analytics.webp",
